@@ -3,20 +3,20 @@
 # xray 使用指南
     
 
-## Quick Start
+## 快速使用方式
 
 1. 扫描单个 url
     
     ```bash
-    xray webscan --url http://example.com/?a=b
+    xray webscan --url "http://example.com/?a=b"
     ```
 
-1. 使用 HTTP 代理做被动扫描
+1. 使用 HTTP 代理进行被动扫描
     
     ```
     xray webscan --listen 127.0.0.1:7777
     ```
-   浏览器设置 http 代理 为 `http://127.0.0.1:7777`，就可以自动分析代理流量并扫描。
+   设置浏览器 http 代理为 `http://127.0.0.1:7777`，就可以自动分析代理流量并扫描。
    
    >如需扫描 https 流量，请阅读下方 `抓取 https 流量` 部分
 
@@ -123,5 +123,6 @@ http:
 
 1. Github issue: https://github.com/chaitin/xray/issues
 2. QQ 群: 717365081
-3. 微信群: 扫描以下二维码加我的个人微信，会把大家拉到 `xray` 官方微信群
-    <img src="./assets/wechat.jpg" height="200px">
+3. 微信群: 扫描以下二维码加我的个人微信，会把大家拉到 `xray` 官方微信群    
+ 
+<img src="./assets/wechat.jpg" height="150px">
