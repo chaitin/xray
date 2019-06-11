@@ -119,3 +119,9 @@ http:
   tls_skip_verify: true # 是否验证目标网站的 https 证书。
 ```
 
+## 讨论区
+
+1. Github issue: https://github.com/chaitin/xray/issues
+2. QQ 群: 717365081
+3. 微信群: 扫描以下二维码加我的个人微信，会把大家拉到 `xray` 官方微信群
+    <img src="./assets/wechat.jpg" height="200px">
