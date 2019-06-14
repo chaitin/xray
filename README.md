@@ -100,6 +100,7 @@ http:
   dial_timeout: 5 # 建立 tcp 连接的超时时间
   read_timeout: 30 # 读取 http 响应的超时时间，不可太小，否则会影响到 sql 时间盲注的判断
   fail_retries: 1 # 请求失败的重试次数，0 则不重试
+  max_qps: 500 # 每秒最大请求数
   max_redirect: 5 # 单个请求最大允许的跳转数
   max_conns_per_host: 50 # 同一 host 最大允许的连接数，可以根据目标主机性能适当增大。
   max_resp_body_size: 8388608 # 8M，单个请求最大允许的响应体大小，超过该值 body 就会被截断
