@@ -1,7 +1,8 @@
-
-
 # xray 使用指南
-    
+
+**社区版非开源版，请直接到 [release](https://github.com/chaitin/xray/releases) 中下载使用。无需 clone 此仓库。**
+
+**点击右上角 'Watch' 然后选择 'Release Only' 可以在新版本发布的时候收到通知，而不会被其他的消息（比如 issue、pr 等）所打扰。**
 
 ## 快速使用方式
 
