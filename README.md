@@ -72,8 +72,10 @@ mitm 的配置项主要用于被动扫描模式下的代理的配置。
 mitm:
   ca_cert: ./ca.crt
   ca_key: ./ca.key
-  includes: "*"
-  excludes: ""
+  includes:
+    - "*"
+  excludes:
+    - "*google*"
 ```
 
 配置项中的前两项： `ca_cert` 和 `ca_key` 用于指定中间人的根证书路径。和 burp 类似，抓取 https 流量需要信任一个根证书，这个根证书可以自行生成，也可用下列自带的命令生成:
