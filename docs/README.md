@@ -85,6 +85,10 @@
 
   支持 header, query, body 位置的 CRLF 注入检测。
 
++ JSONP 敏感信息泄露 (jsonp)
+
+  内置敏感信息分析算法，能够检测到可以被利用的 jsonp 漏洞。
+
 + ...
 
 
