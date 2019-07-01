@@ -46,7 +46,8 @@
     可以指定将本次扫描的漏洞信息输出到某个文件中:
     
     ```bash
-    xray webscan --url http://example.com/?a=b --output result.txt
+    xray webscan --url http://example.com/?a=b --text-output result.txt
+    xray webscan --url http://example.com/?a=b --json-output result.json
     ```
 
 ## 🛠 检测模块
