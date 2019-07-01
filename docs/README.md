@@ -53,35 +53,35 @@
 
 新的检测模块将不断添加，xss，自定义插件等模块也在路上啦。
 
-+ SQL 注入检测
++ SQL 注入检测 (sqldet)
   
   支持报错注入、布尔盲注、时间盲注，支持主流数据库。
 
-+ 命令注入检测
++ 命令注入检测 (cmd_injection)
 
   支持通用命令注入（shell）、PHP 代码执行、模板注入检测等。
 
-+ 目录枚举模块
++ 目录枚举模块 (dirscan)
 
   支持备份文件泄露、临时文件泄露、debug 页面、配置文件泄露等10余类敏感路径的检测，覆盖大多数常见的 case。
 
-+ 基线检查
++ 基线检查 (baseline)
   
   对远程主机的 ssl 版本，http header 等的检测。
 
-+ 任意跳转
++ 任意跳转 (redirect)
 
   支持 header 中的跳转 html meta 跳转等。
 
-+ 路径穿越
++ 路径穿越 (path_traversal)
 
   包含多平台 payload，支持常见编码绕过的目录穿越漏洞的检测。
 
-+ SSRF
++ SSRF (ssrf)
 
   支持无校验情况、前缀校验情况、后缀校验情况和其他存在部分绕过情况。该功能需配合 [反连平台](https://chaitin.github.io/xray/#/guide/reverse) 使用。
 
-+ CRLF 注入
++ CRLF 注入 (crlf_injection)
 
   支持 header, query, body 位置的 CRLF 注入检测。
 
