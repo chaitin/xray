@@ -32,7 +32,7 @@
 
    >If need to scan https traffic，please read `capture https trafic` section in this document.
 
-1. Specify the plugins to run Manually
+1. Specify the plugins to run manually
    
   By default, all built-in plugins are enabled, and the following commands can be used to enable specific plugins for this scan.
    
