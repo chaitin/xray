@@ -8,109 +8,111 @@
   </a>
 </p>
 
-> 一款功能强大的安全评估工具  🏠 [主页](https://chaitin.github.io/xray/#/)  ⬇️ [下载](https://github.com/chaitin/xray/releases)
-
+> A powerful security assessment tool  🏠[Homepage](https://chaitin.github.io/xray/#/)  ⬇️[Download](https://github.com/chaitin/xray/releases) 📚[Chinese document](https://github.com/chaitin/xray)
 
 ### ✨ Demo
 
 ![](https://chaitin.github.io/xray/assets/term.svg)
 
-## 🚀 快速使用
+## 🚀 Quick usage
 
-1. 扫描单个 url
+1. Scan a single url
     
     ```bash
     xray webscan --url "http://example.com/?a=b"
     ```
 
-1. 使用 HTTP 代理进行被动扫描
+1. Run as a HTTP proxy to scan passively
     
     ```bash
     xray webscan --listen 127.0.0.1:7777
     ```
-   设置浏览器 http 代理为 `http://127.0.0.1:7777`，就可以自动分析代理流量并扫描。
-   
-   >如需扫描 https 流量，请阅读下方文档 `抓取 https 流量` 部分
+    
+   Configure the browser to use http proxy `http://127.0.0.1:7777`, then the proxy traffic can be automatically analyzed and scanned。
 
-1. 手动指定本次运行的插件
+   >If need to scan https traffic，please read `capture https trafic` section in this document.
+
+1. Specify the plugins to run Manually
    
-   默认情况下，将会启用所有内置插件，可以使用下列命令指定本次扫描启用的插件。
+  By default, all built-in plugins are enabled, and the following commands can be used to enable specific plugins for this scan.
    
    ```bash
    xray webscan --plugins cmd_injection,sqldet --url http://example.com
    xray webscan --plugins cmd_injection,sqldet --listen 127.0.0.1:7777
    ```
       
-1. 指定插件输出
+1. Specify plugin output path
 
-    可以指定将本次扫描的漏洞信息输出到某个文件中:
+    You can specify the output path of the vulnerability information:
     
     ```bash
     xray webscan --url http://example.com/?a=b --text-output result.txt
     xray webscan --url http://example.com/?a=b --json-output result.json
     ```
 
-## 🛠 检测模块
+## 🛠 Detection module
 
-新的检测模块将不断添加，xss，自定义插件等模块也在路上啦。
+We are working hard for new detection modules, for example xss detection, custom plugins, etc.
 
-+ SQL 注入检测 (sqldet)
++ SQL injection detection (sqldet)
   
-  支持报错注入、布尔盲注、时间盲注，支持主流数据库。
+  Support for error based detection, boolean based detection, time based detection, and support mainstream databases.
 
-+ 命令注入检测 (cmd_injection)
++ Command injection detection (cmd_injection)
 
-  支持通用命令注入（shell）、PHP 代码执行、模板注入检测等。
+  Support for general command injection (shell), PHP code execution, template injection detection, and more.
 
-+ 目录枚举模块 (dirscan)
++ Directory enumeration module (dirscan)
 
-  支持备份文件泄露、临时文件泄露、debug 页面、配置文件泄露等10余类敏感路径的检测，覆盖大多数常见的 case。
+  Supports detection of more than 10 types of sensitive paths such as backup file leaks, temporary file leaks, debug pages, and configuration file leaks, covering most common cases.
 
-+ 基线检查 (baseline)
++ Baseline detection (baseline)
   
-  对远程主机的 ssl 版本，http header 等的检测。
+  Detection of the ssl version of the remote host, http header, etc.
 
-+ 任意跳转 (redirect)
++ Arbitrary redirect (redirect)
 
-  支持 header 中的跳转 html meta 跳转等。
+  Support for redirection in html meta tag, 30x status code, etc.
 
-+ 路径穿越 (path_traversal)
++ Path traversal (path_traversal)
 
-  包含多平台 payload，支持常见编码绕过的目录穿越漏洞的检测。
+  Support multi-platform directory traversal vulnerabilities detection with automatically bypass technologies.
 
 + SSRF (ssrf)
 
-  支持无校验情况、前缀校验情况、后缀校验情况和其他存在部分绕过情况。该功能需配合 [反连平台](https://chaitin.github.io/xray/#/guide/reverse) 使用。
+  Support common SSRF vulnerabilities detection with automatically bypass technologies. This feature needs reverse server [reverse platform](https://chaitin.github.io/xray/#/guide/reverse).
 
-+ CRLF 注入 (crlf_injection)
++ CRLF injection (crlf_injection)
 
-  支持 header, query, body 位置的 CRLF 注入检测。
+  Supports CRLF injection detection in header, query, and body positions.
 
-+ JSONP 敏感信息泄露 (jsonp)
++ JSONP sensitive information leak (jsonp)
 
-  内置敏感信息分析算法，能够检测到可以被利用的 jsonp 漏洞。
+  Support JSONP sensitive information leak vulnerabilities with smart detection algorithm.
 
 + ...
 
 
-## ⚡️ 进阶使用
+## ⚡️ Advanced usage
 
-下列高级用法请查看 [http://chaitin.github.io/xray/](http://chaitin.github.io/xray/) 使用。
+For the below advanced usage, please refer to [http://chaitin.github.io/xray/](http://chaitin.github.io/xray/) .
 
- - 修改配置文件
- - 生成证书
- - 抓取 https 流量
- - 修改 https 发包配置
- - 反连平台的使用
+ - modify config file
+ - generate ssl ca certificate
+ - capture https traffic
+ - modify http client config
+ - the usage of reverse server
  - ...
 
 
-## 📝 讨论区
+## 📝 Discussion
 
-如有问题可以在 GitHub 提 issue, 也可在下方的讨论组里
+If you have any questions, please post an issue on GitHub, or you can join the discussion groups below.
 
 1. GitHub issue: https://github.com/chaitin/xray/issues
-1. QQ 群: 717365081
-1. 微信群: 扫描以下二维码加我的个人微信，会把大家拉到 `xray` 官方微信群    
+1. QQ group: 717365081
+1. WeChat group: Scan the QR code below to add friends with me, I will invite you to the group.   
 
 <img src="https://chaitin.github.io/xray/assets/wechat.jpg" height="150px">
+
+

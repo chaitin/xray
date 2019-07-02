@@ -8,8 +8,7 @@
   </a>
 </p>
 
-> 一款功能强大的安全评估工具  🏠 [主页](https://chaitin.github.io/xray/#/)  ⬇️ [下载] (https://github.com/chaitin/xray/releases) :orange_book: [英文文档](https://github.com/neal1991/xray/blob/master/docs/README-EN.md)
-
+> 一款功能强大的安全评估工具  🏠[主页](https://chaitin.github.io/xray/#/)  ⬇️[下载](https://github.com/chaitin/xray/releases) 📚[English Document](https://github.com/chaitin/xray/tree/master/docs/en-us)
 
 ### ✨ Demo
 
@@ -72,7 +71,7 @@
 
 + 任意跳转 (redirect)
 
-  支持 header 中的跳转 html meta 跳转等。
+  支持 html meta 跳转、30x 跳转等等。
 
 + 路径穿越 (path_traversal)
 
