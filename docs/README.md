@@ -38,7 +38,7 @@
    
    ```bash
    xray webscan --plugins cmd_injection,sqldet --url http://example.com
-   xray webscan --plugins cmd_injection,sqldet --proxy 127.0.0.1:7777
+   xray webscan --plugins cmd_injection,sqldet --listen 127.0.0.1:7777
    ```
       
 1. 指定插件输出
