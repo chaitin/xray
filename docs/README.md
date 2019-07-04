@@ -49,6 +49,23 @@
     xray webscan --url http://example.com/?a=b --json-output result.json
     ```
 
+1. 只运行单个**内置** POC
+
+    在 xray 中，所有的 poc 隶属于插件 `phantasm`, 所以使用 poc 时需要开启 `phantasm` 插件才可生效。`--poc` 参数指定本次运行的 poc，如不指定，将运行所有的内置 poc。
+
+    ```bash
+    xray webscan --plugins phantasm --poc poc-yaml-thinkphp5-controller-rce --url http://example.com/
+    ```
+1. 运行用户自定义 POC
+
+    用户可以按需书写自己的 YAML 格式的 POC， 并通过指定 `--poc` 参数运行，比如运行在 `/home/test/1.yaml` 处的 POC。
+
+    ```bash
+    xray webscan --plugins phantasm --poc /home/test/1.yaml --url http://example.com/
+    ```
+    自定义 POC 请查看文档。
+  
+
 ## 🛠 检测模块
 
 新的检测模块将不断添加，xss，自定义插件等模块也在路上啦。
@@ -88,6 +105,10 @@
 + JSONP 敏感信息泄露 (jsonp)
 
   内置敏感信息分析算法，能够检测到可以被利用的 jsonp 漏洞。
+
++ 自定义 POC 检测框架 (phantasm)
+
+  默认内置部分常用的 poc，用户可以根据需要自行构建 poc 并运行，详情 [参考文档](https://chaitin.github.io/xray/#/guide/poc)
 
 + ...
 
