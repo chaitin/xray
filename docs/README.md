@@ -127,6 +127,8 @@
 
 ## 📝 讨论区
 
+提交误报漏报需求等等请务必先阅读 [https://chaitin.github.io/xray/#/guide/feedback](https://chaitin.github.io/xray/#/guide/feedback)
+
 如有问题可以在 GitHub 提 issue, 也可在下方的讨论组里
 
 1. GitHub issue: https://github.com/chaitin/xray/issues
