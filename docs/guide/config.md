@@ -10,10 +10,14 @@ mitm 的配置项主要用于被动扫描模式下的代理的配置。
 mitm:
   ca_cert: ./ca.crt
   ca_key: ./ca.key
-  includes:
-    - "*"
+  includes: # 允许扫描的域
+    - "*" # 所有的域名和 path
+    - "example.com/admin*" # example.com 下的 /admin 开头的 path
   excludes:
     - "*google*"
+  auth: # 密码保护的代理
+    username: "admin"
+    password: "foobar"
 ```
 
 配置项中的前两项： `ca_cert` 和 `ca_key` 用于指定中间人的根证书路径。和 burp 类似，抓取 https 流量需要信任一个根证书，这个根证书可以自行生成，也可用下列自带的命令生成:
@@ -21,7 +25,6 @@ mitm:
 ```
 xray genca
 ```
-
 
 运行后将在当前目录生成 `ca.key` 和 `ca.crt`， 用户需要手动信任 `ca.crt`。操作完成后就可以正常抓取 https 流量了。
 
@@ -31,6 +34,8 @@ xray genca
 1. `excludes` 表示不扫描哪些域。比如 `t.example.com` 表示不扫描 `t.example.com`
 
 两个都配置的情况下会取交集，这两个配置常用于想要过滤代理中的某些域，或者只想扫描某个域的请求时。默认配置为抓取所有的域。
+
+两项配置都还是支持 path 过滤，`/` 后面的表达式就是 path 的过滤。
 
 ## HTTP 配置
 
