@@ -108,6 +108,14 @@
 
   内置敏感信息分析算法，能够检测到可以被利用的 jsonp 漏洞。
 
++ 任意文件上传漏洞检测插件 (upload)
+  
+  该插件可以对 `multipart/form-data` 的 body 进行 fuzz，探测可能存在的任意文件上传漏洞
+
++ 弱口令检测插件 (brute_force)
+
+  内置常见用户名和密码字典，社区版支持 HTTP 基础认证检测和简易表单弱口令检测。
+
 + 自定义 POC 检测框架 (phantasm)
 
   默认内置部分常用的 poc，用户可以根据需要自行构建 poc 并运行，详情 [参考文档](https://chaitin.github.io/xray/#/guide/poc)
