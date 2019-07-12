@@ -48,6 +48,8 @@
     xray webscan --url http://example.com/?a=b --text-output result.txt
     xray webscan --url http://example.com/?a=b --json-output result.json
     ```
+    
+    [报告样例](https://chaitin.github.io/xray/assets/report_example.html)
 
 1. 只运行单个**内置** POC
 
