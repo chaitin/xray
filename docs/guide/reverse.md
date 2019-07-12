@@ -28,16 +28,55 @@ reverse:
 
 ```yaml
 reverse:
-  listen_ip: 192.168.10.10
+  listen_ip: some-ip
+  # 自动选择端口
   listen_port: ""
   store_events: false
   base_url: ""
   remote_server: false
 ```
 
-这样扫描器就会发送 `http://192.168.10.10:$port` 这样的地址让被靶站尝试去访问。 
+这样扫描器就会生成 `base_url`，值为 `http://$listen_ip:$listen_port` 让被靶站尝试去访问。
 
-### 场景2 - 扫描器可以访问靶站，但是靶站无法访问扫描器。
+## 场景2 - 扫描器 listen 的地址和靶站访问的地址并不一样
+
+适用于以下情况，需要指定 base_url
+
+### 一些云主机，虽然公网 ip 可以访问，但是本地并无法直接 listen 那个 ip
+
+```yaml
+reverse:
+  listen_ip: 0.0.0.0
+  listen_port: ""
+  store_events: false
+  # 上面的 port 留空代表自动选择，下面的 ${port} 引用上面自动选择的值
+  base_url: "http://some-ip:${port}"
+  remote_server: false
+```
+
+### 想使用解析到这个 ip 的域名让靶站访问
+
+```yaml
+reverse:
+  listen_ip: 0.0.0.0
+  listen_port: ""
+  store_events: false
+  base_url: "http://some-domain:${port}"
+  remote_server: false
+```
+
+### 扫描器反连平台前面有端口映射
+ 
+ ```yaml
+reverse:
+  listen_ip: 0.0.0.0
+  listen_port: "some_port"
+  store_events: false
+  base_url: "http://some-ip:real_port"
+  remote_server: false
+```
+
+### 场景3 - 扫描器可以访问靶站，但是靶站无法访问扫描器。
 
 这是非常常见的情况，比如在个人电脑上运行扫描器，扫描公网的靶站。这时候需要在公网上也部署一份反连平台，然后扫描器和靶站都去使用那个。
 
@@ -58,5 +97,3 @@ reverse:
   remote_server: true
   token: "your-token"
 ```
-
-
