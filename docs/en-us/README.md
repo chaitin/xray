@@ -52,45 +52,61 @@
 
 ## 🛠 Detection module
 
-We are working hard for new detection modules, for example xss detection, custom plugins, etc.
+We are working hard for new detection modules, for example xss detection, etc.
 
-+ SQL injection detection (sqldet)
-  
-  Support for error based detection, boolean based detection, time based detection, and support mainstream databases.
+ - sqldet
 
-+ Command injection detection (cmd_injection)
+   Support error based, boolean based and time based sql injection detection
 
-  Support for general command injection (shell), PHP code execution, template injection detection, and more.
+ - cmd_injection
 
-+ Directory enumeration module (dirscan)
+   Detect common shell command injection, PHP code execution and template injection, etc
 
-  Supports detection of more than 10 types of sensitive paths such as backup file leaks, temporary file leaks, debug pages, and configuration file leaks, covering most common cases.
+ - dirscan
 
-+ Baseline detection (baseline)
-  
-  Detection of the ssl version of the remote host, http header, etc.
+   Support about ten kinds of sensitive path and file type, including backup file, temp file, debug page, config file, etc
 
-+ Arbitrary redirect (redirect)
+ - path_traversal
 
-  Support for redirection in html meta tag, 30x status code, etc.
+   Support command platform and encoding
 
-+ Path traversal (path_traversal)
+ - xxe
 
-  Support multi-platform directory traversal vulnerabilities detection with automatically bypass technologies.
+   Support echo based detection and can work with reverse server
 
-+ SSRF (ssrf)
+ - phantasm
 
-  Support common SSRF vulnerabilities detection with automatically bypass technologies. This feature needs reverse server [reverse platform](https://chaitin.github.io/xray/#/guide/reverse).
+   Common poc inside, user can add your own poc and run it. Document: https://chaitin.github.io/xray/#/guide/poc
 
-+ CRLF injection (crlf_injection)
+ - upload
 
-  Supports CRLF injection detection in header, query, and body positions.
+   Support common backend languages
 
-+ JSONP sensitive information leak (jsonp)
+ - brute_force
 
-  Support JSONP sensitive information leak vulnerabilities with smart detection algorithm.
+   The community version can detect weak password in http basic auth and simple form, common username and password dict inside
 
-+ ...
+ - jsonp
+
+   Detect jsonp api with sensitive data which can be called across origins
+
+ - ssrf
+
+   Support common bypass tech and can work with reverse server
+
+ - baseline
+
+   Detect outdated SSL version, missing or incorrect http headers, etc
+
+ - redirect
+
+   Detect arbitrary redirection from HTML meta and 30x response, etc
+
+ - crlf_injection
+
+   Detect CRLF injection in HTTP header, support parameters from query and body, etc
+
+ - ...
 
 
 ## ⚡️ Advanced usage
