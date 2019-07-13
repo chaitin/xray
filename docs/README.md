@@ -72,55 +72,59 @@
 
 新的检测模块将不断添加，xss，自定义插件等模块也在路上啦。
 
-+ SQL 注入检测 (sqldet)
-  
-  支持报错注入、布尔盲注、时间盲注，支持主流数据库。
+ - SQL 注入检测 (key: sqldet)
 
-+ 命令注入检测 (cmd_injection)
+   支持报错注入、布尔注入和时间盲注等
 
-  支持通用命令注入（shell）、PHP 代码执行、模板注入检测等。
+ - 命令/代码注入检测 (key: cmd_injection)
 
-+ 目录枚举模块 (dirscan)
+   支持 shell 命令注入、PHP 代码执行、模板注入等
 
-  支持备份文件泄露、临时文件泄露、debug 页面、配置文件泄露等10余类敏感路径的检测，覆盖大多数常见的 case。
+ - 目录枚举 (key: dirscan)
 
-+ 基线检查 (baseline)
-  
-  对远程主机的 ssl 版本，http header 等的检测。
+   检测备份文件、临时文件、debug 页面、配置文件等10余类敏感路径和文件
 
-+ 任意跳转 (redirect)
+ - 路径穿越检测 (key: path_traversal)
 
-  支持 html meta 跳转、30x 跳转等等。
+   支持常见平台和编码
 
-+ 路径穿越 (path_traversal)
+ - XML 实体注入检测 (key: xxe)
 
-  包含多平台 payload，支持常见编码绕过的目录穿越漏洞的检测。
+   支持有回显和反连平台检测
 
-+ SSRF (ssrf)
+ - poc 管理 (key: phantasm)
 
-  支持无校验情况、前缀校验情况、后缀校验情况和其他存在部分绕过情况。该功能需配合 [反连平台](https://chaitin.github.io/xray/#/guide/reverse) 使用。
+   默认内置部分常用的 poc，用户可以根据需要自行构建 poc 并运行。文档：https://chaitin.github.io/xray/#/guide/poc
 
-+ CRLF 注入 (crlf_injection)
+ - 文件上传检测 (key: upload)
 
-  支持 header, query, body 位置的 CRLF 注入检测。
+   支持常见的后端语言
 
-+ JSONP 敏感信息泄露 (jsonp)
+ - 弱口令检测 (key: brute_force)
 
-  内置敏感信息分析算法，能够检测到可以被利用的 jsonp 漏洞。
+   社区版支持检测 HTTP 基础认证和简易表单弱口令，内置常见用户名和密码字典
 
-+ 任意文件上传漏洞检测插件 (upload)
-  
-  该插件可以对 `multipart/form-data` 的 body 进行 fuzz，探测可能存在的任意文件上传漏洞
+ - jsonp 检测 (key: jsonp)
 
-+ 弱口令检测插件 (brute_force)
+   检测包含敏感信息可以被跨域读取的 jsonp 接口
 
-  内置常见用户名和密码字典，社区版支持 HTTP 基础认证检测和简易表单弱口令检测。
+ - ssrf 检测 (key: ssrf)
 
-+ 自定义 POC 检测框架 (phantasm)
+   ssrf 检测模块，支持常见的绕过技术和反连平台检测
 
-  默认内置部分常用的 poc，用户可以根据需要自行构建 poc 并运行，详情 [参考文档](https://chaitin.github.io/xray/#/guide/poc)
+ - 基线检查 (key: baseline)
 
-+ ...
+   检测低 SSL 版本、缺失的或错误添加的 http 头等
+
+ - 任意跳转检测 (key: redirect)
+
+   支持 HTML meta 跳转、30x 跳转等
+
+ - CRLF 注入 (key: crlf_injection)
+
+   检测 HTTP 头注入，支持 query、body 等位置的参数
+
+ - ..
 
 
 ## ⚡️ 进阶使用
