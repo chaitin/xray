@@ -25,16 +25,19 @@ reverse:
 ```
  - store_events server 是否存储 event，用于 debug
  - token 是用于防止 api 被非法调用
- - listen_ip 监听的 ip
- - listen_port 如果是空字符串，就自动选择一个
- - base_url 是客户端访问的时候使用，详见下方的场景
- - remote_server 是客户端访问的时候，是 http fetch 还是直接代码访问，详见下方的场景
- - dns_server_ip 是客户端发起 dns 查询的时候，使用的 ip，详见下方场景，如果启用，可能需要权限才能监听 53 端口。
-
+ - http
+   - listen_ip 监听的 ip
+   - listen_port 如果是空字符串，就自动选择一个
+ - dns （如果启用，可能需要权限才能监听 53 端口）
+   - domain 在 dns 查询的时候的一级域名。如果此域名的 ns 服务器就是反连平台的地址，那么直接使用 `dig random.domain.com` 就可以让 dns 请求到反连平台，否则需要 `dig random.domain.com @reverse-server-ip` 指定 dns 服务器才可以。如果为空，则使用 `example.com`，dig 的时候需要指定 dns。
+ - client
+   - base_url 是客户端访问的时候使用，详见下方的场景
+   - remote_server 是客户端访问的时候，是 http fetch 还是直接代码访问，详见下方的场景。非 remote_server 的时候，将自动生成，可以不填，否则必须两边一致。
+   - dns_server_ip 是客户端发起 dns 查询的时候，使用的 ip，详见下方场景。
 
 ### 场景1 - 扫描器和靶站可以使用 ip 双向互联
 
-可以使用默认配置，配置监听 ip 就可以。
+可以使用默认配置，配置监听 ip 就可以。比如 `your-reverse-server-ip` 为 `192.168.1.2`。
 
 ```yaml
 reverse:
@@ -42,11 +45,11 @@ reverse:
   token: ""
   http:
     enabled: true
-    listen_ip: 127.0.0.1
+    listen_ip: your-reverse-server-ip
     listen_port: ""
   dns:
-    enabled: false
-    listen_ip: 127.0.0.1
+    enabled: true
+    listen_ip: your-reverse-server-ip
     domain: ""
   client:
     http_base_url: ""
@@ -54,7 +57,9 @@ reverse:
     remote_server: false
 ```
 
-这样扫描器选择一个未占用的端口，生成 `base_url`，值为 `http://$listen_ip:$listen_port` 让被靶站尝试去访问。DNS log 功能未启用。
+这样扫描器选择一个未占用的端口，生成 `base_url`，值为 `http://$http:listen_ip:$http:listen_port` 让被靶站尝试去访问。
+
+DNS 相关测试中，就会使用 `dig some-domain @$dns.listen_ip` 的命令。
 
 ## 场景2 - 扫描器 listen 的地址和靶站访问的地址并不一样
 
@@ -75,10 +80,10 @@ reverse:
     listen_ip: 0.0.0.0
     domain: ""
   client:
-    # 上面的 port 留空代表自动选择，下面的 ${port} 引用上面自动选择的值
-    http_base_url: "http://some-ip:${port}"
-    dns_server_ip: "some-ip"
-    remote_server: true
+    # 上面的 port 留空代表自动选择，这里 ${port} 引用上面自动选择的值
+    http_base_url: "http://your-reverse-server-ip:${port}"
+    dns_server_ip: "your-reverse-server-ip"
+    remote_server: false
 ```
 
 ### 想使用解析到这个 ip 的域名让靶站访问
@@ -97,10 +102,10 @@ reverse:
     domain: ""
   client:
     # 上面的 port 留空代表自动选择，下面的 ${port} 引用上面自动选择的值
-    http_base_url: "http://some-domain:${port}"
+    http_base_url: "http://your-reverse-server-domain:${port}"
     // dns_server 只能是 ip
-    dns_server_ip: "some-ip"
-    remote_server: true
+    dns_server_ip: "your-reverse-server-ip"
+    remote_server: false
 ```
 
 ### 场景3 - 扫描器可以访问靶站，但是靶站无法访问扫描器。
@@ -111,17 +116,12 @@ reverse:
 
 ```yaml
 reverse:
-  listen_ip: "0.0.0.0"
-  listen_port: "port"
-  token: "your-token"
-  
-reverse:
   store_events: false
-  token: ""
+  token: "token-value"
   http:
     enabled: true
     listen_ip: 0.0.0.0
-    listen_port: "8000"
+    listen_port: "12345"
   dns:
     enabled: true
     listen_ip: 0.0.0.0
@@ -136,13 +136,8 @@ reverse:
 
 ```yaml
 reverse:
-  base_url: "http://my-reverse-server:port"
-  remote_server: true
-  token: "your-token"
-  
-reverse:
   store_events: false
-  token: "your-token"
+  token: "token-value"
   http:
     enabled: false
     listen_ip: 127.0.0.1
@@ -152,7 +147,7 @@ reverse:
     listen_ip: 127.0.0.1
     domain: ""
   client:
-    http_base_url: "http://my-reverse-server-ip:8000"
-    dns_server_ip: "my-reverse-server-ip"
+    http_base_url: "http://your-reverse-server-ip-or-domain:12345"
+    dns_server_ip: "your-reverse-server-ip"
     remote_server: true
 ```
