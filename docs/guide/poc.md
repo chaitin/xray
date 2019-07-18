@@ -78,6 +78,7 @@ expression表达式上下文包含的变量暂时只有如下三个，之后会�
 `status` | `int` | 返回包的status code
 `body` | `[]byte` | 返回包的Body，因为是一个字节流（bytes）而非字符串，后面判断的时候需要使用字节流相关的方法
 `content_type` | `string` | 返回包的content-type头的值
+`headers` | `map[string]string` | 返回包的HTTP头，是一个键值对（均为小写），我们可以通过`headers['server']`来获取值。如果键不存在，则获取到的值是空字符串
 
 expression表达式上下文包含所有CEL文档中支持的函数，同时还包含xray引擎中自定义的函数，常用的函数如下：
 
@@ -138,6 +139,55 @@ rules:
 目标漏洞是一个简单的代码执行，但因为是POST请求，所以需要先获取当前用户的CSRF Token。所以，我们的POC分为两个Rule，第一个Rule发送GET请求，并使用search指定的正则提取返回包中的csrftoken表单值，此时expression直接执行表达式`true`，表示第一条规则一定执行成功；第二个Rule发送POST请求，此时，我们可以在path、body、headers中使用前一个规则search的结果，如`{{0}}`、`{{1}}`等。
 
 `{{`、`}}`中包含的数字是正则的提取的group数组，0表示匹配的整个内容，1、2、3...n表示匹配到的第n个group。我这里取到的value值是第1个结果，所以使用`{{1}}`。如果正则没有匹配成功，或者n不在group范围内，这里不会进行替换。
+
+## 如何编写借助反连平台的POC
+
+反连平台是测试一些无回显漏洞的方法，如SSRF、命令执行等，下面介绍一下如何在编写POC的时候，借助反连平台来探测漏洞。
+
+正如上文中我们介绍过的，我们可以在path、headers、body中注入一些变量，与反连平台相关的变量如下：
+
+- `{{reverse_url}}` 反连平台的url
+- `{{reverse_domain}}` 反连平台的域名
+- `{{reverse_ip}}` 反连平台的ip地址
+
+在测试SSRF漏洞的过程中，我们可以直接在请求中注入`{{reverse_url}}`，这个变量就会被替换成反连平台的URL发送：
+
+```yaml
+path: /request?url={{reverse_url}}
+```
+
+此时，如果目标网站存在SSRF漏洞，就会访问我们反连平台的URL，进而我们接收到信息，检测出漏洞。
+
+那么，有时候目标网站无法发送HTTP请求，我们亦可用DNS请求来判断漏洞。如，目标网站存在命令执行漏洞，我们可以通过执行`nslookup`命令来请求我们反连平台的DNS服务器，如：
+
+```yaml
+path: /execute
+body: |
+  param=`nslookup%20{{reverse_domain}}%20{{reverse_ip}}`
+```
+
+此时我们使用`{{reverse_domain}}`和`{{reverse_ip}}`变量，前者会被替换成反连平台的域名，后者替换成反连平台IP，此时nslookup会向`{{reverse_ip}}`发送一个包含`{{reverse_domain}}`的DNS请求，此时反连平台即将收到消息，并成功记录下漏洞。
+
+接着，我们需要在表达式expression中，来判断反连平台的状态，此时我们使用上下文中的`waitReverse`函数：
+
+```
+func waitReverse(timeout int) bool
+```
+
+`waitReverse`将会等待`timeout`秒，在这个时间内，如果反连平台收到消息，则返回true，否则一直阻塞，直到超时时间，如果超时时间到后仍然未收到消息，则该函数返回false。
+
+所以，一个完整的SSRF POC示例如下：
+
+```yaml
+name: example-ssrf-poc
+rules:
+  - method: GET
+    path: /request?url={{reverse_url}}
+    expression: |
+      status == 200 && waitReverse(5)
+```
+
+如果5秒内，反连平台收到符合要求的请求，则`waitReverse(5)`返回true，整个expression返回true，漏洞存在；如果status不是200或5秒内反连平台没有收到请求，则`waitReverse(5)`返回false，漏洞不存在。
 
 ## 一些细节上的说明
 
