@@ -6,6 +6,24 @@ xray支持用户自己编写YAML格式的POC规则，YAML是JSON的超集，也�
 2. YAML的内容更加可读
 3. YAML中可以使用注释
 
+## VSCode 支持
+
+可以提供一些智能提示，方便编写 POC。
+
+首先安装 https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml 插件，然后在 settings 中确认 Extensions - YAML 中相关的开关已经打开。然后点击 `Edit in settings.json`，将 json 内容修改为 
+
+```json
+{
+    "yaml.schemas": {
+        "https://chaitin.github.io/xray/assets/yaml-poc-schema.json": "poc-yaml-*.yml"
+    }
+}
+```
+
+这样创建 `poc-yaml-` 开头的 `yml` 为拓展名的文件的时候，就可以自动提示了。
+
+注意，由于插件的 bug，除了第一行以外，其他的内容无法直接提示，需要使用快捷键让 VSCode 显示提示，一般是 `ctrl` + `Space`。
+
 ## POC结构
 
 一个最基础的POC如下：
