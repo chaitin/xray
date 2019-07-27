@@ -50,6 +50,10 @@
                                     "text/json",
                                     "multipart/form-data"
                                 ]
+                            },
+                            "Content-Length": {
+                                "description": "Content-Length",
+                                "type": "number"
                             }
                         }
                     },
