@@ -33,26 +33,23 @@
                         "default": "/"
                     },
                     "headers": {
-                        "type": "array",
+                        "type": "object",
                         "description": "请求 HTTP 头，Rule 中指定的值会被覆盖到原始数据包的 HTTP 头中",
-                        "items": {
-                            "type": "object",
-                            "additionalProperties": {
-                                "type": "string"
-                            },
-                            "properties": {
-                                "Content-Type": {
-                                    "description": "Content-Type",
-                                    "type": "string",
-                                    "enum": [
-                                        "application/json",
-                                        "application/x-www-form-urlencoded",
-                                        "application/octet-stream",
-                                        "text/html",
-                                        "text/json",
-                                        "multipart/form-data"
-                                    ]
-                                }
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "properties": {
+                            "Content-Type": {
+                                "description": "Content-Type",
+                                "type": "string",
+                                "enum": [
+                                    "application/json",
+                                    "application/x-www-form-urlencoded",
+                                    "application/octet-stream",
+                                    "text/html",
+                                    "text/json",
+                                    "multipart/form-data"
+                                ]
                             }
                         }
                     },
