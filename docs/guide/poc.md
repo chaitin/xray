@@ -24,6 +24,8 @@ xray支持用户自己编写YAML格式的POC规则，YAML是JSON的超集，也�
 
 注意，由于插件的 bug，除了第一行以外，其他的内容无法直接提示，需要使用快捷键让 VSCode 显示提示，一般是 `ctrl` + `Space`。
 
+![](https://chaitin.github.io/xray/assets/poc.gif)
+
 ## POC结构
 
 一个最基础的POC如下：
