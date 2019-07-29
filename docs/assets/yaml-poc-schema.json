@@ -89,12 +89,9 @@
         },
         "detail": {
             "description": "其他可选的信息，漏洞模板使用",
-            "type": "array",
-            "items": {
-                "type": "object",
-                "additionalProperties": {
-                    "type": "string"
-                }
+            "type": "object",
+            "additionalProperties": {
+                "type": "string"
             }
         }
     },
