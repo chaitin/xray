@@ -59,6 +59,10 @@
                             "Accept": {
                                 "description": "Accept",
                                 "type": "string"
+                            },
+                            "Referer": {
+                                "description": "Referer",
+                                "type": "string"
                             }
                         }
                     },
