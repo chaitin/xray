@@ -167,9 +167,9 @@ fmt.Sprintf("%s/v/%s/%s/%s", HTTPBaseURL, Token, group.id, unit.id)
 ```
 `HTTPBaseURL` 的生成规则见上文。
 
-其中 `group` 和 `unit` 是比较重要的两个概念。一个 group 可以包括很多个 unit，都有自己的 id。设想一个场景，一个可能存在 ssrf 的输入点扫描器会构造很多种输入用于 fuzz，但是希望有一个输入造成了会连就可以认定有漏洞了，否则就会输出很多个漏洞，这时候可以将这些归为一个 group，多个 unit。
+其中 `group` 和 `unit` 是比较重要的两个概念。一个 group 可以包括很多个 unit，都有自己的 id。设想一个场景，一个可能存在 ssrf 的输入点扫描器会构造很多种输入用于 fuzz，但是希望有一个输入造成了回连就可以认定有漏洞了，否则就会输出很多个重复的漏洞，这时候可以将这些归为一个 group，多个 unit。
 
-在后文的 log 查询 api 中，都是使用 group id 去查询，将返回这个 group 下面第一个 unit 的结果，然后删除这个 group 下面的其他结果。如果这个 group 有新的请求在查询之后到来，继续查询是可以查询到的。因为 `group.id` 和 `unit.id` 的生成并不需要向反连平台注册。
+在后文的 log 查询 api 中，都是使用 `group.id` 去查询，将返回这个 group 下面第一个 unit 的结果，然后删除这个 group 下面的其他结果。如果这个 group 有新的请求在查询之后到来，继续查询是可以查询到的。因为 `group.id` 和 `unit.id` 的生成并不需要向反连平台注册。
 
 如果并不需要这样的去重，可以每次都生成一个新的 group，每个 group 下面只有一个 unit。
 
