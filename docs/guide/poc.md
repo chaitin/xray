@@ -230,6 +230,13 @@ expression: |
 
 此时在YAML层面无需转义。
 
+## 如何调试 poc
+
+如果 poc 无法扫出期望的结果，可以按照以下思路调试
+
+ - 确定 poc 语法正确，payload 正确。
+ - 在配置文件 `http` 段中加入 `proxy: "http://proxy:port"`，比如设置 burpsuite 为代理，这样 poc 发送的请求可以在 burp 中看到，看是否是期望的样子。
+
 ## 一个示例POC：《Drupal7 drupalgeddon2 命令执行漏洞（CVE-2018-7600）》
 
 这里给出一个样例POC：
