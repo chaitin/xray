@@ -205,9 +205,9 @@ fmt.Sprintf("%s-%s-%s.%s", Token, group.id, unit.id, Domain)
 目前反连平台支持 A 和 AAAA 记录，解析结果均为 `127.0.0.1` 或者 `::1`。
 
 ```
-dig z92dai-x-y.exampole.com  A @127.0.0.1
+dig z92dai-x-y.example.com  A @127.0.0.1
 
-; <<>> DiG 9.10.6 <<>> z92dai-x-y.exampole.com A @127.0.0.1
+; <<>> DiG 9.10.6 <<>> z92dai-x-y.example.com A @127.0.0.1
 ;; global options: +cmd
 ;; Got answer:
 ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 12976
@@ -215,10 +215,10 @@ dig z92dai-x-y.exampole.com  A @127.0.0.1
 ;; WARNING: recursion requested but not available
 
 ;; QUESTION SECTION:
-;z92dai-x-y.exampole.com.	IN	A
+;z92dai-x-y.example.com.	IN	A
 
 ;; ANSWER SECTION:
-z92dai-x-y.exampole.com. 60	IN	A	127.0.0.1
+z92dai-x-y.example.com. 60	IN	A	127.0.0.1
 
 ;; Query time: 0 msec
 ;; SERVER: 127.0.0.1#53(127.0.0.1)
@@ -292,7 +292,7 @@ curl http://127.0.0.1:9999/fetch/z92dai/x -v
 < Content-Type: text/plain; charset=utf-8
 <
 * Connection #0 to host 127.0.0.1 left intact
-{"UnitId":"y","TimeStamp":1564623427930,"EventType":1,"Request":"z92dai-x-y.exampole.com.","RemoteAddr":"127.0.0.1:60730"}
+{"UnitId":"y","TimeStamp":1564623427930,"EventType":1,"Request":"z92dai-x-y.example.com.","RemoteAddr":"127.0.0.1:60730"}
 ```
 
 如果查询不到结果，将返回空的 response
@@ -313,6 +313,45 @@ curl http://127.0.0.1:9999/fetch/z92dai/notfound -v
 <
 ```
 
+### debug 查看所有的 log
 
+如果在配置文件中开启了 `store_events: true`，反连平台会将收到的请求都记录下来，方便人工查看和调试。注意，本功能不影响上述的 api 的行为，该结果没有持久化，重启会丢失。
 
+浏览器访问 `/list_events/{token}`
+
+```
+UnitID: b Timestamp: 1564624330660 IP: 127.0.0.1:63527
+
+GET /v/z92dai/a/b HTTP/1.1
+Host: 127.0.0.1:9999
+Accept: */*
+User-Agent: curl/7.54.0
+
+UnitID: y Timestamp: 1564624376515 IP: 127.0.0.1:54789
+
+z92dai-x-y.example.com.
+```
+
+### 健康检查
+
+如果想知道反连平台是否启动，可以访问 `/health_check/{token}`，正常情况下，会返回 `ok`。
+
+```
+curl http://127.0.0.1:9999/health_check/z92dai -v
+*   Trying 127.0.0.1...
+* TCP_NODELAY set
+* Connected to 127.0.0.1 (127.0.0.1) port 9999 (#0)
+> GET /health_check/z92dai HTTP/1.1
+> Host: 127.0.0.1:9999
+> User-Agent: curl/7.54.0
+> Accept: */*
+>
+< HTTP/1.1 200 OK
+< Date: Thu, 01 Aug 2019 01:56:02 GMT
+< Content-Length: 2
+< Content-Type: text/plain; charset=utf-8
+<
+* Connection #0 to host 127.0.0.1 left intact
+ok
+```
 
