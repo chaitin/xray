@@ -6,9 +6,17 @@ xray支持用户自己编写YAML格式的POC规则，YAML是JSON的超集，也�
 2. YAML的内容更加可读
 3. YAML中可以使用注释
 
-## VSCode 支持
+## 编写环境
 
-可以提供一些智能提示，方便编写 POC。
+### 在线编写
+
+https://phith0n.github.io/xray-poc-generation/
+
+编写后点击生成然后复制到本地测试即可
+
+### VSCode
+
+使用 VSCode，进行一些配置后可以提供一些智能提示，方便编写 POC。
 
 首先安装 https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml 插件，然后在 settings 中确认 Extensions - YAML 中相关的开关已经打开。然后点击 `Edit in settings.json`，将 json 内容修改为 
 
