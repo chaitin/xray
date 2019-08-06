@@ -24,7 +24,9 @@
                             "GET",
                             "POST",
                             "PUT",
-                            "DELETE"
+                            "DELETE",
+                            "HEAD",
+                            "OPTIONS"
                         ]
                     },
                     "path": {
