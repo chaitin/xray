@@ -34,6 +34,12 @@ https://phith0n.github.io/xray-poc-generation/
 
 ![](https://chaitin.github.io/xray/assets/poc.gif)
 
+### jetbrains 系列 IDE
+
+配置见图
+
+![](https://chaitin.github.io/xray/assets/poc-jetbrains.png)
+
 ## POC结构
 
 一个最基础的POC如下：
