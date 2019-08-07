@@ -154,16 +154,22 @@ reverse:
     remote_server: true
 ```
 
+要注意的是，两边的 xray 请使用相同版本的，否则可能存在 api 不兼容的问题。
+
 ## HTTP API
 
+!> **注意** 本 api 在开发阶段可能经常修改，请尽量使用最新版本，如有问题可以反馈。
+
 在 `remote_server` 模式下，扫描器和反连平台是通过 HTTP API 通信的，下面简单描述一下这些 API。
+
+注意，以下的 api 都需要 token 和 groupID 配合使用，下文中引用的 hashedToken 非配置文件中的 token 值，而是 `Sha256(token + groupID + unitID)[:6]` 得到的值。
 
 ### 生成一个访问反连平台的 http url
 
 此 url 的生成不需要通信，直接按照规则拼接即可
 
 ```go
-fmt.Sprintf("%s/v/%s/%s/%s", HTTPBaseURL, Token, group.id, unit.id)
+fmt.Sprintf("%s/i/%s/%s/%s/", HTTPBaseURL, hashedToken, group.id, unit.id)
 ```
 `HTTPBaseURL` 的生成规则见上文。
 
@@ -173,64 +179,66 @@ fmt.Sprintf("%s/v/%s/%s/%s", HTTPBaseURL, Token, group.id, unit.id)
 
 如果并不需要这样的去重，可以每次都生成一个新的 group，每个 group 下面只有一个 unit。
 
-下文的样例都假设 token 为 `z92dai`。
+下文的样例都假设 token 为 `imtoken`，本样例中 `d6f7be` 的来源就是 `hashlib.sha256(b"imtoken" + b"a" + b"b").hexdigest()[:6]`。
 
 ```
-curl http://127.0.0.1:9999/v/z92dai/a/b -v
+url http://127.0.0.1:9999/i/d6f7be/a/b/ -v
 *   Trying 127.0.0.1...
 * TCP_NODELAY set
 * Connected to 127.0.0.1 (127.0.0.1) port 9999 (#0)
-> GET /v/z92dai/a/b HTTP/1.1
+> GET /i/d6f7be/a/b/ HTTP/1.1
 > Host: 127.0.0.1:9999
 > User-Agent: curl/7.54.0
 > Accept: */*
 >
 < HTTP/1.1 200 OK
-< Date: Thu, 01 Aug 2019 01:32:30 GMT
-< Content-Length: 2
-< Content-Type: text/plain; charset=utf-8
+< Content-Type: application/json
+< Date: Wed, 07 Aug 2019 03:21:04 GMT
+< Content-Length: 22
 <
 * Connection #0 to host 127.0.0.1 left intact
-ok
+{"code":0,"data":null}
 ```
+
+要注意的是这个 url 后面是可以任意追加的，只要保持前缀不变即可。比如 `http://127.0.0.1:9999/i/d6f7be/a/b/index.php?foo=bar`。
 
 ### 生成 dns log 的域名
 
 ```go
-fmt.Sprintf("%s-%s-%s.%s", Token, group.id, unit.id, Domain)
+fmt.Sprintf("i-%s-%s-%s.%s", hashedToken, group.id, unit.id, Domain)
 ```
 
-`group` 和 `unit` 的含义和上文一致，`Domain` 的含义是根域名，详见上文配置文件中相关的部分。注意，`token` 和 `id` 需要符合域名的规则，建议只有小写字母和数字，否则解析可能会出错。
+`group` 和 `unit` 的含义和上文一致，`Domain` 的含义是根域名，详见上文配置文件中相关的部分。注意，`id` 需要符合域名的规则，建议只有小写字母和数字，否则解析可能会出错。
 
 目前反连平台支持 A 和 AAAA 记录，解析结果均为 `127.0.0.1` 或者 `::1`。
 
 ```
-dig z92dai-x-y.example.com  A @127.0.0.1
+dig i-d6f7be-a-b.example.com A @127.0.0.1
 
-; <<>> DiG 9.10.6 <<>> z92dai-x-y.example.com A @127.0.0.1
+; <<>> DiG 9.10.6 <<>> i-d6f7be-a-b.example.com A @127.0.0.1
 ;; global options: +cmd
 ;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 12976
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 37454
 ;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
 ;; WARNING: recursion requested but not available
 
 ;; QUESTION SECTION:
-;z92dai-x-y.example.com.	IN	A
+;i-d6f7be-a-b.example.com.	IN	A
 
 ;; ANSWER SECTION:
-z92dai-x-y.example.com. 60	IN	A	127.0.0.1
+i-d6f7be-a-b.example.com. 60	IN	A	127.0.0.1
 
 ;; Query time: 0 msec
 ;; SERVER: 127.0.0.1#53(127.0.0.1)
-;; WHEN: Thu Aug 01 09:37:07 CST 2019
-;; MSG SIZE  rcvd: 80
+;; WHEN: Wed Aug 07 11:24:30 CST 2019
+;; MSG SIZE  rcvd: 82
 ```
 
 ### 查询 http / dns log
 
 api url 为 `/fetch/{token}/:group`
 
-`{token}` 代表配置文件中的 token，常量。
+`{token}` 代表配置文件中的 token
 
 `:group` 代表这是一个来自 url 中的变量，取值是 `group.id`。
 
@@ -256,61 +264,63 @@ type Event struct {
 http log 
 
 ```
-curl http://127.0.0.1:9999/fetch/z92dai/a -v
+curl http://127.0.0.1:9999/fetch/imtoken/a -v
 *   Trying 127.0.0.1...
 * TCP_NODELAY set
 * Connected to 127.0.0.1 (127.0.0.1) port 9999 (#0)
-> GET /fetch/z92dai/a HTTP/1.1
+> GET /fetch/imtoken/a HTTP/1.1
 > Host: 127.0.0.1:9999
 > User-Agent: curl/7.54.0
 > Accept: */*
 >
 < HTTP/1.1 200 OK
-< Date: Thu, 01 Aug 2019 01:33:16 GMT
-< Content-Length: 198
-< Content-Type: text/plain; charset=utf-8
+< Content-Type: application/json
+< Date: Wed, 07 Aug 2019 03:26:17 GMT
+< Content-Length: 145
 <
 * Connection #0 to host 127.0.0.1 left intact
-{"UnitId":"b","TimeStamp":1564623150371,"EventType":0,"Request":"GET /v/z92dai/a/b HTTP/1.1\r\nHost: 127.0.0.1:9999\r\nAccept: */*\r\nUser-Agent: curl/7.54.0\r\n\r\n","RemoteAddr":"127.0.0.1:58618"}
-```
+{"code":0,"data":{"unit_id":"b","time_stamp":1565148270333,"event_type":1,"request":"i-d6f7be-a-b.example.com.","remote_addr":"127.0.0.1:61277"}}```
 
 dns log
 
 ```
-curl http://127.0.0.1:9999/fetch/z92dai/x -v
+curl http://127.0.0.1:9999/fetch/imtoken/a -v
 *   Trying 127.0.0.1...
 * TCP_NODELAY set
 * Connected to 127.0.0.1 (127.0.0.1) port 9999 (#0)
-> GET /fetch/z92dai/x HTTP/1.1
+> GET /fetch/imtoken/a HTTP/1.1
 > Host: 127.0.0.1:9999
 > User-Agent: curl/7.54.0
 > Accept: */*
 >
 < HTTP/1.1 200 OK
-< Date: Thu, 01 Aug 2019 01:38:33 GMT
-< Content-Length: 122
-< Content-Type: text/plain; charset=utf-8
+< Content-Type: application/json
+< Date: Wed, 07 Aug 2019 03:27:35 GMT
+< Content-Length: 145
 <
 * Connection #0 to host 127.0.0.1 left intact
-{"UnitId":"y","TimeStamp":1564623427930,"EventType":1,"Request":"z92dai-x-y.example.com.","RemoteAddr":"127.0.0.1:60730"}
+{"code":0,"data":{"unit_id":"b","time_stamp":1565148452139,"event_type":1,"request":"i-d6f7be-a-b.example.com.","remote_addr":"127.0.0.1:61265"}}
 ```
 
-如果查询不到结果，将返回空的 response
+如果查询不到结果，将返回 null
 
 ```
-curl http://127.0.0.1:9999/fetch/z92dai/notfound -v
+curl http://127.0.0.1:9999/fetch/imtoken/notexist -v
 *   Trying 127.0.0.1...
 * TCP_NODELAY set
 * Connected to 127.0.0.1 (127.0.0.1) port 9999 (#0)
-> GET /fetch/z92dai/notfound HTTP/1.1
+> GET /fetch/imtoken/notexist HTTP/1.1
 > Host: 127.0.0.1:9999
 > User-Agent: curl/7.54.0
 > Accept: */*
 >
 < HTTP/1.1 200 OK
-< Date: Thu, 01 Aug 2019 01:39:31 GMT
-< Content-Length: 0
+< Content-Type: application/json
+< Date: Wed, 07 Aug 2019 03:27:50 GMT
+< Content-Length: 22
 <
+* Connection #0 to host 127.0.0.1 left intact
+{"code":0,"data":null}
 ```
 
 ### debug 查看所有的 log
@@ -334,24 +344,24 @@ z92dai-x-y.example.com.
 
 ### 健康检查
 
-如果想知道反连平台是否启动，可以访问 `/health_check/{token}`，正常情况下，会返回 `ok`。
+如果想知道反连平台是否启动，可以访问 `/health_check/{token}`。
 
 ```
-curl http://127.0.0.1:9999/health_check/z92dai -v
+curl http://127.0.0.1:9999/health_check/imtoken -v
 *   Trying 127.0.0.1...
 * TCP_NODELAY set
 * Connected to 127.0.0.1 (127.0.0.1) port 9999 (#0)
-> GET /health_check/z92dai HTTP/1.1
+> GET /health_check/imtoken HTTP/1.1
 > Host: 127.0.0.1:9999
 > User-Agent: curl/7.54.0
 > Accept: */*
 >
 < HTTP/1.1 200 OK
-< Date: Thu, 01 Aug 2019 01:56:02 GMT
-< Content-Length: 2
-< Content-Type: text/plain; charset=utf-8
+< Content-Type: application/json
+< Date: Wed, 07 Aug 2019 03:29:16 GMT
+< Content-Length: 22
 <
 * Connection #0 to host 127.0.0.1 left intact
-ok
+{"code":0,"data":null}
 ```
 
