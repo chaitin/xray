@@ -1,3 +1,6 @@
+- 通用
+  - [快速入门](generic/README.md)
+  - [版本对比](generic/compare.md)
 - 用户指南
   - [配置文件](guide/config.md)
   - [MITM 代理](guide/proxy.md)
