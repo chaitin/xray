@@ -52,7 +52,11 @@
 
 ## 🛠 Detection module
 
-We are working hard for new detection modules, for example xss detection, etc.
+We are working hard for new detection modules
+
+ - xss
+
+   XSS Vulnerabilities Scan
 
  - sqldet
 
