@@ -1,1 +1,1 @@
-docs/genric/README.md
+docs/generic/README.md
