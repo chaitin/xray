@@ -20,3 +20,25 @@ Accept-Encoding: gzip
 ```
 
 目前代理发送请求不受到配置文件中 `http` 部分的限制，比如 HTTP 头、发包速度等，只会使用其中的 proxy 字段作为代理的下级代理。
+
+## 配合 burp 使用
+
+### burp 作为 xray 的下级代理
+
+场景：xray 作为浏览器的代理，burp 作为 xray 的代理
+
+场景：
+ - xray 做漏洞扫描
+ - burp 查看和记录 xray 的扫描记录和原始请求
+ 
+查看 burp [Proxy -> Options -> Porxy Listeners]，作为 xray 配置文件中的 [http -> proxy] 的值。
+ 
+### xray 作为 burp 的下级代理
+
+burp 作为浏览器的代理，xray 作为 burp 的代理
+
+场景：
+ - burp 查看和记录浏览器的请求
+ - xray 做漏洞扫描
+ 
+查看 burp [Project Options -> Connections -> Upstream Proxy Servers]，勾选 `Override user options`，点击 `Add`，将 xray 的 mitm 代理配置填写在里面。
