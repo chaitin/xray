@@ -1,8 +1,8 @@
-# HTTP 代理扫描
+# MITM 代理扫描
 
-## HTTP 代理会做什么
+## MITM 代理会做什么
 
-HTTP 代理目前会添加 `via` 头和 `X-Forwarded-*` 系列头。如果在请求中就已经存在了同名的 HTTP 头，那么将会追加在后面。
+代理目前会添加 `via` 头和 `X-Forwarded-*` 系列头。如果在请求中就已经存在了同名的 HTTP 头，那么将会追加在后面。
 
 比如 `curl http://127.0.0.1:1234 -H "Via: test" -H "X-Forwarded-For: 1.2.3.4" -v`，后端实际收到的请求将会是
 
