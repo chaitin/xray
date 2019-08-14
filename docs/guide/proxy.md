@@ -42,3 +42,5 @@ burp 作为浏览器的代理，xray 作为 burp 的代理
  - xray 做漏洞扫描
  
 查看 burp [Project Options -> Connections -> Upstream Proxy Servers]，勾选 `Override user options`，点击 `Add`，将 xray 的 mitm 代理配置填写在里面。
+
+比如 `./xray webscan --listen 127.0.0.1:8072`，那么 `Proxy Host` 和 `Proxy port` 就是 `127.0.0.1` 和 `8072`。`Authentication type` 如果在 xray 配置文件中设置了用户名密码，就选择 `Basic`，然后填写用户名密码。
