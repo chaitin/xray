@@ -1,5 +1,6 @@
 - 用户指南
   - [配置文件](guide/config.md)
+  - [MITM 代理](guide/proxy.md)
   - [内置POC列表](guide/poc-list.md)
   - [自定义POC](guide/poc.md)
   - [反连平台](guide/reverse.md)
