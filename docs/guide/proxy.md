@@ -8,7 +8,7 @@
 proxy_header:
     via: "" # 如果不为空，proxy 将添加类似 Via: 1.1 $some-value-$random 的 http 头
     x_forwarded: false # 是否添加 X-Forwarded-{For,Host,Proto,Url} 四个 http 头
-  upstream_proxy: "" # mitm 的全部流量继续使用 proxy
+upstream_proxy: "" # mitm 的全部流量继续使用 proxy
 ```
 
 如果开启 proxy_header，代理会添加 `via` 头和 `X-Forwarded-*` 系列头。如果在请求中就已经存在了同名的 HTTP 头，那么将会追加在后面。
