@@ -28,7 +28,7 @@ X-Forwarded-Url: http://127.0.0.1:1234/
 Accept-Encoding: gzip
 ```
 
-目前代理发送请求只会受到配置文件中 `http` 部分的部分限制，比如 HTTP 头、cookie、proxy 等是不影响代理的，如果想串联代理，需要使用 pupstream_proxy 字段。
+目前代理发送请求只会受到配置文件中 `http` 部分的部分限制，比如 HTTP 头、cookie、proxy 等是不影响代理的，如果想串联代理，需要使用 `upstream_proxy` 字段。
 
 ## 配合 burp 使用
 
