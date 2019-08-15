@@ -41,7 +41,7 @@ Accept-Encoding: gzip
  - burp 查看和记录 xray 的扫描记录和原始请求
  
 查看 burp [Proxy -> Options -> Porxy Listeners]，作为 xray 配置文件中的 [mitm -> upstream_proxy] 的值。
- 
+
 ### xray 作为 burp 的下级代理
 
 burp 作为浏览器的代理，xray 作为 burp 的代理
