@@ -16,21 +16,27 @@
 
 ## 🚀 Quick usage
 
-1. Scan a single url
-    
+1. Use basic crawler to scan a website
+
     ```bash
-    xray webscan --url "http://example.com/?a=b"
+    xray webscan --basic-crawler http://example.com --html-output crawler.html
     ```
 
 1. Run as a HTTP proxy to scan passively
     
     ```bash
-    xray webscan --listen 127.0.0.1:7777
+    xray webscan --listen 127.0.0.1:7777 --html-output proxy.html
     ```
     
    Configure the browser to use http proxy `http://127.0.0.1:7777`, then the proxy traffic can be automatically analyzed and scanned。
 
    >If need to scan https traffic，please read `capture https trafic` section in this document.
+   
+1. Scan a single url
+    
+    ```bash
+    xray webscan --url http://example.com/?a=b --html-output single-url.html
+    ```
 
 1. Specify the plugins to run manually
    
@@ -46,8 +52,8 @@
     You can specify the output path of the vulnerability information:
     
     ```bash
-    xray webscan --url http://example.com/?a=b --text-output result.txt
-    xray webscan --url http://example.com/?a=b --json-output result.json
+    xray webscan --url http://example.com/?a=b \
+    --text-output result.txt --json-output result.json --html-output report.html
     ```
 
 ## 🛠 Detection module

@@ -16,25 +16,25 @@
 
 ## 🚀 快速使用
 
-1. 扫描单个 url
+1. 使用基础爬虫爬取并扫描整个网站
     
     ```bash
-    xray webscan --url "http://example.com/?a=b"
+    xray webscan --basic-crawler http://example.com --html-output crawler.html
     ```
 
 1. 使用 HTTP 代理进行被动扫描
     
     ```bash
-    xray webscan --listen 127.0.0.1:7777
+    xray webscan --listen 127.0.0.1:7777 --html-output proxy.html
     ```
    设置浏览器 http 代理为 `http://127.0.0.1:7777`，就可以自动分析代理流量并扫描。
    
    >如需扫描 https 流量，请阅读下方文档 `抓取 https 流量` 部分
 
-1. 使用基础爬虫爬取并扫描整个网站
+1. 扫描单个 url
     
     ```bash
-    xray webscan --basic-crawler http://example.com
+    xray webscan --url http://example.com/?a=b --html-output single-url.html
     ```
 
 1. 手动指定本次运行的插件
@@ -51,8 +51,8 @@
     可以指定将本次扫描的漏洞信息输出到某个文件中:
     
     ```bash
-    xray webscan --url http://example.com/?a=b --text-output result.txt
-    xray webscan --url http://example.com/?a=b --json-output result.json
+    xray webscan --url http://example.com/?a=b \
+    --text-output result.txt --json-output result.json --html-output report.html
     ```
     
     [报告样例](https://chaitin.github.io/xray/assets/report_example.html)
@@ -160,3 +160,5 @@
 1. 微信群: 扫描以下二维码加我的个人微信，会把大家拉到 `xray` 官方微信群    
 
 <img src="https://chaitin.github.io/xray/assets/wechat.jpg" height="150px">
+
+
