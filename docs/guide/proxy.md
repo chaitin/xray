@@ -32,6 +32,8 @@ Accept-Encoding: gzip
 
 ## 配合 burp 使用
 
+![](https://chaitin.github.io/xray/assets/xray-burp-proxy-chain.png)
+
 ### burp 作为 xray 的下级代理
 
 场景：xray 作为浏览器的代理，burp 作为 xray 的代理
