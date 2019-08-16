@@ -148,6 +148,9 @@
  - 反连平台的使用
  - ...
 
+## 贡献 POC
+
+参照: [https://chaitin.github.io/xray/#/guide/contribute](https://chaitin.github.io/xray/#/guide/contribute)
 
 ## 📝 讨论区
 
