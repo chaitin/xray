@@ -29,7 +29,7 @@ basic_crawler:
 
 ```yaml
 http:
-  proxy: "" # 漏洞探测使用的代理, 也可以通过环境变量指定，如 export http_proxy=http://127.0.0.1:8080
+  proxy: "" # 漏洞探测使用的代理, 如 http://127.0.0.1:8080
   dial_timeout: 5 # 建立 tcp 连接的超时时间
   read_timeout: 30 # 读取 http 响应的超时时间，不可太小，否则会影响到 sql 时间盲注的判断
   fail_retries: 1 # 请求失败的重试次数，0 则不重试
