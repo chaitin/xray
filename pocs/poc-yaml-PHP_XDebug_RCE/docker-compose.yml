@@ -1,0 +1,9 @@
+version: '2'
+services:
+ php:
+   build: .
+   ports:
+    - "8080:80"
+   volumes:
+    - ./index.php:/var/www/html/index.php
+   dns: 192.168.33.1

