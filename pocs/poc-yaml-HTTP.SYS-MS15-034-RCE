@@ -8,4 +8,4 @@ rules:
         (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36
       Range: bytes=0-18446744073709551615
     follow_redirects: true
-    expression: body.bcontains(b'Requested Range Not Satisfiable')
+    expression: status==416 && body.bcontains(b'Requested Range Not Satisfiable')
