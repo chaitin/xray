@@ -1,4 +1,4 @@
-name: poc-yaml-HTTP.SYS-MS15-034-RCE
+name: poc-yaml-http.sys-ms15-034-rce
 rules:
   - method: GET
     path: /
