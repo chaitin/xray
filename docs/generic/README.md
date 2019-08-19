@@ -16,10 +16,10 @@
 
 ## 🚀 快速使用
 
-1. 使用基础爬虫爬取并扫描整个网站
+1. 使用基础爬虫爬取并对爬虫爬取的链接进行漏洞扫描
     
     ```bash
-    xray webscan --basic-crawler http://example.com --html-output crawler.html
+    xray webscan --basic-crawler http://example.com --html-output vuln.html
     ```
 
 1. 使用 HTTP 代理进行被动扫描
@@ -31,7 +31,7 @@
    
    >如需扫描 https 流量，请阅读下方文档 `抓取 https 流量` 部分
 
-1. 扫描单个 url
+1. 只扫描单个 url，不使用爬虫
     
     ```bash
     xray webscan --url http://example.com/?a=b --html-output single-url.html
