@@ -1,0 +1,10 @@
+FROM newdeveloper/apache-php  
+MAINTAINER vintlyn
+RUN apt-get update
+WORKDIR /root
+RUN git clone https://github.com/V1ntLyn/seacms6.54.git && \
+	cd seacms6.54/ && \
+	mv * /var/www/html/ && \
+	service apache2 start
+EXPOSE 80 
+CMD echo "successful"
