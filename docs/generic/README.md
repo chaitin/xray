@@ -73,7 +73,21 @@
     ```bash
     xray webscan --plugins phantasm --poc /home/test/1.yaml --url http://example.com/
     ```
+    
+    `--poc` 参数非常灵活，支持 Glob 匹配，支持从目录加载，可以从以下几个例子理解用法:
+    
+    加载 `/home/test/pocs/` 所有的 POC:
+    ```bash
+    xray webscan --plugins phantasm --poc "/home/test/pocs/*"
+    ```
+    
+    加载 `/home/test/pocs/` 下包含 thinkphp 的 POC
+    ```bash
+    xray webscan --plugins phantasm --poc "/home/test/pocs/*thinkphp*"
+    ```
+    
     自定义 POC 请查看文档。
+  
   
 
 ## 🛠 检测模块
