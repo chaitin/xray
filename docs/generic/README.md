@@ -16,6 +16,8 @@
 
 ## 🚀 快速使用
 
+**在使用之前，请务必阅读并同意 [License](https://github.com/chaitin/xray/blob/master/LICENSE.md) 文件中的条款，否则请勿安装使用本工具。**
+
 1. 使用基础爬虫爬取并对爬虫爬取的链接进行漏洞扫描
     
     ```bash
