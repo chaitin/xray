@@ -20,7 +20,7 @@ https://phith0n.github.io/xray-poc-generation/
 
 首先安装 https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml 插件，然后在 settings 中确认 Extensions - YAML 中相关的开关已经打开。然后点击 `Edit in settings.json`，将 json 内容修改为 
 
-```json
+```javascript
 {
     "yaml.schemas": {
         "https://chaitin.github.io/xray/assets/yaml-poc-schema.json": "poc-yaml-*.yml"

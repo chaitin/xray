@@ -6,7 +6,7 @@
 
 sql 注入输出样例
 
-```json
+```javascript
 {
   "create_time": 1566456018640,
   "detail": {
@@ -47,7 +47,7 @@ sql 注入输出样例
 
 baseline 输出样例
 
-```json
+```javascript
 {
   "create_time": 1566456530730,
   "detail": {
