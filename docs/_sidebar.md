@@ -8,5 +8,6 @@
   - [自定义POC](guide/poc.md)
   - [贡献POC](guide/contribute.md)
   - [反连平台](guide/reverse.md)
+  - [漏洞格式](guide/vuln.md)
   - [检查更新](guide/update.md)
   - [提交反馈](guide/feedback.md)
