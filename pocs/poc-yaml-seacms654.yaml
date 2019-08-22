@@ -5,4 +5,5 @@ rules:
     body: >-
       searchtype=5&searchword={if{searchpage:year}&year=:e{searchpage:area}}&area=v{searchpage:letter}&letter=al{searchpage:lang}&yuyan=(join{searchpage:jq}&jq=($_P{searchpage:ver}&&ver=OST[9]))&9[]=ph&9[]=pinfo();
     follow_redirects: true
-    expression: status==200 && body.bcontains(b'PHP')
+    expression: status==200 &&
+      body.bcontains(b'PHP')&&body.bcontains(b'Extension')&&body.bcontains(b'System')&&body.bcontains(b'Command')
