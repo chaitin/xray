@@ -1,4 +1,4 @@
-name: poc-yaml-hadoop-yarn-auth
+name: poc-yaml-hadoop-yarn-unauth
 rules:
   - method: GET
     path: /ws/v1/cluster/apps/new-application
