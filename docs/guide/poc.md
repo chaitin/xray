@@ -68,7 +68,7 @@ name是POC的名字，目前的规定如下
 
  - 一定是 `poc-yaml-` 开头，后面应该是 `[框架名/服务名/产品名等]-[cve编号]` 或者 `[框架名/服务名/产品名等]-[通用漏洞名称]`。比如 `elasticsearch-cve-2014-3120` 或者 `django-debug-page-info-leak`。无特殊情况，应该都是小写。yaml 文件的文件名应该也和后缀保持一致，比如 `django-debug-page-info-leak.yml`。
  - 如果是社区贡献的 poc，需要在 detail 中增加 author 字段，格式为 `name(link)`，name 可以为昵称，link 为可选项，一般使用个人 GitHub 首页或者博客链接等。
- - 如果是 vulhub 的测试环境，需要在 detail 中增加 vulhub 字段和对应的链接，比如 `vulhub: https://github.com/vulhub/vulhub/tree/master/joomla/CVE-2017-8917`。如果是其他的测试环境，可以增加 `test_env: http://example.com`。
+ - 如果是 vulhub 的测试环境，需要在 detail 中增加 vulhub 字段和对应的链接，比如 `vulhub: https://github.com/vulhub/vulhub/tree/master/joomla/CVE-2017-8917`。如果是其他的测试环境，可以增加 `test_env: http://github.com/hacker/cve-xxx-xxx`。如果没有测试环境，需要增加 `link: some-url`，地址为一篇权威的漏洞分析文章地址。
 
 rules是一个由规则（Rule）组成的列表，后面会描述如何编写Rule，并将其组成rules。
 
