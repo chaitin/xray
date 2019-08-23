@@ -7,10 +7,10 @@ xray 社区版经过数个版本的更迭，基本覆盖了对常见漏洞的 fu
 ## 流程
 
 1. 贡献者以 PR 的方式向 github xray 社区仓库内提交 POC， 提交位置: [https://github.com/chaitin/xray/tree/master/pocs](https://github.com/chaitin/xray/tree/master/pocs)
-2. PR 中根据 Pull Request 的模板填写 POC 以及对应测试环境的`Dockerfile` 或 `docker-compose`文件
+2. PR 中根据 Pull Request 的模板填写 POC 信息
 3. 内部审核 PR，确定是否合并入仓库
-5. 每次发布新版时，CI 拉取 Github 仓库，并将社区的 POC 打包进社区版共享给大家
- 
+4. 每次发布新版时，CI 拉取 Github 仓库，并将社区的 POC 打包进社区版共享给大家
+
 ### 奖励措施
 
 提交 POC ，即可获得与 xray 社区版内部大佬技术切磋交流的机会。提交 PR 过程中会有内部大佬审核，帮助改进POC的实现，共同进步。同时，为了感谢提交 POC 的同学的辛苦付出, 我们准备了一份厚礼: 

@@ -1,24 +1,19 @@
-## Summary
-what POC is this PR for?
+请先本在 repo 中搜索相关信息，确保该 POC 没有被提交过。
 
-## POC
+然后阅读 https://chaitin.github.io/xray/#/guide/poc
 
-```yaml
-# yaml code
-```
+尤其是 'POC结构' 章节中的各种命名规范，如有问题可以反馈。
 
-## Test Environment
+如果你的 poc 符合以上要求，请填写下列信息
 
-The vuln can be reproduced in the following docker environment.
+## 本 poc 是干什么的
 
-Dockerfile: 
-```dockerfile
+## 测试环境
 
-```
-Or docker-compose:
-```
-```
+可以使用 Dockerfile 或者 `docker-compose`。
 
-## Remarks
+请勿使用公网上未修复的站点的地址。
 
-Write you voice here.
+## 备注
+
+写你想写的
