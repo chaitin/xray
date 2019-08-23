@@ -1,4 +1,4 @@
-请先本在 repo 中搜索相关信息，确保该 POC 没有被提交过。
+请先本在 repo 中搜索相关信息，确保该 poc 没有被提交过。
 
 然后阅读 https://chaitin.github.io/xray/#/guide/poc
 
