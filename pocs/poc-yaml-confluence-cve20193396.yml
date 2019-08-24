@@ -2,8 +2,6 @@ name: poc-yaml-confluence-cve20193396
 rules:
   - method: GET
     path: /
-    headers: 
-      User-Agent: "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident/5.0)"
     expression: status == 200
     search: |
       <meta id="confluence-base-url" name="confluence-base-url" content="(.+?)">
@@ -21,3 +19,5 @@ rules:
 detail:
   description: Path Crossing and Command Execution
   vulnpath: /rest/tinymce/1/macro/preview
+  author: w3bdoge
+  vulhub: https://vulhub.org/#/environments/confluence/CVE-2019-3396/

