@@ -9,4 +9,4 @@ rules:
     expression: |
       body.bcontains(b'TmlnaHQgZ2F0aGVycywgYW5%kIG5vdyBteSB3YXRjaCBiZWdpbnMu1')
 detail:
-  vulnhub: https://github.com/vulhub/vulhub/tree/master/thinkphp/5.0.23-rce
+  test_env: https://github.com/vulhub/vulhub/tree/master/thinkphp/5.0.23-rce

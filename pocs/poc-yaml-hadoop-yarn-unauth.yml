@@ -8,4 +8,4 @@ rules:
       body.bcontains(b'<javaClassName>javax.ws.rs.WebApplicationException')
 detail:
   author: p0wd3r
-  vulhub: https://github.com/vulhub/vulhub/tree/master/hadoop/unauthorized-yarn
+  test_env: https://github.com/vulhub/vulhub/tree/master/hadoop/unauthorized-yarn
