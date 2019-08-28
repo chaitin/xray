@@ -1,4 +1,4 @@
-name: poc-yaml-seacms6.54
+name: poc-yaml-seacms-v654-rce
 rules:
   - method: POST
     path: /search.php
