@@ -88,7 +88,15 @@
     
     自定义 POC 请查看文档。
   
-  
+1. 转发漏洞信息到数据库、邮件、IM 通知等
+
+   用户可以使用 `--webhook-output` 将漏洞信息进行转发，后端需要返回 status 200 才认为发送成功，否则将打印错误日志。
+
+
+   ```bash
+   xray webscan --url http://example.com/ --webhook-output http://host:port/path
+   ```
+
 
 ## 🛠 检测模块
 
