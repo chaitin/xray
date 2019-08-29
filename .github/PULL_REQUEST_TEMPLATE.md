@@ -19,9 +19,8 @@ Or docker-compose:
 ```
 ```
 测试环境 随便找网上的俩个
-http://124.47.4.67:8008
-http://210.51.45.109:8001
-
+aHR0cDovLzEyNC40Ny40LjY3OjgwMDgK
+aHR0cDovLzIxMC41MS40NS4xMDk6ODAwMQo=
 
 ## Remarks
 
