@@ -20,7 +20,7 @@ https://phith0n.github.io/xray-poc-generation/
 
 首先安装 https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml 插件，然后在 settings 中确认 Extensions - YAML 中相关的开关已经打开。然后点击 `Edit in settings.json`，将 json 内容修改为 
 
-```json
+```javascript
 {
     "yaml.schemas": {
         "https://chaitin.github.io/xray/assets/yaml-poc-schema.json": "poc-yaml-*.yml"
@@ -53,6 +53,9 @@ rules:
     path: "/"
     expression: |
       status==200 && body.bcontains(b'Example Domain')
+
+detail:
+  author: name(link)
 ```
 
 整个POC是一个键值对，其包含3个键：
@@ -61,11 +64,14 @@ rules:
 - `rules: []Rule`
 - `detail: map[string]string`
 
-name是POC的名字，我们使用一个英文字母、数字和短横线进行表示，如`poc-yaml-thinkphp523-rce`。
+name是POC的名字
 
 rules是一个由规则（Rule）组成的列表，后面会描述如何编写Rule，并将其组成rules。
 
 detail是一个键值对，内部存储需要返回给xray引擎的内容，如果无需返回内容，可以忽略。
+
+如果想要贡献 poc，请参阅 [贡献POC](guide/contribute.md) 章节，里面对 poc 的编写有约束。
+
 
 ## 如何编写Rule
 
@@ -285,3 +291,5 @@ detail:
 该POC分为两个Rule，第一个发送一个POST包，将我们需要的Payload注入缓存中，同时，利用search字段提取缓存ID；第二个数据包，将前面提取的缓存ID`{{1}}`，拼接到body中，触发代码执行漏洞，并使用`body.bcontains(b'test%test')`来判断是否成功执行。
 
 关于这个漏洞的原理，可以参考这篇文章：<https://paper.seebug.org/578/>。
+
+
