@@ -13,9 +13,3 @@ detail:
     test_env: "UCenter: http://download.comsenz.com/UCenter/1.6.0/UCenter_1.6.0_SC_UTF8.zip , discuz 7.2: http://www.pc6.com/softview/SoftView_9955.html"
     vuln_url: "/faq.php?action=grouppermission&gids[99]=%27&gids[100][0]=)%20and%20"
     link: "https://www.freebuf.com/vuls/37643.html, https://blog.csdn.net/weixin_40709439/article/details/82780606"
-
-    
-    
-    
-
-
