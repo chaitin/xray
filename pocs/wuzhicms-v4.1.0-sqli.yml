@@ -12,5 +12,3 @@ detail:
     test_env: https://github.com/wuzhicms/wuzhicms/archive/v4.1.0.zip
     vuln_url: "/api/sms_check.php"
     link: https://github.com/wuzhicms/wuzhicms/issues/184
-
-
