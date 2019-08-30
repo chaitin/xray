@@ -1,27 +1,17 @@
-## Summary
-what POC is this PR for?
-cacti任意文件写入文件漏洞poc
-## POC
+请先本在 repo 中搜索相关信息，确保该 poc 没有被提交过。
 
-```yaml
-# yaml code
-```
+然后阅读 https://chaitin.github.io/xray/#/guide/contribute
 
-## Test Environment
+如果你的 poc 符合以上要求，请填写下列信息
 
-The vuln can be reproduced in the following docker environment.
+## 本 poc 是干什么的
 
-Dockerfile: 
-```dockerfile
+## 测试环境
 
-```
-Or docker-compose:
-```
-```
-测试环境 随便找网上的俩个
-aHR0cDovLzEyNC40Ny40LjY3OjgwMDgK
-aHR0cDovLzIxMC41MS40NS4xMDk6ODAwMQo=
+可以使用 Dockerfile 或者 `docker-compose`，主要测试环境无需提交，进在此处保留即可。
 
-## Remarks
+请勿使用公网上未修复的站点的地址。
 
-Write you voice here.
+## 备注
+
+写你想写的
