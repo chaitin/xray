@@ -3,4 +3,4 @@ install:
   - pip install -U pip
   - pip install pytest pyyaml rfc3987 jsonschema
 script:
-  - pytest
+  - pytest tests/test_yaml.py

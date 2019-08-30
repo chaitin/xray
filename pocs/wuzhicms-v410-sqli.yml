@@ -1,4 +1,4 @@
-name: poc-yaml-wuzhicms-v4.1.0-sqli
+name: poc-yaml-wuzhicms-v410-sqli
 rules:
   - method: GET
     path: >-

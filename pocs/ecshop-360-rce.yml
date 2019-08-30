@@ -1,4 +1,4 @@
-name: poc-yaml-ecshop-3.6.0-rce
+name: poc-yaml-ecshop-360-rce
 rules:
   - method: POST
     path: /user.php
