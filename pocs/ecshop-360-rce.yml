@@ -13,4 +13,5 @@ rules:
     expression: status == 200 && body.bcontains(b'153246720')
 detail:
   author: githusky
-  test_env: https://www.vulnspy.com/cn-ecshop-3.x.x-rce-exploit
+  links:
+    - https://www.vulnspy.com/cn-ecshop-3.x.x-rce-exploit

@@ -75,13 +75,19 @@
           "description": "POC author",
           "type": "string"
         },
-        "test_env": {
-          "description": "a link that describe or reproduce the vulnerability",
-          "type": "string",
-          "format": "iri"
+        "links": {
+          "description": "some links that describe or reproduce the vulnerability",
+          "type": "array",
+          "items": {
+            "description": "link",
+            "type": "string",
+            "format": "iri"
+          },
+          "minItems": 1
         }
       },
-      "additionalProperties": true
+      "additionalProperties": true,
+      "required": ["links"]
     },
     "test": {
       "description": "for unittest",

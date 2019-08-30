@@ -11,4 +11,5 @@ detail:
     author: leezp
     Affected Version: "discuz <=v7.2"
     vuln_url: "/faq.php?action=grouppermission&gids[99]=%27&gids[100][0]=)%20and%20"
-    test_env: "https://blog.csdn.net/weixin_40709439/article/details/82780606"
+    links:
+      - https://blog.csdn.net/weixin_40709439/article/details/82780606
