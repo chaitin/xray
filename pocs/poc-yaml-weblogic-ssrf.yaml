@@ -9,5 +9,4 @@ rules:
         V2|http://uddi.rte.microsoft.com/inquire!Microsoft|http://services.xmethods.net/glue/inquire/uddi!XMethods|
     follow_redirects: false
     expression: >-
-      status == 200 && body.bcontains(b"&#39;127.1.1.1&#39;, port:
-      &#39;700&#39") 
+      status == 200 && ( body.bcontains(b"&#39;127.1.1.1&#39;, port: &#39;700&#39;") || body.bcontains(b"Socket Closed"))
