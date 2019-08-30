@@ -56,6 +56,8 @@ rules:
 
 detail:
   author: name(link)
+  links: 
+    - http://example.com
 ```
 
 整个POC是一个键值对，其包含3个键：
@@ -286,6 +288,8 @@ rules:
       body.bcontains(b'test%test')
 detail:
   drupal_version: 7
+  links:
+    - https://github.com/dreadlocked/Drupalgeddon2
 ```
 
 该POC分为两个Rule，第一个发送一个POST包，将我们需要的Payload注入缓存中，同时，利用search字段提取缓存ID；第二个数据包，将前面提取的缓存ID`{{1}}`，拼接到body中，触发代码执行漏洞，并使用`body.bcontains(b'test%test')`来判断是否成功执行。
