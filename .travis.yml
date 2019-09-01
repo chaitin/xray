@@ -1,0 +1,11 @@
+language: python
+install:
+  - pip install -U pip
+  - pip install pytest pyyaml rfc3987 jsonschema
+jobs:
+  include:
+    - stage: check_filename
+      script: 'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then pytest tests/test_file.py; fi'
+    - stage: check_poc
+      script:
+        - pytest tests/test_yaml.py

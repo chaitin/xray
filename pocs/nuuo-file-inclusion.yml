@@ -6,4 +6,5 @@ rules:
     expression: status == 200 && headers['content-type'] == 'text/css' && body.bcontains(b"$_GET['css']")
 detail:
   author: 2357000166(https://github.com/2357000166)
-  test_env: https://www.exploit-db.com/exploits/40211
+  links:
+    - https://www.exploit-db.com/exploits/40211

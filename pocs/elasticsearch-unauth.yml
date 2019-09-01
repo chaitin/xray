@@ -12,4 +12,5 @@ rules:
       status==200 && body.bcontains(b'/_cat/master')
 detail:
   author: p0wd3r
-  link: https://yq.aliyun.com/articles/616757
+  links:
+    - https://yq.aliyun.com/articles/616757

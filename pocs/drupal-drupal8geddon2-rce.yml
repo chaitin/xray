@@ -12,4 +12,5 @@ rules:
       body.bcontains(b'test%test')
 detail:
   drupal_version: 8
-  test_env: https://github.com/vulhub/vulhub/tree/master/drupal/CVE-2018-7600
+  links:
+    - https://github.com/vulhub/vulhub/tree/master/drupal/CVE-2018-7600
