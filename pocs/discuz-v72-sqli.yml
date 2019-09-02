@@ -8,8 +8,8 @@ rules:
       status==200 && body.bcontains(b'81dc9bdb52d04dc20036dbd8313ed055') &&
       body.bcontains(b'Discuz! info</b>: MySQL Query Error')
 detail:
-    author: leezp
-    Affected Version: "discuz <=v7.2"
-    vuln_url: "/faq.php?action=grouppermission&gids[99]=%27&gids[100][0]=)%20and%20"
-    links:
-      - https://blog.csdn.net/weixin_40709439/article/details/82780606
+  author: leezp
+  Affected Version: "discuz <=v7.2"
+  vuln_url: "/faq.php?action=grouppermission&gids[99]=%27&gids[100][0]=)%20and%20"
+  links:
+    - https://blog.csdn.net/weixin_40709439/article/details/82780606
