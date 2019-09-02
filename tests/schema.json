@@ -86,8 +86,7 @@
           "minItems": 1
         }
       },
-      "additionalProperties": true,
-      "required": ["links"]
+      "additionalProperties": true
     },
     "test": {
       "description": "for unittest",
