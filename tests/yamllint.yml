@@ -2,41 +2,41 @@
 extends: default
 rules:
   braces:
-    level: warning
+    level: error
     max-spaces-inside: 1
   brackets:
-    level: warning
+    level: error
     max-spaces-inside: 1
   colons:
-    level: warning
+    level: error
     max-spaces-before: 0
     max-spaces-after: 1
   commas:
-    level: warning
+    level: error
     max-spaces-before: 0
     max-spaces-after: 1
   comments:
-    level: warning
+    level: error
     require-starting-space: true
   comments-indentation:
-    level: warning
+    level: error
   empty-lines:
-    level: warning
+    level: error
     max: 1
   hyphens:
-    level: warning
+    level: error
     max-spaces-after: 1
   indentation:
-    level: warning
+    level: error
     indent-sequences: consistent
   line-length: disable
   truthy:
-    level: warning
+    level: error
   new-line-at-end-of-file: disable
   trailing-spaces:
-    level: warning
+    level: error
   key-duplicates:
-    level: warning
+    level: error
   document-start: disable
   document-end: disable
   empty-values: disable
