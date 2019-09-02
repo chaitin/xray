@@ -7,4 +7,5 @@ rules:
       status == 200 && body.bcontains(b'This is the default start page for the Resin server') && body.bcontains(b'resin-doc')
 detail:
   author: whynot(https://github.com/notwhy)
-  links: http://0day5.com/archives/1173/
+  links: 
+    - http://0day5.com/archives/1173/
