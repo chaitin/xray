@@ -4,7 +4,7 @@ rules:
     path: /resin-doc/viewfile/?file=index.jsp
     follow_redirects: false
     expression: |
-      status == 200 && body.bcontains(b'This is the default start page for the Resin server')
+      status == 200 && body.bcontains(b'This is the default start page for the Resin server') && body.bcontains(b'resin-doc')
 detail:
   author: whynot(https://github.com/notwhy)
-  test_env: http://0day5.com/archives/1173/
+  links: http://0day5.com/archives/1173/
