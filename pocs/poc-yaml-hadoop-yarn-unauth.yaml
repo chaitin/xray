@@ -3,6 +3,8 @@ rules:
   - method: GET
     path: /ws/v1/cluster/apps/new-application
     follow_redirects: false
+    headers:
+      Content-Type: application/json
     expression: >-
       status==500 &&
       body.bcontains(b'<javaClassName>javax.ws.rs.WebApplicationException')
