@@ -4,7 +4,7 @@ rules:
     path: /report/ReportServer?op=chart&cmd=get_geo_json&resourcepath=privilege.xml
     follow_redirects: false
     expression: |
-      status == 200 && body.bcontains(b'rootManagerName') && body.bcontains(b'rootManagerPassword')
+      status == 200 && body.bcontains(b'<rootManagerName>') && body.bcontains(b'<rootManagerPassword>')
 detail:
   author: l1nk3r(http://www.lmxspace.com/)
   links:
