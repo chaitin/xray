@@ -6,4 +6,5 @@ rules:
       body.bcontains(b'a29hbHIgaXMg%d2F0Y2hpbmcgeW9129')
 
 detail:
-  test_env: https://github.com/vulhub/vulhub/tree/master/thinkphp/5-rce
+  links:
+    - https://github.com/vulhub/vulhub/tree/master/thinkphp/5-rce

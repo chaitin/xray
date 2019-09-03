@@ -11,3 +11,5 @@ rules:
     expression: status==200 && body.bcontains(b'46ea1712d4b13b55b3f680cc5b8b54e8')
 detail:
   author: whynot(https://github.com/notwhy)
+  links:
+    - https://www.secpulse.com/archives/47690.html

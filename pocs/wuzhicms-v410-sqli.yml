@@ -1,4 +1,4 @@
-name: poc-yaml-wuzhicms-v4.1.0-sqli
+name: poc-yaml-wuzhicms-v410-sqli
 rules:
   - method: GET
     path: >-
@@ -7,8 +7,8 @@ rules:
     expression: |
       status==200 && body.bcontains(b'81dc9bdb52d04dc20036dbd8313ed05') && body.bcontains(b'sql_error:MySQL Query Error')
 detail:
-    author: leezp
-    Affected Version: "wuzhicms-v4.1.0"
-    test_env: https://github.com/wuzhicms/wuzhicms/archive/v4.1.0.zip
-    vuln_url: "/api/sms_check.php"
-    link: https://github.com/wuzhicms/wuzhicms/issues/184
+  author: leezp
+  Affected Version: "wuzhicms-v4.1.0"
+  vuln_url: "/api/sms_check.php"
+  links:
+    - https://github.com/wuzhicms/wuzhicms/issues/184
