@@ -1,4 +1,4 @@
-name: poc-yaml-hadoop-yarn-unauth.yml
+name: poc-yaml-hadoop-yarn-unauth-1.yml
 rules:
   - method: GET
     path: /ws/v1/cluster/info
