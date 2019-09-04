@@ -9,5 +9,5 @@ rules:
       status == 200 && body.bcontains(b'resourceManagerVersionBuiltOn') && body.bcontains(b'hadoopVersion')
 detail:
   author: sharecast
-links:
-  -  https://github.com/vulhub/vulhub/tree/master/hadoop/unauthorized-yarn
+  links:
+    -  https://github.com/vulhub/vulhub/tree/master/hadoop/unauthorized-yarn
