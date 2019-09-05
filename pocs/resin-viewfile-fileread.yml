@@ -8,4 +8,5 @@ rules:
 detail:
   author: whynot(https://github.com/notwhy)
   links:
+    - https://www.cnvd.org.cn/flaw/show/CNVD-2006-3205
     - http://0day5.com/archives/1173/
