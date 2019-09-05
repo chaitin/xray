@@ -260,19 +260,6 @@ expression: |
  - 确定 poc 语法正确，payload 正确。
  - 在配置文件 `http` 段中加入 `proxy: "http://proxy:port"`，比如设置 burpsuite 为代理，这样 poc 发送的请求可以在 burp 中看到，看是否是期望的样子。
 
-## 如何编写一个高质量的 POC
-
-一个通用的指南可以参考 https://paper.seebug.org/9/ 文章写得非常好
-
-下面是一个简短的总结
-
- - 不要条件过于宽松，比如 `status==200` 这种
- - 使用回显的时候，尽量不要回显和提交数据一致的内容，比如一个文件读取漏洞 `filename=/etc/passwd`，然后 `body.bcontains('/etc/passwd')`，这样如果页面上是 `/etc/passwd 不存在` 就可能产生误报。正确的方法包括
-   - `md5(STR)` 然后判断返回值 （常见于sql 注入、代码执行等）
-   - `printf NUMBER%%NUMBER`，然后返回值应该是 `NUMBER%NUMBER`，会少一个 `%`，具体参考 https://github.com/chaitin/xray/pull/64#issuecomment-522412051 （常见于代码执行、命令执行等）
-   - 数学表达式，比如 `{{NUMBER+NUMBER}}` （常见于模板注入、表达式注入等）
- - 注意不同平台的区别，比如文件读取在 Windows 下面可能就没有 `/etc/passwd`，如果可以的话，最好是读取类似 `../../index.php` 这种网站自己的代码路径。
-
 ## 一个示例POC：《Drupal7 drupalgeddon2 命令执行漏洞（CVE-2018-7600）》
 
 这里给出一个样例POC：
