@@ -1,4 +1,4 @@
-请先本在 repo 中搜索相关信息，确保该 poc 没有被提交过。
+请先本在 repo 中搜索相关信息，确保该 poc 没有被提交过。建议一个PR只提交一个POC，否则审核会有很多麻烦，互相影响导致时间较长。
 
 然后阅读 https://chaitin.github.io/xray/#/guide/contribute
 
