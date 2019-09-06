@@ -29,7 +29,8 @@
               "OPTIONS",
               "HEAD",
               "PUT",
-              "CONNECT"
+              "CONNECT",
+              "MOVE"
             ]
           },
           "path": {
