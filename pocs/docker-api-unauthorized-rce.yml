@@ -1,0 +1,12 @@
+name: poc-yaml-docker-api-unauthorized-rce
+rules:
+  - method: GET
+    path: /info
+    follow_redirects: false
+    expression: |
+      status==200 && body.bcontains(b'KernelVersion') && body.bcontains(b'RegistryConfig') && body.bcontains(b'DockerRootDir')
+
+detail:
+  author: j4ckzh0u(https://github.com/j4ckzh0u)
+  links:
+    - https://github.com/vulhub/vulhub/tree/master/docker/unauthorized-rce
