@@ -9,4 +9,5 @@ rules:
       status==200 && body.bcontains(b'root:x:0:0')
 detail:
   author: p0wd3r
-  vulhub: https://github.com/vulhub/vulhub/tree/master/phpmyadmin/WooYun-2016-199433
+  links:
+    - https://github.com/vulhub/vulhub/tree/master/phpmyadmin/WooYun-2016-199433

@@ -1,8 +1,6 @@
-请先本在 repo 中搜索相关信息，确保该 poc 没有被提交过。
+请先本在 repo 中搜索相关信息，确保该 poc 没有被提交过。建议一个PR只提交一个POC，否则审核会有很多麻烦，互相影响导致时间较长。
 
-然后阅读 https://chaitin.github.io/xray/#/guide/poc
-
-尤其是 'POC结构' 章节中的各种命名规范，如有问题可以反馈。
+然后阅读 https://chaitin.github.io/xray/#/guide/contribute
 
 如果你的 poc 符合以上要求，请填写下列信息
 
@@ -10,7 +8,7 @@
 
 ## 测试环境
 
-可以使用 Dockerfile 或者 `docker-compose`。
+可以使用 Dockerfile 或者 `docker-compose`，主要测试环境无需提交，进在此处保留即可。
 
 请勿使用公网上未修复的站点的地址。
 

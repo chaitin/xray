@@ -11,6 +11,60 @@ xray 社区版经过数个版本的更迭，基本覆盖了对常见漏洞的 fu
 3. 内部审核 PR，确定是否合并入仓库
 4. 每次发布新版时，CI 拉取 Github 仓库，并将社区的 POC 打包进社区版共享给大家
 
+## POC 贡献规范
+
+在提交之前请搜索仓库的 pocs 文件夹以及 Github 的 Pull request, 确保该 POC 没有被提交。
+
+1. 期望近三年内主流框架，CMS等出现的漏洞，部分小众 CMS 的 POC 可能不被收录
+1. 提交的 POC 如果比较简单，请直接保持单文件不要创建子目录； dockerfile 等文件不要放在仓库中，直接放在 PR 中即可。
+1. poc 请以 `.yml` 结尾，而不是 `.yaml`
+1. poc name 一定是 `poc-yaml-` 开头，后面应该是 `[框架名/服务名/产品名等]-[cve编号]` 或者 `[框架名/服务名/产品名等]-[通用漏洞名称]`。比如 `elasticsearch-cve-2014-3120` 或者 `django-debug-page-info-leak`。无特殊情况，应该都是小写。poc 的 name 应和 yml 的文件名相同，比如上述 poc 的文件名应为 `django-debug-page-info-leak.yml`。poc name只能包含小写字母、短横线，版本号里的点号等符号请省略。
+1. poc 贡献者需要在 detail 中增加 author 字段，格式为 `name(link)`，name 可以为昵称，link 为可选项，一般使用个人 GitHub 首页或者博客链接等。
+1. poc 贡献者需要在 detail 中增加 links 字段，这个字段的值是一个由URL组成的列表，表示和本漏洞和POC相关的参考链接，且一个POC至少需要有一个参考链接。这个链接可以是漏洞分析文章，如果有靶场地址（如vulhub），请也附上。
+1. 提交后，可以加一下我的微信 `emVtYWw2NjY=`(自行解码) ，方便拉大家进群以及发放福利等
+
+在 Github 提交 Pull request 后，会有travis-ci自动进行POC的check，通过后才会进行人工审核：
+
+![](https://chaitin.github.io/xray/assets/pr.png)
+
+在编写expression表达式时，请注意以下原则：
+
+1. 不要直接使用如`status == 200`这样判断status code验证漏洞，一定存在误报。
+1. 不要直接使用如`body.bcontains(b'success')`这样检测一个英文单词的方式来验证漏洞，一定存在误报。
+1. 测试RCE类漏洞，请不要使用`echo`、`print`、`var_dump`之类的输出语句输出一个内容，然后在返回里查找这个内容，此类POC很容易误报和漏报，原因如下：
+  - 如果对方页面本身是一个类似phpinfo的调试页面，会将你的数据包细节完全打印出来，那么并不能证明存在命令执行漏洞
+  - 如果对方安装了xdebug等调试类扩展，`var_dump`等函数输出可能存在差异导致查找不成功
+1.  测试RCE类漏洞，如thinkPHP5代码执行，请不要使用`system`、`shell_exec`、`phpinfo`等函数测试漏洞，容易出现误报和漏报，原因如下：
+  - 如果对方本身就是一个phpinfo页面，无法判断是否是成功执行了代码，导致出现误报
+  - 如果对方网站运行在一些虚拟主机环境下，如cpanel，则命令执行函数很可能已经被禁用，此时再用`system`等函数测试漏洞则会出现漏报
+1. 测试命令执行、文件读取类漏洞，请考虑Linux和Windows下的情况，POC里不要执行类似`id`、`uname`、`/etc/passwd`等操作，否则可能不兼容Windows环境。
+  - 通常这种情况，我们可以考虑编写两个POC，分别检测两个平台下的同一个漏洞
+1. 测试SQL注入漏洞，请不要使用`user()`、`version()`等函数来验证漏洞存在，此类规则太过宽泛。请使用如`md5(随机数)`这样的方式来验证漏洞
+1. 测试SQL注入漏洞，Payload中尽量不要使用引号、反斜线（除非是必要的）等特殊字符，可能会受到目标`GPC_QUOTE`、WAF等影响。
+  - 如果是Mysql，可以使用`0xxxx`的方式代替有引号的字符串
+1. 漏洞如果能通过回显检测，就不要使用反连平台，鼓励将公开的无回显的POC改为有回显的。比如公开的struts2漏洞POC很多是反弹shell的POC，但几乎所有struts2的POC都可以修改为有回显的POC。
+1. 测试表达式注入、模板注入等漏洞，请不要以命令执行的方式来测试漏洞，通常可以直接使用整数相乘的方法：`6311*2992`，然后再查找返回结果
+  - 注意，这里结果最好是8位数以上，否则可能会有误报
+  - 考虑到有些32位系统整数上限可能低于`2^^31`，所以结果尽量在8~9位数为最好
+1. 关于POC的编写其他的注意点，推荐参考这篇文章：<https://paper.seebug.org/9/>
+
+说了这么多，有个例子会更清晰些，如果要提交 thinkphp5 的 rce 漏洞，那么 `poc-yaml-thinkphp5-controller-rce.yml` 文件的内容为
+
+```yaml
+name: poc-yaml-thinkphp5-controller-rce
+rules:
+  - method: GET
+    path: /index.php?s=/Index/\think\app/invokefunction&function=call_user_func_array&vars[0]=printf&vars[1][]=a29hbHIgaXMg%25%25d2F0Y2hpbmcgeW91
+    expression: |
+      body.bcontains(b'a29hbHIgaXMg%d2F0Y2hpbmcgeW9129')
+
+detail:
+  author: chaitin(https://github.com/chaitin)
+  links: 
+    - https://github.com/vulhub/vulhub/tree/master/thinkphp/5-rce
+    - https://www.cnblogs.com/iamstudy/articles/thinkphp_5_x_rce_1.html
+```
+
 ### 奖励措施
 
 提交 POC ，即可获得与 xray 社区版内部大佬技术切磋交流的机会。提交 PR 过程中会有内部大佬审核，帮助改进POC的实现，共同进步。同时，为了感谢提交 POC 的同学的辛苦付出, 我们准备了一份厚礼: 
