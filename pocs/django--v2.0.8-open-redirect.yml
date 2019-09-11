@@ -1,0 +1,13 @@
+name: poc-yaml-django--v2.0.8-open-redirect.yml
+rules:
+    - method: GET
+      path: //www.douyin.com
+      follow_redirects: true
+      expression: |
+         status == 301
+    
+
+detail:
+    author: phith0n
+    links:
+      - https://github.com/vulhub/vulhub/tree/master/django/CVE-2018-14574
