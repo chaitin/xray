@@ -1,4 +1,4 @@
-name: poc-yaml-hadoop-yarn-unauthorized
+name: poc-yaml-hadoop-yarn-unauth
 rules:
   - method: GET
     path: /ws/v1/cluster/info
@@ -8,6 +8,6 @@ rules:
     expression: |
       status == 200 && body.bcontains(b'resourceManagerVersionBuiltOn') && body.bcontains(b'hadoopVersion')
 detail:
-  author: sharecast
+  author: p0wd3r,sharecast
   links:
     - https://github.com/vulhub/vulhub/tree/master/hadoop/unauthorized-yarn
