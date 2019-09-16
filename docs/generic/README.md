@@ -186,6 +186,6 @@
 1. QQ 群: 717365081
 1. 微信群: 扫描以下二维码加我的个人微信，会把大家拉到 `xray` 官方微信群    
 
-<img src="https://chaitin.github.io/xray/assets/wechat.jpg" height="150px">
+<img src="https://chaitin.github.io/xray/assets/wechat.jpg?_=1" height="150px">
 
 
