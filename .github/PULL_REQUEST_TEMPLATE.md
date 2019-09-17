@@ -15,3 +15,5 @@
 ## 备注
 
 写你想写的
+
+如果你的 poc 被合并或者没有合并但是评论说需要发送奖励，请查看 https://chaitin.github.io/xray/#/guide/feedback 并添加最下面的微信，说明你的 poc 地址，方便发送奖励。
