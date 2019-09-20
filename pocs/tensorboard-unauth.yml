@@ -1,0 +1,15 @@
+name: poc-yaml-tensorboard-unauth
+rules:
+  - method: GET
+    path: /
+    follow_redirects: false
+    expression: >
+      status==200 && body.bcontains(b'The TensorFlow Authors. All Rights
+      Reserved.')
+  - method: GET
+    path: '/#scalars'
+    follow_redirects: false
+    expression: |
+      status==200 && body.bcontains(b'Show data download links')
+detail:
+  author: p0wd3r
