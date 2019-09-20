@@ -1,0 +1,13 @@
+name: poc-yaml-dedecms-url-redirection
+rules:
+  - method: GET
+    path: >-
+      /plus/download.php?open=1&link=aHR0cHM6Ly93d3cuYmFpZHUuY29t
+    follow_redirects: true
+    expression: >
+      status==200 && body.bcontains(b'百度一下')
+detail:
+  author: cc_ci(https://github.com/cc8ci)
+  Affected Version: "V5.7 sp1"
+  links:
+    - https://blog.csdn.net/ystyaoshengting/article/details/82734888
