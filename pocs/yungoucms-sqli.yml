@@ -1,4 +1,4 @@
-name: poc-yaml-yungoucms-in-sqlinjection
+name: poc-yaml-yungoucms-sqli
 rules:
   - method: GET
     path: >-
