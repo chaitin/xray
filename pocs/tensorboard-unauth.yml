@@ -13,3 +13,5 @@ rules:
       status==200 && body.bcontains(b'Show data download links')
 detail:
   author: p0wd3r
+  links:
+    - https://www.tensorflow.org/guide/summaries_and_tensorboard?hl=zh-CN
