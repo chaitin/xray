@@ -1,4 +1,4 @@
-name: poc-yaml-joomla-customfields.php-child-SQL
+name: joomla-customfields.php-child-SQL
 rules:
   - method: GET
     path: >-
