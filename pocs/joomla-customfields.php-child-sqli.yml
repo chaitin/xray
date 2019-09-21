@@ -1,4 +1,4 @@
-name: poc-yaml-joomla-customfields.php-child-sqli
+name: poc-yaml-joomla-customfields.php-child-SQL
 rules:
   - method: GET
     path: >-
@@ -14,4 +14,4 @@ detail:
   author: MaxSecurity(https://github.com/MaxSecurity)
   links:
     - https://www.joomsky.com/5/download/1
-    - http://www.bugscan.net/source/plugin/9801/template
+    - http://www.bugscan.net/source/plugin/9801/template 
