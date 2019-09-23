@@ -8,7 +8,7 @@
   </a>
 </p>
 
-> 一款功能强大的安全评估工具  🏠[主页](https://chaitin.github.io/xray/#/)  ⬇️[下载](https://github.com/chaitin/xray/releases) 📚[English Document](https://github.com/chaitin/xray/tree/master/docs/en-us/generic)
+> 一款功能强大的安全评估工具  🏠[使用指南](https://chaitin.github.io/xray/#/)  ⬇️[下载](https://github.com/chaitin/xray/releases) 📚[English Document](https://github.com/chaitin/xray/tree/master/docs/en-us/generic)
 
 ### ✨ Demo
 
