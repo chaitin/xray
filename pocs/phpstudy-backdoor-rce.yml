@@ -4,10 +4,10 @@ rules:
     path: /index.php
     headers:
       Accept-Encoding: 'gzip,deflate'
-      Accept-Charset: cHJpbnRmKG1kNSgzMzMpKTs=
+      Accept-Charset: cHJpbnRmKG1kNSg0NTczMTM0NCkpOw==
     follow_redirects: false
     expression: |
-      body.bcontains(b'310dcbbf4cce62f762a2aaa148d556bd')
+      body.bcontains(b'a5952fb670b54572bcec7440a554633e')
 detail:
   author: 17bdw
   Affected Version: "phpstudy 2016-phpstudy 2018 php 5.2 php 5.4"
