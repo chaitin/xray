@@ -8,7 +8,7 @@ rules:
 
 detail:
   author: jingling(https://github.com/shmilylty)
-  links: 
+  links:
     - https://github.com/vulhub/vulhub/blob/master/thinkphp/2-rce/README.md
     - http://blog.chedushi.com/archives/3969
     - https://www.secpulse.com/archives/24773.html
