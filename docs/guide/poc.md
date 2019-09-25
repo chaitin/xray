@@ -133,7 +133,7 @@ expression表达式上下文包含所有CEL文档中支持的函数，同时还�
 `bmatches` | `func (s1 string) bmatches(b1 bytes) bool` | 使用正则表达式s1来匹配b1，返回bool类型匹配结果。与matches不同的是，bmatches匹配的是字节流（bytes）。
 `startsWith` | `func (s1 string) startsWith(s2 string) bool` | 判断s1是否由s2开头
 `endsWith` | `func (s1 string) endsWith(s2 string) bool` | 判断s1是否由s2结尾
-`in` | `string in map` | map 中是否包含某个 key，目前只有 header 是 map 类型
+`in` | `string in map` | map 中是否包含某个 key，目前只有 headers 是 map 类型
 
 值得注意的是，类似于python，CEL中的字符串可以有转义和前缀，如：
 
@@ -154,9 +154,9 @@ expression表达式上下文包含所有CEL文档中支持的函数，同时还�
 - `(status >= 500 && status != 502) || r'<input value="(.+?)"'.bmatches(body)`
   - 返回包status code大于等于500且不等于502，或者Body包含表单
 - `headers['location']=="https://www.example.com"`
-  - header 中 `Location` 等于指定值，如果 `Location` 不存在，该表达式返回 false
+  - headers 中 `Location` 等于指定值，如果 `Location` 不存在，该表达式返回 false
 - `'docker-distribution-api-version' in headers && headers['docker-distribution-api-version'].contains('registry/2.0')`
-  - header 中包含 `docker-distribution-api-version` 并且 value 包含指定字符串，如果不判断 `in`，后续的 contains 会出错。
+  - headers 中包含 `docker-distribution-api-version` 并且 value 包含指定字符串，如果不判断 `in`，后续的 contains 会出错。
 
 expression表达式返回的必须是一个bool类型的结果，这个结果作为整个Rule的值，而rules由多个Rule组成。值为true的Rule，如果后面还有其他Rule，则继续执行后续Rule，如果后续没有其他Rule，则表示该POC的结果是true；如果一个Rule的expression返回false，则不再执行后续Rule，也表示本POC的返回结果是false。
 
