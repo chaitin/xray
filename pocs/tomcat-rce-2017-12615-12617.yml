@@ -12,7 +12,6 @@ rules:
     expression: |
       status==200 && body.bcontains(b'67df8ab758045d703e78648667377355')
 
-
 detail:
   author: JingLing(https://hackfun.org/)
   links:
