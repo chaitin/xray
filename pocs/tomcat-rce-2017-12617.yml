@@ -1,4 +1,4 @@
-name: poc-yaml-tomcat-rce-2017-12615-12617
+name: poc-yaml-tomcat-rce-2017-12617
 rules:
   - method: PUT
     path: /264aa958c066b6f3d97fac16d4b96714.jsp/
