@@ -1,4 +1,4 @@
-name: discuz-wechat-plugins-unauth
+name: poc-yaml-discuz-wechat-plugins-unauth
 rules:
   - method: GET
     path: '/plugin.php?id=wechat:wechat&ac=wxregister'
