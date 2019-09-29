@@ -9,7 +9,7 @@ rules:
       Accept-Encoding: gzip, deflate
       Connection: close
       Cookie: Z3T2_2132_saltkey=UoA95q3Q; Z3T2_2132_language=en'.print(md5(%27qdf4as5%27)).'; Z3T2_2132_lastvisit=1562765759; Z3T2_2132_sid=fENq7z; Z3T2_2132_lastact=1562769440%09index.php%09; Z3T2_2132_sendmail=1; Z3T2_2132_onlineusernum=1
-      Upgrade-Insecure-Requests: 1
+      Upgrade-Insecure-Requests: "1"
     follow_redirects: false
     expression: >
       status==200 && body.bcontains(b'91d9f84decbb4c0c0da025f0f8cd7265')
