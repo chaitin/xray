@@ -5,9 +5,7 @@ rules:
     follow_redirects: false
     expression: |
       status==302 && 'set-cookie' in headers && headers['set-cookie'].contains('auth') && 'location' in headers && headers['location'].contains('wsq.discuz.com')
-
-
 detail:
   author: JrD
-  links: 
+  links:
     - https://gitee.com/ComsenzDiscuz/DiscuzX/issues/IPRUI
