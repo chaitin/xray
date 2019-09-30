@@ -4,10 +4,6 @@ rules:
     path: >-
       /forum.php
     headers:
-      Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-      Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
-      Accept-Encoding: gzip, deflate
-      Connection: close
       Cookie: Z3T2_2132_saltkey=UoA95q3Q; Z3T2_2132_language=en'.print(md5(%27qdf4as5%27)).'; Z3T2_2132_lastvisit=1562765759; Z3T2_2132_sid=fENq7z; Z3T2_2132_lastact=1562769440%09index.php%09; Z3T2_2132_sendmail=1; Z3T2_2132_onlineusernum=1
       Upgrade-Insecure-Requests: "1"
     follow_redirects: false
