@@ -116,6 +116,14 @@ We are working hard for new detection modules
 
    Detect CRLF injection in HTTP header, support parameters from query and body, etc
 
+ - struts (Advanced version only)
+
+   Check the target website for Struts2 series vulnerabilites, such as s2-016/s2-032/s2-045
+
+ - thinkphp (Advanced version only)
+
+   A plugin for ThinkPHP vulnerabilities
+
  - ...
 
 
