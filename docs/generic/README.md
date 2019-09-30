@@ -157,7 +157,15 @@
  - CRLF 注入 (key: crlf_injection)
 
    检测 HTTP 头注入，支持 query、body 等位置的参数
+ 
+ - Struts2 系列漏洞检测 (高级版，key: struts)
 
+   检测目标网站是否存在Struts2系列漏洞，包括s2-016、s2-032、s2-045等常见漏洞
+
+ - Thinkphp系列漏洞检测 (高级版，key: thinkphp)
+
+   检测ThinkPHP开发的网站的相关漏洞
+ 
  - ..
 
 
