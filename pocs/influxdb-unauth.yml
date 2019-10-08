@@ -4,7 +4,7 @@ rules:
     path: /ping
     follow_redirects: true
     expression: |
-      status==204
+      status==204 && 'x-influxdb-version' in headers
   - method: GET
     path: /query?q=show%20users
     follow_redirects: true
