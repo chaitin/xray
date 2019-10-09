@@ -1,4 +1,4 @@
-name: poc-yaml-dlink-850l
+name: poc-yaml-dlink-850l-info-leak
 rules:
   - method: POST
     path: /hedwig.cgi
