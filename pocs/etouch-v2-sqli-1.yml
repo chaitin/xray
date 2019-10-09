@@ -1,3 +1,4 @@
+# fixme 改为 rand
 name: poc-yaml-etouch-v2-sqli
 rules:
   - method: GET
