@@ -1,0 +1,17 @@
+name: poc-yaml-influxdb-unauth
+rules:
+  - method: GET
+    path: /ping
+    follow_redirects: true
+    expression: |
+      status==204 && 'x-influxdb-version' in headers
+  - method: GET
+    path: /query?q=show%20users
+    follow_redirects: true
+    expression: >
+      status==200 && content_type.contains('application/json') &&
+      body.bcontains(b'columns') && body.bcontains(b'user')
+detail:
+  author: p0wd3r
+  links:
+    - https://docs.influxdata.com/influxdb/v1.7/tools/api/
