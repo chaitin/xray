@@ -10,6 +10,13 @@
       "type": "string",
       "pattern": "\\Apoc-yaml-(?!-)[a-z0-9\\-]+(?<!-)\\Z"
     },
+    "set": {
+      "description": "set variables",
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
     "rules": {
       "description": "POC rules",
       "type": "array",
@@ -22,15 +29,17 @@
             "description": "request method",
             "type": "string",
             "enum": [
+              "HEAD",
               "GET",
               "POST",
-              "DELETE",
-              "PATCH",
-              "OPTIONS",
-              "HEAD",
               "PUT",
+              "PATCH",
+              "DELETE",
+              "OPTIONS",
               "CONNECT",
-              "MOVE"
+              "MOVE",
+              "TRACE",
+              "PROPFIND"
             ]
           },
           "path": {
