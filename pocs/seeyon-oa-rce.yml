@@ -1,0 +1,9 @@
+name: poc-yaml-seeyon-oa-rce
+rules:
+  - method: GET
+    path: /htmlofficeservlet
+    expression: |
+      body.bcontains(b'DBSTEP')
+
+detail:
+    author: timwhite
