@@ -2,6 +2,7 @@ name: poc-yaml-seeyon-oa-rce
 rules:
   - method: GET
     path: /htmlofficeservlet
+    follow_redirects: false
     expression: |
       status == 200 && body.bcontains(b'DBSTEP')
 detail:
