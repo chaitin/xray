@@ -3,8 +3,7 @@ rules:
   - method: GET
     path: /htmlofficeservlet
     expression: |
-      body.bcontains(b'DBSTEP')
-
+      status == 200 && body.bcontains(b'DBSTEP')
 detail:
     author: timwhite
     links:
