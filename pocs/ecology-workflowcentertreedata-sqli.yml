@@ -1,4 +1,4 @@
-name: poc-yaml-e-cology-workflowcentertreedata-sqli
+name: poc-yaml-ecology-workflowcentertreedata-sqli
 rules:
   - method: POST
     path: /mobile/browser/WorkflowCenterTreeData.jsp?node=wftype_1&scope=2333
