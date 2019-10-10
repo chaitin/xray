@@ -6,7 +6,7 @@ rules:
     expression: |
       status == 200 && body.bcontains(b'DBSTEP')
 detail:
-    author: timwhite
-    links:
-     - https://www.4hou.com/vulnerable/19104.html
-     - https://github.com/timwhitez/seeyon-OA-A8-GetShell
+  author: timwhite
+  links:
+    - https://www.4hou.com/vulnerable/19104.html
+    - https://github.com/timwhitez/seeyon-OA-A8-GetShell
