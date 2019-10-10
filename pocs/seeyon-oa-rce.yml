@@ -7,3 +7,6 @@ rules:
 
 detail:
     author: timwhite
+    links:
+     - https://www.4hou.com/vulnerable/19104.html
+     - https://github.com/timwhitez/seeyon-OA-A8-GetShell
