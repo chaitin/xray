@@ -69,7 +69,7 @@ detail:
 
 name是POC的名字
 
-set是全局变量，比如是随机数、解析的url等，可以调用函数，在非expression语句中需要使用大括号包裹，在expression中就是普通变量。
+set是全局变量，比如是随机数、解析的url等，其中`url`为一个隐形变量，不需要定义就可以使用，表示当前被扫描的url。在 set中可以调用函数，请参考下方表格。在非expression语句中需要使用大括号包裹变量名，在expression中就是普通变量。
 
 rules是一个由规则（Rule）组成的列表，后面会描述如何编写Rule，并将其组成rules。
 
@@ -117,7 +117,7 @@ status==200 && body.bcontains(b'Example Domain')
 
 CEL表达式通熟易懂，非常类似于一个Python表达式。上述表达式的意思是：**返回包status等于200，且body中包含内容“Example Domain”**。
 
-expression表达式上下文包含的变量暂时只有如下三个，之后会逐渐进行扩展：
+expression表达式上下文包含的变量除了自定义变量和`url`以外，暂时只有如下三个，之后会逐渐进行扩展：
 
 变量名 | 类型 | 说明
 ---- | ---- | ----
@@ -140,6 +140,19 @@ expression表达式上下文包含所有CEL文档中支持的函数，同时还�
 `md5` | `func md5(string) string` | 字符串的 md5  (以下都是 0.13.0 版本新增)
 `randomInt` | `func randomInt(from, to int) int` | 两个范围内的随机数
 `randomLowercase` | `func randomLowercase(n length) string` | 指定长度的小写字母组成的随机字符串
+`parseURL` | `func parseURL(string) map[string]string` | 解析 url 得到结果，map 中中字段见下方。
+
+```
+{
+		"scheme":   urlObj.Scheme,
+		"domain":   urlObj.Hostname(),
+		"port":     urlObj.Port(),
+		"host":     urlObj.Host,
+		"path":     urlObj.EscapedPath(),
+		"query":    urlObj.RawQuery,
+		"fragment": urlObj.Fragment,
+}
+```
 
 值得注意的是，类似于python，CEL中的字符串可以有转义和前缀，如：
 
@@ -165,6 +178,8 @@ expression表达式上下文包含所有CEL文档中支持的函数，同时还�
   - headers 中 `Location` 等于指定值，如果 `Location` 不存在，该表达式返回 false
 - `'docker-distribution-api-version' in headers && headers['docker-distribution-api-version'].contains('registry/2.0')`
   - headers 中包含 `docker-distribution-api-version` 并且 value 包含指定字符串，如果不判断 `in`，后续的 contains 会出错。
+- `body.bcontains(bytes(parseURL(url).path))`
+  - body 中包含 url 的 path
 
 expression表达式返回的必须是一个bool类型的结果，这个结果作为整个Rule的值，而rules由多个Rule组成。值为true的Rule，如果后面还有其他Rule，则继续执行后续Rule，如果后续没有其他Rule，则表示该POC的结果是true；如果一个Rule的expression返回false，则不再执行后续Rule，也表示本POC的返回结果是false。
 
