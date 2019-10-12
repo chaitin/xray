@@ -2,12 +2,10 @@ name: poc-yaml-jenkins-unauthorized
 rules:
   - method: GET
     path: /manage
-    headers:
-      Cookie: JSESSIONID.8b88d589=1qosc1mkpp3wzfyq32i34ko4l
     follow_redirects: false
     expression: >
-      status == 200 && body.bcontains(b'configureTools')&&
-      body.bcontains(b'System Log')
+      status == 200 && body.bcontains(b'<a href="configureTools"><img src=')&&
+      body.bcontains(b'<a href="log" class=" ">System Log</a>')
 detail:
     author: timwhite
     links:
