@@ -28,8 +28,8 @@
     r2: randomInt(40000, 44800)
   
   set:
-  r1: randomInt(800000000, 1000000000)
-  r2: randomInt(800000000, 1000000000)
+    r1: randomInt(800000000, 1000000000)
+    r2: randomInt(800000000, 1000000000)
   ```
   
 1. 关于POC的编写其他的注意点，推荐参考这篇文章：<https://paper.seebug.org/9/>
