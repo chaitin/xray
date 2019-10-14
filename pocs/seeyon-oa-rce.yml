@@ -14,6 +14,6 @@ rules:
     expression: |
       status == 200 && body.bcontains(b'da7e3390d7ce')
 detail:
-    author: timwhite
-    links:
-     - https://github.com/timwhitez/
+  author: timwhite
+  links:
+    - https://github.com/timwhitez/ 
