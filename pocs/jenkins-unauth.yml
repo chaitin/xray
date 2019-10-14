@@ -7,6 +7,6 @@ rules:
       status == 200 && body.bcontains(b'<a href="configureTools"><img src=') &&
       body.bcontains(b'<a href="log" class=" ">System Log</a>')
 detail:
-    author: timwhite
-    links:
-     - https://github.com/timwhitez/
+  author: timwhite
+  links:
+    - https://github.com/timwhitez/ 
