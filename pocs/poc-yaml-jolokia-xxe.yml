@@ -10,4 +10,4 @@ detail:
   author: loneyer
   links:
     - https://www.veracode.com/blog/research/exploiting-spring-boot-actuators
-    - Docker (https://github.com/Loneyers/vuldocker/tree/master/jolokia-xxe)
+    - https://github.com/Loneyers/vuldocker/tree/master/jolokia-xxe
