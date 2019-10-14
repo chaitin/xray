@@ -4,8 +4,7 @@ rules:
     path: /v2/
     follow_redirects: false
     expression: >
-      status==200 &&
-      headers['docker-distribution-api-version'].contains('registry/2.0')
+      status==200 && 'docker-distribution-api-version' in headers && headers['docker-distribution-api-version'].contains('registry/2.0')
   - method: GET
     path: /v2/_catalog
     follow_redirects: false

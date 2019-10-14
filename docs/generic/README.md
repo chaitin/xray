@@ -8,7 +8,7 @@
   </a>
 </p>
 
-> 一款功能强大的安全评估工具  🏠[主页](https://chaitin.github.io/xray/#/)  ⬇️[下载](https://github.com/chaitin/xray/releases) 📚[English Document](https://github.com/chaitin/xray/tree/master/docs/en-us/generic)
+> 一款功能强大的安全评估工具  🏠[使用指南](https://chaitin.github.io/xray/#/)  ⬇️[下载](https://github.com/chaitin/xray/releases) 📚[English Document](https://github.com/chaitin/xray/tree/master/docs/en-us/generic)
 
 ### ✨ Demo
 
@@ -157,7 +157,15 @@
  - CRLF 注入 (key: crlf_injection)
 
    检测 HTTP 头注入，支持 query、body 等位置的参数
+ 
+ - Struts2 系列漏洞检测 (高级版，key: struts)
 
+   检测目标网站是否存在Struts2系列漏洞，包括s2-016、s2-032、s2-045等常见漏洞
+
+ - Thinkphp系列漏洞检测 (高级版，key: thinkphp)
+
+   检测ThinkPHP开发的网站的相关漏洞
+ 
  - ..
 
 
@@ -186,6 +194,6 @@
 1. QQ 群: 717365081
 1. 微信群: 扫描以下二维码加我的个人微信，会把大家拉到 `xray` 官方微信群    
 
-<img src="https://chaitin.github.io/xray/assets/wechat.jpg" height="150px">
+<img src="https://chaitin.github.io/xray/assets/wechat.jpg?_=1" height="200px">
 
 

