@@ -4,7 +4,7 @@ rules:
     path: /manage
     follow_redirects: false
     expression: >
-      status == 200 && body.bcontains(b'<a href="configureTools"><img src=')&&
+      status == 200 && body.bcontains(b'<a href="configureTools"><img src=') &&
       body.bcontains(b'<a href="log" class=" ">System Log</a>')
 detail:
     author: timwhite
