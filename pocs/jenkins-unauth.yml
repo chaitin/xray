@@ -3,9 +3,8 @@ rules:
   - method: GET
     path: /manage
     follow_redirects: false
-    expression: >
-      status == 200 && body.bcontains(b'<a href="configureTools"><img src=') &&
-      body.bcontains(b'<a href="log" class=" ">System Log</a>')
+    expression: |
+      status==200 && body.bcontains(b'<a href="configureTools"><img src=') && body.bcontains(b'<a href="log" class=" ">System Log</a>')
 detail:
   author: timwhite
   links:
