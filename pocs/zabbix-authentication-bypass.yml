@@ -4,7 +4,7 @@ rules:
     path: /zabbix.php?action=dashboard.view&dashboardid=1
     follow_redirects: false
     expression: |
-      status == 200 && body.bcontains(b'<title>Dashboard</title>')
+      status == 200 && body.bcontains(b'<title>Dashboard</title>') && body.bcontains(b'MMenu.def_label = \'view\'')
 detail:
   author: FiveAourThe(https://github.com/FiveAourThe)
   links:
