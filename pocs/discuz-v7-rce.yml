@@ -1,4 +1,4 @@
-name: poc-yaml-discuz-v7-rce
+name: poc-yaml-discuz-wooyun-2010-080723
 set:
   rand: randomInt(200000000, 210000000)
 rules:
