@@ -1,6 +1,6 @@
 name: poc-yaml-discuz-ml3x-cnvd-2019-22239
 set:
- r1: randomInt(800000000, 1000000000)
+  r1: randomInt(800000000, 1000000000)
 rules:
   - method: GET
     path: /forum.php
@@ -15,7 +15,6 @@ rules:
     follow_redirects: false
     expression: |
       status == 200 && body.bcontains(bytes(md5(string(r1))))
-      
 detail:
   author: X.Yang
   Discuz_version: Discuz!ML 3.x
