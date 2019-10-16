@@ -21,7 +21,7 @@ rules:
     path: /v2/keys/{{r1}}/{{r2}}?quorum=false&recursive=false&sorted=false
     follow_redirects: false
     expression: |
-      status == 200 && body.bcontains(b'{{r3}}')
+      status == 200 && body.bcontains(bytes(r3))
 
 detail:
   author: j4ckzh0u(https://github.com/j4ckzh0u)
