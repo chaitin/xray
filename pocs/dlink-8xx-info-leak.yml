@@ -1,4 +1,4 @@
-name: poc-yaml-DLink-868-info-leak
+name: poc-yaml-dl-8xx-info-leak
 rules:
   - method: POST
     path: /getcfg.php
