@@ -1,4 +1,4 @@
-# 漏洞 json 格式说明
+# 漏洞格式说明
 
 在 `--json-output` 或者 `--webhook-output` 的时候，将会使用 json 格式输出漏洞信息，json 字段说明如下。
 

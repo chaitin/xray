@@ -8,11 +8,13 @@
   </a>
 </p>
 
-> 一款功能强大的安全评估工具  🏠[使用指南](https://chaitin.github.io/xray/#/)  ⬇️[下载](https://github.com/chaitin/xray/releases) 📚[English Document](https://github.com/chaitin/xray/tree/master/docs/en-us/generic)
+> 一款功能强大的安全评估工具 
 
 ### ✨ Demo
 
 ![](https://chaitin.github.io/xray/assets/term.svg)
+
+🏠[使用文档](https://chaitin.github.io/xray/#/)  ⬇️[下载地址](https://github.com/chaitin/xray/releases) 📚[English Document](https://github.com/chaitin/xray/tree/master/docs/en-us/generic)
 
 ## 🚀 快速使用
 
@@ -59,43 +61,7 @@
     
     [报告样例](https://chaitin.github.io/xray/assets/report_example.html)
 
-1. 只运行单个**内置** POC
-
-    在 xray 中，所有的 poc 隶属于插件 `phantasm`, 所以使用 poc 时需要开启 `phantasm` 插件才可生效。`--poc` 参数指定本次运行的 poc，如不指定，将运行所有的内置 poc。
-
-    ```bash
-    xray webscan --plugins phantasm --poc poc-yaml-thinkphp5-controller-rce --url http://example.com/
-    ```
-1. 运行用户自定义 POC
-
-    用户可以按需书写自己的 YAML 格式的 POC， 并通过指定 `--poc` 参数运行，比如运行在 `/home/test/1.yaml` 处的 POC。
-
-    ```bash
-    xray webscan --plugins phantasm --poc /home/test/1.yaml --url http://example.com/
-    ```
-    
-    `--poc` 参数非常灵活，支持 Glob 匹配，支持从目录加载，可以从以下几个例子理解用法:
-    
-    加载 `/home/test/pocs/` 所有的 POC:
-    ```bash
-    xray webscan --plugins phantasm --poc "/home/test/pocs/*"
-    ```
-    
-    加载 `/home/test/pocs/` 下包含 thinkphp 的 POC
-    ```bash
-    xray webscan --plugins phantasm --poc "/home/test/pocs/*thinkphp*"
-    ```
-    
-    自定义 POC 请查看文档。
-  
-1. 转发漏洞信息到数据库、邮件、IM 通知等
-
-   用户可以使用 `--webhook-output` 将漏洞信息进行转发，后端需要返回 status 200 才认为发送成功，否则将打印错误日志。
-
-
-   ```bash
-   xray webscan --url http://example.com/ --webhook-output http://host:port/path
-   ```
+其他用法请阅读文档： https://chaitin.github.io/xray/#/
 
 
 ## 🛠 检测模块
@@ -174,13 +140,12 @@
 下列高级用法请查看 [http://chaitin.github.io/xray/](http://chaitin.github.io/xray/) 使用。
 
  - 修改配置文件
- - 生成证书
  - 抓取 https 流量
- - 修改 https 发包配置
+ - 修改 http 发包配置
  - 反连平台的使用
  - ...
 
-## 贡献 POC
+## 😘 贡献 POC
 
 参照: [https://chaitin.github.io/xray/#/guide/contribute](https://chaitin.github.io/xray/#/guide/contribute)
 

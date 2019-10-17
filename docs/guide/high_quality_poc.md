@@ -17,7 +17,7 @@
     path: /admin/?a=Factory();printf('{{r1}}');//../
     follow_redirects: false
     expression: |
-      status == 200 && body.bcontains(b'{{r1}}')
+      status == 200 && body.bcontains(bytes(r1))
   ```
 1.  测试RCE类漏洞，如PHP代码执行，请不要使用`system`、`shell_exec`、`phpinfo`等函数测试漏洞，容易出现误报和漏报，原因如下：
   - 如果对方本身就是一个phpinfo页面，无法判断是否是成功执行了代码，导致出现误报
