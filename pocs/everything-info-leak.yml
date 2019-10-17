@@ -1,0 +1,13 @@
+name: poc-yaml-everything-info-leak
+set:
+  filename: randomLowercase(6)
+rules:
+  - method: GET
+    path: '/?search={{filename}}'
+    follow_redirects: false
+    expression: >
+      status==200 && body.bcontains(b'<title>{{filename}} - Everything</title>')
+detail:
+  author: FiveAourThe(https://github.com/FiveAourThe)
+  links:
+    - https://mp.weixin.qq.com/s/7NidPdBiNelQiQGYKcGbcg
