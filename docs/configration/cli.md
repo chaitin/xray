@@ -1,5 +1,7 @@
 # 命令详解
 
+> 这里以 mac 平台的二进制作为演示，所以二进制为 `xray_darwin_amd64`，其他平台请自行更改。
+
 ```
 $ ./xray_darwin_amd64 -h
 
@@ -156,13 +158,13 @@ a=b&x=y
 将上面说的一些结合起来使用，就可以满足多种场景下的使用需求了。下面的例子都是可以正常运行的，作用不言而喻。
 
 ```
-xray webscan --plugins xss --listen 127.0.0.1:1111 --html-output 1.html
+./xray_darwin_amd64 webscan --plugins xss --listen 127.0.0.1:1111 --html-output 1.html
 
-xray --log_level debug webscan --plugins xss,cmd_injection --basic-crawler http://example.com --json-output 1.json
+./xray_darwin_amd64 --log_level debug webscan --plugins xss,cmd_injection --basic-crawler http://example.com --json-output 1.json
 
-xray webscan --url http://example.com --data "x=y" --html-output 2.html --json-output 1.json
+./xray_darwin_amd64 webscan --url http://example.com --data "x=y" --html-output 2.html --json-output 1.json
 
-xray webscan --url http://example.com/ --webhook-output http://host:port/path
+./xray_darwin_amd64 webscan --url http://example.com/ --webhook-output http://host:port/path
 ```
 
 ## 交互式命令行

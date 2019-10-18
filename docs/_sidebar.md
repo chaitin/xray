@@ -14,6 +14,8 @@
 - 高级用法
   - [自定义POC语法](guide/poc.md)
   - [编写高质量poc](guide/high_quality_poc.md)
+- 使用场景
+  - [与Burp联动](scenario/burp.md)
 
 - API
   - [漏洞格式](api/vuln.md)

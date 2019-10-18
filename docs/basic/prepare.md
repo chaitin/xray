@@ -56,4 +56,4 @@ Compiler Version: go version go1.13.1 linux/amd64
 To show open source licenses, please use `osslicense` sub-command.
 ```
 
-接下来就可以体验社区最强大的安全监测工具了。
+接下来就可以体验社区最强大的安全检测工具了。

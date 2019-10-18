@@ -59,6 +59,8 @@ includes:
   - "example.com/admin*" # 表示允许 example.com 下的 /admin 开头的所有 path 
 ```
 
+!> 注意： 这里的 includes 和 excludes 均不支持端口号，如果加上将导致限制失效！
+
 ## 限制允许使用该代理的 IP
 
 配置中的 `allow_ip_range` 项可以限制哪些 IP 可以使用该代理。支持单个 IP 和 CIDR 格式的地址，如：
