@@ -2,7 +2,7 @@
 
 ## 什么是 ssrf，反连平台是干什么的
 
-![](https://chaitin.github.io/xray/assets/reverse.jpg)
+![](../assets/reverse.jpg)
 
 ## 反连平台配置项目
 
@@ -39,6 +39,13 @@ reverse:
    - base_url 是客户端访问的时候使用，详见下方的场景
    - remote_server 是客户端访问的时候，是 http fetch 还是直接代码访问，详见下方的场景。非 remote_server 的时候，将自动生成，可以不填，否则必须两边一致。
    - dns_server_ip 是客户端发起 dns 查询的时候，使用的 ip，详见下方场景。
+
+## 管理界面
+
+新版的反连平台新增了管理界面，可以访问反连平台 http 地址，url 为 `/cland/`。
+
+![cland.png](../assets/cland.png)
+
 
 ## 场景分析
 
@@ -153,7 +160,3 @@ reverse:
 ```
 
 要注意的是，两边的 xray 请使用相同版本的，否则可能存在 api 不兼容的问题。
-
-## 管理界面
-
-新版的反连平台新增了管理界面，可以访问反连平台 http 地址，url 为 `/cland/`。

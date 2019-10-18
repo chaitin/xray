@@ -1,13 +1,25 @@
-- 通用
-  - [快速入门](generic/README.md)
-  - [版本对比](generic/compare.md)
-- 用户指南
-  - [配置文件](guide/config.md)
-  - [MITM 代理](guide/proxy.md)
+- 入门
+  - [简介](basic/introduce.md)
+  - [下载安装](basic/prepare.md)
+  - [快速使用](basic/quick-start.md)
+- 配置
+  - [命令详解](configration/cli.md)
+  - [配置文件](configration/config.md)
+    - [插件配置](configration/plugins.md)
+    - [被动代理配置](configration/mitm.md)
+    - [HTTP 配置](configration/http.md)
+    - [盲打平台配置](configration/reverse.md)
+    - [基础爬虫配置](configration/basic-crawler.md)
+    - [检查更新配置](configration/update.md)
+- 高级用法
   - [自定义POC语法](guide/poc.md)
   - [编写高质量poc](guide/high_quality_poc.md)
-  - [贡献POC](guide/contribute.md)
-  - [反连平台](guide/reverse.md)
-  - [漏洞格式](guide/vuln.md)
-  - [检查更新](guide/update.md)
-  - [提交反馈](guide/feedback.md)
+- 使用场景
+  - [与Burp联动](scenario/burp.md)
+
+- API
+  - [漏洞格式](api/vuln.md)
+
+- [贡献POC](guide/contribute.md)
+- [高级版与企业版](generic/compare.md)
+- [提交反馈](guide/feedback.md)
