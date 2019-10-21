@@ -10,5 +10,5 @@ rules:
     expression: |
       status==200 && boby.bcontains(bytes(md5(string(rand))))
 detail:
-   links:
-     - https://www.freebuf.com/vuls/150303.html
+    links:
+       - https://www.freebuf.com/vuls/150303.html
