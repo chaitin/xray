@@ -1,0 +1,11 @@
+name: poc-yaml-druid-monitor-unauth
+rules:
+  - method: GET
+    path: /druid/index.html
+    expression: |
+      status == 200 && body.bcontains(b'Druid Stat Index')
+
+detail: 
+  author: met7or
+  links:
+    - https://github.com/alibaba/druid
