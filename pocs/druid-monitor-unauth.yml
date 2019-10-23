@@ -3,7 +3,7 @@ rules:
   - method: GET
     path: /druid/index.html
     expression: |
-      status == 200 && body.bcontains(b'Druid Stat Index')
+      status == 200 && body.bcontains(b'Druid Stat Index') && body.bcontains(b'DruidVersion') && body.bcontains(b'DruidDrivers')
 detail:
   author: met7or
   links:
