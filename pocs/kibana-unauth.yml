@@ -1,5 +1,5 @@
 name: poc-yaml-kibana-unauth
-rules: 
+rules:
   - method: GET
     path: /app/kibana
     follow_redirects: false
