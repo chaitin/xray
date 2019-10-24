@@ -16,6 +16,8 @@
   - [编写高质量poc](guide/high_quality_poc.md)
 - 使用场景
   - [与Burp联动](scenario/burp.md)
+  - [使用反连平台挖掘和验证 SSRF](https://bithack.io/forum/570)
+  - [对接微信/企业微信实现自动告警](https://bithack.io/forum/551)
 
 - API
   - [漏洞格式](api/vuln.md)
