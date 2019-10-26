@@ -15,4 +15,5 @@ detail:
   author: orleven
   vulnpath: /seeyon/htmlofficeservlet
   testfile: /seeyon/test681554.txt
-  links: https://github.com/orleven/Tentacle
+  links: 
+    - https://github.com/orleven/Tentacle
