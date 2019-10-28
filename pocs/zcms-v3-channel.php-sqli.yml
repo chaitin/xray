@@ -1,4 +1,4 @@
-name: poc-yaml-zcmsV3-sqli
+name: poc-yaml-zcms-v3-channel.php-sqli
 rules:
   - method: GET
     path: >-
