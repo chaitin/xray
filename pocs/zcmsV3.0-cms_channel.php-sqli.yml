@@ -1,4 +1,4 @@
-name: zcmsV3.0-cms-channel.php-sqli
+name: zcmsV3-cms-channel.php-sqli
 rules:
   - method: GET
     path: >-
