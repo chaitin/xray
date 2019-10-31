@@ -1,4 +1,4 @@
-name: poc-solr-velocity-template-rce
+name: poc-yaml-solr-velocity-template-rce
 set:
   r1: randomLowercase(32)
 rules:
