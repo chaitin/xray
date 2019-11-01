@@ -22,11 +22,12 @@ USAGE:
     [global options] command [command options] [arguments...]
 
 COMMANDS:
-     webscan  Run a webscan task
-     reverse  Run a standalone reverse server
-     genca    Generate CA certificate and key
-     version  Show version info
-     help, h  Shows a list of commands or help for one command
+     webscan    Run a webscan task
+     reverse    Run a standalone reverse server
+     genca      Generate CA certificate and key
+     subdomain  Run a subdomain task
+     version    Show version info
+     help, h    Shows a list of commands or help for one command
 
 GLOBAL OPTIONS:
    --config FILE      Load configuration from FILE
@@ -56,13 +57,37 @@ GLOBAL OPTIONS:
 
 ## COMMANDS
 
-xray 的命令有 5 个，抛开 `version` 和 `help` 这两个信息展示型的命令，还有 `webscan`, `reverse`, `genca` 三个。
+xray 的命令有 6 个，抛开 `version` 和 `help` 这两个信息展示型的命令，还有 `webscan`, `reverse`, `genca`, `subdomain` 四个。
 
 `reverse` 命令用于启动单独的盲打平台服务，盲打平台用于处理没有回显或延迟触发的问题，如果你挖过存储型 XSS，一定对这个不陌生。这部分内容相对独立，单独用一节来介绍。
 
 `genca` 用于快速生成一个根证书，主要用于被动代理扫描 HTTPS 流量时用到。
 
-`webscan` 是 xray 的重头戏，运行 `./xray_darwin_amd64 webscan -h`，可以看到
+`subdomain` 是子域名扫描的命令，仅**高级版**才有。
+
+`webscan` 是 xray 的重头戏。
+
+这里介绍一下后面两个命令。
+
+## subdomain 子域名扫描
+
+扫描 `example.com`，并将结果输出到 example.txt
+
+```
+./xray_darwin_amd64  subdomain --target example.com --text-output example.txt
+```
+
+扫描 `example.com`,并使用 console ui 交互式界面，同时记录结果到 example.txt
+
+```
+./xray_darwin_amd64  subdomain --target example.com --console-ui --text-output example.txt
+```
+![cui.svg](../assets/cui.svg)
+
+其他用法请参照 subdomain 配置文件中的内容
+
+## webscan web 漏洞检测
+运行 `./xray_darwin_amd64 webscan -h`，可以看到
 
 ```
 NAME:
