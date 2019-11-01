@@ -1,4 +1,4 @@
-name: poc-yaml-wordpress5.2.4-cors
+name: poc-yaml-wordpress-cors
 rules:
   - method: GET
     path: "/wp-json"
