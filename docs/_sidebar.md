@@ -10,6 +10,7 @@
     - [HTTP 配置](configration/http.md)
     - [盲打平台配置](configration/reverse.md)
     - [基础爬虫配置](configration/basic-crawler.md)
+    - [子域名配置](configration/subdomain.md)
     - [检查更新配置](configration/update.md)
 - 高级用法
   - [自定义POC语法](guide/poc.md)
