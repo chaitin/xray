@@ -11,6 +11,7 @@
 
 version: 2.1
 plugins:
+  max_parallel: 10
   xss:
     enabled: true
     ie_feature: false
@@ -58,86 +59,7 @@ plugins:
   phantasm:
     enabled: true
     depth: 1
-    poc:
-      - poc-yaml-activemq-cve-2016-3088
-      - poc-yaml-bash-cve-2014-6271
-      - poc-yaml-cacti-weathermap-file-write
-      - poc-yaml-coldfusion-cve-2010-2861-lfi
-      - poc-yaml-confluence-cve-2015-8399
-      - poc-yaml-confluence-cve-2019-3396-lfi
-      - poc-yaml-coremail-cnvd-2019-16798
-      - poc-yaml-couchdb-cve-2017-12635
-      - poc-yaml-couchdb-unauth
-      - poc-yaml-dedecms-url-redirection
-      - poc-yaml-discuz-wooyun-2010-080723
-      - poc-yaml-discuz-v72-sqli
-      - poc-yaml-discuz-wechat-plugins-unauth
-      - poc-yaml-dlink-850l-info-leak
-      - poc-yaml-dlink-cve-2019-16920-rce
-      - poc-yaml-docker-api-unauthorized-rce
-      - poc-yaml-docker-registry-api-unauth
-      - poc-yaml-drupal-drupalgeddon2-rce
-      - poc-yaml-drupalgeddon-cve-2014-3704-sqli
-      - poc-yaml-ecology-javabeanshell-rce
-      - poc-yaml-ecology-workflowcentertreedata-sqli
-      - poc-yaml-ecshop-360-rce
-      - poc-yaml-elasticsearch-cve-2015-1427
-      - poc-yaml-elasticsearch-unauth
-      - poc-yaml-etouch-v2-sqli
-      - poc-yaml-finereport-directory-traversal
-      - poc-yaml-glassfish-cve-2010-2861-lfi
-      - poc-yaml-hadoop-yarn-unauth
-      - poc-yaml-ifw8-router-cve-2019-16313
-      - poc-yaml-influxdb-unauth
-      - poc-yaml-jboss-unauth
-      - poc-yaml-jenkins-cve-2018-1000861-rce
-      - poc-yaml-joomla-cve-2015-7297-sqli
-      - poc-yaml-joomla-cve-2017-8917-sqli
-      - poc-yaml-joomla-ext-zhbaidumap-cve-2018-6605-sqli
-      - poc-yaml-maccmsv10-backdoor
-      - poc-yaml-metinfo-cve-2019-16996-sqli
-      - poc-yaml-metinfo-cve-2019-16997-sqli
-      - poc-yaml-metinfo-cve-2019-17418-sqli
-      - poc-yaml-metinfo-lfi-cnvd-2018-13393
-      - poc-yaml-nextjs-cve-2017-16877
-      - poc-yaml-nhttpd-cve-2019-16278
-      - poc-yaml-nuuo-file-inclusion
-      - poc-yaml-php-cgi-cve-2012-1823
-      - poc-yaml-phpmyadmin-cve-2018-12613-file-inclusion
-      - poc-yaml-phpmyadmin-setup-deserialization
-      - poc-yaml-phpstudy-backdoor-rce
-      - poc-yaml-phpunit-cve-2017-9841-rce
-      - poc-yaml-joomla-cnvd-2019-34135-rce
-      - poc-yaml-springcloud-cve-2019-3799
-      - poc-yaml-tomcat-cve-2018-11759
-      - poc-yaml-pulse-cve-2019-11510
-      - poc-yaml-rails-cve-2018-3760-rce
-      - poc-yaml-resin-cnnvd-200705-315
-      - poc-yaml-resin-inputfile-fileread-or-ssrf
-      - poc-yaml-resin-viewfile-fileread
-      - poc-yaml-seacms-v654-rce
-      - poc-yaml-apache-solr-cve-2017-12629-xxe
-      - poc-yaml-solr-cve-2019-0193
-      - poc-yaml-supervisord-cve-2017-11610
-      - poc-yaml-tensorboard-unauth
-      - poc-yaml-thinkphp5-controller-rce
-      - poc-yaml-thinkphp5023-method-rce
-      - poc-yaml-tomcat-cve-2017-12615-rce
-      - poc-yaml-uwsgi-cve-2018-7490
-      - poc-yaml-vbulletin-cve-2019-16759
-      - poc-yaml-weblogic-cve-2017-10271-reverse
-      - poc-yaml-weblogic-cve-2019-2729-1
-      - poc-yaml-weblogic-cve-2019-2729-2
-      - poc-yaml-weblogic-ssrf
-      - poc-yaml-weblogic-cve-2017-10271
-      - poc-yaml-weblogic-cve-2019-2725
-      - poc-yaml-webmin-cve-2019-15107-rce
-      - poc-yaml-wuzhicms-v410-sqli
-      - poc-yaml-yungoucms-sqli
-      - poc-yaml-zabbix-authentication-bypass
-      - poc-yaml-zabbix-cve-2016-10134-sqli
-      - poc-yaml-zimbra-cve-2019-9670-xxe
-      - poc-go-tomcat-put
+    poc: []
 
 log:
   level: info # 支持 debug, info, warn, error, fatal
@@ -221,4 +143,18 @@ http:
     - PROPFIND
     - MOVE
   tls_skip_verify: true # 是否验证目标网站的 https 证书。
+
+subdomain:
+  modes: # 使用哪些方式获取子域名
+    - brute # 字典爆破模式
+    - api # 使用各大 api 获取
+    - zone_transfer # 尝试使用域传送漏洞获取
+  worker_count: 100 # 决定同时允许多少个 DNS 查询
+  dns_servers: # 查询使用的 DNS server
+    - 1.1.1.1
+    - 8.8.8.8
+  allow_recursive: false # 是否允许递归扫描，开了后如果发现 a.example.com 将继续扫描 a.example.com 的子域名
+  max_depth: 5 # 最大允许的子域名深度
+  main_dictionary: "" # 一级子域名字典， 绝对路径
+  sub_dictionary: "" # 其它层级子域名字典， 绝对路径
 ```
