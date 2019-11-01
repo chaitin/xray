@@ -1,0 +1,14 @@
+name: poc-yaml-wordpress5.2.4-cors
+rules:
+  - method: GET
+    path: "/wp-json"
+    headers:
+      Origin: https://www.vul.com
+    expression: |
+      status == 200 && 'access-control-allow-origin' in headers && headers['access-control-allow-origin']=="https://www.vul.com"
+
+detail:
+  author: violin
+  wordpress: 5.2.4
+  links:
+    - https://www.exploit-db.com/exploits/47557
