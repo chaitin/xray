@@ -25,5 +25,5 @@
   - [漏洞格式](api/vuln.md)
 
 - [贡献POC](guide/contribute.md)
-- [高级版与企业版](generic/compare.md)
+- [产品版本区别](generic/compare.md)
 - [提交反馈](guide/feedback.md)
