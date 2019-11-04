@@ -4,4 +4,4 @@
 
 对于场景文档也有对应的奖励措施: 可获得xray专属debug小黄鸭一个。
 
-文档示例：[使用Burp与Xray进行联动](./burp.md)。
+文档示例：[使用Burp与Xray进行联动](scenario/burp)。
