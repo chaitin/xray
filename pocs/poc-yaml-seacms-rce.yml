@@ -12,7 +12,7 @@ rules:
     expression: |
       status==200 && body.bcontains(bytes(string(r+r1)))
 detail:
-  author: neverendxxxxxx(https://github.com/neverendxxxxxx)、violin
+  author: neverendxxxxxx(https://github.com/neverendxxxxxx),violin
   seacms: v6.55
   links:
     - https://www.jianshu.com/p/8d878330a42f
