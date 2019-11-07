@@ -9,7 +9,7 @@ rules:
   - method: GET
     path: "/{{r}}.php"
     expression: |
-      status == 200 && body.bcontains(bytes(string(r1)))
+      response.status == 200 && response.body.bcontains(bytes(string(r1)))
 
 detail:
   author: violin

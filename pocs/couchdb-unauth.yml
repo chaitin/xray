@@ -4,9 +4,9 @@ rules:
     path: /_config
     follow_redirects: false
     expression: >
-      status == 200 && body.bcontains(b'httpd_design_handlers') &&
-      body.bcontains(b'external_manager') &&
-      body.bcontains(b'replicator_manager')
+      response.status == 200 && response.body.bcontains(b'httpd_design_handlers') &&
+      response.body.bcontains(b'external_manager') &&
+      response.body.bcontains(b'replicator_manager')
 detail:
   author: FiveAourThe(https://github.com/FiveAourThe)
   links:

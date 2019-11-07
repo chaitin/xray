@@ -4,7 +4,7 @@ rules:
     path: /%20../web-inf/
     follow_redirects: false
     expression: |
-      status == 200 && body.bcontains(b'/ ../web-inf/') && body.bcontains(b'Directory of /')
+      response.status == 200 && response.body.bcontains(b'/ ../web-inf/') && response.body.bcontains(b'Directory of /')
 detail:
   author: whynot(https://github.com/notwhy)
   links:
