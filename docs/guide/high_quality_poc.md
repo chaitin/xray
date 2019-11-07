@@ -4,8 +4,8 @@
 
 1. 无特殊情况不要在payload中出现你的用户名或者xray等字样，能随机的都随机。可以参考 poc 语法的文档。目前可能有以下例外需要注意下
  - updatexml 报错，如果参数是`md5(randvalue)` 报错页面的md5数据不一定完整，暂时可以使用固定值代替。
-1. 不要直接使用如`status == 200`这样判断status code验证漏洞，一定存在误报。
-1. 不要直接使用如`body.bcontains(b'upload success')`这样检测一个英文单词的方式来验证漏洞，一定存在误报。
+1. 不要直接使用如`reponse.status == 200`这样判断status code验证漏洞，一定存在误报。
+1. 不要直接使用如`response.body.bcontains(b'upload success')`这样检测一个英文单词的方式来验证漏洞，一定存在误报。
 1. 测试RCE类漏洞，请不要使用`echo`、`print`、`var_dump`之类的输出语句直接输出一个内容，然后在返回里查找这个内容，此类POC很容易误报和漏报，原因如下：
   - 如果对方页面本身是一个类似phpinfo的调试页面，会将你的数据包细节完全打印出来，那么并不能证明存在命令执行漏洞
   - 如果对方安装了xdebug等调试类扩展，`var_dump`等函数输出可能存在差异导致查找不成功
@@ -17,7 +17,7 @@
     path: /admin/?a=Factory();printf('{{r1}}');//../
     follow_redirects: false
     expression: |
-      status == 200 && body.bcontains(bytes(r1))
+      response.status == 200 && response.body.bcontains(bytes(r1))
   ```
 1.  测试RCE类漏洞，如PHP代码执行，请不要使用`system`、`shell_exec`、`phpinfo`等函数测试漏洞，容易出现误报和漏报，原因如下：
   - 如果对方本身就是一个phpinfo页面，无法判断是否是成功执行了代码，导致出现误报
@@ -50,6 +50,11 @@
     r1: randomInt(800000000, 1000000000)
     r2: randomInt(800000000, 1000000000)
   ```
+1. 自定义变量名做部分约定。简单来讲，反连平台都使用 reverse 作为变量名，其他变量名使用驼峰式命名：
+  - `reverse: newReverse`
+  - `reverseURL: reverse.url`
+  - `reverseDomain: reverse.domain`
+  - `reverseIP: reverse.ip`
 
 1. 关于POC的编写其他的注意点，推荐参考这篇文章：<https://paper.seebug.org/9/>
 
@@ -64,7 +69,7 @@ rules:
   - method: GET
     headers:
       User-Agent: "() { :; }; echo; echo; /bin/bash -c 'expr {{r1}} + {{r2}}'"
-    expression: body.bcontains(bytes(string(r1+r2)))
+    expression: response.body.bcontains(bytes(string(r1+r2)))
 detail:
   author: example(https://github.com/example)
   links:
