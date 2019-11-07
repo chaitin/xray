@@ -6,7 +6,7 @@ rules:
   - method: GET
     path: "/admin/?a=Factory();print({{r}}%2b{{r1}});//../"
     expression: |
-      body.bcontains(bytes(string(r+r1)))
+      response.body.bcontains(bytes(string(r+r1)))
 detail:
   author: j4ckzh0u(https://github.com/j4ckzh0u),violin
   yccms: v3.3

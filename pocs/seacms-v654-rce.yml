@@ -8,7 +8,7 @@ rules:
       searchtype=5&searchword={if{searchpage:year}&year=:e{searchpage:area}}&area=v{searchpage:letter}&letter=al{searchpage:lang}&yuyan=(join{searchpage:jq}&jq=($_P{searchpage:ver}&&ver=OST[9]))&9[]=prin&9[]=tf(md5({{rand}}));
     follow_redirects: true
     expression: |
-      status==200 && body.bcontains(bytes(md5(string(rand))))
+      response.status==200 && response.body.bcontains(bytes(md5(string(rand))))
 detail:
   links:
     - http://0day5.com/archives/4249/

