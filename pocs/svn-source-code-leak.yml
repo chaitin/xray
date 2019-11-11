@@ -1,0 +1,14 @@
+name: poc-yaml-svn-source-code-leak
+rules:
+  - method: GET
+    path: /.svn/
+    follow_redirects: false
+    expression: >
+      response.status == 200 && response.body.bcontains(b'entries') && response.body.bcontains(b'format') && response.body.bcontains(b'wc.db')
+detail:
+  author: j4ckzh0u(https://github.com/j4ckzh0u)
+  Affected Version: "common"
+  links:
+    - https://zhuanlan.zhihu.com/p/21296806
+    - https://github.com/kost/dvcs-ripper
+    - Seay-SVN
