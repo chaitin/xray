@@ -4,7 +4,7 @@ rules:
     path: /.svn/
     follow_redirects: false
     expression: >
-      response.status == 200 && response.body.bcontains(b'entries') && response.body.bcontains(b'format') && response.body.bcontains(b'wc.db')
+      (response.status == 200 && response.body.bcontains(b'entries') && response.body.bcontains(b'format') && response.body.bcontains(b'wc.db')) || response.status == 403
 detail:
   author: j4ckzh0u(https://github.com/j4ckzh0u)
   Affected Version: "common"
