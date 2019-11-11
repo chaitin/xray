@@ -1,0 +1,13 @@
+name: poc-yaml-cvs-source-code-leak
+rules:
+  - method: GET
+    path: /CVS/
+    follow_redirects: false
+    expression: >
+      (response.status == 200 && response.body.bcontains(b'Root') && response.body.bcontains(b'Entries')) || response.status == 403
+detail:
+  author: j4ckzh0u(https://github.com/j4ckzh0u)
+  Affected Version: "common"
+  links:
+    - https://shuimugan.com/bug/view?bug_no=136373
+    - https://github.com/kost/dvcs-ripper
