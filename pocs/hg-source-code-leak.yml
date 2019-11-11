@@ -4,7 +4,7 @@ rules:
     path: /.hg/
     follow_redirects: false
     expression: >
-      response.status == 200 && response.body.bcontains(b'dirstate') && response.body.bcontains(b'requires') && response.body.bcontains(b'store')
+      (response.status == 200 && response.body.bcontains(b'dirstate') && response.body.bcontains(b'requires') && response.body.bcontains(b'store')) || response.status == 403
 detail:
   author: j4ckzh0u(https://github.com/j4ckzh0u)
   Affected Version: "common"
