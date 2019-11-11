@@ -4,7 +4,7 @@ rules:
     path: /.git/
     follow_redirects: false
     expression: >
-      response.status == 200 && response.body.bcontains(b'HEAD') && response.body.bcontains(b'index') && response.body.bcontains(b'config')
+      (response.status == 200 && response.body.bcontains(b'HEAD') && response.body.bcontains(b'index') && response.body.bcontains(b'config')) || response.status == 403
 detail:
   author: j4ckzh0u(https://github.com/j4ckzh0u)
   Affected Version: "common"
