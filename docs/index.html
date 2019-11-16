@@ -19,15 +19,41 @@
       autoHeader: true,
       coverpage: ['/', '/en-us/'],
       basePath: '/xray/',
-      auto2top: true,
       fallbackLanguages: ['en-us', 'zh-cn'],
-      onlyCover: true
+      onlyCover: true,
+      tabs: {
+        persist    : true,
+        sync       : true,
+        theme      : 'material',
+        tabComments: false,
+        tabHeadings: true
+      },
+      pagination: {
+        previousText: '',
+        nextText: '',
+        crossChapter: true
+      },
+      copyCode: {
+        buttonText : 'Copy',
+        errorText  : 'Error',
+        successText: 'Copied'
+      },
+      scrollToTop: {
+        auto: true,
+        text: 'Top',
+        right: 15,
+        bottom: 25,
+        offset: 500
+      }
     }
-  </script>
   </script>
   <script src="https://cdn.bootcss.com/docsify/4.9.4/docsify.min.js"></script>
   <script src="https://cdn.bootcss.com/prism/9000.0.1/components/prism-yaml.min.js"></script>
   <script src="https://cdn.bootcss.com/prism/9000.0.1/components/prism-javascript.min.js"></script>
   <script src="https://cdn.bootcss.com/prism/9000.0.1/components/prism-go.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1"></script>
+  <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
+  <script src="https://unpkg.com/docsify-copy-code@2"></script>
+  <script src="//unpkg.com/docsify-scroll-to-top/dist/docsify-scroll-to-top.min.js"></script>
 </body>
 </html>

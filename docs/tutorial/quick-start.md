@@ -6,6 +6,21 @@
 
 以下的 xray 指代下载的二进制程序，如果是 windows 平台请更换为 `xray_windows_amd64.exe` 或 `xray_windows_386.exe`，其他平台以此类推。
 
+<!-- tabs:start -->
+
+#### ** English **
+
+Hello!
+
+#### ** French **
+
+Bonjour!
+
+#### ** Italian **
+
+Ciao!
+
+<!-- tabs:end -->
 
 1. 使用基础爬虫爬取并对爬虫爬取的链接进行漏洞扫描
     
