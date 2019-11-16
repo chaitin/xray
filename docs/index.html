@@ -7,10 +7,20 @@
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <link href="https://cdn.bootcss.com/docsify/4.9.4/themes/vue.css" rel="stylesheet">
+  <style>
+    article img {
+      max-height: 400px;
+      display: block;
+    }
+  </style>
 </head>
 <body>
   <div id="app"></div>
   <script>
+    var basePath = "/"
+    if (window.location.host.indexOf(".github.") > 0) {
+      basePath = "/xray/"
+    }
     window.$docsify = {
       name: 'xray',
       repo: 'chaitin/xray',
@@ -18,7 +28,7 @@
       loadNavbar: true,
       autoHeader: true,
       coverpage: ['/', '/en-us/'],
-      basePath: '/xray/',
+      basePath: basePath,
       fallbackLanguages: ['en-us', 'zh-cn'],
       onlyCover: true,
       tabs: {
@@ -44,7 +54,11 @@
         right: 15,
         bottom: 25,
         offset: 500
-      }
+      },
+      'page-toc': {
+        tocMaxLevel: 4,
+        target: 'h1, h2, h3, h4'
+      },
     }
   </script>
   <script src="https://cdn.bootcss.com/docsify/4.9.4/docsify.min.js"></script>
@@ -53,7 +67,9 @@
   <script src="https://cdn.bootcss.com/prism/9000.0.1/components/prism-go.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1"></script>
   <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
-  <script src="https://unpkg.com/docsify-copy-code@2"></script>
+  <script src="//unpkg.com/docsify-copy-code@2"></script>
   <script src="//unpkg.com/docsify-scroll-to-top/dist/docsify-scroll-to-top.min.js"></script>
+  <script src="//unpkg.com/docsify/lib/plugins/zoom-image.min.js"></script>
+  <script src="//unpkg.com/docsify-page-toc/dist/docsify-page-toc.js"></script>
 </body>
 </html>

@@ -47,9 +47,7 @@
 双击 `ca.crt`，然后按照下图的步骤操作。
 
 ![](../assets/tutorial/windows_install_ca_1.png)
-
 ![](../assets/tutorial/windows_install_ca_2.png)
-
 ![](../assets/tutorial/windows_install_ca_3.png)
 ![](../assets/tutorial/windows_install_ca_4.png)
 ![](../assets/tutorial/windows_install_ca_5.png)
@@ -78,7 +76,13 @@ todo
 
 或者参考下面的步骤，将手机配置代理之后，使用浏览器访问 `http://xray/` 然后点击下载 ca 证书，然后再安装。
 
+
 todo
+
+
+- 修改配置文件，设置域名白名单
+- `--html-output` 写入 html 报告
+- `--plugins` 设置使用的插件
 
 <!-- tabs:end -->
 
@@ -140,3 +144,9 @@ todo
 todo
 
 <!-- tabs:end -->
+
+## 开始扫描
+
+使用浏览器访问 http://testphp.vulnweb.com/
+
+todo
