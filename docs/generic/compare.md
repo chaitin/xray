@@ -1,4 +1,6 @@
-![](https://chaitin.github.io/xray/assets/compare.png)
+![](../assets/compare.png)
+
+上图点击可放大
 
  - [下载](https://github.com/chaitin/xray/releases)
  - [贡献 poc 流程](/guide/contribute)

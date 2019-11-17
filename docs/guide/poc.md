@@ -32,15 +32,15 @@ https://phith0n.github.io/xray-poc-generation/
 
 注意，由于插件的 bug，除了第一行以外，其他的内容无法直接提示，需要使用快捷键让 VSCode 显示提示，一般是 `ctrl` + `Space`。
 
-![](https://chaitin.github.io/xray/assets/poc.gif)
+![](../assets/poc/poc.gif)
 
 ### jetbrains 系列 IDE
 
-下载文件： https://chaitin.github.io/xray/assets/yaml-poc-schema.json
+[下载文件](../assets/poc/yaml-poc-schema.json)
 
 配置见图
 
-![](https://chaitin.github.io/xray/assets/poc-jetbrains.png)
+![](../assets/poc/poc-jetbrains.png)
 
 ## POC 结构
 
