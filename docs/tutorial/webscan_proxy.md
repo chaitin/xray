@@ -56,7 +56,15 @@
 
 #### ** MacOS **
 
-todo
+双击 `ca.crt`，然后按照下图的步骤操作。
+
+右上角搜索 `x-ray`，可以看到一条记录，有一个红叉，被标记为不受信任的。
+
+![](../assets/tutorial/mac_install_ca_1.png)
+
+然后双击这条记录，将 `SSL` 那一项改为始终信任，然后点击左上角关闭窗口，输入密码授权。
+
+![](../assets/tutorial/mac_install_ca_2.png)
 
 #### ** Linux **
 
@@ -64,11 +72,25 @@ todo
 
 #### ** iOS **
 
-可以将 `ca.crt` 文件传送到手机上，然后打开
+可以将 `ca.crt` 文件传送到手机上，然后点击打开打开。
 
-或者参考下面的步骤，将手机配置代理之后，使用浏览器访问 `http://xray/` 然后点击下载 ca 证书，然后再安装。
+或者参考后续的步骤，将手机配置代理之后，使用浏览器访问 `http://xray/` 然后点击下载 ca 证书，然后再安装。
 
-todo
+![](../assets/tutorial/ios_install_ca_1.png)
+
+然后去设置首页，查看下载的描述文件。
+
+![](../assets/tutorial/ios_install_ca_2.png)
+
+点击右上角安装，输入密码授权。
+
+![](../assets/tutorial/ios_install_ca_3.png)
+
+点击通用设置-关于，在最后一项证书信任设置中，将 `Insecure Root CA For X-Ray Scanner` 一项的开关打开。
+
+![](../assets/tutorial/ios_install_ca_4.png)
+![](../assets/tutorial/ios_install_ca_5.png)
+![](../assets/tutorial/ios_install_ca_6.png)
 
 #### ** Android **
 
