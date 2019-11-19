@@ -2,6 +2,7 @@
   - [简介](tutorial/introduce.md)
   - [下载运行](tutorial/prepare.md)
   - [代理模式进行扫描](tutorial/webscan_proxy.md)
+  - [基础爬虫模式进行扫描](tutorial/webscan_basic_crawler.md)
 - 配置
   - [命令详解](configration/cli.md)
   - [配置文件](configration/config.md)
