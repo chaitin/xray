@@ -29,7 +29,7 @@ xray 社区版经过数个版本的更迭，基本覆盖了对常见漏洞的 fu
 
 在 Github 提交 Pull request 后，会有travis-ci自动进行POC的check，通过后才会进行人工审核：
 
-![](../assets/pr.png)
+![](../assets/contribute/pr.png)
 
 ### 奖励措施
 
@@ -37,13 +37,13 @@ xray 社区版经过数个版本的更迭，基本覆盖了对常见漏洞的 fu
 
 奖品名称 | POC 数量 | 实例图片
 ---- | :----: | :----:
-xray 文化衫 | 1  | ![](../assets/t-shirt.jpg)
+xray 文化衫 | 1  | ![](../assets/contribute/t-shirt.jpg)
 xray常用命令大型鼠标垫 | 1 | 制作中
 xray 定制键帽 (随机字母) | 1 | 制作中
-pwnhub 邀请码 | 3 | ![](../assets/pwnhub.png)
+[pwnhub](https://pwnhub.cn/index) 邀请码 | 3 | ![](../assets/contribute/pwnhub.png)
 xray 高级版 | 5 | [高级版对比](generic/compare.md)
-ikbc/akko 键盘(87键) | 5 | ![](../assets/ikbc.png)
-filco 键盘 (87键) | 9 | ![](../assets/filco.png)
+ikbc/akko 键盘(87键) | 5 | ![](../assets/contribute/ikbc.png)
+filco 键盘 (87键) | 9 | ![](../assets/contribute/filco.png)
 
 
 ### **备注**：
