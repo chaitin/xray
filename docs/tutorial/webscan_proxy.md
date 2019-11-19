@@ -105,27 +105,50 @@ sudo update-ca-certificates
 
 或者参考下面的步骤，将手机配置代理之后，使用浏览器访问 `http://xray/` 然后点击下载 ca 证书，然后再安装。
 
+![](../assets/tutorial/android_install_ca_1.jpg)
+![](../assets/tutorial/android_install_ca_2.jpg)
+
 <!-- tabs:end -->
 
-
-todo
-
-
-- 修改配置文件，设置域名白名单
-- `--html-output` 写入 html 报告
-- `--plugins` 设置使用的插件
-
 ## 启动代理
+
+在扫描之前，我们还需要做一些必要的设置
+
+第一次启动 xray 之后，当前目录会生成 `config.yml` 文件，选择文件编辑器打开，并按照下方说明修改。
+
+ - `mitm` 中 `restriction` 中 `includes` 由 `*` 改为 `testphp.vulnweb.com`
+
+```
+mitm:
+  ...
+  restriction:
+    includes:
+    - "testphp.vulnweb.com"
+```
+
+因为我们的测试目标站就是 `http://testphp.vulnweb.com`，增加这个过滤之后，xray 将只会扫描该站的流量，避免扫描到非授权目标站点。
+
+对于配置文件中的更多解读，请参考文档中的 `配置` 章节。
+
+ - 设定漏洞扫描结果的输出，这里选择使用 html 文件输出，所以命令行后面要增加 `--html-output xray-testphp.html`。
 
 <!-- tabs:start -->
 
 #### ** Windows **
 
-todo
+```
+.\xray_windows_amd64.exe webscan --listen 127.0.0.1:8072 --html-output xray-testphp.html
+```
+
+![](../assets/tutorial/windows_proxy_webscan_1.png)
 
 #### ** MacOS **
 
-todo
+```
+./xray_darwin_amd64 webscan --listen 127.0.0.1:8072 --html-output xray-testphp.html
+```
+
+![](../assets/tutorial/mac_proxy_webscan_1.png)
 
 #### ** Linux **
 
@@ -133,9 +156,12 @@ todo
 
 <!-- tabs:end -->
 
-## 配置代理
+常见问题
 
-todo
+ - 如何退出？`ctrl` + `c`
+ - 提示 `file xray-testphp.html already exists`，可以删除已经存在的报告文件，或者使用一个新的文件名，或者在文件名中加入 `__timestamp__` 或 `__datetime__` 将自动替换为实际值。
+
+## 配置代理
 
 <!-- tabs:start -->
 
@@ -163,8 +189,11 @@ Chrome 可以使用操作系统的代理配置，同时也可以使用插件控�
 
 ![](../assets/tutorial/chrome_configure_proxy_2.png)
 
-#### ** iOS **
+#### ** FireFox **
 
+todo
+
+#### ** iOS **
 
 todo
 
@@ -178,4 +207,13 @@ todo
 
 使用浏览器访问 http://testphp.vulnweb.com/
 
-todo
+然后就可以看到 xray 界面开始输出漏洞信息，下面是几个快速链接，可以点击用于体验更多的漏洞类型的扫描
+
+ - http://testphp.vulnweb.com/listproducts.php?cat=1
+ - http://testphp.vulnweb.com/artists.php?artist=2
+ - http://testphp.vulnweb.com/redir.php?r=http://www.w3.org
+
+![](../assets/tutorial/xray_proxy_scan_vuln_1.png)
+
+![](../assets/tutorial/xray_proxy_scan_html_report_1.png)
+

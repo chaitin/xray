@@ -1,7 +1,6 @@
 - 入门
   - [简介](tutorial/introduce.md)
   - [下载运行](tutorial/prepare.md)
-  - [快速使用](tutorial/quick-start.md)
   - [代理模式进行扫描](tutorial/webscan_proxy.md)
 - 配置
   - [命令详解](configration/cli.md)
