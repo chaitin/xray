@@ -91,6 +91,6 @@ if file_check_failed_details or schema_check_failed_details or yaml_lint_output:
 
     pr_id = os.environ.get("TRAVIS_PULL_REQUEST")
     if pr_id and pr_id != "false":
-        requests.post("https://api.github.com/repos/chaitin/xray/issues/" + pr_id + "/comments", json={"body": msg}, headers={"Authorization": os.environ.get("githb_basic_auth")})
+        requests.post("https://api.github.com/repos/chaitin/xray/issues/" + pr_id + "/comments", json={"body": msg}, headers={"Authorization": os.environ.get("github_basic_auth")})
     if msg:
         exit(1)
