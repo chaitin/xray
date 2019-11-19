@@ -8,8 +8,11 @@
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <link href="https://cdn.bootcss.com/docsify/4.9.4/themes/vue.css" rel="stylesheet">
   <style>
-    article img {
+    article img:not(.noresize) {
       max-height: 400px;
+    }
+
+    article img {
       display: block;
       box-shadow: 0 3px 15px 3px rgba(40, 40, 40, 0.5);
       margin-top: 20px;

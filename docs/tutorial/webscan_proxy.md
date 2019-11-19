@@ -68,7 +68,14 @@
 
 #### ** Linux **
 
-todo
+将 `ca.crt` 复制到 `/usr/local/share/ca-certificates/`，然后执行 `update-ca-certificates`。
+
+```
+sudo cp ca.crt /usr/local/share/ca-certificates/xray.crt
+sudo update-ca-certificates
+```
+
+![](../assets/tutorial/linux_install_ca_1.png)
 
 #### ** iOS **
 
@@ -98,6 +105,8 @@ todo
 
 或者参考下面的步骤，将手机配置代理之后，使用浏览器访问 `http://xray/` 然后点击下载 ca 证书，然后再安装。
 
+<!-- tabs:end -->
+
 
 todo
 
@@ -105,8 +114,6 @@ todo
 - 修改配置文件，设置域名白名单
 - `--html-output` 写入 html 报告
 - `--plugins` 设置使用的插件
-
-<!-- tabs:end -->
 
 ## 启动代理
 
