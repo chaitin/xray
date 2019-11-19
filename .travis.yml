@@ -1,7 +1,7 @@
 language: python
 install:
   - pip install -U pip
-  - pip install pyyaml rfc3987 jsonschema yamllint
+  - pip install pyyaml rfc3987 jsonschema yamllint requests
 jobs:
   include:
     - stage: check_poc
