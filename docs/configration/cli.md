@@ -82,7 +82,7 @@ xray 的命令有 6 个，抛开 `version` 和 `help` 这两个信息展示型�
 ```
 ./xray_darwin_amd64  subdomain --target example.com --console-ui --text-output example.txt
 ```
-![cui.svg](../assets/cui.svg)
+![cui.svg](../assets/configuration/cui.svg)
 
 其他用法请参照 subdomain 配置文件中的内容
 
@@ -171,7 +171,7 @@ a=b&x=y
 
 最后三个用于指定结果输出方式，这三种方式可以单独使用，也可以搭配使用。
 
-+ `--html-output` 将结果输出为 html 报告, [报告样例](https://chaitin.github.io/xray/assets/report_example.html)
++ `--html-output` 将结果输出为 html 报告, [报告样例](../assets/report_example.html)
 + `--webhook-output` 将结果发送到一个地址
 + `--json-output` 将结果输出到一个 json 文件中
 
@@ -198,4 +198,4 @@ a=b&x=y
 
 直接运行 xray 而不加任何参数即可启动交互式命令行。
 
-![ui](../assets/terminalui.svg)
+![ui](../assets/configuration/terminalui.svg)
