@@ -32,8 +32,8 @@ def check_file():
         if filename not in file_check_failed_details:
             file_check_failed_details[filename] = []
         poc_file = pathlib.Path(filename)
-        if not filename.startswith("poc-"):
-            file_check_failed_details[filename].append("文件名必须以 poc- 开头")
+        if filename.startswith("poc-"):
+            file_check_failed_details[filename].append("文件名不需要 poc- 开头")
         if not poc_file.parent.absolute() == ROOT.joinpath("pocs").absolute():
             file_check_failed_details[filename].append("poc 文件都必须在 pocs 文件夹中")
         if not poc_file.suffix == ".yml":
