@@ -27,6 +27,7 @@ pluginName:
 ### xss
 
 + `ie_feature` 如果此项为 true，则会将一些只能在 IE 环境下复现的漏洞爆出来，小白请不要开。
++ `include_cookie` 如果此项为 true, 则会检查是否存在输入源在 cookie 中的 xss
 
 ### baseline 
 
