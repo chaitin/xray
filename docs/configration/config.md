@@ -15,6 +15,7 @@ plugins:
   xss:
     enabled: true
     ie_feature: false
+    include_cookie: false
   baseline:
     enabled: true
     detect_outdated_ssl_version: false

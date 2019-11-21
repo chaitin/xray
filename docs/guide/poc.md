@@ -32,15 +32,15 @@ https://phith0n.github.io/xray-poc-generation/
 
 注意，由于插件的 bug，除了第一行以外，其他的内容无法直接提示，需要使用快捷键让 VSCode 显示提示，一般是 `ctrl` + `Space`。
 
-![](https://chaitin.github.io/xray/assets/poc.gif)
+![](../assets/poc/poc.gif)
 
 ### jetbrains 系列 IDE
 
-下载文件： https://chaitin.github.io/xray/assets/yaml-poc-schema.json
+[下载文件](../assets/poc/yaml-poc-schema.json)
 
 配置见图
 
-![](https://chaitin.github.io/xray/assets/poc-jetbrains.png)
+![](../assets/poc/poc-jetbrains.png)
 
 ## POC 结构
 
@@ -407,7 +407,9 @@ reverse 包含字段如下。（需要先使用 newReverse() 生成实例，假�
 `reverse.url` | `string` | 反连平台的 url
 `reverse.domain` | `string` | 反连平台的域名
 `reverse.ip` | `string` | 反连品台的 ip 地址
+`reverse.is_domain_name_server` | `bool` | 反连平台的 domain 是否同时是 nameserver
 `reverse.wait(timeout)` | `func (timeout int) bool` | 等待 timeout 秒，并返回是否在改时间内获得了信息
+
 
 常用函数一览
 
@@ -423,3 +425,5 @@ reverse 包含字段如下。（需要先使用 newReverse() 生成实例，假�
 `md5` | `func md5(string) string` | 字符串的 md5  (以下都是 0.13.0 版本新增)
 `randomInt` | `func randomInt(from, to int) int` | 两个范围内的随机数
 `randomLowercase` | `func randomLowercase(n length) string` | 指定长度的小写字母组成的随机字符串
+`base64` | `func base64(string/bytes) string` | 将字符串或 bytes 进行 base64 编码
+`base64Decode` | `func base64Decode(string/bytes) string` | 将字符串或 bytes 进行 base64 解码
