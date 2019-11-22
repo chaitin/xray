@@ -1,12 +1,12 @@
 name: poc-yaml-discuz-ml3x-cnvd-2019-22239
 set:
-  r1: randomInt(800000000, 1000000000)
+  r1: randomInt(800000000,1000000000)
 rules:
   - method: GET
     path: /forum.php
     follow_redirects: false
     expression: |
-      response.status==200
+      response.status == 200
     search: cookiepre = '(?P<token>[\w_]+)'
   - method: GET
     path: /forum.php
