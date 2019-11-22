@@ -29,8 +29,7 @@ def filenames():
 
 def check_file():
     for filename in filenames():
-        if filename not in file_check_failed_details:
-            file_check_failed_details[filename] = []
+        file_check_failed_details[filename] = []
         poc_file = pathlib.Path(filename)
         if filename.startswith("poc-"):
             file_check_failed_details[filename].append("文件名不需要 poc- 开头")
@@ -40,6 +39,8 @@ def check_file():
             file_check_failed_details[filename].append("文件名必须是 .yml 拓展名")
         if not POCNAME_PATTERN.match(poc_file.name):
             file_check_failed_details[filename].append("文件名必须符合正则规范")
+        if not file_check_failed_details[filename]:
+            del file_check_failed_details[filename]
 
 
 def check_field(f: pathlib.Path):
