@@ -22,9 +22,9 @@
 <body>
   <div id="app"></div>
   <script>
-    var basePath = "/"
-    if (window.location.host.indexOf(".github.") > 0) {
-      basePath = "/xray/"
+    var basePath = "/xray/"
+    if (window.location.host.indexOf("localhost") >= 0) {
+      basePath = "/"
     }
     window.$docsify = {
       name: 'xray',

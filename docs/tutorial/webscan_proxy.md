@@ -20,13 +20,13 @@
 
 ![](../assets/tutorial/mac_genca.png)
 
-运行 `./xray_darwin_amd64 version` 即可生成 ca 证书，保存为 `ca.crt` 和 `ca.key` 两个文件。
+运行 `./xray_darwin_amd64 genca` 即可生成 ca 证书，保存为 `ca.crt` 和 `ca.key` 两个文件。
 
 #### ** Linux **
 
 ![](../assets/tutorial/linux_genca.png)
 
-运行 `./xray_darwin_amd64 version` 即可生成 ca 证书，保存为 `ca.crt` 和 `ca.key` 两个文件。
+运行 `./xray_darwin_amd64 genca` 即可生成 ca 证书，保存为 `ca.crt` 和 `ca.key` 两个文件。
 
 <!-- tabs:end -->
 
@@ -36,7 +36,7 @@
 
 ## 安装 ca 证书
 
-如果使用的是 FireFox 浏览器，请参照 xxx，它有自己的证书体系。
+如果使用的是 FireFox 浏览器，请参照[这里](https://wiki.wmtransfer.com/projects/webmoney/wiki/Installing_root_certificate_in_Mozilla_Firefox)，它有自己的证书体系。
 
 如果使用的是 IE、Chrome、curl 等客户端，建议将 ca 证书安装在操作系统上，请参照下方的教程。
 
@@ -195,7 +195,11 @@ todo
 
 #### ** iOS **
 
-todo
+按照下图的步骤操作
+
+![](../assets/tutorial/ios_configure_proxy_1.png)
+![](../assets/tutorial/ios_configure_proxy_2.png)
+![](../assets/tutorial/ios_configure_proxy_3.png)
 
 #### ** Android **
 
