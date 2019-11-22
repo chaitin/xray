@@ -6,4 +6,4 @@
 
 [下载](https://github.com/chaitin/xray/releases)
 [版本对比](/generic/compare)
-[开始使用](/tutorial/introduce)
+[使用指南](/tutorial/introduce)
