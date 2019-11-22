@@ -4,7 +4,7 @@ rules:
     path: /resin-doc/resource/tutorial/jndi-appconfig/test?inputFile=../../../../../index.jsp
     follow_redirects: false
     expression: |
-      response.status == 200 && response.body.bcontains(b'<%@ page session="false" import="com.caucho.vfs.*, com.caucho.server.webapp.*" %>')
+      response.status == 200 && response.body.bcontains(bytes("<%@ page session=\"false\" import=\"com.caucho.vfs.*, com.caucho.server.webapp.*\" %>"))
 detail:
   author: whynot(https://github.com/notwhy)
   links:

@@ -7,8 +7,7 @@ rules:
     body: getpwd=WorldFilledWithLove
     follow_redirects: false
     expression: >
-      response.status == 200 && response.body.bcontains(b'扫描后门') && response.body.bcontains(b'反弹端口')&&
-      response.body.bcontains(b'文件管理')
+      response.status == 200 && response.body.bcontains(b"扫描后门") && response.body.bcontains(b"反弹端口") && response.body.bcontains(b"文件管理")
 detail:
   author: FiveAourThe(https://github.com/FiveAourThe)
   links:

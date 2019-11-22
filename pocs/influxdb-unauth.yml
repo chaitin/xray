@@ -4,13 +4,12 @@ rules:
     path: /ping
     follow_redirects: true
     expression: |
-      response.status==204 && 'x-influxdb-version' in response.headers
+      response.status == 204 && "x-influxdb-version" in response.headers
   - method: GET
     path: /query?q=show%20users
     follow_redirects: true
     expression: >
-      response.status==200 && response.content_type.contains('application/json') &&
-      response.body.bcontains(b'columns') && response.body.bcontains(b'user')
+      response.status == 200 && response.content_type.contains("application/json") && response.body.bcontains(b"columns") && response.body.bcontains(b"user")
 detail:
   author: p0wd3r
   links:

@@ -1,11 +1,16 @@
-language: python
+language: go
 install:
-  - pip install -U pip
-  - pip install pyyaml rfc3987 jsonschema yamllint requests
+  - sudo apt update
+  - sudo apt install -y python3-pip python3-setuptools
+  - pip3 install pyyaml rfc3987 jsonschema yamllint requests
 jobs:
   include:
     - stage: check_poc
       script: 
         - git remote set-branches --add origin master
         - git fetch
-        - python tests/tests.py
+        - python3 tests/tests.py
+        - cd tests/cellint
+        - export GO111MODULE=on
+        - go mod download
+        - go run cmd/cellint.go $(find ../../pocs -name "*.yml")
