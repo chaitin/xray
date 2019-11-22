@@ -1,4 +1,4 @@
-name: poc-dedecms-config-xss
+name: poc-yaml-dedecms-config-xss
 set:
   r: randomInt(800000000, 1000000000)
   ident: bytes("console.log("+string(r)+")")
