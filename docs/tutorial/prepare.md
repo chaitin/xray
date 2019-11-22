@@ -20,14 +20,20 @@ xray 跨平台支持，请下载时选择需要的版本下载。
 + `windows_amd64` Windows x64
 + `windows_386` Windows x86
 
+系统版本要求大于等于 Windows 7 或大于等于 Windows Server 2008 R2, 不支持 Windows XP、Windows 2003 等低版本系统。
+
 #### ** MacOS **
 
 + `darwin_amd64` MacOS
+
+支持的系统版本为大于等于 10.10
 
 #### ** Linux **
 
 + `linux_amd64` Linux x64
 + `linux_386` Linux x86
+
+要求内核版本大于等于 2.6.23。不支持 CentOS 5, 因为内核太旧了 （2.6.18)。
 
 <!-- tabs:end -->
 
