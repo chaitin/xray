@@ -1,7 +1,7 @@
 name: poc-yaml-ecshop-360-rce
 set:
-  r1: randomInt(40000,44800)
-  r2: randomInt(40000,44800)
+  r1: randomInt(40000, 44800)
+  r2: randomInt(40000, 44800)
 rules:
   - method: POST
     path: /user.php

@@ -1,7 +1,7 @@
 name: poc-yaml-wordpress-ext-mailpress-rce
 set:
-  r: randomInt(800000000,1000000000)
-  r1: randomInt(800000000,1000000000)
+  r: randomInt(800000000, 1000000000)
+  r1: randomInt(800000000, 1000000000)
 rules:
   - method: POST
     path: "/wp-content/plugins/mailpress/mp-includes/action.php"

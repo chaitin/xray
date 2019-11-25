@@ -1,6 +1,6 @@
 name: poc-yaml-seacms-v654-rce
 set:
-  rand: randomInt(2000000000,2100000000)
+  rand: randomInt(2000000000, 2100000000)
 rules:
   - method: POST
     path: /search.php

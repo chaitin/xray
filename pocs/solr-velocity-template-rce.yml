@@ -1,7 +1,7 @@
 name: poc-yaml-solr-cve-2019-0193
 set:
-  r1: randomInt(20000,40000)
-  r2: randomInt(20000,40000)
+  r1: randomInt(20000, 40000)
+  r2: randomInt(20000, 40000)
 rules:
   - method: GET
     path: "/solr/admin/cores?wt=json"

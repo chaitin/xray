@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"github.com/google/cel-go/common"
 	"github.com/google/cel-go/parser"
+	"cellint"
 	"gopkg.in/yaml.v3"
 	"io/ioutil"
 	"os"
@@ -34,7 +35,7 @@ func fmtExpr(expStr string) (string, error) {
 	if len(errs.GetErrors()) > 0 {
 		return "", fmt.Errorf("parse expr %q failed, error: %v", expStr, errs.GetErrors())
 	}
-	newExpStr, err := parser.Unparse(expr.GetExpr(), nil)
+	newExpStr, err := cellint.Unparse(expr.GetExpr())
 	if err != nil {
 		return "", fmt.Errorf("unparse expr %q failed, error: %v", expStr, err)
 	}
