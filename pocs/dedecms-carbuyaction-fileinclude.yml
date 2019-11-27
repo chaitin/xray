@@ -17,6 +17,6 @@ rules:
 
 detail:
   author: harris2015(https://github.com/harris2015)
-  Affected Version: "DedeCmsV5.6"
+  Affected Version: "DedeCmsV5.x"
   links:
     - https://www.cnblogs.com/milantgh/p/3615986.html
