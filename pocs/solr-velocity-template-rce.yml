@@ -1,4 +1,4 @@
-name: poc-yaml-solr-cve-2019-0193
+name: poc-yaml-solr-velocity-template-rce
 set:
   r1: randomInt(20000, 40000)
   r2: randomInt(20000, 40000)
@@ -35,4 +35,4 @@ detail:
   description: 'Apache Solr RCE via Velocity template'
   links:
     - https://gist.githubusercontent.com/s00py/a1ba36a3689fa13759ff910e179fc133/raw/fae5e663ffac0e3996fd9dbb89438310719d347a/gistfile1.txt
-    - https://github.com/vulhub/vulhub/blob/master/solr/CVE-2019-0193/docker-compose.yml
+    - https://cert.360.cn/warning/detail?id=fba518d5fc5c4ed4ebedff1dab24caf2
