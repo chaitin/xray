@@ -1,16 +1,12 @@
-language: go
+language: python
 install:
-  - sudo apt update
-  - sudo apt install -y python3-pip python3-setuptools
-  - pip3 install pyyaml rfc3987 jsonschema yamllint requests
+  - pip install yamllint
 jobs:
   include:
     - stage: check_poc
       script: 
         - git remote set-branches --add origin master
         - git fetch
-        - python3 tests/tests.py
-        - cd tests/cellint
-        - export GO111MODULE=on
-        - go mod download
-        - go run cmd/cellint.go $(find ../../pocs -name "*.yml")
+        - wget https://github.com/chaitin/xray/releases/download/0.16.3/xray_linux_amd64.zip
+        - unzip xray_linux_amd64.zip
+        - ./xray_linux_amd64 poclint --poc "./pocs/*" --rules filename,filepath,yamlschema,yamllint,cellint
