@@ -13,7 +13,7 @@ rules:
       Content-Type: application/x-www-form-urlencoded
     body: action=login&vulnspy=printf(r1*r2);
     follow_redirects: false
-    expression: response.status == 200 && response.body.bcontains(bytes(string(r1*r2)))
+    expression: response.status == 200 && response.body.bcontains(bytes(string(r1 * r2)))
 detail:
   author: githusky
   links:

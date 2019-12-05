@@ -15,7 +15,7 @@ rules:
   - method: GET
     path: "/wp-content/plugins/mailpress/mp-includes/action.php?action=iview&id={{id}}"
     expression: |
-      response.status == 200 && response.body.bcontains(bytes(string(r+r1)))
+      response.status == 200 && response.body.bcontains(bytes(string(r + r1)))
 
 detail:
   author: violin

@@ -12,7 +12,7 @@ rules:
     search: |
       name="form_build_id"\s+value="(?P<build_id>.+?)"
     expression: |
-      response.status==200
+      response.status == 200
   - method: POST
     path: "/?q=file%2Fajax%2Fname%2F%23value%2F{{build_id}}"
     headers:
@@ -20,7 +20,7 @@ rules:
     body: |
       form_build_id={{build_id}}
     expression: |
-      response.body.bcontains(bytes(r1+'%'+r2))
+      response.body.bcontains(bytes(r1 + "%" + r2))
 detail:
   drupal_version: 7
   links:

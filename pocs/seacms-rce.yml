@@ -10,7 +10,7 @@ rules:
     body: |
       searchtype=5&searchword={if{searchpage:year}&year=:as{searchpage:area}}&area=s{searchpage:letter}&letter=ert{searchpage:lang}&yuyan=($_SE{searchpage:jq}&jq=RVER{searchpage:ver}&&ver=[QUERY_STRING]));/*
     expression: |
-      response.status==200 && response.body.bcontains(bytes(string(r+r1)))
+      response.status == 200 && response.body.bcontains(bytes(string(r + r1)))
 detail:
   author: neverendxxxxxx(https://github.com/neverendxxxxxx),violin
   seacms: v6.55

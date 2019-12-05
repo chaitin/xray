@@ -12,7 +12,7 @@ from jsonschema.exceptions import ValidationError
 ROOT = pathlib.Path(__file__).absolute().parent.parent
 POCNAME_PATTERN = re.compile(r"\A(?!-)[a-z0-9\-]+(?<!-)\.yml\Z")
 SCHEMA_FILE = ROOT / "tests" / "schema.json"
-SCHEMA_DATA = json.loads(SCHEMA_FILE.read_bytes())
+SCHEMA_DATA = json.loads(SCHEMA_FILE.read_bytes().decode("utf-8"))
 
 file_check_failed_details = {}
 schema_check_failed_details = {}
