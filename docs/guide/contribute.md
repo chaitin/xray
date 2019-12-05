@@ -22,17 +22,13 @@ xray 社区版经过数个版本的更迭，基本覆盖了对常见漏洞的 fu
 1. poc name 一定是 `poc-yaml-` 开头，后面应该是 `[框架名/服务名/产品名等]-[cve编号]` 或者 `[框架名/服务名/产品名等]-[通用漏洞名称]`。比如 `elasticsearch-cve-2014-3120` 或者 `django-debug-page-info-leak`。无特殊情况，应该都是小写。poc 的 name 应和 yml 的文件名相同，比如上述 poc 的文件名应为 `django-debug-page-info-leak.yml`。poc name只能包含小写字母、短横线，版本号里的点号等符号请省略
 1. poc 贡献者需要在 detail 中增加 author 字段，格式为 `name(link)`，name 可以为昵称，link 为可选项，一般使用个人 GitHub 首页或者博客链接等。
 1. poc 贡献者需要在 detail 中增加 links 字段，这个字段的值是一个由URL组成的列表，表示和本漏洞和POC相关的参考链接，且一个POC至少需要有一个参考链接。这个链接可以是漏洞分析文章或测试环境地址等
+1. 以上问题都可以通过 `./xray poclint` 来检查，具体使用请参考帮助文档
 1. 测试环境可以参考 [vulhub](https://github.com/vulhub/vulhub/) [vulnapps](https://github.com/Medicean/VulApps) 。请勿直接填写公网上未修复的站点的地址，如果有特殊情况，请私聊解决。不接受没有测试环境的 poc
 1. 一个 pull request 尽量只提交一个 poc，否则可能审核和修改过程会互相影响
 1. 对于 0day / 1 day 等未大面积公开细节的漏洞请勿提交，可以私聊群管理员
 1. 提交后，可以加一下我的微信 [点击查看](guide/feedback.md#反馈渠道) ，方便拉大家进群以及发放福利等
 
-在 Github 提交 Pull request 后，会有travis-ci自动进行POC的check，这个自动化的 check 主要检查两件事：
-
-1. 检查文件名是否符合需求
-2. 检查 yaml 格式是否符合规范
-
-文件名规范前面已经说了，yaml 格式的问题大多集中在不必要的空格。对于没有通过的检查，可以通过点击详情查看具体的错误原因：
+在 Github 提交 Pull request 后，会有travis-ci自动进行POC的格式检查，对于没有通过的检查，可以通过点击详情查看具体的错误原因：
 
 ![](../assets/contribute/fail-detail.png)
 
