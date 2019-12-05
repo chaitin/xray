@@ -1,4 +1,4 @@
-name: poc-yaml-cacti-weathermap-file-write
+name: yaml-cacti-weathermap-file-write
 rules:
   - method: GET
     path: >-
