@@ -24,7 +24,9 @@
   - [对接微信/企业微信实现自动告警](scenario/xray_vuln_alert.md)
 
 - API
+  - [说明](api/api.md)
   - [漏洞格式](api/vuln.md)
+  - [统计格式](api/statistic.md)
 
 - [贡献POC](guide/contribute.md)
 - [产品版本区别](generic/compare.md)
