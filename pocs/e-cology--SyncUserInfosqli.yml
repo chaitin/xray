@@ -1,4 +1,4 @@
-name: poc-yaml-e-cology-sqli
+name: poc-yaml-e-cology-SyncUserInfo-sqli
 rules:
   - method: GET
     path: >-
