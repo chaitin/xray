@@ -1,4 +1,4 @@
-name: poc-yaml-ecology-syncuserinf-sqli
+name: poc-yaml-ecology-sqli
 rules:
   - method: GET
     path: >-
