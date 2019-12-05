@@ -406,7 +406,7 @@ reverse 包含字段如下。（需要先使用 newReverse() 生成实例，假�
 `newReverse()` | `func() reverseType` |  返回一个 reverse 实例
 `reverse.url` | `string` | 反连平台的 url
 `reverse.domain` | `string` | 反连平台的域名
-`reverse.ip` | `string` | 反连品台的 ip 地址
+`reverse.ip` | `string` | 反连平台的 ip 地址
 `reverse.is_domain_name_server` | `bool` | 反连平台的 domain 是否同时是 nameserver
 `reverse.wait(timeout)` | `func (timeout int) bool` | 等待 timeout 秒，并返回是否在改时间内获得了信息
 
