@@ -1,4 +1,7 @@
 name: poc-yaml-ecology-sqli
+set:
+  r1: randomInt(40000, 44800)
+  r2: randomInt(40000, 44800)
 rules:
   - method: GET
     path: >-
