@@ -1,7 +1,7 @@
 name: poc-yaml-ecology-syncuserinfo-sqli
 set:
-  r1: randomInt(2333333, 23333333)
-  r2: randomInt(6666666, 88888888)
+  r1: randomInt(40000, 44800)
+  r2: randomInt(40000, 44800)
 rules:
   - method: GET
     path: >-
