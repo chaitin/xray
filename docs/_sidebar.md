@@ -31,3 +31,4 @@
 - [贡献POC](guide/contribute.md)
 - [产品版本区别](generic/compare.md)
 - [提交反馈](guide/feedback.md)
+- [FAQ](guide/faq.md)
