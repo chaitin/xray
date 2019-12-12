@@ -1,4 +1,4 @@
-name: poc-yaml-drupal-drupalgeddon2-rce
+name: poc-yaml-drupal-drupalgeddon2-rce  # nolint[:namematch]
 set:
   r1: randomLowercase(4)
   r2: randomLowercase(4)

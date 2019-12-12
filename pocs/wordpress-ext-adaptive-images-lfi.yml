@@ -1,4 +1,4 @@
-name: poc-yaml-wp-ext-adaptive-images-lfi
+name: poc-yaml-wordpress-ext-adaptive-images-lfi
 rules:
   - method: GET
     path: >-
