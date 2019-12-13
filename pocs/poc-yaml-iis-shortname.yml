@@ -12,5 +12,6 @@ rules:
       response.status == 404
 
 detail:
+  author:Stu.
   links:
     - https://www.freebuf.com/articles/4908.html
