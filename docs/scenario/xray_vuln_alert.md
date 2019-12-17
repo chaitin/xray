@@ -67,6 +67,9 @@ app = Flask(__name__)
 @app.route('/webhook', methods=['POST'])
 def xray_webhook():
     vuln = request.json
+    # 因为还会收到 https://chaitin.github.io/xray/#/api/statistic 的数据
+    if "vuln_class" not in vuln:
+        return "ok"
     content = """## xray 发现了新漏洞
     
 url: {url}
@@ -126,6 +129,9 @@ def push_ftqq(content):
 @app.route('/webhook', methods=['POST'])
 def xray_webhook():
     vuln = request.json
+    # 因为还会收到 https://chaitin.github.io/xray/#/api/statistic 的数据
+    if "vuln_class" not in vuln:
+        return "ok"
     content = """## xray 发现了新漏洞
     
 url: {url}
