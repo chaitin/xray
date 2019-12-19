@@ -1,4 +1,4 @@
-name: poc-yaml-laravel_debug_detect
+name: laravel-debug-detect
 rules:
   - method: POST
     path: /
