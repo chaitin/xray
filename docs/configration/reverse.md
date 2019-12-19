@@ -26,7 +26,7 @@ reverse:
       value: 127.0.0.1
       ttl: 60
   rmi:
-    enabled: false
+    enabled: true
     listen_ip: 127.0.0.1
     listen_port: ""
   client:
@@ -81,8 +81,12 @@ reverse:
 ```yaml
 reverse:
   http:
+    enabled: true
     listen_ip: 192.168.1.2
   dns:
+    enabled: true
+    listen_ip: 192.168.1.2
+  rmi:
     enabled: true
     listen_ip: 192.168.1.2
 ```
@@ -98,13 +102,18 @@ reverse:
 ```yaml
 reverse:
   http:
+    enabled: true
     listen_ip: 0.0.0.0
   dns:
+    enabled: true
+    listen_ip: 0.0.0.0
+  rmi:
     enabled: true
     listen_ip: 0.0.0.0
   client:
     http_base_url: "http://100.1000.100.100:${port}"
     dns_server_ip: "100.1000.100.100"
+    rmi_server_addr: "rmi://100.1000.100.100:${port}"
 ```
 
 如果将使用域名代替 ip 地址，对照替换即可。
@@ -128,6 +137,9 @@ reverse:
     enabled: true
     listen_ip: 0.0.0.0
     domain: "domain.com"
+  rmi:
+    enabled: true
+    listen_ip: 0.0.0.0
 ```
 
 对于扫描器端，配置如下。
@@ -139,9 +151,12 @@ reverse:
     enabled: false
   dns:
     enabled: false
+  rmi:
+    enabled: false
   client:
     http_base_url: "http://100.100.100.100:80"
     dns_server_ip: "100.100.100.100"
+    rmi_server_addr: "rmi://100.100.100.100:${port}"
     remote_server: true
 ```
 
