@@ -1,0 +1,12 @@
+name: poc-yaml-laravel_debug_detect
+rules:
+  - method: POST
+    path: /
+    headers:
+      User-Agent: >-
+        Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/75.0.3770.100 Safari/537.36
+    follow_redirects: false
+    expression: response.status == 405 && response.body.bcontains(b'MethodNotAllowedHttpException')
+detail:
+    author: Dem0ns(https://github.com/nic329)
