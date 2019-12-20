@@ -1,10 +1,7 @@
-name: CI
-
-on: [push]
-
+name: Check POC
+on: [push, pull_request]
 jobs:
-  build:
-
+  check_poc:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/setup-python@v1
