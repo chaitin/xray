@@ -113,7 +113,7 @@ reverse:
   client:
     http_base_url: "http://100.1000.100.100:${port}"
     dns_server_ip: "100.1000.100.100"
-    rmi_server_addr: "rmi://100.1000.100.100:${port}"
+    rmi_server_addr: "100.1000.100.100:${port}"
 ```
 
 如果将使用域名代替 ip 地址，对照替换即可。
@@ -124,7 +124,7 @@ reverse:
 
 这时候需要在双方都可以访问到个的地方也部署一份反连平台，比如一台公网云主机，然后扫描器和靶站都去连接它。
 
-对于单独部署的反连平台，使用 `./xray reverse` 启动，配置如下，以公网云主机 ip 地址 `100.100.100.100`，端口 `80` 为例。
+对于单独部署的反连平台，使用 `./xray reverse` 启动，配置如下，以公网云主机 ip 地址 `100.100.100.100`，端口 `80`(http) 和 `8080`(rmi) 为例。
 
 ```yaml
 reverse:
@@ -140,6 +140,7 @@ reverse:
   rmi:
     enabled: true
     listen_ip: 0.0.0.0
+    listen_port: 8088
 ```
 
 对于扫描器端，配置如下。
@@ -148,15 +149,16 @@ reverse:
 reverse:
   token: "a_verrrry_long_token"
   http:
-    enabled: false
+    enabled: true
   dns:
-    enabled: false
+    enabled: true
+    domain: "domain.com"
   rmi:
-    enabled: false
+    enabled: true
   client:
     http_base_url: "http://100.100.100.100:80"
     dns_server_ip: "100.100.100.100"
-    rmi_server_addr: "rmi://100.100.100.100:${port}"
+    rmi_server_addr: "100.100.100.100:8088"
     remote_server: true
 ```
 
