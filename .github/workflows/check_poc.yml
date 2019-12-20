@@ -22,7 +22,7 @@ jobs:
           ./xray_linux_amd64 poclint --poc "./pocs/*" --rules filename,filepath,yamlschema,yamllint,cellint
       - uses: rytswd/respost@v0.1.0
         with:
-          title: Respost Custom Title from step 1, for Issue $PATH
+          title: $HOME
           body: "Hello, World! Respost is here, making your GitHub Actions workflow even easier!"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
