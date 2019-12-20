@@ -9,4 +9,4 @@ jobs:
 
     steps:
     - name: Run a multi-line script
-      run: python -V && pip3 -v
+      run: python3 -V && pip3 -V
