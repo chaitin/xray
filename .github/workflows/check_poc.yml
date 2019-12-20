@@ -21,8 +21,9 @@ jobs:
           cd $GITHUB_WORKSPACE && \
           ./xray_linux_amd64 poclint --poc "./pocs/*" --rules filename,filepath,yamlschema,yamllint,cellint
       - uses: rytswd/respost@v0.1.0
+        if: github.event_name == "pull_request"
         with:
-          title: $HOME
+          title: ${{ HOME }}
           body: "Hello, World! Respost is here, making your GitHub Actions workflow even easier!"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
