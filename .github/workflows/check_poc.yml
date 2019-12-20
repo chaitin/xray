@@ -22,7 +22,7 @@ jobs:
           ./xray_linux_amd64 poclint --poc "./pocs/*" --rules filename,filepath,yamlschema,yamllint,cellint && \
           export CHECK_POC_RESULT=testtesttesttesttest
       - uses: rytswd/respost@v0.1.0
-        if: github.event_name == "pull_request"
+        if: github.event_name == 'pull_request'
         with:
           title: ${{ env.CHECK_POC_RESULT }}
           body: "Hello, World! Respost is here, making your GitHub Actions workflow even easier!"
