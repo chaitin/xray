@@ -19,12 +19,12 @@ jobs:
       - name: check poc
         run: |
           cd $GITHUB_WORKSPACE && \
-          ./xray_linux_amd64 poclint --poc "./pocs/*" --rules filename,filepath,yamlschema,yamllint,cellint && \
-          export CHECK_POC_RESULT=testtesttesttesttest
+          ./xray_linux_amd64 poclint --poc "./pocs/*" --rules filename,filepath,yamlschema,yamllint,cellint > /tmp/1.txt && \
+          echo ::set-output name=check_poc_result::$(cat /tmp/1.txt)
       - uses: rytswd/respost@v0.1.0
         if: github.event_name == 'pull_request'
         with:
-          title: ${{ env.CHECK_POC_RESULT }}
+          title: ${{ steps.check poc.outputs.check_poc_result }}
           body: "Hello, World! Respost is here, making your GitHub Actions workflow even easier!"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
