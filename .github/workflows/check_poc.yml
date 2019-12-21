@@ -13,10 +13,33 @@ jobs:
       - name: prepare
         run: |
           cd $GITHUB_WORKSPACE && \
-          wget https://github.com/chaitin/xray/releases/download/0.16.5/xray_linux_amd64.zip > /dev/null && \
-          pip3 install yamllint && \
-          unzip xray_linux_amd64.zip
-      - name: check poc
+          wget -nv https://github.com/chaitin/xray/releases/download/0.17.0/xray_linux_amd64.zip && \
+          pip3 install yamllint requests && \
+          unzip xray_linux_amd64.zip && \
+          echo 'update:
+              check: false' > config.yaml
+      - name: run check poc
+        continue-on-error: true
         run: |
           cd $GITHUB_WORKSPACE && \
-          ./xray_linux_amd64 poclint --poc "./pocs/*" --rules filename,filepath,yamlschema,yamllint,cellint
+          ./xray_linux_amd64 poclint --poc "./pocs/*" --rules filename,filepath,yamlschema,yamllint,cellint > output.txt || \
+          touch failed
+      - name: check poc result feedback
+        run: |
+          cd $GITHUB_WORKSPACE && \
+          echo 'import requests, os, json, re
+          failed = os.path.exists("failed")
+          if failed:
+            ansi_escape = re.compile(r"\x1B[@-_][0-?]*[ -/]*[@-~]")
+            with open("output.txt") as f:
+              output = ansi_escape.sub("", f.read())
+            output = output[output.find("Checking rule filename"):]
+            event_path = os.environ.get("GITHUB_EVENT_PATH")
+            event = json.load(open(event_path))
+            # print(event)
+            if event.get("pull_request") and event["pull_request"].get("comments_url"):
+                print(requests.post(event["pull_request"]["comments_url"], 
+                  json={"body": f"感谢您的贡献，但是您的提交的 ci 运行失败了，以下是运行结果，请修正您的 poc。参考资料：https://chaitin.github.io/xray/#/guide/contribute \n\n```sh\n{output}\n```"}, 
+                  headers={"Authorization": "token ${{ secrets.GITHUB_TOKEN }}"}).json())
+            exit(1)
+          ' | python3
