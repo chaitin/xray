@@ -10,13 +10,15 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 1
-      - name: prepare
+      - name: Prepare
         run: |
           cd $GITHUB_WORKSPACE && \
-          wget https://github.com/chaitin/xray/releases/download/0.16.5/xray_linux_amd64.zip > /dev/null && \
+          wget -nv https://github.com/chaitin/xray/releases/download/0.17.0/xray_linux_amd64.zip && \
           pip3 install yamllint && \
-          unzip xray_linux_amd64.zip
-      - name: check poc
+          unzip xray_linux_amd64.zip && \
+          echo 'update:
+              check: false' > config.yaml
+      - name: Check POC
         run: |
           cd $GITHUB_WORKSPACE && \
           ./xray_linux_amd64 poclint --poc "./pocs/*" --rules filename,filepath,yamlschema,yamllint,cellint
