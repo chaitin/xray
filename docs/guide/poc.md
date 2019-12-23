@@ -23,7 +23,7 @@ https://phith0n.github.io/xray-poc-generation/
 ```javascript
 {
     "yaml.schemas": {
-        "https://chaitin.github.io/xray/assets/yaml-poc-schema.json": "poc-yaml-*.yml"
+        "https://chaitin.github.io/xray/assets/poc/yaml-poc-schema.json": "poc-yaml-*.yml"
     }
 }
 ```
