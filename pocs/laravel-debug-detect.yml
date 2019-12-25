@@ -8,7 +8,7 @@ rules:
         like Gecko) Chrome/75.0.3770.100 Safari/537.36
     follow_redirects: false
     expression: >
-      response.status == 405 && response.body.bcontains(b"MethodNotAllowedHttpException") && response.body.bcontains(b"laravel\vendor\laravel\framework\src\Illuminate\Routing\RouteCollection.php")
+      response.status == 405 && response.body.bcontains(b"MethodNotAllowedHttpException") && response.body.bcontains(b"laravel\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteCollection.php")
 detail:
   author: Dem0ns(https://github.com/nic329)
   links:
