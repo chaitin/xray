@@ -9,4 +9,4 @@ detail:
   vulnType: phpFileManager 1.7.8 - Local File Inclusion
   author: supersalted(https://github.com/salted)
   links:
-   - https://www.exploit-db.com/exploits/46638
+    - https://www.exploit-db.com/exploits/46638
