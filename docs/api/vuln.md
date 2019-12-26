@@ -1,13 +1,12 @@
 # 漏洞格式说明
 
-在 `--json-output` 或者 `--webhook-output` 的时候，将会使用 json 格式输出漏洞信息，json 字段说明如下。
-
 ## 样例
 
 sql 注入输出样例
 
 ```javascript
 {
+  "type": "web_vuln",
   "create_time": 1566456018640,
   "detail": {
     "host": "pentester-web.vulnet",

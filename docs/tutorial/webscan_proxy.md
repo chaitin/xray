@@ -137,7 +137,7 @@ mitm:
 #### ** Windows **
 
 ```
-.\xray_windows_amd64.exe webscan --listen 127.0.0.1:8072 --html-output xray-testphp.html
+.\xray_windows_amd64.exe webscan --listen 127.0.0.1:7777 --html-output xray-testphp.html
 ```
 
 ![](../assets/tutorial/windows_proxy_webscan_1.png)
@@ -145,14 +145,17 @@ mitm:
 #### ** MacOS **
 
 ```
-./xray_darwin_amd64 webscan --listen 127.0.0.1:8072 --html-output xray-testphp.html
+./xray_darwin_amd64 webscan --listen 127.0.0.1:7777 --html-output xray-testphp.html
 ```
 
 ![](../assets/tutorial/mac_proxy_webscan_1.png)
 
 #### ** Linux **
 
-todo
+
+```
+./xray_linux_amd64 webscan --listen 127.0.0.1:7777 --html-output xray-testphp.html
+```
 
 <!-- tabs:end -->
 
@@ -162,6 +165,8 @@ todo
  - 提示 `file xray-testphp.html already exists`，可以删除已经存在的报告文件，或者使用一个新的文件名，或者在文件名中加入 `__timestamp__` 或 `__datetime__` 将自动替换为实际值。
 
 ## 配置代理
+
+!> 注意，下面的配置可能和上面命令的端口不一致，请按照实际情况填写
 
 <!-- tabs:start -->
 

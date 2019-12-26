@@ -25,9 +25,14 @@ reverse:
       record: localhost
       value: 127.0.0.1
       ttl: 60
+  rmi:
+    enabled: true
+    listen_ip: 127.0.0.1
+    listen_port: ""
   client:
     http_base_url: ""
     dns_server_ip: ""
+    rmi_server_addr: ""
     remote_server: false
 ```
  - db_file_path 用于存储反连平台获取的请求信息，用于后续查询，默认为空，将存储在系统临时文件夹。
@@ -40,10 +45,14 @@ reverse:
    - domain 在 dns 查询的时候的一级域名，默认为空，将使用随机域名。
    - resolve 的配置类似常见的 dns 配置，如果反连平台收到配置的域名的解析请求，将按照配置的结果直接返回。
    - is_domain_name_server 如果上述域名的 ns 服务器就是反连平台的地址，那么直接使用 `dig random.domain.com` 就可以让 dns 请求到反连平台，否则需要 `dig random.domain.com @reverse-server-ip` 指定 dns 服务器才可以。本配置项是指有没有配置 ns 服务器为反连平台的地址，用于提示扫描器内部 payload 的选择。
+ - rmi (目前只有高级版的 fastjson 插件需要)
+   - listen_ip 监听的 ip
+   - listen_port 默认为空，将自动选择，要注意本端口被防火墙放行，尤其是自动选择端口的时候。
  - client
    - base_url 是客户端访问的时候使用，详见下方的场景。
    - remote_server 是客户端访问的时候，如何和反连平台建立连接，详见下方的场景。
    - dns_server_ip 是客户端发起 dns 查询的时候，使用的 ip，详见下方场景。
+   - rmi_server_addr 是客户端生成 rmi 地址的时候，使用的地址，比如 `domain.com:1234`，和下方场景基本一致，不再单独讲解。
 
 ## 管理界面
 
@@ -72,8 +81,12 @@ reverse:
 ```yaml
 reverse:
   http:
+    enabled: true
     listen_ip: 192.168.1.2
   dns:
+    enabled: true
+    listen_ip: 192.168.1.2
+  rmi:
     enabled: true
     listen_ip: 192.168.1.2
 ```
@@ -89,13 +102,18 @@ reverse:
 ```yaml
 reverse:
   http:
+    enabled: true
     listen_ip: 0.0.0.0
   dns:
+    enabled: true
+    listen_ip: 0.0.0.0
+  rmi:
     enabled: true
     listen_ip: 0.0.0.0
   client:
     http_base_url: "http://100.1000.100.100:${port}"
     dns_server_ip: "100.1000.100.100"
+    rmi_server_addr: "100.1000.100.100:${port}"
 ```
 
 如果将使用域名代替 ip 地址，对照替换即可。
@@ -106,7 +124,7 @@ reverse:
 
 这时候需要在双方都可以访问到个的地方也部署一份反连平台，比如一台公网云主机，然后扫描器和靶站都去连接它。
 
-对于单独部署的反连平台，使用 `./xray reverse` 启动，配置如下，以公网云主机 ip 地址 `100.100.100.100`，端口 `80` 为例。
+对于单独部署的反连平台，使用 `./xray reverse` 启动，配置如下，以公网云主机 ip 地址 `100.100.100.100`，端口 `80`(http) 和 `8080`(rmi) 为例。
 
 ```yaml
 reverse:
@@ -119,6 +137,10 @@ reverse:
     enabled: true
     listen_ip: 0.0.0.0
     domain: "domain.com"
+  rmi:
+    enabled: true
+    listen_ip: 0.0.0.0
+    listen_port: 8088
 ```
 
 对于扫描器端，配置如下。
@@ -127,12 +149,16 @@ reverse:
 reverse:
   token: "a_verrrry_long_token"
   http:
-    enabled: false
+    enabled: true
   dns:
-    enabled: false
+    enabled: true
+    domain: "domain.com"
+  rmi:
+    enabled: true
   client:
     http_base_url: "http://100.100.100.100:80"
     dns_server_ip: "100.100.100.100"
+    rmi_server_addr: "100.100.100.100:8088"
     remote_server: true
 ```
 

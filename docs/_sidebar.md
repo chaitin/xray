@@ -17,15 +17,19 @@
   - [自定义POC语法](guide/poc.md)
   - [编写高质量poc](guide/high_quality_poc.md)
 - 使用场景
-  - [征集说明](scenario/intro.md)
+  - [有奖征文](scenario/intro.md)
   - [与 Burp 联动](scenario/burp.md)
   - [与 awvs 联动](scenario/awvs.md)
   - [使用反连平台挖掘和验证 SSRF](scenario/reverse_server_ssrf.md)
   - [对接微信/企业微信实现自动告警](scenario/xray_vuln_alert.md)
 
 - API
+  - [说明](api/api.md)
   - [漏洞格式](api/vuln.md)
+  - [统计格式](api/statistic.md)
 
 - [贡献POC](guide/contribute.md)
+- [奖励措施](guide/rewards.md)
 - [产品版本区别](generic/compare.md)
 - [提交反馈](guide/feedback.md)
+- [FAQ](guide/faq.md)
