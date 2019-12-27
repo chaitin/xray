@@ -1,4 +1,4 @@
-name: poc-yaml-laravel-debug-detect
+name: poc-yaml-laravel-debug-info-leak
 rules:
   - method: POST
     path: /
