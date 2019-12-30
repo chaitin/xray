@@ -5,6 +5,6 @@ rules:
     expression: |
       response.body.bcontains(b"ef775988943825d2871e1cfa75473ec")
 detail:
-  author: https://github.com/jinqi520
+  author: jinqi
   links:
     - https://www.t00ls.net/articles-54436.html
