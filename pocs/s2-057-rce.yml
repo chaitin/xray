@@ -4,7 +4,7 @@ rules:
     path: /${(111111111+123123123)}/actionChain1.action
     follow_redirects: false
     expression: |
-        response.status == 302 && response.headers['location'].contains('234234234')
+        response.status == 302 && response.headers["location"].contains('234234234')
 detail:
   vulnType: S2-057远程执行代码漏洞
   author: supersalted(https://github.com/salted)
