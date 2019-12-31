@@ -14,7 +14,7 @@
 
 ![](https://chaitin.github.io/xray/assets/term.svg)
 
-🏠[使用文档](https://chaitin.github.io/xray/#/)  ⬇️[下载地址](https://github.com/chaitin/xray/releases) 📚[English Document](https://github.com/chaitin/xray/tree/master/docs/en-us/generic)
+🏠[使用文档](https://xray.cool)  ⬇️[下载地址](https://github.com/chaitin/xray/releases) 📚[English Document](https://github.com/chaitin/xray/tree/master/docs/en-us/generic)
 
 ## 🚀 快速使用
 
