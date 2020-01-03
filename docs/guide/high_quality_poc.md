@@ -3,7 +3,7 @@
 ## 不要这么做
 
 1. 无特殊情况不要在payload中出现你的用户名或者xray等字样，能随机的都随机。可以参考 poc 语法的文档。目前可能有以下例外需要注意下
- - updatexml 报错，如果参数是`md5(randvalue)` 报错页面的md5数据不一定完整，暂时可以使用固定值代替。
+ - `updatexml`、`extractvalue` 报错回显，请注意 md5 可能会被截断，可以使用 `response.body.bcontains(bytes(substr(md5(string(r1)), 0, 31)))` 的截取字符串函数。
 1. 不要直接使用如`reponse.status == 200`这样判断status code验证漏洞，一定存在误报。
 1. 不要直接使用如`response.body.bcontains(b'upload success')`这样检测一个英文单词的方式来验证漏洞，一定存在误报。
 1. 测试RCE类漏洞，请不要使用`echo`、`print`、`var_dump`之类的输出语句直接输出一个内容，然后在返回里查找这个内容，此类POC很容易误报和漏报，原因如下：

@@ -429,3 +429,4 @@ reverse 包含字段如下。（需要先使用 newReverse() 生成实例，假�
 `base64Decode` | `func base64Decode(string/bytes) string` | 将字符串或 bytes 进行 base64 解码
 `urlencode` | `func urlencode(string/bytes) string` | 将字符串或 bytes 进行 urlencode 编码
 `urldecode` | `func urldecode(string/bytes) string` | 将字符串或 bytes 进行 urldecode 解码
+`substr` | `func substr(string, start, length) string` | 截取字符串
