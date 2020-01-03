@@ -1,13 +1,36 @@
-- 通用
-  - [快速入门](generic/README.md)
-  - [版本对比](generic/compare.md)
-- 用户指南
-  - [配置文件](guide/config.md)
-  - [MITM 代理](guide/proxy.md)
+- 基本介绍
+  - [简介](tutorial/introduce.md)
+  - [下载运行](tutorial/prepare.md)
+  - [代理模式进行扫描](tutorial/webscan_proxy.md)
+  - [基础爬虫模式进行扫描](tutorial/webscan_basic_crawler.md)
+- 配置
+  - [命令详解](configration/cli.md)
+  - [配置文件](configration/config.md)
+    - [插件配置](configration/plugins.md)
+    - [被动代理配置](configration/mitm.md)
+    - [HTTP 配置](configration/http.md)
+    - [盲打平台配置](configration/reverse.md)
+    - [基础爬虫配置](configration/basic-crawler.md)
+    - [子域名配置](configration/subdomain.md)
+    - [检查更新配置](configration/update.md)
+- 高级用法
   - [自定义POC语法](guide/poc.md)
   - [编写高质量poc](guide/high_quality_poc.md)
-  - [贡献POC](guide/contribute.md)
-  - [反连平台](guide/reverse.md)
-  - [漏洞格式](guide/vuln.md)
-  - [检查更新](guide/update.md)
-  - [提交反馈](guide/feedback.md)
+- 使用场景
+  - [有奖征文](scenario/intro.md)
+  - [与 Burp 联动](scenario/burp.md)
+  - [与 awvs 联动](scenario/awvs.md)
+  - [与 crawlergo 联动](https://github.com/timwhitez/crawlergo_x_XRAY)
+  - [使用反连平台挖掘和验证 SSRF](scenario/reverse_server_ssrf.md)
+  - [对接微信/企业微信实现自动告警](scenario/xray_vuln_alert.md)
+
+- API
+  - [说明](api/api.md)
+  - [漏洞格式](api/vuln.md)
+  - [统计格式](api/statistic.md)
+
+- [贡献POC](guide/contribute.md)
+- [奖励措施](guide/rewards.md)
+- [产品版本区别](generic/compare.md)
+- [提交反馈](guide/feedback.md)
+- [FAQ](guide/faq.md)

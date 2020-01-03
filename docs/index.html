@@ -7,10 +7,29 @@
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <link href="https://cdn.bootcss.com/docsify/4.9.4/themes/vue.css" rel="stylesheet">
+  <style>
+    article img:not(.noresize) {
+      max-height: 400px;
+    }
+
+    article img {
+      display: block;
+      box-shadow: 0 3px 15px 3px rgba(40, 40, 40, 0.5);
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
   <div id="app"></div>
   <script>
+    var basePath = "/xray/"
+    // 本地开发使用 localhost
+    if (window.location.host.indexOf("localhost") >= 0) {
+      basePath = "/"
+    }
+    if (window.location.host == "chaitin.github.io") {
+      window.location.host = "xray.cool"
+    }
     window.$docsify = {
       name: 'xray',
       repo: 'chaitin/xray',
@@ -18,16 +37,49 @@
       loadNavbar: true,
       autoHeader: true,
       coverpage: ['/', '/en-us/'],
-      basePath: '/xray/',
-      auto2top: true,
+      basePath: basePath,
       fallbackLanguages: ['en-us', 'zh-cn'],
-      onlyCover: true
+      onlyCover: true,
+      tabs: {
+        persist    : true,
+        sync       : true,
+        theme      : 'material',
+        tabComments: false,
+        tabHeadings: true
+      },
+      pagination: {
+        previousText: '',
+        nextText: '',
+        crossChapter: true
+      },
+      copyCode: {
+        buttonText : 'Copy',
+        errorText  : 'Error',
+        successText: 'Copied'
+      },
+      scrollToTop: {
+        auto: true,
+        text: 'Top',
+        right: 15,
+        bottom: 25,
+        offset: 500
+      },
+      'page-toc': {
+        tocMaxLevel: 4,
+        target: 'h1, h2, h3, h4'
+      },
     }
-  </script>
   </script>
   <script src="https://cdn.bootcss.com/docsify/4.9.4/docsify.min.js"></script>
   <script src="https://cdn.bootcss.com/prism/9000.0.1/components/prism-yaml.min.js"></script>
   <script src="https://cdn.bootcss.com/prism/9000.0.1/components/prism-javascript.min.js"></script>
   <script src="https://cdn.bootcss.com/prism/9000.0.1/components/prism-go.min.js"></script>
+  <script src="https://cdn.bootcss.com/prism/9000.0.1/components/prism-python.min.js"></script>
+  <script src="./assets/static/docsify-tabs.js"></script>
+  <script src="./assets/static/docsify-pagination.min.js"></script>
+  <script src="./assets/static/docsify-copy-code.js"></script>
+  <script src="./assets/static/docsify-scroll-to-top.min.js"></script>
+  <script src="./assets/static/zoom-image.min.js"></script>
+  <script src="./assets/static/docsify-page-toc.js"></script>
 </body>
 </html>

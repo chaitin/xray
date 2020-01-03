@@ -5,7 +5,7 @@ rules:
       /mailsms/s?func=ADMIN:appState&dumpConfig=/
     follow_redirects: false
     expression: >
-      status==200 && body.bcontains(b'<object name="cm_md_db">')
+      response.status == 200 && response.body.bcontains(bytes("<object name=\"cm_md_db\">"))
 detail:
   author: cc_ci(https://github.com/cc8ci)
   links:

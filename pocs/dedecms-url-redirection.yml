@@ -5,7 +5,7 @@ rules:
       /plus/download.php?open=1&link=aHR0cHM6Ly93d3cuZHUxeDNyMTIuY29t
     follow_redirects: false
     expression: >
-      status==302 && headers['location']=="https://www.du1x3r12.com"
+      response.status == 302 && response.headers["location"] == "https://www.du1x3r12.com"
 detail:
   author: cc_ci(https://github.com/cc8ci)
   Affected Version: "V5.7 sp1"

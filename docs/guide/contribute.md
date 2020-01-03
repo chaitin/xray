@@ -13,27 +13,27 @@ xray 社区版经过数个版本的更迭，基本覆盖了对常见漏洞的 fu
 
 ## POC 贡献规范
 
-在提交之前请搜索仓库的 pocs 文件夹以及 Github 的 Pull request, 确保该 POC 没有被提交。
+在提交之前请搜索仓库的 pocs 文件夹以及 Github 的 Pull request, 确保该 POC 没有被提交，而且不包含在部分扫描插件中（目前指 thinkPHP 和 struts 插件）。
 
 1. 认真阅读 [如何编写高质量poc](guide/high_quality_poc.md) 文档
 1. 期望近三年内主流框架，CMS等出现的漏洞，部分小众 CMS 的 POC 可能不被收录
-1. 提交的 POC 如果比较简单，请直接保持单文件不要创建子目录； dockerfile 等文件不要放在仓库中，直接放在 PR 中即可。
+1. 请直接保持单文件不要创建子目录； dockerfile 等文件不要放在仓库中，直接放在 PR 中即可
 1. poc 请以 `.yml` 结尾，而不是 `.yaml`
-1. poc name 一定是 `poc-yaml-` 开头，后面应该是 `[框架名/服务名/产品名等]-[cve编号]` 或者 `[框架名/服务名/产品名等]-[通用漏洞名称]`。比如 `elasticsearch-cve-2014-3120` 或者 `django-debug-page-info-leak`。无特殊情况，应该都是小写。poc 的 name 应和 yml 的文件名相同，比如上述 poc 的文件名应为 `django-debug-page-info-leak.yml`。poc name只能包含小写字母、短横线，版本号里的点号等符号请省略。
+1. poc name 一定是 `poc-yaml-` 开头，后面应该是 `[框架名/服务名/产品名等]-[cve编号]` 或者 `[框架名/服务名/产品名等]-[通用漏洞名称]`。比如 `elasticsearch-cve-2014-3120` 或者 `django-debug-page-info-leak`。无特殊情况，应该都是小写。poc 的 name 应和 yml 的文件名相同，比如上述 poc 的文件名应为 `django-debug-page-info-leak.yml`。poc name只能包含小写字母、短横线，版本号里的点号等符号请省略
 1. poc 贡献者需要在 detail 中增加 author 字段，格式为 `name(link)`，name 可以为昵称，link 为可选项，一般使用个人 GitHub 首页或者博客链接等。
-1. poc 贡献者需要在 detail 中增加 links 字段，这个字段的值是一个由URL组成的列表，表示和本漏洞和POC相关的参考链接，且一个POC至少需要有一个参考链接。这个链接可以是漏洞分析文章，如果有靶场地址（如vulhub），请也附上。
-1. 提交后，可以加一下我的微信 [本页最下方](https://chaitin.github.io/xray/#/guide/feedback) ，方便拉大家进群以及发放福利等
+1. poc 贡献者需要在 detail 中增加 links 字段，这个字段的值是一个由URL组成的列表，表示和本漏洞和POC相关的参考链接，且一个POC至少需要有一个参考链接。这个链接可以是漏洞分析文章或测试环境地址等
+1. 以上问题都可以通过 `./xray poclint` 来检查，具体使用请参考帮助文档
+1. 测试环境可以参考 [vulhub](https://github.com/vulhub/vulhub/) [vulnapps](https://github.com/Medicean/VulApps) 。请勿直接填写公网上未修复的站点的地址，如果有特殊情况，请私聊解决。不接受没有测试环境的 poc
+1. 一个 pull request 尽量只提交一个 poc，否则可能审核和修改过程会互相影响
+1. 对于 0day / 1 day 等未大面积公开细节的漏洞请勿提交，可以私聊群管理员
+1. 提交后，可以加一下我的微信 [点击查看](guide/feedback.md#反馈渠道) ，方便拉大家进群以及发放福利等
 
-在 Github 提交 Pull request 后，会有travis-ci自动进行POC的check，通过后才会进行人工审核：
+在 Github 提交 Pull request 后，会有travis-ci自动进行POC的格式检查，对于没有通过的检查，可以通过点击详情查看具体的错误原因：
 
-![](https://chaitin.github.io/xray/assets/pr.png)
+![](../assets/contribute/fail-detail.png)
 
-### 奖励措施
+待修复完成并重新提交达到下面的样子就会被人工审核了。
 
-提交 POC ，即可获得与 xray 社区版内部大佬技术切磋交流的机会。提交 PR 过程中会有内部大佬审核，帮助改进POC的实现，共同进步。同时，为了感谢提交 POC 的同学的辛苦付出, 我们准备了一份厚礼: 
+![](../assets/contribute/pr.png)
 
-1. 提交1个 POC 并被收录，可进入 xray 社区核心贡献者群，与 xray 社区版核心成员共同探讨漏洞检测算法，同时可获得 xray 社区版文化衫。
-1. 提交3个 POC 并被收录可获得线下活动入场券和[pwnhub](https://pwnhub.cn/)邀请码
-1. 提交5个 POC 并被收录可获得 **xray 社区高级版**，高级版支持更多检测插件，诸如 struts、 weblogic 等漏洞一键检测
-1. 线下参与 xray 社区技术分享的机会
-1. 其他不定期的内部福利
+
