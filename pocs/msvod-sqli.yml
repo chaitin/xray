@@ -1,4 +1,4 @@
-name: poc-yaml-msvodx-sqli
+name: poc-yaml-msvod-sqli
 set:
   r1: randomInt(800000000, 1000000000)
 rules:
