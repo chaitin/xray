@@ -23,8 +23,12 @@
   <div id="app"></div>
   <script>
     var basePath = "/xray/"
+    // 本地开发使用 localhost
     if (window.location.host.indexOf("localhost") >= 0) {
       basePath = "/"
+    }
+    if (window.location.host == "chaitin.github.io") {
+      window.location.host = "xray.cool"
     }
     window.$docsify = {
       name: 'xray',

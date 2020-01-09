@@ -8,7 +8,7 @@
   </a>
 </p>
 
-> A powerful security assessment tool  🏠[Homepage](https://chaitin.github.io/xray/#/)  ⬇️[Download](https://github.com/chaitin/xray/releases) 📚[Chinese document](https://github.com/chaitin/xray)
+> A powerful security assessment tool  🏠[Homepage](https://xray.cool)  ⬇️[Download](https://github.com/chaitin/xray/releases) 📚[Chinese document](https://github.com/chaitin/xray)
 
 ### ✨ Demo
 
