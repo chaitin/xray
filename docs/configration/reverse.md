@@ -112,7 +112,7 @@ reverse:
     listen_ip: 0.0.0.0
   client:
     http_base_url: "http://100.1000.100.100:${port}"
-    dns_server_ip: "100.1000.100.100"
+    dns_server_ip: "100.100.100.100"
     rmi_server_addr: "100.1000.100.100:${port}"
 ```
 
@@ -149,12 +149,12 @@ reverse:
 reverse:
   token: "a_verrrry_long_token"
   http:
-    enabled: true
+    enabled: false
   dns:
-    enabled: true
+    enabled: false
     domain: "domain.com"
   rmi:
-    enabled: true
+    enabled: false
   client:
     http_base_url: "http://100.100.100.100:80"
     dns_server_ip: "100.100.100.100"
