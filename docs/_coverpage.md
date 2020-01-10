@@ -1,9 +1,9 @@
-# XRAY
+# <span style="color: white; font-size: 60px;">XRAY 安全评估工具</span>
 
-> 一款功能强大的安全评估工具
+> <span style="color: white; font-size: 40px;">一款躺着收洞的神器</span>
 
-<img src="./assets/index-img.png" style="width: 20%; height: 20%">
-
+[高级版/企业版](/generic/compare)
 [下载](https://github.com/chaitin/xray/releases)
-[版本对比](/generic/compare)
 [使用指南](/tutorial/introduce)
+
+![](./assets/index.jpg)
