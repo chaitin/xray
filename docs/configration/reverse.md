@@ -97,7 +97,7 @@ reverse:
 
 比如一些云主机，虽然公网 ip 可以访问，但是本地并无法直接 listen 那个 ip
 
-首先要获取到云主机的外网 ip，以 `100.1000.100.100` 为例。
+首先要获取到云主机的外网 ip，以 `100.100.100.100` 为例。
 
 ```yaml
 reverse:
@@ -111,9 +111,9 @@ reverse:
     enabled: true
     listen_ip: 0.0.0.0
   client:
-    http_base_url: "http://100.1000.100.100:${port}"
+    http_base_url: "http://100.100.100.100:${port}"
     dns_server_ip: "100.100.100.100"
-    rmi_server_addr: "100.1000.100.100:${port}"
+    rmi_server_addr: "100.100.100.100:${port}"
 ```
 
 如果将使用域名代替 ip 地址，对照替换即可。
