@@ -20,6 +20,6 @@ rules:
       response.status == 200 && response.body.bcontains(bytes(string(r1 * r2)))
 detail:
   author: JingLing(https://hackfun.org/)
-  metinfo_version: zzcms201910
+  version: zzcms201910
   links:
     - https://github.com/JcQSteven/blog/issues/18
