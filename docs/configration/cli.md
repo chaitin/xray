@@ -175,7 +175,9 @@ a=b&x=y
 + `--webhook-output` 将结果发送到一个地址
 + `--json-output` 将结果输出到一个 json 文件中
 
-后两种的输出是 json 格式的结构化数据，数据格式参照: [漏洞格式](api/vuln.md)
+`--webhook-output`和`--json-output` 输出是 json 格式的结构化数据，数据格式参照: [漏洞格式](api/vuln.md)。
+
+你可以在`--json-output`和`--html-otput`参数中使用变量`__timestamp__`和` __datetime__`，这样文件名中对应位置会自动替换为时间戳或日期时间，避免输出到同一文件时报错。如`--html-output report-__datetime__.html`将使用`report-2019_11_01-10_03_26.html`作为报告文件名。
 
 
 ## 联合使用
