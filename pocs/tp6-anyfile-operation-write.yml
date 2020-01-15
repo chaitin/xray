@@ -1,4 +1,4 @@
-name: poc-yaml-tp6-Anyfile-operation-write
+name: poc-yaml-tp6-anyfile-operation-write
 set:
   f1: randomInt(800000000, 900000000)
 rules:
