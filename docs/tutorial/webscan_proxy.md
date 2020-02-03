@@ -12,19 +12,19 @@
 
 #### ** Windows **
 
-![](../assets/tutorial/windows_genca.png)
+![](../assets/tutorial/windows_genca.jpg)
 
 运行 `.\xray_windows_amd64.exe genca`
 
 #### ** MacOS **
 
-![](../assets/tutorial/mac_genca.png)
+![](../assets/tutorial/mac_genca.jpg)
 
 运行 `./xray_darwin_amd64 genca` 即可生成 ca 证书，保存为 `ca.crt` 和 `ca.key` 两个文件。
 
 #### ** Linux **
 
-![](../assets/tutorial/linux_genca.png)
+![](../assets/tutorial/linux_genca.jpg)
 
 运行 `./xray_darwin_amd64 genca` 即可生成 ca 证书，保存为 `ca.crt` 和 `ca.key` 两个文件。
 
@@ -46,13 +46,13 @@
 
 双击 `ca.crt`，然后按照下图的步骤操作。
 
-![](../assets/tutorial/windows_install_ca_1.png)
-![](../assets/tutorial/windows_install_ca_2.png)
-![](../assets/tutorial/windows_install_ca_3.png)
-![](../assets/tutorial/windows_install_ca_4.png)
-![](../assets/tutorial/windows_install_ca_5.png)
-![](../assets/tutorial/windows_install_ca_6.png)
-![](../assets/tutorial/windows_install_ca_7.png)
+![](../assets/tutorial/windows_install_ca_1.jpg)
+![](../assets/tutorial/windows_install_ca_2.jpg)
+![](../assets/tutorial/windows_install_ca_3.jpg)
+![](../assets/tutorial/windows_install_ca_4.jpg)
+![](../assets/tutorial/windows_install_ca_5.jpg)
+![](../assets/tutorial/windows_install_ca_6.jpg)
+![](../assets/tutorial/windows_install_ca_7.jpg)
 
 #### ** MacOS **
 
@@ -60,11 +60,11 @@
 
 右上角搜索 `x-ray`，可以看到一条记录，有一个红叉，被标记为不受信任的。
 
-![](../assets/tutorial/mac_install_ca_1.png)
+![](../assets/tutorial/mac_install_ca_1.jpg)
 
 然后双击这条记录，将 `SSL` 那一项改为始终信任，然后点击左上角关闭窗口，输入密码授权。
 
-![](../assets/tutorial/mac_install_ca_2.png)
+![](../assets/tutorial/mac_install_ca_2.jpg)
 
 #### ** Linux **
 
@@ -75,7 +75,7 @@ sudo cp ca.crt /usr/local/share/ca-certificates/xray.crt
 sudo update-ca-certificates
 ```
 
-![](../assets/tutorial/linux_install_ca_1.png)
+![](../assets/tutorial/linux_install_ca_1.jpg)
 
 #### ** iOS **
 
@@ -83,21 +83,21 @@ sudo update-ca-certificates
 
 或者参考后续的步骤，将手机配置代理之后，使用浏览器访问 `http://xray/` 然后点击下载 ca 证书，然后再安装。
 
-![](../assets/tutorial/ios_install_ca_1.png)
+![](../assets/tutorial/ios_install_ca_1.jpg)
 
 然后去设置首页，查看下载的描述文件。
 
-![](../assets/tutorial/ios_install_ca_2.png)
+![](../assets/tutorial/ios_install_ca_2.jpg)
 
 点击右上角安装，输入密码授权。
 
-![](../assets/tutorial/ios_install_ca_3.png)
+![](../assets/tutorial/ios_install_ca_3.jpg)
 
 点击通用设置-关于，在最后一项证书信任设置中，将 `Insecure Root CA For X-Ray Scanner` 一项的开关打开。
 
-![](../assets/tutorial/ios_install_ca_4.png)
-![](../assets/tutorial/ios_install_ca_5.png)
-![](../assets/tutorial/ios_install_ca_6.png)
+![](../assets/tutorial/ios_install_ca_4.jpg)
+![](../assets/tutorial/ios_install_ca_5.jpg)
+![](../assets/tutorial/ios_install_ca_6.jpg)
 
 #### ** Android **
 
@@ -140,7 +140,7 @@ mitm:
 .\xray_windows_amd64.exe webscan --listen 127.0.0.1:7777 --html-output xray-testphp.html
 ```
 
-![](../assets/tutorial/windows_proxy_webscan_1.png)
+![](../assets/tutorial/windows_proxy_webscan_1.jpg)
 
 #### ** MacOS **
 
@@ -148,7 +148,7 @@ mitm:
 ./xray_darwin_amd64 webscan --listen 127.0.0.1:7777 --html-output xray-testphp.html
 ```
 
-![](../assets/tutorial/mac_proxy_webscan_1.png)
+![](../assets/tutorial/mac_proxy_webscan_1.jpg)
 
 #### ** Linux **
 
@@ -174,9 +174,9 @@ mitm:
 
 按照下图的步骤操作
 
-![](../assets/tutorial/ie_configure_proxy_1.png)
-![](../assets/tutorial/ie_configure_proxy_2.png)
-![](../assets/tutorial/ie_configure_proxy_3.png)
+![](../assets/tutorial/ie_configure_proxy_1.jpg)
+![](../assets/tutorial/ie_configure_proxy_2.jpg)
+![](../assets/tutorial/ie_configure_proxy_3.jpg)
 
 #### ** Chrome **
 
@@ -188,11 +188,11 @@ Chrome 可以使用操作系统的代理配置，同时也可以使用插件控�
 
 新建情景模式，命名为 `xray`，然后 todo todo
 
-![](../assets/tutorial/chrome_configure_proxy_1.png)
+![](../assets/tutorial/chrome_configure_proxy_1.jpg)
 
 选择 `xray` 模式，这样 Chrome 就会使用 xray 作为代理了。
 
-![](../assets/tutorial/chrome_configure_proxy_2.png)
+![](../assets/tutorial/chrome_configure_proxy_2.jpg)
 
 #### ** FireFox **
 
@@ -202,9 +202,9 @@ todo
 
 按照下图的步骤操作
 
-![](../assets/tutorial/ios_configure_proxy_1.png)
-![](../assets/tutorial/ios_configure_proxy_2.png)
-![](../assets/tutorial/ios_configure_proxy_3.png)
+![](../assets/tutorial/ios_configure_proxy_1.jpg)
+![](../assets/tutorial/ios_configure_proxy_2.jpg)
+![](../assets/tutorial/ios_configure_proxy_3.jpg)
 
 #### ** Android **
 
@@ -222,7 +222,7 @@ todo
  - http://testphp.vulnweb.com/artists.php?artist=2
  - http://testphp.vulnweb.com/redir.php?r=http://www.w3.org
 
-![](../assets/tutorial/xray_proxy_scan_vuln_1.png)
+![](../assets/tutorial/xray_proxy_scan_vuln_1.jpg)
 
-![](../assets/tutorial/xray_proxy_scan_html_report_1.png)
+![](../assets/tutorial/xray_proxy_scan_html_report_1.jpg)
 

@@ -40,7 +40,7 @@ https://phith0n.github.io/xray-poc-generation/
 
 配置见图
 
-![](../assets/poc/poc-jetbrains.png)
+![](../assets/poc/poc-jetbrains.jpg)
 
 ## POC 结构
 

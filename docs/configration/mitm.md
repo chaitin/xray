@@ -68,7 +68,7 @@ includes:
 allow_ip_range: ["127.0.0.1","192.168.1.1/24"]
 ```
 留空则允许所有地址访问，如果来源 IP 没有在配置的地址内，使用者会显示这样的错误:
-![ip_range.png](../assets/configuration/allow_ip_range.png)
+![ip_range.jpg](../assets/configuration/allow_ip_range.jpg)
 
 ## 队列长度配置
 ```yaml
@@ -108,6 +108,6 @@ Accept-Encoding: gzip
 
 假如启动 xray 时配置的 listen 为 `127.0.0.1:1111`，`upstream_proxy` 为 `http://127.0.0.1:8080`, 那么浏览器设置代理为 `http://127.0.0.1:1111`，整体数据流如下:
 
-![](../assets/configuration/upstream.png)
+![](../assets/configuration/upstream.jpg)
 
 再次重申下，该配置仅影响代理本身，不会影响插件在漏洞探测时的发包行为，如果想代理漏洞探测的，请参照接下来的 [HTTP配置](./http.md) 的部分!

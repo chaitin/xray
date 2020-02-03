@@ -64,9 +64,9 @@ reverse:
  - 生成自定义域名，并记录解析记录
  - 使用平台预制 payload，记录抓取的数据
 
-![cland.png](../assets/configuration/cland_1.png)
+![cland.jpg](../assets/configuration/cland_1.jpg)
 
-![cland.png](../assets/configuration/cland_2.png)
+![cland.jpg](../assets/configuration/cland_2.jpg)
 
 ## 场景分析
 

@@ -7,8 +7,8 @@ xray常用命令大型鼠标垫 | 1 | ![](../assets/contribute/mouse-mat.jpg)
 xray 定制键帽 (随机字母) | 1 | 制作中
 [pwnhub](https://pwnhub.cn/index) 邀请码 | 3 | ![](../assets/contribute/pwnhub.jpg)
 xray 高级版 | 5 | [高级版对比](generic/compare.md)
-ikbc/akko 键盘(87键) | 5 | ![](../assets/contribute/ikbc.png)
-filco 键盘 (87键) | 9 | ![](../assets/contribute/filco.png)
+ikbc/akko 键盘(87键) | 5 | ![](../assets/contribute/ikbc.jpg)
+filco 键盘 (87键) | 9 | ![](../assets/contribute/filco.jpg)
 
 
 ## **备注**：

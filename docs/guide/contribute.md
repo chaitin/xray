@@ -30,10 +30,10 @@ xray 社区版经过数个版本的更迭，基本覆盖了对常见漏洞的 fu
 
 在 Github 提交 Pull request 后，会有travis-ci自动进行POC的格式检查，对于没有通过的检查，可以通过点击详情查看具体的错误原因：
 
-![](../assets/contribute/fail-detail.png)
+![](../assets/contribute/fail-detail.jpg)
 
 待修复完成并重新提交达到下面的样子就会被人工审核了。
 
-![](../assets/contribute/pr.png)
+![](../assets/contribute/pr.jpg)
 
 

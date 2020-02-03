@@ -52,13 +52,13 @@ xray 跨平台支持，请下载时选择需要的版本下载。
 
 以下载到 `C:\Users\$User\Downloads` 为例，右键解压，就可以得到 `xray_windows_amd64.exe` 文件了（有的解压软件还会创建一个 `xray_windows_amd64.exe` 的文件夹，不要和最终的可执行文件混淆了）。
 
-![](../assets/tutorial/windows_term.png)
+![](../assets/tutorial/windows_term.jpg)
 
 使用桌面左下方的的搜索框，输入 `PowerShell`，点击 `Windows PowerShell`，进入命令终端。
 
 然后 `cd` 到下载目录，运行 `.\xray_windows_amd64.exe version` 即可查看 xray 的版本号。
 
-![](../assets/tutorial/windows_run_version.png)
+![](../assets/tutorial/windows_run_version.jpg)
 
 #### ** MacOS **
 
@@ -66,11 +66,11 @@ xray 跨平台支持，请下载时选择需要的版本下载。
 
 打开使用的终端工具，比如 `Terminal` 或者 `iTerm`
 
-![](../assets/tutorial/mac_term.png)
+![](../assets/tutorial/mac_term.jpg)
 
 然后 `cd` 到下载目录，运行 `./xray_darwin_amd64 version` 即可查看 xray 的版本号。
 
-![](../assets/tutorial/mac_run_version.png)
+![](../assets/tutorial/mac_run_version.jpg)
 
 #### ** Linux **
 
@@ -78,5 +78,5 @@ xray 跨平台支持，请下载时选择需要的版本下载。
 
 然后运行 `./xray_linux_amd64 version` 即可查看 xray 的版本号。
 
-![](../assets/tutorial/linux_run_version.png)
+![](../assets/tutorial/linux_run_version.jpg)
 <!-- tabs:end -->
