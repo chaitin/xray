@@ -1,0 +1,16 @@
+name: poc-yaml-spark-unauth
+rules:
+  - method: GET
+    path: /
+    follow_redirects: false
+    expression: |
+      response.status == 400 && response.body.bcontains(b"ErrorResponse") && response.body.bcontains(b"serverSparkVersion")
+  - method: GET
+    path: /v1/submissions
+    follow_redirects: false
+    expression: |
+      response.status == 400 && response.body.bcontains(b"create") && response.body.bcontains(b"kill")
+detail:
+  author: betta(https://github.com/betta-cyber)
+  links:
+    - https://xz.aliyun.com/t/2490
