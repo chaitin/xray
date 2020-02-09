@@ -16,6 +16,8 @@
 
 🏠[使用文档](https://xray.cool)  ⬇️[下载地址](https://github.com/chaitin/xray/releases) 📚[English Document](https://github.com/chaitin/xray/tree/master/docs/en-us/generic)
 
+注意：xray 不开源，直接下载构建的二进制文件即可，仓库内主要为社区贡献的 poc，每次 xray 发布将自动打包。
+
 ## 🚀 快速使用
 
 **在使用之前，请务必阅读并同意 [License](https://github.com/chaitin/xray/blob/master/LICENSE.md) 文件中的条款，否则请勿安装使用本工具。**
