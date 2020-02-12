@@ -8,11 +8,6 @@ xray支持用户自己编写YAML格式的POC规则，YAML是JSON的超集，也�
 
 ## 编写环境
 
-### 在线编写
-
-https://phith0n.github.io/xray-poc-generation/
-
-编写后点击生成然后复制到本地测试即可
 
 ### VSCode
 
@@ -41,6 +36,12 @@ https://phith0n.github.io/xray-poc-generation/
 配置见图
 
 ![](../assets/poc/poc-jetbrains.jpg)
+
+### 在线编写(不推荐，功能不全)
+
+https://phith0n.github.io/xray-poc-generation/
+
+编写后点击生成然后复制到本地测试即可
 
 ## POC 结构
 
