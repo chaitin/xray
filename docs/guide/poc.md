@@ -168,9 +168,9 @@ xray 所有CEL文档中的函数，同时还包含xray引擎中自定义的函�
 
 - `response.body.bcontains(b'test')`
   - 返回包 body 包含 test，因为 body 是一个 bytes 类型的变量，所以我们需要使用 bcontains 方法，且其参数也是 bytes
-- `repsonse.body.bcontains(bytes(r1+'some value'+r2))`
+- `response.body.bcontains(bytes(r1+'some value'+r2))`
   - r1、r2是 randomLowercase 的变量，这里动态的判断 body 的内容
-- `repsonse.content_type.contains('application/octet-stream') && response.body.bcontains(b'\x00\x01\x02')`
+- `response.content_type.contains('application/octet-stream') && response.body.bcontains(b'\x00\x01\x02')`
   - 返回包的 content-type 包含 application/octet-stream，且 body 中包含 0x000102 这段二进制串
 - `response.content_type.contains('zip') && r'^PK\x03\x04'.bmatches(response.body)`
   - 这个规则用来判断返回的内容是否是zip文件，需要同时满足条件：content-type 包含关键字 "zip"，且 body 匹配上正则r'^PK\x03\x04'（就是zip的文件头）。因为 startsWith 方法只支持字符串的判断，所以这里没有使用。
