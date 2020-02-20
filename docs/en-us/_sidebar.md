@@ -13,6 +13,7 @@
     - [Crawler Config](configration/basic-crawler.md)
     - [Subdomain Config](configration/subdomain.md)
     - [Updater Config](configration/update.md)
+    - [Service Scan](en-us/tutorial/service_scan.md)
 - Advanced Usage
   - [Custom POC Syntax](guide/poc.md)
   - [High Quality POC](guide/high_quality_poc.md)
