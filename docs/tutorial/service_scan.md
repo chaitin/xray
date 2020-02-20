@@ -2,7 +2,18 @@
 
 xray 中最常见的是 web 扫描，但是 xray 将会逐渐开放服务扫描的相关能力，目前主要是服务扫描相关的 poc。老版本升级的用户请注意配置文件需要加入服务扫描的相关 poc 名字，目前只有一个 tomcat-cve-2020-1938 ajp 协议任意文件检测 poc。
 
-参数配置目前比较简单，为 `target` 和 `json-output`。`target` 为 `host:port` 格式，比如 `127.0.0.1:8009`，`json-output` 同 web 扫描，将结果保存在 json 文件中。
+参数配置目前比较简单，输入支持两种方式，例如:
+
+```
+快速检测单个目标
+./xray servicescan --target 127.0.0.1:8009
+
+批量检查的 1.file 中的目标, 一行一个目标，带端口
+./xray servicescan --target-file 1.file 
+
+将检测结果输出到 json 文件中
+./xray servicescan --target 127.0.0.1:8099 --json-output 1.json 
+```
 
 ```
 NAME:
@@ -12,8 +23,9 @@ USAGE:
     servicescan [command options] [arguments...]
 
 OPTIONS:
-   --target value      specify the target, for example: host:8009
-   --json-output FILE  output xray results to FILE in json format
+   --target value       specify the target, for example: host:8009
+   --target-file value  load targets from a local file, one target a line
+   --json-output FILE   output xray results to FILE in json format
 ```
 
 以 tomcat CVE-2020-1938 ajp 协议任意文件读取为例，命令行如下图。
