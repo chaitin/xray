@@ -20,12 +20,11 @@ rules:
       filename="{{r2}}.jar"
 
       Content-Type:application/octet-stream
-      
+
 
       {{r1}}
 
       --8ce4b16b22b58894aa86c421e8759df3--
-
 
     follow_redirects: true
     expression: >
