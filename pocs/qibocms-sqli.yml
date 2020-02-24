@@ -6,3 +6,5 @@ rules:
       response.body.bcontains(b"e165421110ba03099a1c0393373c5b43")
 detail:
   author: rexus
+  links:
+    - https://www.ld-fcw.com/
