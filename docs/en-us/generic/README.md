@@ -129,7 +129,7 @@ We are working hard for new detection modules
 
 ## ⚡️ Advanced usage
 
-For the below advanced usage, please refer to [http://chaitin.github.io/xray/](http://chaitin.github.io/xray/) .
+For the below advanced usage, please refer to [https://chaitin.github.io/xray/](https://chaitin.github.io/xray/) .
 
  - modify config file
  - generate ssl ca certificate
