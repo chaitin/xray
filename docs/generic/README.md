@@ -139,7 +139,7 @@
 
 ## ⚡️ 进阶使用
 
-下列高级用法请查看 [http://chaitin.github.io/xray/](http://chaitin.github.io/xray/) 使用。
+下列高级用法请查看 [https://chaitin.github.io/xray/](https://chaitin.github.io/xray/) 使用。
 
  - 修改配置文件
  - 抓取 https 流量
