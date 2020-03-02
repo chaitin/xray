@@ -1,0 +1,11 @@
+name: poc-yaml-wukongcrm-unauth
+rules:
+  - method: GET
+    path: "/Public/js/php/file_manager_json.php"
+    expression: |
+      response.status==200 && response.body.bcontains(b'path')
+
+detail:
+  author: xiaoming
+  links:
+    https://fofa.so/
