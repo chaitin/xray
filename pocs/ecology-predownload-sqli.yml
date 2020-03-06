@@ -1,4 +1,4 @@
-name: poc-yaml-ecology-PreDownload-sqli
+name: poc-yaml-ecology-predownload-sqli
 rules:
   - method: GET
     path: >-
