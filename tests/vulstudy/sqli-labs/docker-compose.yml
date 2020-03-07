@@ -1,0 +1,7 @@
+version: '2'
+services:
+ web:
+  #build: .
+  image: c0ny1/sqli-labs:0.1
+  ports:
+   - "80:80"
