@@ -6,6 +6,6 @@ rules:
     expression: |
       status == 200 && body.bcontains(b"sql=delete from AspCms_Content")
 detail:
-  author: Hzllaga
-  links:
-        - http://www.hackdig.com/?11/hack-7183.htm
+    author: Hzllaga
+    links:
+      - http://www.hackdig.com/?11/hack-7183.htm
