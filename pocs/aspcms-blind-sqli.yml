@@ -5,3 +5,5 @@ rules:
     follow_redirects: false
     expression: |
       status == 200 && body.bcontains(b'sql=delete from AspCms_Content')
+detail:
+  author: Hzllaga
