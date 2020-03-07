@@ -1,0 +1,146 @@
+
+
+<!DOCTYPE html> 
+
+<html lang="zh"> 
+
+<head> 
+
+<meta charset="UTF-8"> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<link rel="icon" href="favicon.jpg" type="image/x-icon">
+<title>vulstudy</title> 
+<link rel="stylesheet" type="text/css" href="index.css"> 
+<link rel="stylesheet" href="bootstrap.min.css">
+</head> 
+
+<body style="background-color: #2e3030;"> 
+
+<div style="width:240px;height:50px;margin: 0 auto;border: 0px solid #000000;">
+<a href="http://github.com/c0ny1/vulstudy" style="text-decoration:none;" target="view_window"><h1 style="color: #fbcc04;font-size: 60px;">vulstudy</h1></a>
+</div>
+
+<div id="Wrapper"> 
+
+<div id="Box"> 
+
+
+
+<table class="table table-hover" style="width: 90%;margin: 0 auto;font-size: 18px;">
+      <thead>
+        <tr>
+          <th style="text-align: center;color: #7f160e;font-weight: border;font-size: 22px;">序号</th>
+          <th style="text-align: center;color: #7f160e;font-weight: border;font-size: 22px;">漏洞平台</th>
+          <th style="text-align: center;color: #7f160e;font-weight: border;font-size: 22px;">包含漏洞</th>
+          <th style="text-align: center;color: #7f160e;font-weight: border;font-size: 22px;">作者</th>
+          <th style="text-align: center;color: #7f160e;font-weight: border;font-size: 22px;">语言</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr onClick="openURL(':81/')">
+          <th scope="row" style="text-align: center;">1</th>
+          <td>DVWA</td>
+          <td>综合</td>
+          <td>未知</td>
+          <td>php</td>
+        </tr>
+        <tr onClick="openURL(':82/')">
+          <th scope="row" style="text-align: center;">2</th>
+          <td>bWAPP</td>
+          <td>综合</td>
+          <td>未知</td>
+          <td>php</td>
+        </tr>
+        <tr onClick="openURL(':83/')">
+          <th scope="row" style="text-align: center;">3</th>
+          <td>sqli-labs</td>
+          <td>SQL注入</td>
+          <td>Audi</td>
+          <td>php</td>
+        </tr>
+        <tr onClick="openURL(':84/')">
+          <th scope="row" style="text-align: center;">4</th>
+          <td>mutillidae</td>
+          <td>综合</td>
+          <td>OWASP</td>
+          <td>php</td>
+        </tr>
+        <tr onClick="openURL(':85/bodgeit')">
+          <th scope="row" style="text-align: center;">5</th>
+          <td>BodgeIt</td>
+          <td>综合</td>
+          <td>psiinon</td>
+          <td>java</td>
+        </tr>
+        <tr onClick="openURL(':86/')">
+          <th scope="row" style="text-align: center;">6</th>
+          <td>WackoPicko</td>
+          <td>综合</td>
+          <td>adamdoupe</td>
+          <td>php</td>
+        </tr>
+        <tr onClick="openURL(':8080/WebGoat/')">
+          <th scope="row" style="text-align: center;">7</th>
+          <td>WebGoat</td>
+          <td>综合</td>
+          <td>OWASP</td>
+          <td>java</td>
+        </tr>
+        <tr onClick="openURL(':1664/')">
+          <th scope="row" style="text-align: center;">8</th>
+          <td>Hackademic</td>
+          <td>综合</td>
+          <td>northdpole</td>
+          <td>php</td>
+        </tr>
+        <tr onClick="openURL(':88/')">
+          <th scope="row" style="text-align: center;">9</th>
+          <td>XSSed</td>
+          <td>XSS</td>
+          <td>AJ00200</td>
+          <td>php</td>
+        </tr>
+        <tr onClick="openURL(':65412/')">
+          <th scope="row" style="text-align: center;">10</th>
+          <td>DSVW</td>
+          <td>综合</td>
+          <td>Miroslav Stampar</td>
+          <td>python</td>
+        </tr>
+		<tr onClick="openURL(':3000/')">
+          <th scope="row" style="text-align: center;">11</th>
+          <td>vulnerable-node</td>
+          <td>综合</td>
+          <td>cr0hn</td>
+          <td>NodeJS</td>
+        </tr>
+		<tr onClick="openURL(':8090/')">
+          <th scope="row" style="text-align: center;">12</th>
+          <td>MCIR</td>
+          <td>综合</td>
+          <td>Spider Labs</td>
+          <td>php</td>
+        </tr>
+      </tbody>
+    </table>
+
+</div> 
+
+</div> 
+<div style="height:60px;margin-top: 30px; bottom:0px;width:100%; clear:both;border: 0px solid #000000;">
+    	<div style="width: 250px;height: 25px;border: 0px solid #000000;margin: 0 auto;">
+    		<span style="color: #808080;font-size: 17px;">Copyright&nbsp;@&nbsp;2018&nbsp;by&nbsp;<a href="http://gv7.me">c0ny1</a></span>
+    	</div>
+    </div>
+
+<script type="text/javascript">
+	function openURL(path){
+		var domain = document.domain;
+		var url = "http://" + domain + path;
+		window.open(url);
+	}
+</script>
+</body> 
+
+</html>
