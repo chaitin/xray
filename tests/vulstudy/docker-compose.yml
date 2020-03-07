@@ -1,0 +1,98 @@
+version: '2'
+services:
+ web_gui:
+  build: ./www/
+  ports:
+   - "80:80"
+ 
+ dvwa:
+  image: c0ny1/dvwa:v1.9
+  ports:
+   - "81:80"
+
+ bwapp:
+  image: c0ny1/bwapp:v2.2
+  ports:
+   - "82:80"
+
+ sqli-labs:
+  image: c0ny1/sqli-labs:0.1
+  ports:
+   - "83:80"
+
+ mutillidae:
+  image: c0ny1/mutillidae:v2.6.62
+  ports:
+   - "84:80"
+ 
+ bodgelt:
+  image: psiinon/bodgeit:latest
+  ports:
+   - "85:8080"
+
+ wackopicko:
+  image: adamdoupe/wackopicko:latest
+  ports:
+   - "86:80"
+
+ webgoat:
+  image: c0ny1/webgoat-server:v8.0.0.M14
+  command: "sh /home/webgoat/start.sh"
+  ports:
+   - "8080:8080"
+
+ webwolf:
+  image: c0ny1/webwolf:v8.0.0.M14
+  command: "sh /home/webwolf/start.sh"
+  depends_on:
+   - webgoat
+  ports:
+   - "8081:8081"
+
+ Hackademic:
+  image: c0ny1/hackademic:master
+  ports:
+    - "1664:80"
+
+ XSSed:
+  image: c0ny1/xssed:latest
+  ports:
+   - "88:80"
+
+ dsvw:
+  image: c0ny1/dsvw:v0.1m
+  ports:
+   - "65412:65412"
+
+ #########################################
+ vulnerable_node:
+  restart: always
+  image: c0ny1/vulnerable-node:latest
+  ports:
+   - "3000:3000"
+  depends_on:
+   - postgres_db
+
+ postgres_db:
+  restart: always
+  build: ./vulnerable-node/postgresql/
+  ports:
+   - "5432:5432"
+ 
+ #########################################
+ mcir:
+  image: andresriancho/mcir:latest
+  ports:
+   - "8090:80"
+  links:
+   - mysqldb
+  environment:
+   - APACHE_RUN_USER=www-data
+   - APACHE_RUN_GROUP=www-data
+   - APACHE_LOG_DIR=/var/log/apache2/
+ mysqldb:
+  image: mysql
+  environment:
+   - MYSQL_ROOT_PASSWORD=mcirpass00112233
+   - MYSQL_DATABASE=sqlol
+ #########################################

@@ -1,0 +1,17 @@
+#url: http://ip:8080/WebGoat
+version: '2.0'
+services:
+  webgoat:
+    #build: webgoat-server/
+    image: c0ny1/webgoat-server:v8.0.0.M14
+    command: "sh /home/webgoat/start.sh"
+    ports:
+      - "8080:8080"
+  webwolf:
+    #build: webwolf/
+    image: c0ny1/webwolf:v8.0.0.M14
+    command: "sh /home/webwolf/start.sh"
+    depends_on:
+      - webgoat
+    ports:
+      - "8081:8081"

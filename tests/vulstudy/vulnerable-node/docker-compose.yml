@@ -1,0 +1,18 @@
+version: '2'
+services:
+  vulnerable_node:
+    restart: always
+    #build: .
+    image: c0ny1/vulnerable-node:latest
+    ports:
+      - "3000:3000"
+#    links:
+#      - postgres_db:postgres_db
+    depends_on:
+      - postgres_db
+
+  postgres_db:
+    restart: always
+    build: ./postgresql
+    ports:
+      - "5432:5432"
