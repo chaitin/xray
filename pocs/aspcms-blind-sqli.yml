@@ -4,6 +4,8 @@ rules:
     path: /admin_aspcms/_content/_Content/AspCms_ContentFun.asp?action=tdel&id=2='
     follow_redirects: false
     expression: |
-      status == 200 && body.bcontains(b'sql=delete from AspCms_Content')
+      status == 200 && body.bcontains(b"sql=delete from AspCms_Content")
 detail:
   author: Hzllaga
+  links:
+        - http://www.hackdig.com/?11/hack-7183.htm
