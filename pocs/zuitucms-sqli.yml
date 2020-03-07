@@ -1,4 +1,4 @@
-name: poc-yaml-zuitu-sqli
+name: poc-yaml-zuitucms-sqli
 set:
   rand: randomInt(200000000, 210000000)
 rules:
