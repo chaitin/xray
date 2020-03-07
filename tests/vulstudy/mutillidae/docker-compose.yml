@@ -1,0 +1,7 @@
+version: '2'
+services:
+ web:
+  #build: .
+  image: c0ny1/mutillidae:v2.6.62
+  ports:
+   - "80:80"

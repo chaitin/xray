@@ -1,0 +1,70 @@
+html, body {
+  width    : 100%;
+  height   : 100%;
+  margin   : 0;
+}
+
+th{
+	text-align: center;border-bottom:1px solid #f6f6f6;
+}
+td{
+	text-align: center;border-bottom:1px solid #f6f6f6;
+}
+.table-hover > tbody > tr:hover > td,
+.table-hover > tbody > tr:hover > th {
+  background-color: #ce7b0b;
+}
+
+.center {
+  display      : block;
+  margin-left  : auto;
+  margin-right : auto;
+}
+
+#Wrapper {
+  margin-top: 60px;
+  font-family : "Roboto", sans-serif;
+  text-align  : center;
+}
+
+#Box {
+  max-width          : 800px;
+  max-height         : 600px;
+  background-color   : rgba(255, 255, 255, .7);
+  margin-left        : auto;
+  margin-right       : auto;
+  padding            : 10px; 
+  left               : 0;
+  right              : 0;
+  border-radius      : 10px;
+  -webkit-box-shadow : 0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -moz-box-shadow    : 0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  box-shadow         : 0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+#Box h1 {
+  font-weight : 300;
+  font-size   : 40px;
+}
+
+#Box h1 span { font-weight : 400; }
+
+#Box h2 {
+  font-weight : 300;
+  font-size   : 30px;
+}
+
+#Box .code-preview {
+  width     : 330px;
+  font-size : 15px;
+}
+
+#Box .effects {
+  width         : 180px;
+  height        : 50px;
+  font-size     : 25px;
+  outline       : none;
+  margin        : 30px auto;
+  opacity       : .7;
+  border-radius : 5px;
+}
