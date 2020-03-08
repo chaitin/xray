@@ -1,4 +1,4 @@
-name: poc-yaml-yongyou-sqli
+name: poc-yaml-yongyou-zhiyuan-sqli
 set:
   rand: randomInt(200000000, 210000000)
 rules:
