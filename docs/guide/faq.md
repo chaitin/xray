@@ -16,3 +16,7 @@ xray 在代理扫描的时候，需要同时和客户端到和服务端建立连
  - `dial tcp: lookup xxx on xxx:53: no such host` 要访问的地址的域名，xray 解析失败。
    - 最常见原因是域名拼写错误，比如 `example.xray.cool` 写错为 `exmple.xray.cool`。
    - 在 MacOS 上，如果需要 VPN 才可以访问和解析的域名，在使用 xray 作为代理后，即使 VPN 连接了也无法解析。这是因为 xray 使用了跨平台编译技术，没有使用 MacOS 的 sdk，无法解析这种域名，普通域名不受影响。如果十分依赖这种场景，可以提交反馈。
+
+## 使用了 `--json-output` 或者 `--html-output` 之后没有出现结果文件
+
+xray 目前在扫到漏洞的时候才会创建文件并写入数据，否则说明没有发现漏洞。
