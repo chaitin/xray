@@ -10,7 +10,7 @@ rules:
     path: /plus/guestbook.php?action=admin&job=editok&msg=errs.cc'&id={{articleid}}
     follow_redirects: true
     expression: |
-      response.status == 200 && response.body.bcontains(b"\xb3\xc9\xb9\xa6\xb8\xfc\xb8\xc4\xbb\xf2\xbb\xd8\xb8\xb4\xd2\xbb\xcc\xf5\xc1\xf4\xd1\xd4") 
+      response.status == 200 && response.body.bcontains(b"成功更改或回复一条留言") 
   - method: GET
     path: /plus/guestbook.php
     follow_redirects: true
