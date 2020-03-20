@@ -34,6 +34,25 @@
     section.cover .cover-main>p:last-child a:hover {
        color: white;
     }
+
+    #TOPBANNER {
+      display: block;
+      height: 2rem;
+      width: 100%;
+      padding: 10px 20px;
+      line-height: 0.1rem;
+      top: 0;
+    }
+    #TOPBANNER p {
+      margin: auto;
+      height: 100%;
+    }
+
+    #TOPBANNER a {
+      margin: auto 5px;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+    }
   </style>
 </head>
 <body>
@@ -85,6 +104,12 @@
         tocMaxLevel: 4,
         target: 'h1, h2, h3, h4'
       },
+      topBanner: {
+        content: "🎉《被动Web扫描器xray从入门到精通》课程在i春秋平台上线啦 <a href='https://www.ichunqiu.com/course/66236' target='_blank'>点击查看</a>",
+        textAlign: "center",
+        zIndex: 999,
+        position: "relative",
+      }
     }
   </script>
   <script src="https://cdn.staticfile.org/docsify/4.10.2/docsify.min.js"></script>
@@ -98,5 +123,44 @@
   <script src="./assets/static/docsify-scroll-to-top.min.js"></script>
   <script src="./assets/static/zoom-image.min.js"></script>
   <script src="./assets/static/docsify-page-toc.js"></script>
+  <script>
+    function plugin (hook, vm) {
+      hook.ready(function () {
+        const { topBanner } = vm.config
+        if (!topBanner) {
+          return
+        }
+        const defaultTag = topBanner.defaultTag || 'span'
+        const bannerContent = vm.compiler.compile(topBanner.content)
+        const backgroundColor = topBanner.backgroundColor || '#deebff'
+        const textColor = topBanner.textColor || '#091E42'
+        const linkColor = topBanner.linkColor || textColor
+        const textAlign = topBanner.textAlign || 'center'
+        const bannerPosition = topBanner.position || 'fixed'
+        const bannerZIndex = topBanner.zIndex || '99'
+        // creating the new element
+        const bannerElement = document.createElement(defaultTag)
+        bannerElement.setAttribute('id', 'TOPBANNER')
+
+        // adding bannerElement to DOM
+        const placeholder = document.querySelector('body')
+        placeholder.insertBefore(bannerElement, placeholder.childNodes[0])
+
+        // add the contents
+        const contentEl = document.querySelector(`${defaultTag}#TOPBANNER`)
+        contentEl.innerHTML = bannerContent
+
+        contentEl.style.backgroundColor = backgroundColor
+        contentEl.style.color = textColor
+        contentEl.style.position = bannerPosition
+        contentEl.style.Zindex = bannerZIndex
+        const contentAnchorEl = document.querySelector(`${defaultTag}#TOPBANNER a`)
+        contentAnchorEl.style.color = linkColor
+        bannerElement.style.textAlign = textAlign
+      })
+    }
+
+    window.$docsify.plugins = [].concat(plugin, window.$docsify.plugins)
+  </script>
 </body>
 </html>
