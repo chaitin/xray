@@ -2,7 +2,7 @@
   - 2020.03 xray 线上活动 
   
     链接: https://pan.baidu.com/s/15ymrn3OPL21GoBnzLz0WJw  
-    密码:dd1q
+    密码: dd1q
 
     - ChromeDevTools
     - 命令注入发现之旅
