@@ -91,4 +91,3 @@ Statistic: scanned: 480, pending: 3000, capacity: 3000, requestSent: 44902, late
  - 降低 `max_qps`，防止业务方负载过高
  - 关闭特定模块和禁用部分 poc，减少请求量
  - 不要性能比较差的代理作为 xray 的扫描代理，比如 burp 的代理通过请求的速度基本只有几十 qps，这样整个扫描的瓶颈就在 burp 上了。
- - 
