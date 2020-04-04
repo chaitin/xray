@@ -17,6 +17,7 @@
 - 高级用法
   - [自定义POC语法](guide/poc.md)
   - [编写高质量poc](guide/high_quality_poc.md)
+  - [扫描速度](guide/speed.md)
 - 使用场景
   - [有奖征文](scenario/intro.md)
   - [与 Burp 联动](scenario/burp.md)
