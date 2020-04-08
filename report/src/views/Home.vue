@@ -1,7 +1,7 @@
 <template>
   <div>
     <a-layout id="components-layout-demo-fixed">
-      <a-layout-header :style="{position: 'fixed',zIndex: 1,width: '100%',background: '#0867c1'}">
+      <a-layout-header :style="{position: 'fixed',zIndex: 10000,width: '100%',background: '#0867c1'}">
         <svg id="logo" viewBox="0 0 180 24" xmlns:xlink="http://www.w3.org/1999/xlink" width="7.5em" height="1em"
              class="fs6b9dl">
           <defs>
