@@ -122,7 +122,6 @@
           method: "POST",
           body: JSON.stringify(data),
         }).then(resp => resp.json()).then(body => {
-          console.log(body)
           if (body.code !== 0) {
             this.$message.error("提交失败! " + body.msg)
             return
