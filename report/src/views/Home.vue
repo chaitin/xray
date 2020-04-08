@@ -45,6 +45,7 @@
 
     <a-modal title="提交反馈"
              @ok="submitSentry"
+             :confirmLoading="confirmLoading"
              @cancel="modalVisible=false"
              :visible="modalVisible">
       <p>点击确定将提交<span style="color: red">本条</span>漏洞信息至 xray 服务器，请确保<span style="color: red">不包含敏感的数据信息</span></p>
@@ -84,6 +85,7 @@
       return {
         loading: true,
         modalVisible: false,
+        confirmLoading: false,
         comment: '',
         dataToSubmit: {},
         serviceData: [],
@@ -106,6 +108,7 @@
         this.dataToSubmit = data
       },
       submitSentry () {
+        this.confirmLoading = true
         let vulnJson = Object.assign({}, this.dataToSubmit)
         vulnJson.expand = undefined
 
@@ -115,13 +118,21 @@
           comment: this.comment,
           data: vulnJson
         }
-        fetch("https://feedback-fc.xray.cool/feedback", {method: "POST", body: JSON.stringify(data)})
-          .then(() => {
-            this.$message.success("提交成功!")
-          }).catch(() => {
+        fetch("https://feedback-fc.xray.cool/feedback", {
+          method: "POST",
+          body: JSON.stringify(data),
+        }).then(resp => resp.json()).then(body => {
+          console.log(body)
+          if (body.code !== 0) {
+            this.$message.error("提交失败! " + body.msg)
+            return
+          }
+          this.$message.success("提交成功!")
+        }).catch(() => {
           this.$message.error("提交失败！请检查网络")
         }).finally(() => {
           this.modalVisible = false
+          this.confirmLoading = false
         })
       },
       download (record) {
