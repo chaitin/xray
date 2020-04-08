@@ -1,5 +1,9 @@
 # xray 漏洞模板
 
+## DEMO
+
+[报告样例](https://chaitin.github.io/xray/assets/report_example.html)
+
 ## 准备工作
 
 安装 Node 和 yarn，进入该目录运行
