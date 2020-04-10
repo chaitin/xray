@@ -4,7 +4,7 @@ rules:
     path: /env
     follow_redirects: false
     expression: |
-      response.status == 200 && response.body.bcontains(b"spring.aop.proxyTargetClass") && response.body.bcontains(b"systemEnvironment")&& response.body.bcontains(b"springCloudClientHostInfo")
+      response.status == 200 && response.body.bcontains(b"spring.aop.proxyTargetClass") && response.body.bcontains(b"springCloudClientHostInfo")
 detail:
   author: su
   links:
