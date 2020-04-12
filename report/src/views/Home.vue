@@ -38,8 +38,9 @@
                                :loading="loading">
         </service-vulnerability>
       </a-layout-content>
+      <!--请注意，如果您使用了本报告项目，请勿删除下方的链接。-->
       <a-layout-footer :style="{ textAlign: 'center' }">
-        Powered by X-Ray Team
+        <a href="https://xray.cool" target="_blank">Powered by XRay Team</a>
       </a-layout-footer>
     </a-layout>
 
@@ -48,10 +49,10 @@
              :confirmLoading="confirmLoading"
              @cancel="modalVisible=false"
              :visible="modalVisible">
-      <p>点击确定将提交<span style="color: red">本条</span>漏洞信息至 xray 服务器，请确保<span style="color: red">不包含敏感的数据信息</span></p>
-      <p>您也可以查看 <a href="https://chaitin.github.io/xray/#/guide/feedback">https://chaitin.github.io/xray/#/guide/feedback</a>
+      <p>点击确定将提交<span style="color: red">本条</span>漏洞信息至 xray 服务器，请确保<span style="color: red">不包含敏感的数据信息。</span></p>
+      <p>您也可以查看 <a href="https://xray.cool/xray/#/guide/feedback" target="_blank">https://xray.cool/xray/#/guide/feedback</a>
         使用其他渠道提交反馈。</p>
-      <p>在下方填写备注，比如为什么这是误报，其他的建议，联系方式等；联系方式请尽量填写，发现很多并不是误报或者是对配置项目的理解问题。</p>
+      <p>您可以在下方填写备注，比如为什么这是误报，其他的建议，联系方式等；联系方式请尽量填写，我们发现很多并不是误报或者是对配置项目的理解问题，这样可以及时提供帮助。</p>
       <textarea style="width: 100%;" autoSize v-model="comment"></textarea>
     </a-modal>
   </div>
