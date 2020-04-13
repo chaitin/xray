@@ -7,6 +7,8 @@
 - average_response_time 最近 30s 平均响应时间
 - ratio_failed_http_requests 最近 30s 请求失败率
 
+控制台显示的 `pending` 就是 `num_found_urls - num_scanned_urls`，代表还没扫描的数量
+
 ## 样例
 ```json
 {

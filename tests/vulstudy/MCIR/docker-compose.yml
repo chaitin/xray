@@ -1,0 +1,19 @@
+version: '2'
+services:
+ mysqldb:
+   image: mysql
+   environment:
+     - MYSQL_ROOT_PASSWORD=mcirpass00112233
+     - MYSQL_DATABASE=sqlol
+
+ mcir:
+   #build: .
+   image: andresriancho/mcir:latest
+   ports:
+     - "8090:80"
+   links:
+     - mysqldb
+   environment:
+     - APACHE_RUN_USER=www-data
+     - APACHE_RUN_GROUP=www-data
+     - APACHE_LOG_DIR=/var/log/apache2/
