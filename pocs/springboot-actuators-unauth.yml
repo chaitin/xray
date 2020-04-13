@@ -1,0 +1,10 @@
+name: poc-yaml-springboot-actuators-unauth
+rules:
+  - method: GET
+    path: /env
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.body.bcontains(b"spring.aop.proxyTargetClass") && response.body.bcontains(b"systemEnvironment")&& response.body.bcontains(b"springCloudClientHostInfo")
+detail:
+  links:
+    - https://www.veracode.com/blog/research/exploiting-spring-boot-actuators
