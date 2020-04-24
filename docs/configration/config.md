@@ -9,9 +9,9 @@
 
 ```yaml
 
-version: 2.1
+version: 2.3
 plugins:
-  max_parallel: 10
+  max_parallel: 30
   xss:
     enabled: true
     ie_feature: false
@@ -24,6 +24,9 @@ plugins:
     detect_server_error_page: false
     detect_china_id_card_number: false
     detect_serialization_data_in_params: true
+    detect_cookie_password_leak: true
+    detect_unsafe_scheme: false
+    detect_cookie_httponly: false
   cmd_injection:
     enabled: true
     detect_blind_injection: false
@@ -31,6 +34,7 @@ plugins:
     enabled: true
   dirscan:
     enabled: true
+    depth: 1
     dictionary: ""
   jsonp:
     enabled: true
@@ -54,9 +58,17 @@ plugins:
     enabled: true
   brute_force:
     enabled: true
+    detect_default_password: true
+    detect_unsafe_login_method: false
     username_dictionary: ""
     password_dictionary: ""
-
+  struts:
+    enabled: true
+  thinkphp:
+    enabled: true
+    detect_think_php_sql_injection: true
+  fastjson:
+    enabled: true
   phantasm:
     enabled: true
     depth: 1
@@ -65,6 +77,7 @@ plugins:
 log:
   level: info # 支持 debug, info, warn, error, fatal
 
+# 配置解释见 https://chaitin.github.io/xray/#/configration/mitm
 mitm:
   ca_cert: ./ca.crt
   ca_key: ./ca.key
@@ -72,22 +85,26 @@ mitm:
     username: ""
     password: ""
   restriction:
-    includes: # 允许扫描的域
+    includes: # 允许扫描的域，此处无协议
     - '*' # 表示允许所有的域名和 path
+    - 'example.com' # 表示允许 example.com 下的所有 path
     - "example.com/admin*" # 表示允许 example.com 下的 /admin 开头的 path
     excludes:
     - '*google*'
     - '*github*'
     - '*.gov.cn'
     - '*.edu.cn'
+    - '*chaitin*'
+    - '*xray.cool'
   allow_ip_range: []
   queue:
-    max_length: 10000
+    max_length: 3000
   proxy_header:
     via: "" # 如果不为空，proxy 将添加类似 Via: 1.1 $some-value-$random 的 http 头
     x_forwarded: false # 是否添加 X-Forwarded-{For,Host,Proto,Url} 四个 http 头
   upstream_proxy: "" # mitm 的全部流量继续使用 proxy
 
+# 配置解释见 https://chaitin.github.io/xray/#/configration/basic-crawler
 basic_crawler:
   max_depth: 0 # 爬虫最大深度, 0 为无限制
   max_count_of_links: 0 # 本次扫描总共爬取的最大连接数， 0 为无限制
@@ -97,6 +114,22 @@ basic_crawler:
     excludes:
     - '*google*'
 
+# 配置解释见 https://chaitin.github.io/xray/#/configration/subdomain
+subdomain:
+  modes: # 使用哪些方式获取子域名
+    - brute # 字典爆破模式
+    - api # 使用各大 api 获取
+    - zone_transfer # 尝试使用域传送漏洞获取
+  worker_count: 100 # 决定同时允许多少个 DNS 查询
+  dns_servers: # 查询使用的 DNS server
+    - 1.1.1.1
+    - 8.8.8.8
+  allow_recursive: false # 是否允许递归扫描，开了后如果发现 a.example.com 将继续扫描 a.example.com 的子域名
+  max_depth: 5 # 最大允许的子域名深度
+  main_dictionary: "" # 一级子域名字典， 绝对路径
+  sub_dictionary: "" # 其它层级子域名字典， 绝对路径
+
+# 配置解释见 https://chaitin.github.io/xray/#/configration/reverse
 reverse:
   db_file_path: ""
   token: ""
@@ -115,14 +148,21 @@ reverse:
       record: localhost
       value: 127.0.0.1
       ttl: 60
+  rmi:
+    enabled: true
+    listen_ip: 127.0.0.1
+    listen_port: ""
   client:
     http_base_url: ""
     dns_server_ip: ""
+    rmi_server_addr: ""
     remote_server: false
+
+# 配置解释见 https://chaitin.github.io/xray/#/configration/http
 http:
   proxy: "" # 漏洞扫描时使用的代理
   dial_timeout: 5 # 建立 tcp 连接的超时时间
-  read_timeout: 30 # 读取 http 响应的超时时间，不可太小，否则会影响到 sql 时间盲注的判断
+  read_timeout: 10 # 读取 http 响应的超时时间，不可太小，否则会影响到 sql 时间盲注的判断
   fail_retries: 1 # 请求失败的重试次数，0 则不重试
   max_redirect: 5 # 单个请求最大允许的跳转数
   max_qps: 500 # 每秒最大请求数
@@ -144,18 +184,5 @@ http:
     - PROPFIND
     - MOVE
   tls_skip_verify: true # 是否验证目标网站的 https 证书。
-
-subdomain:
-  modes: # 使用哪些方式获取子域名
-    - brute # 字典爆破模式
-    - api # 使用各大 api 获取
-    - zone_transfer # 尝试使用域传送漏洞获取
-  worker_count: 100 # 决定同时允许多少个 DNS 查询
-  dns_servers: # 查询使用的 DNS server
-    - 1.1.1.1
-    - 8.8.8.8
-  allow_recursive: false # 是否允许递归扫描，开了后如果发现 a.example.com 将继续扫描 a.example.com 的子域名
-  max_depth: 5 # 最大允许的子域名深度
-  main_dictionary: "" # 一级子域名字典， 绝对路径
-  sub_dictionary: "" # 其它层级子域名字典， 绝对路径
+  enable_http2: false # 是否启用 http2
 ```
