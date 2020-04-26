@@ -1,0 +1,24 @@
+name: Check POC
+on: [push, pull_request]
+jobs:
+  check_poc:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - name: Prepare
+        run: |
+          cd $GITHUB_WORKSPACE && \
+          wget -nv https://github.com/chaitin/xray/releases/download/0.20.0/xray_linux_amd64.zip && \
+          pip3 install yamllint && \
+          unzip xray_linux_amd64.zip && \
+          echo 'update:
+              check: false' > config.yaml
+      - name: Check POC
+        run: |
+          cd $GITHUB_WORKSPACE && \
+          ./xray_linux_amd64 poclint --poc "./pocs/*" --rules filename,filepath,yamlschema,yamllint,cellint

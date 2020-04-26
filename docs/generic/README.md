@@ -8,18 +8,24 @@
   </a>
 </p>
 
-> 一款功能强大的安全评估工具  🏠[主页](https://chaitin.github.io/xray/#/)  ⬇️[下载](https://github.com/chaitin/xray/releases) 📚[English Document](https://github.com/chaitin/xray/tree/master/docs/en-us/generic)
+> 一款功能强大的安全评估工具 
 
 ### ✨ Demo
 
 ![](https://chaitin.github.io/xray/assets/term.svg)
 
+🏠[使用文档](https://xray.cool)  ⬇️[下载地址](https://github.com/chaitin/xray/releases) 📚[English Document](https://github.com/chaitin/xray/tree/master/docs/en-us/generic)
+
+注意：xray 不开源，直接下载构建的二进制文件即可，仓库内主要为社区贡献的 poc，每次 xray 发布将自动打包。
+
 ## 🚀 快速使用
 
-1. 使用基础爬虫爬取并扫描整个网站
+**在使用之前，请务必阅读并同意 [License](https://github.com/chaitin/xray/blob/master/LICENSE.md) 文件中的条款，否则请勿安装使用本工具。**
+
+1. 使用基础爬虫爬取并对爬虫爬取的链接进行漏洞扫描
     
     ```bash
-    xray webscan --basic-crawler http://example.com --html-output crawler.html
+    xray webscan --basic-crawler http://example.com --html-output vuln.html
     ```
 
 1. 使用 HTTP 代理进行被动扫描
@@ -31,7 +37,7 @@
    
    >如需扫描 https 流量，请阅读下方文档 `抓取 https 流量` 部分
 
-1. 扫描单个 url
+1. 只扫描单个 url，不使用爬虫
     
     ```bash
     xray webscan --url http://example.com/?a=b --html-output single-url.html
@@ -57,22 +63,8 @@
     
     [报告样例](https://chaitin.github.io/xray/assets/report_example.html)
 
-1. 只运行单个**内置** POC
+其他用法请阅读文档： https://chaitin.github.io/xray/#/
 
-    在 xray 中，所有的 poc 隶属于插件 `phantasm`, 所以使用 poc 时需要开启 `phantasm` 插件才可生效。`--poc` 参数指定本次运行的 poc，如不指定，将运行所有的内置 poc。
-
-    ```bash
-    xray webscan --plugins phantasm --poc poc-yaml-thinkphp5-controller-rce --url http://example.com/
-    ```
-1. 运行用户自定义 POC
-
-    用户可以按需书写自己的 YAML 格式的 POC， 并通过指定 `--poc` 参数运行，比如运行在 `/home/test/1.yaml` 处的 POC。
-
-    ```bash
-    xray webscan --plugins phantasm --poc /home/test/1.yaml --url http://example.com/
-    ```
-    自定义 POC 请查看文档。
-  
 
 ## 🛠 检测模块
 
@@ -133,22 +125,29 @@
  - CRLF 注入 (key: crlf_injection)
 
    检测 HTTP 头注入，支持 query、body 等位置的参数
+ 
+ - Struts2 系列漏洞检测 (高级版，key: struts)
 
+   检测目标网站是否存在Struts2系列漏洞，包括s2-016、s2-032、s2-045等常见漏洞
+
+ - Thinkphp系列漏洞检测 (高级版，key: thinkphp)
+
+   检测ThinkPHP开发的网站的相关漏洞
+ 
  - ..
 
 
 ## ⚡️ 进阶使用
 
-下列高级用法请查看 [http://chaitin.github.io/xray/](http://chaitin.github.io/xray/) 使用。
+下列高级用法请查看 [https://chaitin.github.io/xray/](https://chaitin.github.io/xray/) 使用。
 
  - 修改配置文件
- - 生成证书
  - 抓取 https 流量
- - 修改 https 发包配置
+ - 修改 http 发包配置
  - 反连平台的使用
  - ...
 
-## 贡献 POC
+## 😘 贡献 POC
 
 参照: [https://chaitin.github.io/xray/#/guide/contribute](https://chaitin.github.io/xray/#/guide/contribute)
 
@@ -162,6 +161,6 @@
 1. QQ 群: 717365081
 1. 微信群: 扫描以下二维码加我的个人微信，会把大家拉到 `xray` 官方微信群    
 
-<img src="https://chaitin.github.io/xray/assets/wechat.jpg" height="150px">
+<img src="https://chaitin.github.io/xray/assets/wechat.jpg?_=1" height="200px">
 
 

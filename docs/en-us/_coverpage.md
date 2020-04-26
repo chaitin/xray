@@ -1,8 +1,9 @@
-# XRAY <small>0.9.0</small>
+# <span style="color: white; font-size: 60px;">XRAY Security tool<span style="color: white; font-size: 25px;">Community version</span></span>
 
-> A Powerful Security Assessment Tool
+> <span style="color: white; font-size: 40px;">Help you to find vulnerability easily</span>
 
-<img src="https://chaitin.github.io/xray/assets/index-img.png" style="width: 20%; height: 20%">
-
+[Advanced/Enterprise version](/generic/compare)
 [Download](https://github.com/chaitin/xray/releases)
-[Get Started](/en-us/generic/README)
+[Document](/en-us/generic/README)
+
+![](./assets/index.jpg)
