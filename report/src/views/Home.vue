@@ -52,7 +52,7 @@
       <p>点击确定将提交<span style="color: red">本条</span>漏洞信息至 xray 服务器，请确保<span style="color: red">不包含敏感的数据信息。</span></p>
       <p>您也可以查看 <a href="https://xray.cool/xray/#/guide/feedback" target="_blank">https://xray.cool/xray/#/guide/feedback</a>
         使用其他渠道提交反馈。</p>
-      <p>您可以在下方填写备注，比如为什么这是误报，其他的建议，联系方式等；联系方式请尽量填写，我们发现很多并不是误报或者是对配置项目的理解问题，这样可以及时提供帮助。</p>
+      <p>您可以在下方填写备注，比如为什么这是误报，其他的建议，对于 xss 和 sqldet 请手动确认，如果认为没有弹窗或 sqlmap 跑不出来就是误报，那就不用提交了。</p>
       <textarea style="width: 100%;" autoSize v-model="comment"></textarea>
     </a-modal>
   </div>
