@@ -7,6 +7,8 @@ class ServerConfig:
     host: str
     port: int
     debug: bool
+    token: str
+    base_url: str
 
 
 @dataclass

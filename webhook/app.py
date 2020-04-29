@@ -4,7 +4,7 @@ from datetime import datetime
 
 from flask import Flask, request, redirect
 
-from config import parse_config
+from config import parse_config, get_config
 from executor.executor import dispatch_web_vuln, dispatch_service_vuln, dispatch_statistics
 from executor.registry import init_plugin
 from model.vuln import Statistics, WebVuln, WebParam, WebParamPosition, WebRequest, WebResponse, ServiceVuln
@@ -91,9 +91,12 @@ def index():
 
 @app.route("/webhook", methods=["POST"])
 def webhook():
+    token = get_config().server_config.token
+    if token != "":
+        if token != request.args.get("token", ""):
+            return "invalid token", 401
     # 可以使用 instance query 来区分不同的节点的数据
-    instance = request.args.get("instance", "")
-    # FIXME 使用 token 来保证 api 安全
+    instance = request.args.get("instance", "default")
     data = request.json
     data_type = data.get("type")
     if data_type == "web_vuln":

@@ -2,7 +2,10 @@ version: 1
 server:
   host: 127.0.0.1
   port: 5000
-  debug: true
+  debug: false
+  token: ""
+  # 因为反向代理、端口映射等情况，实际访问本 server 的地址和监听地址可能并不一样，这里可以单独配置
+  base_url: ""
 
 plugins:
   # key 为 plugins 中写了插件配置的 Python 文件名
