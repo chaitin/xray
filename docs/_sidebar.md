@@ -28,8 +28,6 @@
 
 - API
   - [说明](api/api.md)
-  - [漏洞格式](api/vuln.md)
-  - [统计格式](api/statistic.md)
 - [技术分享](share/share.md)
 - [贡献POC](guide/contribute.md)
 - [奖励措施](guide/rewards.md)

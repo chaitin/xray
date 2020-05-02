@@ -19,7 +19,7 @@ logger = logging.getLogger("webhook")
 
 
 def process_web_vuln(instance, data):
-    # 数据格式见 https://xray.cool/xray/#/api/vuln
+    """将 web 漏洞 json 转换为相关 model"""
     detail = data["detail"]
     p = detail["param"]
     if p:
@@ -44,6 +44,7 @@ def process_web_vuln(instance, data):
         request.append(WebRequest(raw=req))
         response.append(WebResponse(raw=resp))
 
+    # 其他的数据可能是自定义的，就单独拿出来
     not_extra_key = ["request", "response", "param", "payload", "url"]
     for k, v in detail.items():
         for item in not_extra_key:
@@ -59,13 +60,14 @@ def process_web_vuln(instance, data):
 
 
 def process_statistics(instance, data):
+    """将统计数据 json 转换为相关 json"""
     data.pop("type", None)
-    # 数据格式见 https://xray.cool/xray/#/api/statistic
     s = Statistics(**data)
     dispatch_statistics(instance, s)
 
 
 def process_host_vuln(instance, data):
+    """将服务漏洞 json 转换为相关 json"""
     detail = data["detail"]
     extra = {}
 
