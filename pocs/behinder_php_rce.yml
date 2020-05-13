@@ -1,4 +1,4 @@
-name: poc-yaml-behinder-php-rce
+name: poc-yaml-behinder_php_rce
 rules:
   - method: POST
     path: "/shell.php"
