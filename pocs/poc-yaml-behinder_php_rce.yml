@@ -8,7 +8,7 @@ rules:
       4eNW1rQ1TnE2zNJbafdykw==
     follow_redirects: false
     expression: |
-      response.status == 200 && response.body.bcontains(b'phpinfo()') && response.body.bcontains(b'PHP Version')
+      response.status == 200 && response.body.bcontains(b"phpinfo()") && response.body.bcontains(b"PHP Version")
 detail:
   author: jingling
   links:
