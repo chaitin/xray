@@ -3,7 +3,7 @@ rules:
   - method: GET
     path: /css_parser.php?css=css_parser.php
     follow_redirects: false
-    expression: status == 200 && headers['content-type'] == 'text/css' && body.bcontains(b"$_GET['css']")
+    expression: response.status == 200 && response.headers["content-type"] == "text/css" && response.body.bcontains(b"$_GET['css']")
 detail:
   author: 2357000166(https://github.com/2357000166)
   links:

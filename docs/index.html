@@ -1,33 +1,165 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
   <meta charset="UTF-8">
-  <title>XRAY Document</title>
+  <title>xray 安全评估工具文档</title>
+  <link rel="shortcut icon" href="/xray/assets/favicon.ico">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="description" content="Description">
+  <meta name="description" content="xray 是一款功能强大的安全评估工具，由多名经验丰富的一线安全从业者呕心打造而成。">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <link href="https://cdn.bootcss.com/docsify/4.9.4/themes/vue.css" rel="stylesheet">
+  <link href="https://cdn.staticfile.org/docsify/4.10.2/themes/vue.css" rel="stylesheet">
+  <style>
+    article img:not(.noresize) {
+      max-height: 400px;
+    }
+
+    article img {
+      display: block;
+      box-shadow: 0 3px 15px 3px rgba(40, 40, 40, 0.5);
+      margin-top: 20px;
+    }
+    section.cover.has-mask .mask {
+      opacity: .1;
+    }
+    section.cover .cover-main>p:last-child a:last-child {
+      color: white;
+    }
+    section.cover .cover-main>p:last-child a {
+       color: white;
+    }
+    section.cover .cover-main>p:last-child a:last-child:hover {
+      color: white;
+      opacity: .9;
+    }
+    section.cover .cover-main>p:last-child a:hover {
+       color: white;
+    }
+
+    #TOPBANNER {
+      display: block;
+      width: 100%;
+      padding: 10px 20px;
+      line-height: normal;
+      top: 0;
+    }
+    #TOPBANNER p {
+      margin: auto;
+      height: 100%;
+    }
+
+    #TOPBANNER a {
+      margin: auto 5px;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+    }
+  </style>
 </head>
 <body>
   <div id="app"></div>
   <script>
+    var basePath = "/xray/"
+    // 本地开发使用 localhost
+    if (window.location.host.indexOf("localhost") >= 0) {
+      basePath = "/"
+    }
+    if (window.location.host == "chaitin.github.io") {
+      window.location.host = "xray.cool"
+    }
     window.$docsify = {
       name: 'xray',
-      repo: 'chaitin/xray',
+      //repo: 'chaitin/xray',
       loadSidebar: true,
       loadNavbar: true,
       autoHeader: true,
       coverpage: ['/', '/en-us/'],
-      basePath: '/xray/',
-      auto2top: true,
+      basePath: basePath,
       fallbackLanguages: ['en-us', 'zh-cn'],
-      onlyCover: true
+      onlyCover: true,
+      tabs: {
+        persist    : true,
+        sync       : true,
+        theme      : 'material',
+        tabComments: false,
+        tabHeadings: true
+      },
+      pagination: {
+        previousText: '',
+        nextText: '',
+        crossChapter: true
+      },
+      copyCode: {
+        buttonText : 'Copy',
+        errorText  : 'Error',
+        successText: 'Copied'
+      },
+      scrollToTop: {
+        auto: true,
+        text: 'Top',
+        right: 15,
+        bottom: 25,
+        offset: 500
+      },
+      'page-toc': {
+        tocMaxLevel: 4,
+        target: 'h1, h2, h3, h4'
+      },
+      topBanner: {
+        content: "🎉《被动Web扫描器xray从入门到精通》课程在i春秋平台上线啦 <a href='https://www.ichunqiu.com/course/66236' target='_blank'>点击查看</a>",
+        textAlign: "center",
+        zIndex: 999,
+        position: "relative",
+      }
     }
   </script>
+  <script src="https://cdn.staticfile.org/docsify/4.10.2/docsify.min.js"></script>
+  <script src="https://cdn.staticfile.org/prism/9000.0.1/components/prism-yaml.min.js"></script>
+  <script src="https://cdn.staticfile.org/prism/9000.0.1/components/prism-javascript.min.js"></script>
+  <script src="https://cdn.staticfile.org/prism/9000.0.1/components/prism-go.min.js"></script>
+  <script src="https://cdn.bootcss.com/prism/9000.0.1/components/prism-python.min.js"></script>
+  <script src="./assets/static/docsify-tabs.js"></script>
+  <script src="./assets/static/docsify-pagination.min.js"></script>
+  <script src="./assets/static/docsify-copy-code.js"></script>
+  <script src="./assets/static/docsify-scroll-to-top.min.js"></script>
+  <script src="./assets/static/zoom-image.min.js"></script>
+  <script src="./assets/static/docsify-page-toc.js"></script>
+  <script>
+    function plugin (hook, vm) {
+      hook.ready(function () {
+        const { topBanner } = vm.config
+        if (!topBanner) {
+          return
+        }
+        const defaultTag = topBanner.defaultTag || 'span'
+        const bannerContent = vm.compiler.compile(topBanner.content)
+        const backgroundColor = topBanner.backgroundColor || '#deebff'
+        const textColor = topBanner.textColor || '#091E42'
+        const linkColor = topBanner.linkColor || textColor
+        const textAlign = topBanner.textAlign || 'center'
+        const bannerPosition = topBanner.position || 'fixed'
+        const bannerZIndex = topBanner.zIndex || '99'
+        // creating the new element
+        const bannerElement = document.createElement(defaultTag)
+        bannerElement.setAttribute('id', 'TOPBANNER')
+
+        // adding bannerElement to DOM
+        const placeholder = document.querySelector('body')
+        placeholder.insertBefore(bannerElement, placeholder.childNodes[0])
+
+        // add the contents
+        const contentEl = document.querySelector(`${defaultTag}#TOPBANNER`)
+        contentEl.innerHTML = bannerContent
+
+        contentEl.style.backgroundColor = backgroundColor
+        contentEl.style.color = textColor
+        contentEl.style.position = bannerPosition
+        contentEl.style.zIndex = bannerZIndex
+        const contentAnchorEl = document.querySelector(`${defaultTag}#TOPBANNER a`)
+        contentAnchorEl.style.color = linkColor
+        bannerElement.style.textAlign = textAlign
+      })
+    }
+
+    window.$docsify.plugins = [].concat(plugin, window.$docsify.plugins)
   </script>
-  <script src="https://cdn.bootcss.com/docsify/4.9.4/docsify.min.js"></script>
-  <script src="https://cdn.bootcss.com/prism/9000.0.1/components/prism-yaml.min.js"></script>
-  <script src="https://cdn.bootcss.com/prism/9000.0.1/components/prism-javascript.min.js"></script>
-  <script src="https://cdn.bootcss.com/prism/9000.0.1/components/prism-go.min.js"></script>
 </body>
 </html>
