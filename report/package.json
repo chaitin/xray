@@ -8,7 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "ant-design-vue": "^1.5.0",
+    "ant-design-vue": "^1.6.2",
     "core-js": "^3.6.4",
     "vue": "^2.6.11",
     "vue-clipboard2": "^0.3.1"

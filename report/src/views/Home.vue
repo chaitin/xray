@@ -23,6 +23,17 @@
         </svg>
       </a-layout-header>
       <a-layout-content :style="{ padding: '0 50px', marginTop: '96px' }">
+        <!--        <a-card style="width: 100%; margin-bottom: 24px;">-->
+        <!--          <h3 slot="title">Load Data</h3>-->
+        <!--          <div slot="extra">-->
+        <!--            <a-button type="primary" @click="loadFalsePositive">Load</a-button>-->
+        <!--          </div>-->
+        <!--          <a-textarea-->
+        <!--            v-model="falseData"-->
+        <!--            placeholder="Paste message"-->
+        <!--            :autoSize="{ minRows: 6, maxRows: 10 }"-->
+        <!--          />-->
+        <!--        </a-card>-->
         <web-vulnerability v-if="webData.length"
                            :data="webData"
                            :loading="loading"
@@ -37,6 +48,7 @@
                                :data="serviceData"
                                :loading="loading">
         </service-vulnerability>
+        <subdomain v-if="subdomainData.length" :data="subdomainData" :loading="loading"></subdomain>
       </a-layout-content>
       <!--请注意，如果您使用了本报告项目，请勿删除下方的链接。-->
       <a-layout-footer :style="{ textAlign: 'center' }">
@@ -61,12 +73,14 @@
 <script>
   import WebVulnerability from "../components/WebVulnerability";
   import ServiceVulnerability from "../components/ServiceVulnerability";
+  import Subdomain from "../components/Subdomain";
 
   export default {
     name: "Home",
     components: {
       WebVulnerability,
       ServiceVulnerability,
+      Subdomain,
     },
     created () {
       if (document.readyState === 'complete') {
@@ -87,22 +101,37 @@
         loading: true,
         modalVisible: false,
         confirmLoading: false,
+        falseData: "",
         comment: '',
         dataToSubmit: {},
         serviceData: [],
         webData: [],
+        subdomainData: [],
       };
     },
     methods: {
       loadVulns () {
-        for (let data of [window.serviceVulns, window.webVulns]) {
+        for (let data of [window.serviceVulns, window.webVulns, window.subdomains]) {
           for (let [i, obj] of data.entries()) {
             obj.id = i
           }
         }
         this.webData = window.webVulns
         this.serviceData = window.serviceVulns
+        this.subdomainData = window.subdomains
         this.loading = false
+      },
+      loadFalsePositive () {
+        let obj
+        try {
+          obj = JSON.parse(this.falseData)
+        } catch (e) {
+          this.$message.error("invalid json message")
+          return
+        }
+        obj.data.id = this.webData.length
+        this.webData.push(obj.data)
+        this.$message.success("loaded")
       },
       openFeedback (data) {
         this.modalVisible = true
@@ -147,11 +176,12 @@
         link.remove()
       }
     }
-  };
+  }
+  ;
 </script>
 
 <style lang="less">
-  .expand-detail {
+  .expand-detail *:not(.internal-detail) {
     .ant-descriptions-item-label {
       width: 150px;
     }
@@ -171,8 +201,8 @@
 
   .filter-column {
     .anticon-filter {
-      width: 48px !important;
-      font-size: 16px !important;
+      width: 32px !important;
+      font-size: 14px !important;
       color: rgba(0, 0, 0, 0.85) !important;
 
       svg {
