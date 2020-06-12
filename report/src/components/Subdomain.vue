@@ -156,10 +156,10 @@ Server:  {{item.server}}
           self.$nextTick(() => {
             setTimeout(() => {
               self.tableLoading = false
-            }, 500)
+            }, 100)
           })
         }
-        this.$debounce(fn, 500)()
+        this.$debounce(fn, 800)()
       },
       onFilterStatus (value, record) {
         for (let w of record.web) {
