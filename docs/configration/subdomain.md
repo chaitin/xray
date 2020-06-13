@@ -2,32 +2,37 @@
 
 ```yaml
 subdomain:
-  modes: # 使用哪些方式获取子域名
-    - brute # 字典爆破模式
-    - api # 使用各大 api 获取
-    - zone_transfer # 尝试使用域传送漏洞获取
-  worker_count: 100 # 决定同时允许多少个 DNS 查询
-  dns_servers: # 查询使用的 DNS server
-    - 1.1.1.1
-    - 8.8.8.8
-  allow_recursive: false # 是否允许递归扫描，开了后如果发现 a.example.com 将继续扫描 a.example.com 的子域名
-  max_depth: 5 # 最大允许的子域名深度
-  main_dictionary: "" # 一级子域名字典， 绝对路径
-  sub_dictionary: "" # 其它层级子域名字典， 绝对路径
+  max_parallel: 50 # 并发的 worker 数，类似线程数
+  allow_recursion: false # 是否允许递归的处理子域名，开启后，扫描完一级域名后，会自动将一级的每个域名作为新的目标，去找二级域名, 递归层数由下面的配置决定
+  max_recursion_depth: 3 # 最大允许的子域名层数，3 意为 3 级子域名
+  web_only: false # 结果中仅显示有 web 应用的, 没有 web 应用的将被丢弃
+  ip_only: false # 结果中仅展示解析出 IP 的，没有解析成功的将被丢弃
+  servers: ["8.8.8.8", "8.8.4.4", "223.5.5.5", "223.6.6.6", "4.2.2.1", "114.114.114.114"] # 子域名扫描过程中使用的 DNS Server
+  sources:
+      brute: # 字典爆破模式, 会自动处理泛解析问题
+          enabled: true
+          main_dict: "" # 一级大字典路径，为空将使用内置的 TOP 30000 字典
+          sub_dict: "" # 其他级小字典路径，为空将使用内置过的 TOP 100 字典
+      httpfinder: # http 的一些方式来抓取子域名，包括 js, 配置文件，http header 等等
+          enabled: true
+      dnsfinder: # 使用 dns 的一些错误配置来找寻子域名，如区域传送（zone transfer)
+          enabled: true
+      certspotter: # 下面的都是 API 类的了
+          enabled: true
+      crt:
+          enabled: true
+      hackertarget:
+          enabled: true
+      qianxun:
+          enabled: true
+      rapiddns:
+          enabled: true
+      sublist3r:
+          enabled: true
+      threatminer:
+          enabled: true
+      virusTotal:
+          enabled: true
 ```
 
 子域名的配置项相对比较简洁，对照注释大都可以理解。
-
-## worker_count
-
-这个 worker_count 对应于 goroutine, 如果没写过 go，可以理解为其他语言的协程、线程。如果设置为 100，指的是同时可能有 100 个 DNS 查询请求发出。这和 http 配置中的 `max_qps` 不一样，`max_qps` 指的是 1s 内最大运行的请求数。
-
-## `allow_recursive` 和 `max_depth`
-
-假设子域名扫描的目标为  `example.com`, 发现有子域名 `a.example.com`。
-当开启 `allow_recurisive` 后，将自动把 `a.example.com` 视为新的扫描目标，进而可能获得 `b.a.example.com` 等二级子域。 而最大的子域深度由 `max_depth` 控制。
-
-##  `main_dictionary` 和 `sub_dictionary`
-
-与 `dirscan` 插件类似，当没有配置这两项时将使用内置字典，默认 main 字典为 Top3000, 默认 sub 字典为 top200。
-当配置了自定义字典时，将使用用户配置的字典而禁用内直字典，两个配置项可以单独配置。
