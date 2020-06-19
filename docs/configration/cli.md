@@ -69,22 +69,46 @@ xray 的命令有 6 个，抛开 `version` 和 `help` 这两个信息展示型�
 
 这里介绍一下后面两个命令。
 
-## subdomain 子域名扫描
+## subdomain 子域名扫描 (仅高级版)
 
-扫描 `example.com`，并将结果输出到 example.txt
-
-```
-./xray_darwin_amd64  subdomain --target example.com --text-output example.txt
-```
-
-扫描 `example.com`,并使用 console ui 交互式界面，同时记录结果到 example.txt
+运行 `./xray_darwin_amd64 subdomain -h`，可以看到
 
 ```
-./xray_darwin_amd64  subdomain --target example.com --console-ui --text-output example.txt
-```
-![cui.svg](../assets/configuration/cui.svg)
+NAME:
+    subdomain - Run a subdomain task
 
-其他用法请参照 subdomain 配置文件中的内容
+USAGE:
+    subdomain [command options] [arguments...]
+
+OPTIONS:
+   --target value, -t value  SubDomain scan targets
+   --no-brute                disable subdomain brute runner
+   --web-only                only output domains that have web services
+   --ip-only                 only output domains that had been resolved successfully
+   --json-output FILE        output xray results to FILE in json format
+   --html-output FILE        output xray results to FILE in HTML format
+   --text-output FILE        output xray results to FILE in plain text format
+   --webhook-output value    post xray result to url in json format
+```
+
+扫描 `example.com`，并将结果输出到 example 报告
+
+```
+./xray_darwin_amd64  subdomain --target example.com --html-output example.html
+```
+
+扫描 `example.com`，输出到 html 报告，且结果仅保留成功解析到 IP 的
+
+```
+./xray_darwin_amd64  subdomain --target example.com --html-output example.html --ip-only
+```
+
+
+扫描 `example.com`，输出到 html 报告，且结果仅保留域名存在 web 应用的 (80, 443)
+
+```
+./xray_darwin_amd64  subdomain --target example.com --html-output example.html --web-only
+```
 
 ## webscan web 漏洞检测
 运行 `./xray_darwin_amd64 webscan -h`，可以看到
@@ -193,11 +217,3 @@ a=b&x=y
 
 ./xray_darwin_amd64 webscan --url http://example.com/ --webhook-output http://host:port/path
 ```
-
-## 交互式命令行
-
-如果你已经理解了上面的这些内容，但感觉内容繁多记不住，那这个交互式的命令行就是新手福利了。
-
-直接运行 xray 而不加任何参数即可启动交互式命令行。
-
-![ui](../assets/configuration/terminalui.svg)

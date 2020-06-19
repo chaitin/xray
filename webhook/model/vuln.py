@@ -7,6 +7,7 @@ from typing import List, Any, Dict, Optional
 @dataclass
 class Statistics:
     """统计数据"""
+    raw_json: dict
     # 发现的 url 数量
     num_found_urls: int
     # 扫描完成的 url 数量
@@ -55,6 +56,7 @@ class WebResponse:
 @dataclass
 class WebVuln:
     """web 漏洞"""
+    raw_json: dict
     # 创建时间
     create_time: datetime
     # 这两个数据内部使用其实是 enum，要不要提供给社区？
@@ -78,6 +80,7 @@ class WebVuln:
 @dataclass
 class ServiceVuln:
     """服务漏洞"""
+    raw_json: dict
     # 同 web 漏洞
     create_time: datetime
     plugin: str
