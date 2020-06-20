@@ -12,7 +12,7 @@
 
 ### ✨ Demo
 
-![](https://chaitin.github.io/xray/assets/term.svg)
+![](https://docs.xray.cool/assets/term.svg)
 
 🏠[使用文档](https://docs.xray.cool)  ⬇️[下载地址](https://github.com/chaitin/xray/releases)
 
