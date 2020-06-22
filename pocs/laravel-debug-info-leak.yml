@@ -4,8 +4,8 @@ rules:
     path: /
     follow_redirects: false
     expression: >
-      response.status == 405 && response.body.bcontains(b"MethodNotAllowedHttpException") && (response.body.bcontains(b"vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteCollection.php") || response.body.bcontains(b"vendor/laravel/framework/src/Illuminate/Routing/RouteCollection.php"))
+      response.status == 405 && response.body.bcontains(b"MethodNotAllowedHttpException") && response.body.bcontains(b"Environment &amp; details") && (response.body.bcontains(b"vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteCollection.php") || response.body.bcontains(b"vendor/laravel/framework/src/Illuminate/Routing/RouteCollection.php"))
 detail:
-  author: Dem0ns(https://github.com/nic329)
+  author: Dem0ns (https://github.com/nic329)
   links:
     - https://github.com/nic329/webapp-misconfig-docker/tree/master/laravel/5_debug
