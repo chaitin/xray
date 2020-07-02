@@ -3,7 +3,7 @@ rules:
   - method: GET
     path: /plug/oem/AspCms_OEMFun.asp
     expression: |
-      response.status == 200 && "top.location.href='(.*?)';".bmatches(response.body)
+      response.status == 200 && "<script>alert".bmatches(response.body) && "top.location.href='(.*?)';".bmatches(response.body)
     search: >-
         (?P<path>(/(.*?).asp))
   - method: GET
