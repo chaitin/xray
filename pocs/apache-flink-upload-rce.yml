@@ -1,4 +1,4 @@
-name: poc-yaml-flink-unauth
+name: poc-yaml-apache-flink-upload-rce
 set:
     r1: randomLowercase(8)
     r2: randomLowercase(4)
