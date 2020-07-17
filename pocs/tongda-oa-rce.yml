@@ -30,7 +30,7 @@ rules:
       -----------------------------27723940316706158781839860668
     follow_redirects: false
     expression: |
-      response.status == 200 && response.body.bcontains(b'jpg')
+      response.status == 200
     search: (?P<dirname>200\d)_(?P<filename>\d+)
   - method: POST
     path: /ispirit/interface/gateway.php
