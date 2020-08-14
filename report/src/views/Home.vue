@@ -46,6 +46,7 @@
                                @feedback="openFeedback"
                                @download="download"
                                :data="serviceData"
+                               style="margin-bottom: 48px;"
                                :loading="loading">
         </service-vulnerability>
         <subdomain v-if="subdomainData.length" :data="subdomainData" :loading="loading"></subdomain>
