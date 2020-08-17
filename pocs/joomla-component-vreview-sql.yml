@@ -1,9 +1,6 @@
 name: poc-yaml-joomla-component-vreview-sql
 set:
   r: randomInt(800000000, 1000000000)
-  r0: randomLowercase(6)
-  r1: randomInt(40000, 44800)
-  r2: randomInt(40000, 44800)
 rules:
   - method: POST
     path: /index.php?option=com_vreview&task=displayReply
