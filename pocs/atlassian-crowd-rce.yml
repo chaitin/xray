@@ -1,4 +1,4 @@
-name: atlassiancrowd-rce-cve-2019-11580
+name: poc-yaml-atlassiancrowd-rce-cve-2019-11580
 rules:
   - method: POST
     path: /crowd/admin/uploadplugin.action
