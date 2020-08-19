@@ -1,4 +1,4 @@
-name: poc-yaml-atlassian-crowd-rce
+name: atlassiancrowd-rce-cve-2019-11580
 rules:
   - method: POST
     path: /crowd/admin/uploadplugin.action
@@ -17,5 +17,5 @@ rules:
 detail:
   author: su(https://suzzz112113.github.io/#blog)
   links:
-    -  https://blog.csdn.net/caiqiiqi/article/details/96285653
-    -  https://confluence.atlassian.com/crowd/crowd-security-advisory-2019-05-22-970260700.html
+    - https://blog.csdn.net/caiqiiqi/article/details/96285653
+    - https://confluence.atlassian.com/crowd/crowd-security-advisory-2019-05-22-970260700.html
