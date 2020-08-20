@@ -9,4 +9,6 @@ rules:
     expression: response.status == 200 && response.body.bcontains(bytes(r1 + "%" + r2))
 detail:
   links:
+    author: cookie
+    links:
     - https://edr.sangfor.com.cn/
