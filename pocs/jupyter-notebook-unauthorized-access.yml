@@ -4,7 +4,7 @@ rules:
     path: "/terminals/3"
     follow_redirects: false
     expression: >
-        response.status == 200 && response.body.bcontains(b"terminals/websocket")
+        response.status == 200 && response.body.bcontains(b"terminals/websocket") && !response.body.bcontains(b"Password:")
 detail:
   author: bufsnake(https://github.com/bufsnake)
   links:
