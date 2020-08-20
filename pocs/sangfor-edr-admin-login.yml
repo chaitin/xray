@@ -5,7 +5,8 @@ rules:
     follow_redirects: false
     expression: >
       response.status == 302 &&
-      response.body.bcontains(b"/download/edr_installer_")
+      response.body.bcontains(b"/download/edr_installer_") &&
+      response.headers["Set-Cookie"] != ""
 detail:
   author: hilson
   links:
