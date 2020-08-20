@@ -2,9 +2,7 @@ name: poc-yaml-sangfor-edr-admin-login
 rules:
   - method: GET
     path: /ui/login.php?user=admin
-    headers:
-      User-Agent: ' Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36'
-    follow_redirects: no
+    follow_redirects: false
     expression: >
       response.status == 302 &&
       response.body.bcontains(b"/download/edr_installer_")
