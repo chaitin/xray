@@ -1,4 +1,4 @@
-name: poc-yaml-tongdaoa-arbitraryfiledeletion.yml
+name: poc-yaml-tongdaoa-arbitraryfiledeletion
 rules:
   - method: GET
     path: /static/images/tongda.ico
