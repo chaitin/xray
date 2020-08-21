@@ -1,0 +1,16 @@
+name: poc-yaml-seeyon-rce-poc
+rules:
+  - method: GET
+    path: /seeyon/htmlofficeservlet
+    headers:
+      User-Agent: 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.9 Safari/537.36'
+      Accept-Encoding: 'deflate'
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.body.bcontains(bytes(string("DBSTEP V3.0"))) && response.body.bcontains(bytes(string("htmoffice operate err")))
+detail:
+  author: 清风明月(www.secbook.info)
+  influence_version: >-
+    致远A8-V5协同管理软件V6.1sp1|致远A8+协同管理软件V7.0、V7.0sp1、V7.0sp2、V7.0sp3|致远A8+协同管理软件V7.1
+  links:
+    - https://cloud.tencent.com/developer/article/1470874
