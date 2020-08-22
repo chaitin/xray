@@ -1,4 +1,4 @@
-name: poc-yaml-seacms-v645-command-exec
+name: poc-yaml-seacmsv645-command-exec
 set:
   rand: randomInt(200000000, 210000000)
 rules:
