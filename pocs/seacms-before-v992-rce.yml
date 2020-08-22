@@ -11,6 +11,6 @@ rules:
       expression: |
         response.status == 200 && response.body.bcontains(bytes(r1))
 detail:
-  author: bufsnake(https://github.com/bufsnake)
-  links:
-    - https://www.zhihuifly.com/t/topic/3118
+    author: bufsnake(https://github.com/bufsnake)
+    links:
+      - https://www.zhihuifly.com/t/topic/3118
