@@ -1,0 +1,10 @@
+name: poc-yaml-bt742-Unauthorized-access
+rules:
+  - method: GET
+    path: /pma/
+    expression: |
+      response.body.bcontains(b"information_schema")
+detail:
+  author: Facker007(https://github.com/Facker007)
+  links:
+    - https://mp.weixin.qq.com/s/KgAaFRKarMdycYzETyKS8A
