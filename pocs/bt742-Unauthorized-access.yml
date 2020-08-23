@@ -1,7 +1,7 @@
 name: poc-yaml-bt742-Unauthorized-access
 rules:
   - method: GET
-    path: /pma/
+    path: /pma
     expression: |
       response.body.bcontains(b"information_schema")
 detail:
