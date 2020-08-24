@@ -1,4 +1,4 @@
-name: poc-yaml-jenkins-unauth
+name: poc-yaml-jenkins-unauthorized-access
 set:
   r1: randomInt(1000, 9999)
   r2: randomInt(1000, 9999)
