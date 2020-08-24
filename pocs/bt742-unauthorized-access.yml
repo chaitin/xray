@@ -2,7 +2,7 @@ name: poc-yaml-bt742-unauthorized-access
 rules:
   - method: GET
     path: /pma/
-    follow_redirect: false
+    follow_redirects: false
     expression: |
       response.status == 200 && response.body.bcontains(b"information_schema") && response.body.bcontains(b"phpMyAdmin")
 detail:
