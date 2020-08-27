@@ -1,4 +1,4 @@
-name: poc-yaml-tongda-oa-unauthorized-access
+name: poc-yaml-tongda-meeting-unauthorized-access
 rules:
   - method: GET
     path: >-
@@ -8,7 +8,7 @@ rules:
       Accept-Encoding: 'deflate'
     follow_redirects: false
     expression: |
-      response.status == 200 && response.body.bcontains(bytes(string("creator"))) && response.body.bcontains(bytes(string("originalTitle")))
+      response.status == 200 && response.content_type.contains("json") && response.body.bcontains(bytes(string("creator"))) && response.body.bcontains(bytes(string("originalTitle")))
 detail:
   author: 清风明月(www.secbook.info)
   influence_version: ' < 通达OA 11.5'
