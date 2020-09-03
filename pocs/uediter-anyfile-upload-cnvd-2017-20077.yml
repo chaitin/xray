@@ -1,9 +1,8 @@
-name: poc-yaml-uediter-anyfile-upload-cnvd-2017-20077
+name: poc-yaml-uediter-cnvd-2017-20077-file-upload
 rules:
   - method: GET
     path: /ueditor/net/controller.ashx?action=catchimage&encode=utf-8
     headers:
-      User-Agent: 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.9 Safari/537.36'
       Accept-Encoding: 'deflate'
     follow_redirects: false
     expression: |
