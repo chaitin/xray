@@ -6,7 +6,7 @@ rules:
       Accept-Encoding: 'deflate'
     follow_redirects: false
     expression: |
-      response.status == 200 && response.body.bcontains(bytes(string("../skin/pc/default/images/"))) && response.body.bcontains(bytes(string("../backup/"))) &&  response.body.bcontains(bytes(string("../class/config.php")))
+      response.status == 200 && response.body.bcontains(bytes(string("../skin/pc/default/images/"))) && response.body.bcontains(bytes(string("../backup/"))) && response.body.bcontains(bytes(string("../class/config.php")))
 detail:
   author: 清风明月(www.secbook.info)
   links:
