@@ -5,6 +5,7 @@
   poc-go-php-cve-2019-11043-rce
   poc-go-seeyon-htmlofficeservlet-rce
   poc-go-tongda-lfi-upload-rce
+  poc-go-tongda-arbitrary-auth
   poc-go-ecology-dbconfig-info-leak
   poc-go-tomcat-put
   poc-go-tomcat-cve-2020-1938
