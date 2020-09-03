@@ -6,7 +6,7 @@ rules:
       Accept-Encoding: 'deflate'
     follow_redirects: false
     expression: |
-      response.status == 200 && response.body.bcontains(bytes(string("没有指定抓取源")))
+      response.status == 200 && response.content_type.contains("json") && response.body.bcontains(bytes(string("没有指定抓取源")))
 detail:
   author: 清风明月(www.secbook.info)
   influence_version: 'UEditor v1.4.3.3'
