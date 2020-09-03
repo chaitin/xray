@@ -1,4 +1,4 @@
-name: poc-yaml-xiuno-bbs-reinstallation-cvnd-2019-01348
+name: poc-yaml-xiuno-bbs-cvnd-2019-01348-reinstallation
 rules:
   - method: GET
     path: /install/
