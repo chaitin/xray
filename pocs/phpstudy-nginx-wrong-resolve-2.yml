@@ -7,13 +7,11 @@ rules:
     follow_redirects: false
     expression: |
       response.status != 200
-
   - method: GET
     path: /index.php
     follow_redirects: false
     expression: |
       response.status == 200
-
   - method: GET
     path: /index.php/.php
     follow_redirects: false
