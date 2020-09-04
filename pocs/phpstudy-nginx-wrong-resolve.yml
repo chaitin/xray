@@ -7,16 +7,18 @@ rules:
     follow_redirects: false
     expression: |
       response.status != 200
+      
   - method: GET
     path: /index.html
     follow_redirects: false
     expression: |
-      response.status == 200
+      response.status == 200 && response.headers['Server'].contains('nginx')
+
   - method: GET
     path: /index.html/.php
     follow_redirects: false
     expression: |
-      response.status == 200
+      response.status == 200 && response.headers['Server'].contains('nginx')
 detail:
   author: LoRexxar(https://lorexxar.cn)
   links:
