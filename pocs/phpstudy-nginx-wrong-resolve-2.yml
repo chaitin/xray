@@ -1,4 +1,4 @@
-name: poc-yaml-phpstudy-nginx-wrong-resolve # nolint[:namematch]
+name: poc-yaml-phpstudy-nginx-wrong-resolve  # nolint[:namematch]
 set:
   name: randomInt(10000000, 99999999)
 rules:
