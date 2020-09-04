@@ -1,5 +1,13 @@
 name: poc-yaml-phpstudy-nginx-wrong-resolve
+set:
+  name: randomInt(10000000, 99999999)
 rules:
+  - method: GET
+    path: /{{name}}.php
+    follow_redirects: false
+    expression: |
+      response.status != 200
+
   - method: GET
     path: /index.html
     follow_redirects: false
