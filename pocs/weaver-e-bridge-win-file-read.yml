@@ -1,4 +1,4 @@
-name: poc-yaml-e-bridge-win-readfile
+name: poc-yaml-e-bridge-win-file-read
 set:
   testfile: c://windows/win.ini
 rules:
@@ -16,6 +16,6 @@ rules:
       response.status == 200 && response.body.bcontains(b"; for 16-bit app support")
 detail:
   author: mvhz81
-  info: e-bridge-readfile for windows
+  info: e-bridge-file-read for windows
   links:
     - https://mrxn.net/Infiltration/323.html

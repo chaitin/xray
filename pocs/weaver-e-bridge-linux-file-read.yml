@@ -1,4 +1,4 @@
-name: poc-yaml-e-bridge-linux-readfile
+name: poc-yaml-e-bridge-linux-file-read
 set:
   testfile: /etc/passwd
 rules:
@@ -16,6 +16,6 @@ rules:
       response.status == 200 && r'root:[x*]:0:0:'.bmatches(body)
 detail:
   author: mvhz81
-  info: e-bridge-readfile for Linux
+  info: e-bridge-file-read for Linux
   links:
     - https://mrxn.net/Infiltration/323.html
