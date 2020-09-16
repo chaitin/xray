@@ -4,7 +4,7 @@ rules:
   - method: GET
     path: "/?a=display&templateFile=README.md"
     expression: |
-      response.status == 200 && response.body.bcontains(bytes(string(b"ThinkCMF")))
+      response.status == 200 && response.body.bcontains(bytes(string(b"ThinkCMF"))) && response.body.bcontains(bytes(string(b"## README")))
 
 detail:
   author: JerryKing
