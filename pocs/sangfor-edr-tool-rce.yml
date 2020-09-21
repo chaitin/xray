@@ -1,4 +1,4 @@
-name: poc-yaml-sangfor-edr-rce
+name: poc-yaml-sangfor-edr-tool-rce
 set:
   r1: randomLowercase(8)
   r2: randomLowercase(8)
