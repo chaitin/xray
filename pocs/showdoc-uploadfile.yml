@@ -1,0 +1,15 @@
+name: poc-yaml-showdoc-uploadfile
+rules:
+  - method: GET
+    path: /index.php?s=/home/page/uploadImg
+    headers:
+      user-Agent: >-
+        Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:81.0) Gecko/20100101 Firefox/81.0
+    follow_redirects: false
+    expression: >
+      response.status == 200 && response.body.bcontains(b"没有上传的文件！")
+detail:
+  author: LzSkyline
+  Affected Version: "showdoc <= 2.8.6"
+  links:
+    - https://github.com/star7th/showdoc/pull/1059
