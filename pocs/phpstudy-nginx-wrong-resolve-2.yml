@@ -19,6 +19,12 @@ rules:
     follow_redirects: false
     expression: |
       response.status == 200 && response.headers["Server"].contains("nginx")
+
+  - method: GET
+    path: /index.php/.xxx
+    follow_redirects: false
+    expression: |
+      response.status == 404
 detail:
   author: LoRexxar(https://lorexxar.cn)
   links:
