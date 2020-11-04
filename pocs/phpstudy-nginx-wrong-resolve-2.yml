@@ -1,0 +1,31 @@
+name: poc-yaml-phpstudy-nginx-wrong-resolve  # nolint[:namematch]
+set:
+  name: randomInt(10000000, 99999999)
+rules:
+  - method: GET
+    path: /{{name}}.php
+    follow_redirects: false
+    expression: |
+      response.status != 200
+
+  - method: GET
+    path: /index.php
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.headers["Server"].contains("nginx")
+
+  - method: GET
+    path: /index.php/.php
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.headers["Server"].contains("nginx")
+
+  - method: GET
+    path: /index.php/.xxx
+    follow_redirects: false
+    expression: |
+      response.status != 200
+detail:
+  author: LoRexxar(https://lorexxar.cn),0h1in9e(https://www.ohlinge.cn)
+  links:
+    - https://www.seebug.org/vuldb/ssvid-98364
