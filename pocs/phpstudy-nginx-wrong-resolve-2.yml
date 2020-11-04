@@ -26,6 +26,6 @@ rules:
     expression: |
       response.status == 404
 detail:
-  author: LoRexxar(https://lorexxar.cn)
+  author: LoRexxar(https://lorexxar.cn),0h1in9e(https://www.ohlinge.cn)
   links:
     - https://www.seebug.org/vuldb/ssvid-98364
