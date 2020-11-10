@@ -5,7 +5,7 @@ rules:
   - method: GET
     path: /index.php?a=display&templateFile={{tem_name}}
     expression: |
-      response.status == 404 && response.body.bcontains(bytes('ThinkCMF')) && response.body.bcontains(bytes('themes/simplebootx/Portal/Index/'+tem_name+'.html'))
+      response.status == 404 && response.body.bcontains(bytes("ThinkCMF")) && response.body.bcontains(bytes("themes/simplebootx/Portal/Index/"+tem_name+".html"))
 
 detail:
   author: jweny
