@@ -132,7 +132,7 @@ export default {
         return
       }
       obj = obj.data
-      console.log(obj)
+      // console.log(obj)
       obj.id = this.webData.length
       this.webData.push(obj)
       this.$message.success("loaded")
