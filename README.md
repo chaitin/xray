@@ -161,6 +161,6 @@
 1. QQ 群: 717365081
 1. 微信群: 扫描以下二维码关注 xray 公众号，点击菜单加群，按照提示进行操作即可。
 
-<img src="https://docs.xray.cool/assets/wechat.jpg" height="200px">
+<img src="https://docs.xray.cool/assets/wechat.jpg?cache=_none" height="200px">
 
 
