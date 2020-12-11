@@ -4,7 +4,7 @@ rules:
     path: /NCFindWeb?service=IPreAlertConfigService&filename=
     follow_redirects: false
     expression: |
-      response.status == 200 && response.body.bcontains(bytes("InstallProperties")) && response.body.bcontains(bytes("licence")) && response.body.bcontains(bytes("WEB-INF"))&& response.body.bcontains(bytes("install.prop"))
+      response.status == 200 && response.body.bcontains(bytes("InstallProperties")) && response.body.bcontains(bytes("licence")) && response.body.bcontains(bytes("WEB-INF")) && response.body.bcontains(bytes("install.prop"))
 detail:
   author: canc3s(https://github.com/canc3s)
   links:
