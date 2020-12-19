@@ -4,7 +4,6 @@ rules:
     path: /base_import/static/c:/windows/win.ini
     follow_redirects: false
     expression: response.status == 200 && response.body.bcontains(b"for 16-bit app support")
-rules:
   - method: GET
     path: /base_import/static/etc/passwd
     follow_redirects: false
