@@ -1,4 +1,4 @@
-name: poc-yaml-powercreator-upload
+name: poc-yaml-powercreator-arbitrary-file-upload
 set:
   rand: randomInt(1000, 9999)
   content: randomLowercase(8)
