@@ -48,8 +48,8 @@
    默认情况下，将会启用所有内置插件，可以使用下列命令指定本次扫描启用的插件。
    
    ```bash
-   xray webscan --plugins cmd_injection,sqldet --url http://example.com
-   xray webscan --plugins cmd_injection,sqldet --listen 127.0.0.1:7777
+   xray webscan --plugins cmd-injection,sqldet --url http://example.com
+   xray webscan --plugins cmd-injection,sqldet --listen 127.0.0.1:7777
    ```
       
 1. 指定插件输出
@@ -78,7 +78,7 @@
 
    支持报错注入、布尔注入和时间盲注等
 
- - 命令/代码注入检测 (key: cmd_injection)
+ - 命令/代码注入检测 (key: cmd-injection)
 
    支持 shell 命令注入、PHP 代码执行、模板注入等
 
@@ -86,7 +86,7 @@
 
    检测备份文件、临时文件、debug 页面、配置文件等10余类敏感路径和文件
 
- - 路径穿越检测 (key: path_traversal)
+ - 路径穿越检测 (key: path-traversal)
 
    支持常见平台和编码
 
@@ -102,7 +102,7 @@
 
    支持常见的后端语言
 
- - 弱口令检测 (key: brute_force)
+ - 弱口令检测 (key: brute-force)
 
    社区版支持检测 HTTP 基础认证和简易表单弱口令，内置常见用户名和密码字典
 
@@ -122,7 +122,7 @@
 
    支持 HTML meta 跳转、30x 跳转等
 
- - CRLF 注入 (key: crlf_injection)
+ - CRLF 注入 (key: crlf-injection)
 
    检测 HTTP 头注入，支持 query、body 等位置的参数
  
