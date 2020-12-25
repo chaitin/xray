@@ -1,0 +1,11 @@
+name: poc-yaml-H2-Database-Web-Console-Unauthorized-Access
+rules:
+  - method: GET
+    path: /h2-console 
+    follow_redirects: true
+    expression: >
+      response.status == 200 && response.body.bcontains(b"Welcome to H2") 
+detail:
+  author: jujumanman (https://github.com/jujumanman)
+  links:
+  - https://mp.weixin.qq.com/s__biz=MzI2NTM1MjQ3OA==&mid=2247483658&idx=1&sn=584710da0fbe56c1246755147bcec48e
