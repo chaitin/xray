@@ -1,4 +1,4 @@
-name: poc-yaml-H2-Database-Web-Console-Unauthorized-Access
+name: poc-yaml-h2-database-web-console-unauthorized-access
 rules:
   - method: GET
     path: /h2-console 
