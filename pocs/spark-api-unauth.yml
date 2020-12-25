@@ -1,4 +1,4 @@
-name: poc-yaml-spark-unauth  # nolint[:namematch]
+name: poc-yaml-spark-api-unauth
 rules:
   - method: GET
     path: /v1/submissions
