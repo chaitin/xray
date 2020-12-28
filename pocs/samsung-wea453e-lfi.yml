@@ -4,7 +4,7 @@ set:
   r2: randomInt(1140000, 1144800)
 rules:
   - method: GET
-    path: "/(download)/etc/passwd"
+    path: /(download)/etc/passwd
     follow_redirects: false
     expression: |
       response.status == 200 && "root:.*:0:0:".bmatches(response.body)
