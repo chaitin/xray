@@ -4,7 +4,7 @@ rules:
     path: /main.ehp
     follow_redirects: false
     body: |
-      httpd;General;lang=en&login_id=root&login_pw=sweap12~ 
+      httpd;General;lang=en&login_id=root&login_pw=sweap12~
     expression: |
       response.status == 200 && response.body.bcontains(bytes("document.formParent2.changepasswd1.value")) && response.body.bcontains(bytes("passwd_change.ehp"))
 detail:
