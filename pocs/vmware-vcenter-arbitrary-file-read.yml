@@ -1,4 +1,4 @@
-name: poc-yaml-vmware-vcenterserveranyfile-read
+name: poc-yaml-vmware-vcenter-arbitrary-file-read
 groups:
   win:
     - method: GET
