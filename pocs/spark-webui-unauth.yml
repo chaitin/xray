@@ -1,4 +1,4 @@
-name: poc-yaml-spark-unauth  # nolint[:namematch]
+name: poc-yaml-spark-webui-unauth
 rules:
   - method: GET
     path: /

@@ -23,6 +23,17 @@
         </svg>
       </a-layout-header>
       <a-layout-content :style="{ padding: '0 50px', marginTop: '96px' }">
+<!--        <a-card style="width: 100%; margin-bottom: 24px;">-->
+<!--          <h3 slot="title">Load Data</h3>-->
+<!--          <div slot="extra">-->
+<!--            <a-button type="primary" @click="loadFalsePositive">Load</a-button>-->
+<!--          </div>-->
+<!--          <a-textarea-->
+<!--            v-model="falseData"-->
+<!--            placeholder="Paste message"-->
+<!--            :autoSize="{ minRows: 6, maxRows: 10 }"-->
+<!--          />-->
+<!--        </a-card>-->
         <web-vulnerability v-if="webData.length"
                            :data="webData"
                            :loading="loading"
@@ -35,8 +46,10 @@
                                @feedback="openFeedback"
                                @download="download"
                                :data="serviceData"
+                               style="margin-bottom: 48px;"
                                :loading="loading">
         </service-vulnerability>
+        <subdomain v-if="subdomainData.length" :data="subdomainData" :loading="loading"></subdomain>
       </a-layout-content>
       <!--请注意，如果您使用了本报告项目，请勿删除下方的链接。-->
       <a-layout-footer :style="{ textAlign: 'center' }">
@@ -52,133 +65,154 @@
       <p>点击确定将提交<span style="color: red">本条</span>漏洞信息至 xray 服务器，请确保<span style="color: red">不包含敏感的数据信息。</span></p>
       <p>您也可以查看 <a href="https://xray.cool/xray/#/guide/feedback" target="_blank">https://xray.cool/xray/#/guide/feedback</a>
         使用其他渠道提交反馈。</p>
-      <p>您可以在下方填写备注，比如为什么这是误报，其他的建议，对于 xss 和 sqldet 请手动确认，如果认为没有弹窗或 sqlmap 跑不出来就是误报，那就不用提交了。</p>
+      <p>您可以在下方填写备注，比如为什么认为这是误报，对于 xss 和 sqldet 请手动确认，如果认为没有弹窗或 sqlmap 跑不出来就是误报，那就不用提交了。</p>
+      <p>另外，请使用当前<span style="color: red">最新版本</span>看下是否还有误报，老版本提交的误报将直接忽略。</p>
       <textarea style="width: 100%;" autoSize v-model="comment"></textarea>
     </a-modal>
   </div>
 </template>
 
 <script>
-  import WebVulnerability from "../components/WebVulnerability";
-  import ServiceVulnerability from "../components/ServiceVulnerability";
+import WebVulnerability from "../components/WebVulnerability";
+import ServiceVulnerability from "../components/ServiceVulnerability";
+import Subdomain from "../components/Subdomain";
 
-  export default {
-    name: "Home",
-    components: {
-      WebVulnerability,
-      ServiceVulnerability,
-    },
-    created () {
-      if (document.readyState === 'complete') {
+export default {
+  name: "Home",
+  components: {
+    WebVulnerability,
+    ServiceVulnerability,
+    Subdomain,
+  },
+  created () {
+    if (document.readyState === 'complete') {
+      this.loadVulns(0)
+    } else {
+      window.addEventListener("load", () => {
         this.loadVulns(0)
-      } else {
-        window.addEventListener("load", () => {
-          this.loadVulns(0)
-        });
-      }
-    },
-    mounted () {
-      if (!window.fetch) {
-        alert("Please use modern browser like Chrome, Firefox, Safari to open the report.")
-      }
-    },
-    data () {
-      return {
-        loading: true,
-        modalVisible: false,
-        confirmLoading: false,
-        comment: '',
-        dataToSubmit: {},
-        serviceData: [],
-        webData: [],
-      };
-    },
-    methods: {
-      loadVulns () {
-        for (let data of [window.serviceVulns, window.webVulns]) {
-          for (let [i, obj] of data.entries()) {
-            obj.id = i
-          }
-        }
-        this.webData = window.webVulns
-        this.serviceData = window.serviceVulns
-        this.loading = false
-      },
-      openFeedback (data) {
-        this.modalVisible = true
-        this.dataToSubmit = data
-      },
-      submitSentry () {
-        this.confirmLoading = true
-        let vulnJson = Object.assign({}, this.dataToSubmit)
-        vulnJson.expand = undefined
-
-        let data = {
-          version: version,
-          gitHash: gitHash,
-          comment: this.comment,
-          data: vulnJson
-        }
-        fetch("https://feedback-fc.xray.cool/feedback", {
-          method: "POST",
-          body: JSON.stringify(data),
-        }).then(resp => resp.json()).then(body => {
-          if (body.code !== 0) {
-            this.$message.error("提交失败! " + body.msg)
-            return
-          }
-          this.$message.success("提交成功!")
-        }).catch(() => {
-          this.$message.error("提交失败！请检查网络")
-        }).finally(() => {
-          this.modalVisible = false
-          this.confirmLoading = false
-        })
-      },
-      download (record) {
-        let data = Object.assign({}, record)
-        data.expand = undefined
-        let link = document.createElement('a')
-        link.href = window.URL.createObjectURL(new window.Blob([JSON.stringify(data, null, 2)], {type: "application/json"}))
-        link.download = record.plugin
-        document.body.appendChild(link)
-        link.click()
-        window.URL.revokeObjectURL(link.href)
-        link.remove()
-      }
+      });
     }
-  };
+  },
+  mounted () {
+    if (!window.fetch) {
+      alert("Please use modern browser like Chrome, Firefox, Safari to open the report.")
+    }
+  },
+  data () {
+    return {
+      loading: true,
+      modalVisible: false,
+      confirmLoading: false,
+      falseData: "",
+      comment: '',
+      dataToSubmit: {},
+      serviceData: [],
+      webData: [],
+      subdomainData: [],
+    };
+  },
+  methods: {
+    loadVulns () {
+      for (let data of [window.serviceVulns, window.webVulns, window.subdomains]) {
+        for (let [i, obj] of data.entries()) {
+          obj.id = i
+        }
+      }
+      this.webData = window.webVulns
+      this.serviceData = window.serviceVulns
+      this.subdomainData = window.subdomains
+      this.loading = false
+    },
+    loadFalsePositive () {
+      let obj
+      try {
+        obj = JSON.parse(this.falseData)
+      } catch (e) {
+        this.$message.error("invalid json message")
+        return
+      }
+      obj = obj.data
+      // console.log(obj)
+      obj.id = this.webData.length
+      this.webData.push(obj)
+      this.$message.success("loaded")
+    },
+    openFeedback (data) {
+      this.modalVisible = true
+      this.dataToSubmit = data
+    },
+    submitSentry () {
+      this.confirmLoading = true
+      let vulnJson = Object.assign({}, this.dataToSubmit)
+      vulnJson.expand = undefined
+
+      let data = {
+        version: version,
+        gitHash: gitHash,
+        comment: this.comment,
+        data: vulnJson
+      }
+      fetch("https://feedback-fc.xray.cool/feedback", {
+        method: "POST",
+        body: JSON.stringify(data),
+      }).then(resp => resp.json()).then(body => {
+        if (body.code !== 0) {
+          this.$message.error("提交失败! " + body.msg)
+          return
+        }
+        this.$message.success("提交成功!")
+      }).catch(() => {
+        this.$message.error("提交失败！请检查网络")
+      }).finally(() => {
+        this.modalVisible = false
+        this.confirmLoading = false
+      })
+    },
+    download (record) {
+      let data = Object.assign({}, record)
+      data.expand = undefined
+      let link = document.createElement('a')
+      link.href = window.URL.createObjectURL(new window.Blob([JSON.stringify(data, null, 2)], {type: "application/json"}))
+      link.download = record.plugin
+      document.body.appendChild(link)
+      link.click()
+      window.URL.revokeObjectURL(link.href)
+      link.remove()
+    }
+  }
+}
+;
 </script>
 
 <style lang="less">
-  .expand-detail {
-    .ant-descriptions-item-label {
-      width: 150px;
-    }
-
-    .ant-descriptions-item-content, .ant-descriptions-item-label {
-      border-bottom: 1px solid #e8e8e8;;
-    }
-
-    pre {
-      margin: 8px 0;
-    }
-
-    table {
-      table-layout: fixed !important;
-    }
+.expand-detail *:not(.internal-detail) {
+  .ant-descriptions-item-label {
+    width: 150px;
   }
 
-  .filter-column {
-    .anticon-filter {
-      width: 48px !important;
-      font-size: 16px !important;
-      color: rgba(0, 0, 0, 0.85) !important;
+  .ant-descriptions-item-content, .ant-descriptions-item-label {
+    border-bottom: 1px solid #e8e8e8;;
+  }
 
-      svg {
-        margin-top: -8px !important;
-        margin-left: -8px !important;
-      }
+  pre {
+    margin: 8px 0;
+  }
+
+  table {
+    table-layout: fixed !important;
+  }
+}
+
+.filter-column {
+  .anticon-filter {
+    width: 32px !important;
+    font-size: 14px !important;
+    color: rgba(0, 0, 0, 0.85) !important;
+
+    svg {
+      margin-top: -8px !important;
+      margin-left: -8px !important;
     }
   }
+}
 </style>
