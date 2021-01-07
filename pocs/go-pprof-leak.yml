@@ -1,11 +1,15 @@
-name: poc-yaml-k8s-cve-2019-11248
+name: poc-yaml-go-pprof-leak
 rules:
   - method: GET
     path: "/debug/pprof/"
     expression: |
       response.status == 200 && response.body.bcontains(bytes(string(b"Types of profiles available"))) && response.body.bcontains(bytes(string(b"Profile Descriptions")))
+  - method: GET
+    path: "/debug/pprof/goroutine?debug=1"
+    expression: |
+      response.status == 200 && response.body.bcontains(bytes(string(b"goroutine profile: total")))
 detail:
   author: pa55w0rd(www.pa55w0rd.online/)
-  Affected Version: "版本 1.12.0-1.12.9, 1.13.0-1.13.7, 1.14.0-1.14.3, 1.15.0均受此影响"
+  Affected Version: "go pprof leak"
   links:
-    - https://my.oschina.net/cncf/blog/4592916
+    - https://cloud.tencent.com/developer/news/312276
