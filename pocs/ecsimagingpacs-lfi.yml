@@ -5,4 +5,3 @@ rules:
     follow_redirects: false
     expression: |
       response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
-
