@@ -1,4 +1,4 @@
-name: poc-yaml-yonyou-grp-u8-sqli-to-rce
+name: poc-yaml-seeyon-a8-rce
 set:
   r1: randomInt(1000, 9999)
   r2: randomInt(1000, 9999)
