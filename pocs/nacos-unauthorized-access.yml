@@ -6,6 +6,6 @@ rules:
       response.status == 200 && response.body.bcontains(b"username")
 
 detail:
-  author: wenyu
-  links: 
+  author: wenyurush
+  links:
     - https://github.com/alibaba/nacos/issues/4593
