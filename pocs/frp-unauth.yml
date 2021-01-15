@@ -1,4 +1,4 @@
-name: poc-yaml-frp-unauthorized
+name: poc-yaml-frp-unauth
 rules:
   - method: GET
     path: /api/proxy/tcp
