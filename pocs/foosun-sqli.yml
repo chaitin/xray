@@ -14,3 +14,8 @@ rules:
     follow_redirects: false
     expression: |
       response.status == 200 && response.body.bcontains(bytes(md5(string(r1))))
+detail:
+  Affected Version: "v1.0-v2.0"
+  links:
+    - https://www.cnblogs.com/rebeyond/p/4951418.html
+    - http://wy.zone.ci/bug_detail.php?wybug_id=wooyun-2015-0150742
