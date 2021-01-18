@@ -1,7 +1,7 @@
 name: poc-yaml-foosun-sqli
 set:
   r1: randomInt(800000000, 1000000000)
-  r2: randomInt(1,100)
+  r2: randomInt(1, 100)
 rules:
   - method: GET
     path: /user/City_ajax.aspx?CityId=3
