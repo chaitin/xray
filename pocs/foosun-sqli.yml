@@ -4,7 +4,7 @@ set:
   r2: randomInt(1, 100)
 rules:
   - method: GET
-    path: /user/City_ajax.aspx?CityId=3
+    path: /user/City_ajax.aspx
     follow_redirects: true
     expression: |
       response.status == 200
@@ -15,7 +15,7 @@ rules:
     expression: |
       response.status == 200 && response.body.bcontains(bytes(md5(string(r1))))
 detail:
-  Affected Version: "v1.0-v2.0"
+  Affected Version: "v1.0~v2.0"
   links:
     - https://www.cnblogs.com/rebeyond/p/4951418.html
     - http://wy.zone.ci/bug_detail.php?wybug_id=wooyun-2015-0150742
