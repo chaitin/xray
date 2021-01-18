@@ -5,7 +5,7 @@ set:
 rules:
   - method: GET
     path: /user/City_ajax.aspx
-    follow_redirects: true
+    follow_redirects: false
     expression: |
       response.status == 200
   - method: GET
