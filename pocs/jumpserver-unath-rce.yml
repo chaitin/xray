@@ -1,4 +1,4 @@
-name: poc-yaml-jumpserver-unath-rce
+name: poc-yaml-jumpserver-unauth-rce
 set:
   r1: randomLowercase(5)
 groups:
@@ -30,3 +30,4 @@ detail:
   links:
     - https://s.tencent.com/research/bsafe/1228.html
     - https://mp.weixin.qq.com/s/KGRU47o7JtbgOC9xwLJARw
+    - https://github.com/jumpserver/jumpserver/releases/download/v2.6.2/jms_bug_check.sh
