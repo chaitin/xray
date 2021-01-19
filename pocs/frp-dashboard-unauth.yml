@@ -1,4 +1,4 @@
-name: poc-yaml-frp-default-password
+name: poc-yaml-frp-dashboard-unauth
 groups:
   unauth:
     - method: GET
