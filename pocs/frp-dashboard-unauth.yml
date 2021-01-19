@@ -5,7 +5,7 @@ groups:
       path: /api/proxy/tcp
       follow_redirects: true
       expression: |
-        response.status == 200 && response.body.bcontains(b"proxies")
+        response.status == 200 && response.content_type.contains("text/plain") && response.body.bcontains(b"proxies")
   defaultpassword:
     - method: GET
       path: /api/proxy/tcp
@@ -18,4 +18,4 @@ groups:
         Authorization: Basic YWRtaW46YWRtaW4=
       follow_redirects: false
       expression: |
-        response.status == 200 && response.body.bcontains(b"proxies")
+        response.status == 200 && response.content_type.contains("text/plain") && response.body.bcontains(b"proxies")
