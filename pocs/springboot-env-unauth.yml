@@ -11,5 +11,5 @@ groups:
       expression: |
         response.status == 200 && response.content_type.contains("json") && response.body.bcontains(b"java.vm.specification.name")
 detail:
-  link:
+  links:
     - https://github.com/LandGrey/SpringBootVulExploit
