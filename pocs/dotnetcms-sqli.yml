@@ -1,4 +1,4 @@
-name: poc-yaml-foosun-sqli
+name: poc-yaml-dotnetcms-sqli
 set:
   r1: randomInt(800000000, 1000000000)
   r2: randomInt(1, 100)
