@@ -19,7 +19,7 @@ groups:
     - method: GET
       path: /file/fileNoLogin/{{id}}
       expression: |
-        response.status == 200 && response.body.bcontains(b"root:x:")
+        response.status == 200 && response.body.bcontains(b":root:")
 detail:
   author: sakura404x
   links:
