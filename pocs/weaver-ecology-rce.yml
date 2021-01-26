@@ -1,4 +1,4 @@
-name: poc-yaml-weaver-e-cology-RCE
+name: poc-yaml-weaver-ecology-rce
 groups:
   win:
     - method: POST
@@ -41,4 +41,5 @@ groups:
 detail:
   author: sakura404x
   links:
-    - https://www.cnblogs.com/KHZ521/p/14017940.html
+    - https://github.com/myzing00/Vulnerability-analysis/tree/master/0917/weaver-oa/CNVD-2019-32204
+    - https://www.freebuf.com/vuls/215218.html
