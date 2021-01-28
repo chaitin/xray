@@ -9,7 +9,7 @@ rules:
       cVer=9.8.0&dp=<?xml version="1.0" encoding="GB2312"?><R9PACKET version="1"><DATAFORMAT>XML</DATAFORMAT><R9FUNCTION><NAME>AS_DataRequest</NAME><PARAMS><PARAM><NAME>ProviderName</NAME><DATA format="text">DataSetProviderData</DATA></PARAM><PARAM><NAME>Data</NAME><DATA format="text">
       select {{r1}}*{{r2}} </DATA></PARAM></PARAMS></R9FUNCTION></R9PACKET>
     expression: |
-      response.status == 200 && response.body.bcontains(bytes((string(r1*r2))))
+      response.status == 200 && response.body.bcontains(bytes((string(r1 * r2))))
 detail:
   author: 凉风(http://webkiller.cn/)
   links:
