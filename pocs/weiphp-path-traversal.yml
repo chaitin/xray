@@ -9,7 +9,6 @@ rules:
   - method: GET
     path: /public/index.php/home/file/user_pics
     search: |
-      /public/uploads/picture/(?P<img>.+?)"
       <img src="(?P<imgurl>.+?)" width="100" height="100"/>
     expression: 
       response.status == 200
