@@ -14,7 +14,7 @@ groups:
     - method: GET
       path: /login.do?message={{r1}}-{{r2}}
       expression:
-        response.status == 200 && reponse.body.bcontains(bytes(r1-r2))
+        response.status == 200 && reponse.body.bcontains(bytes(string(r1-r2)))
 detail:
   author: sakura404x
   links:
