@@ -1,4 +1,4 @@
-name: poc-yaml-iis-put-vul
+name: poc-yaml-iis-put-getshell
 set:
   filename: randomLowercase(6)
   fileContent: randomLowercase(6)
