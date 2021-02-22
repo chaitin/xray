@@ -1,7 +1,5 @@
 name: poc-yaml-tongdaoa-information-leak
-
 rules:
-
   - method: GET
     path: /general/calendar/arrange/get_cal_list.php?starttime=1548058874&endtime=1597997506&view=agendaDay
     follow_redirects: false
