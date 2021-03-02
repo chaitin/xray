@@ -4,7 +4,7 @@ groups:
     - method: GET
       path: /yyoa/DownExcelBeanServlet?contenttype=username&contentvalue=&state=1&per_id=0
       expression:
-        response.status == 200 && response.body.bcontains(b"Sheet1")
+        response.status == 200 && response.body.bcontains(b"[Content_Types].xml") && response.body.bcontains(b"Excel.Sheet")
 detail:
   author: sakura404x
   version: 致远A6
