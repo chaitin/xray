@@ -3,7 +3,7 @@ rules:
   - method: GET
     path: /yyoa/ext/https/getSessionList.jsp?cmd=getAll
     expression:
-      response.status == 200 && response.body.bcontains(b"<SessionList>")
+      response.status == 200 && response.body.bcontains(b"<SessionList>\r\n<Session>\r\n<usrID>")
 detail:
   author: sakura404x
   links:
