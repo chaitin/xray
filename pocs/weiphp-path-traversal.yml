@@ -10,11 +10,11 @@ rules:
     path: /public/index.php/home/file/user_pics
     search: |
       /public/uploads/picture/(?P<img>.+?)"
-    expression: 
+    expression:
       response.status == 200
   - method: GET
     path: /public/uploads/picture/{{img}}
-    expression: 
+    expression:
       response.status == 200 && response.body.bcontains(b"data_auth_key") && response.body.bcontains(b"WeiPHP")
 detail:
   author: sakura404x
