@@ -1,4 +1,4 @@
-name: poc-yaml-odoo-file-inclusion
+name: poc-yaml-odoo-file-read
 groups:
   win:
     - method: GET
