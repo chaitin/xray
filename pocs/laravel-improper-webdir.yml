@@ -4,7 +4,7 @@ rules:
     path: /storage/logs/laravel.log
     follow_redirects: false
     expression: >
-      response.status == 200 && (response.content_type.contains("plain") || response.content_type.contains("octet-stream")) && (response.body.bcontains(b"vendor\\laravel\\framework") || response.body.bcontains(b"vendor/laravel/framework")) && response.body.bcontains(b"Stack trace")
+      response.status == 200 && (response.content_type.contains("plain") || response.content_type.contains("octet-stream")) && (response.body.bcontains(b"vendor\\laravel\\framework") || response.body.bcontains(b"vendor/laravel/framework")) && (response.body.bcontains(b"stacktrace") || response.body.bcontains(b"Stack trace"))
 detail:
   author: Dem0ns (https://github.com/dem0ns)
   links:
