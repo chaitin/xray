@@ -6,7 +6,7 @@ rules:
         Accept-Encoding: 'deflate'
     follow_redirects: false
     expression: |
-      response.status == 200 && response.body.bcontains(bytes(string('"state":"SUCCESS"'))) && response.body.bcontains(bytes(string('total')))
+      response.status == 200 && response.body.bcontains(bytes(string("\"state\":\"SUCCESS\""))) && response.body.bcontains(bytes(string("total")))
 detail:
   author: 清风明月(http://www.secbook.info)
   influence_version: 'TPshop'
