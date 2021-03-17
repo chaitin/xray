@@ -8,7 +8,7 @@ rules:
     expression: |
       response.status == 200 && response.body.bcontains(bytes(string("\"state\":\"SUCCESS\""))) && response.body.bcontains(bytes(string("total")))
 detail:
-  author: 清风明月(http://www.secbook.info)
+  author: 清风明月(www.secbook.info)
   influence_version: 'TPshop'
   links:
     - https://mp.weixin.qq.com/s/3MkN4ZuUYpP2GgPbTzrxbA
