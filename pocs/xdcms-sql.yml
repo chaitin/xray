@@ -11,4 +11,5 @@ rules:
       response.status == 200 && response.body.bcontains(bytes(string(r1 * r2)))
 detail:
   author: amos1
-  links: https://www.uedbox.com/post/35188/
+  links:
+    - https://www.cnblogs.com/-qing-/p/10889467.html
