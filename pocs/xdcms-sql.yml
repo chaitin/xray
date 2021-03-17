@@ -1,4 +1,4 @@
-name: poc-yaml-mini-httpd-file-read
+name: poc-yaml-xdcms-sql
 set:
   r1: randomInt(800000000, 1000000000)
   r2: randomInt(800000000, 1000000000)
