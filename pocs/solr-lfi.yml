@@ -1,4 +1,4 @@
-name: poc-yaml-solr-lfi
+name: solr-lfi
 groups:
   win:
     - method: GET
