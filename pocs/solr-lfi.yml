@@ -7,7 +7,7 @@ groups:
         Content-Type: application/json
       follow_redirects: true
       expression: >
-        response.status == 200 && response.body.bcontains(b'name') && 
+        response.status == 200 && response.body.bcontains(b'name')
         response.content_type.contains("json")
       search: '"name":"(?P<core>.+?)"'
     - method: POST
@@ -37,7 +37,7 @@ groups:
         Content-Type: application/json
       follow_redirects: true
       expression: >
-        response.status == 200 && response.body.bcontains(b'name') && 
+        response.status == 200 && response.body.bcontains(b'name')
         response.content_type.contains("json")
       search: '"name":"(?P<core>.+?)"'
     - method: POST
