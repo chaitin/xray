@@ -1,4 +1,4 @@
-name: poc-yaml-solr-fileread-2
+name: poc-yaml-solr-fileread
 groups:
   linux:
     - method: GET
