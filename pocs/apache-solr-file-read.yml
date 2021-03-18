@@ -15,7 +15,7 @@ rules:
     expression: |
       response.status == 200 && response.body.bcontains(b"This")
 detail:
-    author: flyinbed
-    links:
-      - "https://mp.weixin.qq.com/s/iX2OasjynZ0MAvNTvIcmjg"
-      - "https://mp.weixin.qq.com/s/HMtAz6_unM1PrjfAzfwCUQ"
+  author: flyinbed
+  links:
+    - "https://mp.weixin.qq.com/s/iX2OasjynZ0MAvNTvIcmjg"
+    - "https://mp.weixin.qq.com/s/HMtAz6_unM1PrjfAzfwCUQ"
