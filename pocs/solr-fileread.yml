@@ -41,6 +41,6 @@ groups:
       expression: |
         response.status == 200 && response.body.bcontains(b"for 16-bit app support")
 detail:
-    author: whoami-root(https://github.com/whoami-root)
-    links:
-      - https://mp.weixin.qq.com/s?__biz=Mzg3NDU2MTg0Ng==&mid=2247484117&idx=1&sn=2fdab8cbe4b873f8dd8abb35d935d186
+  author: whami-root(https://github.com/whami-root)
+  links:
+    - https://mp.weixin.qq.com/s?__biz=Mzg3NDU2MTg0Ng==&mid=2247484117&idx=1&sn=2fdab8cbe4b873f8dd8abb35d935d186
