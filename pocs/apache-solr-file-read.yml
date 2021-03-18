@@ -13,7 +13,7 @@ rules:
     body: |
       {"set-property" : {"requestDispatcher.requestParsers.enableRemoteStreaming":true}}
     expression: |
-      response.status == 200 && response.body.bcontains(b'This')
+      response.status == 200 && response.body.bcontains(b"This")
 detail:
     author: flyinbed
     links:
