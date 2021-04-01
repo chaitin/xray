@@ -6,7 +6,7 @@ rules:
     path: /e/ViewImg/index.html?url=javascript:alert(/{{r1}}/)
     follow_redirects: false
     expression: |
-      response.status == 200  && response.body.bcontains(b"return bbimg(this)") && response.body.bcontains(b"点击观看完整的图")
+      response.status == 200 && response.body.bcontains(b"return bbimg(this)") && response.body.bcontains(b"点击观看完整的图")
 detail:
   author: jweny(https://github.com/jweny)
   links:
