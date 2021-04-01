@@ -1,4 +1,4 @@
-name: poc-yaml-empirecms-xss
+name: poc-yaml-empirecms-v75-xss
 set:
   r1: randomInt(40000, 44800)
 rules:
