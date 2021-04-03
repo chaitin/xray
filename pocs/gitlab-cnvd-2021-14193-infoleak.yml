@@ -1,4 +1,4 @@
-name: poc-yaml-gitLab-cnvd-2021-14193-infoleak
+name: poc-yaml-gitlab-cnvd-2021-14193-infoleak
 rules:
   - method: POST
     path: /api/graphql
