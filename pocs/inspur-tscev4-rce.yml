@@ -1,4 +1,4 @@
-name: poc-yaml-inspur-tscev4.0-rce
+name: poc-yaml-inspur-tscev4-rce
 set:
   r1: randomInt(800000000, 1000000000)
   r2: randomInt(800000000, 1000000000)
