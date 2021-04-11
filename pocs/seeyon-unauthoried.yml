@@ -9,11 +9,11 @@ rules:
       JSESSIONID=(?P<session>.+?)
   - method: GET
     path: "/seeyon/main.do"
-    headers: 
+    headers:
       Cookie: JSESSIONID={{session}}
     expression: |
       response.status == 200 && response.body.bcontains(b"当前已登录了一个用户，同一窗口中不能登录多个用户")
 detail:
   author: whami-root(https://github.com/whami-root)
   links:
-    - https://github.com/whami-root 
+    - https://github.com/whami-root
