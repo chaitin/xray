@@ -19,7 +19,7 @@ rules:
     expression: response.status == 200 && response.body.bcontains(b"_Request:")
   - method: GET
     path: '/Upload/{{r1}}/{{r2}}.php'
-    expression: response.status == 200 && response.body.bcontains(bytes(string(r1 * r2)))
+    expression: response.status == 200 && response.body.bcontains(bytes(string(r3 * r4)))
 detail:
   author: jingling(https://github.com/shmilylty)
   links:
