@@ -5,7 +5,7 @@ rules:
       /htmltopdf/downfile.php?filename=downfile.php
     follow_redirects: false 
     expression: |
-      response.status == 200 && response.body.bcontains(b'<?php') && response.body.bcontains(b'$filename') && response.headers["Content-Type"].contains("application/zip")
+      response.status == 200 && response.body.bcontains(b"<?php") && response.body.bcontains(b"$filename") && response.headers["Content-Type"].contains("application/zip")
 
 detail:
   author: kzaopa(https://github.com/kzaopa)
