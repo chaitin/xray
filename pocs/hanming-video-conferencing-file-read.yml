@@ -1,4 +1,4 @@
-name: poc-yaml-hanming-video-vonferencing-file-read
+name: poc-yaml-hanming-video-conferencing-file-read
 groups:
   windows:
     - method: GET
