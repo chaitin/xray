@@ -3,7 +3,7 @@ rules:
   - method: GET
     path: /mobile/auth_mobi.php?isAvatar=1&uid=1&P_VER=0
     follow_redirects: false
-    expression: true
+    expression: "true"
 
   - method: POST
     path: /general/userinfo.php?UID=1
