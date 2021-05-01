@@ -14,7 +14,7 @@ rules:
       Content-Disposition: form-data; name="file"; filename="{{r2}}.php"
       Content-Type: image/avif
 
-      <?php print({{r3}} * {{r4}}); ?>
+      <?php print({{r3}} * {{r4}}); unlink(__FILE__);?>
       ------WebKitFormBoundaryfcKRltGv--
     expression: response.status == 200 && response.body.bcontains(b"_Request:")
   - method: GET
