@@ -7,7 +7,7 @@ rules:
     body: |
       username=admin&password=admin?show+webmaster+user
     expression: |
-      response.status == 200 && "{"data":".*?(\w+)\s(\w+)","status":1}".bmatches(response.body)
+      response.status == 200 && r'{"data":".*?(\w+)\s(\w+)","status":1}'.bmatches(response.body)
 detail:
   author: Search?=Null
   description: "Ruijie EG网关信息泄漏"
