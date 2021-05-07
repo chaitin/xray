@@ -1,4 +1,4 @@
-name: poc-yaml-landray-oa- custom-jsp-fileread
+name: poc-yaml-landray-oa-custom-jsp-fileread
 groups:
   linux:
     - method: POST
