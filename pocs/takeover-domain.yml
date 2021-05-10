@@ -1,0 +1,213 @@
+name: takeover-domain
+groups:
+  acquia:
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"Sorry, this page is no longer available.")
+
+  airee:
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"")
+
+  anima:
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"If this is your website and you've just created it, try refreshing in a minute")
+
+  aws-s3:
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"The specified bucket does not exist")
+
+  bitbucket:
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"The page you have requested does not exist") || response.body.bcontains(b"Repository not found")
+
+  campaignmonitor:
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"<strong>Trying to access your account?</strong>") || response.body.bcontains(b"or <a href=\"mailto:help@createsend.com")
+
+  cargo:
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"If you're moving your domain away from Cargo you must make this configuration through your registrar's DNS control panel.")
+
+  cargocollective:
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"<div class=\"notfound\">") || response.body.bcontains(b"404 Not Found<br>")
+
+  fastly:
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"Fastly error: unknown domain:")
+  gemfury
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"404: This page could not be found.")
+  ghost:
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"The thing you were looking for is no longer here")
+  github:
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"There isn't a GitHub Pages site here.") || response.body.bcontains(b"For root URLs (like http://example.com/) you must provide an index.html file")
+  hatenablog:
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"404 Blog is not found")
+  helpjuice:
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"We could not find what you're looking for.")
+  helpscout:
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"No settings were found for this company:")
+  heroku:
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"There's nothing here, yet.") || response.body.bcontains(b"herokucdn.com/error-pages/no-such-app.html") || response.body.bcontains(b"<title>No such app</title>")
+  intercom:  
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"This page is reserved for artistic dogs.") || response.body.bcontains(b"<h1 class=\"headline\">Uh oh. That page doesn’t exist.</h1>")
+  jetbrains:
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"is not a registered InCloud YouTrack.")
+  kinsta:
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"No Site For Domain")
+  landingi:
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"It looks like you're lost") || response.body.bcontains(b"The page you are looking for is not found")
+  launchrock:
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"It looks like you may have taken a wrong turn somewhere. Don't worry...it happens to all of us.")
+  mashery:
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"Unrecognized domain <strong>")
+  ngrok:
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"ngrok.io not found") || response.body.bcontains(b"Tunnel *.ngrok.io not found")
+  
+  pantheon:
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"The gods are wise, but do not know of the site which you seek.") || response.body.bcontains(b"404 error unknown site!")
+  pingdom:
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"Public Report Not Activated") || response.body.bcontains(b"This public report page has not been activated by the user") || response.body.bcontains(b"Sorry, couldn't find the status page")
+  readmeio:
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"Project doesnt exist... yet!")
+  shopify:
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"Sorry, this shop is currently unavailable.") || response.body.bcontains(b"To finish setting up your new web address, go to your domain settings, click \"Connect existing domain\"")
+  smarjobboard:
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"Job Board Is Unavailable") || response.body.bcontains(b"This job board website is either expired") || response.body.bcontains(b"This job board website is either expired or its domain name is invalid.")
+  strikingly:
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"But if you're looking to build your own website") && response.body.bcontains("you've come to the right place.")
+  surgesh:
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"project not found")
+  tumblr:
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"Whatever you were looking for doesn't currently exist at this address.") || response.body.bcontains(b"There's nothing here.")
+  tilda:  
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"<title>Please renew your subscription</title>")
+  uberflip:
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"Non-hub domain, The URL you've accessed does not provide a hub.")
+  unbounce:
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"The requested URL was not found on this server.")
+  uptimerobot:
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"page not found")
+  uservoice:
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"This UserVoice subdomain is currently available!")
+  webflow:
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"<p class=\"description\">The page you are looking for doesn't exist or has been moved.</p>")
+  wordpress:
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"Do you want to register") && response.body.bcontains(b".wordpress.com</em> doesn&#8217;t&nbsp;exist")
+  worksites:
+    - method: GET
+      path: "/"
+      expression: |
+        response.body.bcontains(b"Company Not Found") && response.body.bcontains(b"Hello! Sorry, but the website you&rsquo;re looking for doesn&rsquo;t exist.")
+
+  detail:
+    author: mariobrow(https://github.com/amirnsahmad/)
+    links:
+      -  https://github.com/EdOverflow/can-i-take-over-xyz
+
+
