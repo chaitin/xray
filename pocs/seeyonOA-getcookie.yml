@@ -1,4 +1,4 @@
-name: poc-yaml-seeyon-unauthoried
+name: poc-yaml-seeyonOA-getcookie
 rules:
   - method: POST
     path: "/seeyon/thirdpartyController.do"
@@ -16,4 +16,4 @@ rules:
 detail:
   author: whami-root(https://github.com/whami-root)
   links:
-    - https://github.com/whami-root
+    - https://blog.csdn.net/weixin_43227251/article/details/115616761
