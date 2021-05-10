@@ -1,4 +1,4 @@
-name: poc-yaml-seeyonOA-getcookie
+name: poc-yaml-seeyonoa-getcookie
 rules:
   - method: POST
     path: "/seeyon/thirdpartyController.do"
