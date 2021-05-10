@@ -1,0 +1,14 @@
+name: poc-yaml-kubernetes-unauth
+rules:
+  - method: GET
+    path: /
+    expression: |
+      response.status == 200 && response.body.bcontains(b"/api")
+  - method: GET
+    path: /api
+    expression: |
+      response.status == 200 && response.body.bcontains(b"APIVersions")
+detail:
+  author: mumu0215(https://github.com/mumu0215)
+  links:
+    - http://luckyzmj.cn/posts/15dff4d3.html
