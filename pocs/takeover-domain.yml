@@ -1,4 +1,4 @@
-name: takeover-domain
+name: poc-yaml-takeover-domain
 groups:
   acquia:
     - method: GET
@@ -53,7 +53,8 @@ groups:
       path: "/"
       expression: |
         response.body.bcontains(b"Fastly error: unknown domain:")
-  gemfury
+
+  gemfury:
     - method: GET
       path: "/"
       expression: |
@@ -88,7 +89,7 @@ groups:
       path: "/"
       expression: |
         response.body.bcontains(b"There's nothing here, yet.") || response.body.bcontains(b"herokucdn.com/error-pages/no-such-app.html") || response.body.bcontains(b"<title>No such app</title>")
-  intercom:  
+  intercom:
     - method: GET
       path: "/"
       expression: |
@@ -123,7 +124,6 @@ groups:
       path: "/"
       expression: |
         response.body.bcontains(b"ngrok.io not found") || response.body.bcontains(b"Tunnel *.ngrok.io not found")
-  
   pantheon:
     - method: GET
       path: "/"
@@ -164,7 +164,7 @@ groups:
       path: "/"
       expression: |
         response.body.bcontains(b"Whatever you were looking for doesn't currently exist at this address.") || response.body.bcontains(b"There's nothing here.")
-  tilda:  
+  tilda:
     - method: GET
       path: "/"
       expression: |
@@ -205,9 +205,7 @@ groups:
       expression: |
         response.body.bcontains(b"Company Not Found") && response.body.bcontains(b"Hello! Sorry, but the website you&rsquo;re looking for doesn&rsquo;t exist.")
 
-  detail:
-    author: mariobrow(https://github.com/amirnsahmad/)
-    links:
-      -  https://github.com/EdOverflow/can-i-take-over-xyz
-
-
+detail:
+  author: mariobrow(https://github.com/amirnsahmad/)
+  links:
+    - https://github.com/EdOverflow/can-i-take-over-xyz
