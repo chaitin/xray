@@ -16,8 +16,7 @@ rules:
     body: |
       username={{username}}&password={{password}}
     expression: |
-      response.status == 200 && response.body.bcontains(b'{"data":"0","status":1}')
-
+      response.status == 200 && response.body.bcontains(b"{\"data\":\"0\",\"status\":1}")
 detail:
   author: Search?=Null
   description: "Ruijie EG网关信息泄漏"
