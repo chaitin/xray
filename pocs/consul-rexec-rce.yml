@@ -3,7 +3,7 @@ rules:
   - method: GET
     path: /v1/agent/self
     expression: |
-      response.body.bcontains(b"\"DisableRemoteExec\": false")
+      response.status == 200 && response.content_type.contains("json") && response.body.bcontains(b"\"DisableRemoteExec\": false")
 detail:
   author: imlonghao(https://imlonghao.com/)
   links:
