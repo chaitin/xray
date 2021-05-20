@@ -12,5 +12,5 @@ rules:
       response.status == 200 && response.body.bcontains(bytes(string(r1 + r2)))
 detail:
   author: MaxSecurity(https://github.com/MaxSecurity)
-    links:
+  links:
     - https://mp.weixin.qq.com/s/CVe7GSRzCKcYXj5Pj8W5SA
