@@ -6,7 +6,7 @@ rules:
     body: |
       file=/etc/passwd
     expression: |
-      response.status == 200  && r'root:'.bmatches(response.body) && response.body.bcontains(b'"status":true,')
+      response.status == 200 && "root:".bmatches(response.body) && response.body.bcontains(b"\"status\":true,")
 detail:
   author: abbin777
   influence_version: "@2000-2015"
