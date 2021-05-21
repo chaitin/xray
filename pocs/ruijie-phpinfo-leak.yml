@@ -4,7 +4,7 @@ rules:
     path: /tool/view/phpinfo.view.php
     follow_redirects: false
     expression: |
-      response.status == 200 &&  response.body.bcontains(bytes('PHP Version'))
+      response.status == 200 && response.body.bcontains(bytes("PHP Version"))
 detail:
   author: abbin777
   influence_version: "@2000-2015 锐捷网络"
