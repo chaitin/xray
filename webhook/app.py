@@ -15,7 +15,7 @@ logging.basicConfig(format="[%(levelname)s] %(asctime)s %(name)s %(message)s",
 # 比如可以给一个界面管理当前的插件，看到插件的数据等？
 @app.route("/", methods=["GET"])
 def index():
-    return redirect("https://xray.cool/xray/#/api/api")
+    return redirect("https://docs.xray.cool/#/webhook/webhook")
 
 @app.route("/webhook", methods=["POST"])
 def webhook():
