@@ -3,7 +3,7 @@ rules:
   - method: GET
     path: "/him/api/rest/V1.0/system/log/list?filePath=../"
     expression: |
-      response.status == 200 && response.body.bcontains(b"application/json") && response.body.bcontains(b"absolutePath") && response.body.bcontains(b"/var/logs/")
+      response.status == 200 && response.content_type.contains(b"application/json") && response.body.bcontains(b"absolutePath") && response.body.bcontains(b"/var/logs/")
 
 detail:
   author: YekkoY
