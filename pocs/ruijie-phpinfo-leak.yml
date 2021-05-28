@@ -1,4 +1,4 @@
-name: poc-yaml-ruijie-phpinfo-disclosure
+name: poc-yaml-ruijie-phpinfo-leak
 rules:
   - method: GET
     path: /tool/view/phpinfo.view.php
