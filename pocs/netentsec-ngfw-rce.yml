@@ -12,7 +12,6 @@ rules:
     path: /{{r2}}.php
     expression: |
       response.status == 200 && md5(r2).contains(md5(r2))
-    
 detail:
   author: YekkoY
   description: "网康下一代防火墙_任意命令执行漏洞"
