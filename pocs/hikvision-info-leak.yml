@@ -14,6 +14,6 @@ rules:
       response.status == 200 && response.body.bcontains(b"<user name=\"") && response.body.bcontains(b" password=\"")
 detail:
   author: tangshoupu
-  info: Hikvision 流媒体管理服务器未授权敏感信息泄露，可以直接获取用户的用户名和密码
+  info: Hikvision ikvision-info-leak
   links:
-    - https://github.com/test502git/
+    - https://github.com/test502git
