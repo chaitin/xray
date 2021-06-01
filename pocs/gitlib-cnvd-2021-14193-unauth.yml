@@ -16,6 +16,6 @@ rules:
       response.status == 200 && response.body.bcontains(b"users") && response.body.bcontains(b"email") && response.body.bcontains(b"username") 
 detail:
   author: tangshoupu
-  info: GitLab_api.graphql未授权信息泄露(CNVD-2021-14193)
+  info: GitLab_api.graphql-cnvd-2021-14193-unauth
   links:
-    - https://www.cnvd.org.cn/flaw/show/CNVD-2021-14193
+    - https://www.cnvd.org.cn/flaw/show/CNVD-2021-1419
