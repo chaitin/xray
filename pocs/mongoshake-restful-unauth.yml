@@ -15,4 +15,4 @@ rules:
 detail:
   author: sacredbook(blog.csdn.net/sacredbook)
   links:
-    -https://github.com/alibaba/MongoShake/wiki/FAQ
+    - https://github.com/alibaba/MongoShake/wiki/FAQ
