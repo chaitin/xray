@@ -1,4 +1,4 @@
-name: poc-yaml-shopxo-arbitrary-file-read
+name: poc-yaml-shopxo-cnvd-2021-15822
 groups:
   Linux:
     - method: GET
