@@ -1,12 +1,12 @@
 name: poc-yaml-hikvision-info-leak
 set:
-    r1: randomLowercase(16)
+  r1: randomLowercase(16)
 rules:
   - method: GET
     path: /xxid/{{r1}}
     follow_redirects: false
     expression: |
-      response.status == 404 && response.body.bcontains(b"File not found") 
+      response.status == 404 && response.body.bcontains(b"File not found")
   - method: GET
     path: /config/user.xml
     follow_redirects: false
