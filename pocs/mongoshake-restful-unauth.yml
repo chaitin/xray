@@ -3,7 +3,7 @@ rules:
   - method: GET
     path: "/conf"
     expression: |
-      response.status == 200 && response.body.bcontains(bytes(string(b"MongoUrls"))) && response.body.bcontains(bytes(string(b"MongoCsUrl")))
+      response.status == 200 && response.body.bcontains(bytes(string(b"MongoUrls"))) 
   - method: GET
     path: "/worker"
     expression: |
@@ -11,7 +11,7 @@ rules:
   - method: GET
     path: "/repl"
     expression: |
-      response.status == 200 && response.body.bcontains(bytes(string(b"who"))) && response.body.bcontains(bytes(string(b"logs_repl")))
+      response.status == 200 && response.body.bcontains(bytes(string(b"who"))) && response.body.bcontains(bytes(string(b"tag")))
 detail:
   author: sacredbook(blog.csdn.net/sacredbook)
   links:
