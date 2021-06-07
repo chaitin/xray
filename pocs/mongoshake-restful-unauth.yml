@@ -1,20 +1,20 @@
 name: poc-yaml-mongoshake-restful-unauth
 groups:
- rules1:
-   - method: GET
-     path: "/conf"
-     expression: |
-       response.status == 200 && response.body.bcontains(bytes(string(b"MongoUrls")))
- rules2:
-   - method: GET
-     path: "/worker"
-     expression: |
-       response.status == 200 && response.body.bcontains(bytes(string(b"worker_id"))) && response.body.bcontains(bytes(string(b"jobs_in_queue")))
- rules3:
-   - method: GET
-     path: "/repl"
-     expression: |
-       response.status == 200 && response.body.bcontains(bytes(string(b"who"))) && response.body.bcontains(bytes(string(b"tag")))
+  rules1:
+    - method: GET
+      path: "/conf"
+      expression: |
+        response.status == 200 && response.body.bcontains(bytes(string(b"MongoUrls")))
+  rules2:
+    - method: GET
+      path: "/worker"
+      expression: |
+        response.status == 200 && response.body.bcontains(bytes(string(b"worker_id"))) && response.body.bcontains(bytes(string(b"jobs_in_queue")))
+  rules3:
+    - method: GET
+      path: "/repl"
+      expression: |
+        response.status == 200 && response.body.bcontains(bytes(string(b"who"))) && response.body.bcontains(bytes(string(b"tag")))
 detail:
   author: sacredbook(blog.csdn.net/sacredbook)
   links:
