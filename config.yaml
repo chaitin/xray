@@ -1,0 +1,232 @@
+version: 4.0
+
+parallel: 30                      # 漏洞探测的 worker 数量，可以简单理解为同时有 30 个 POC 在运行
+
+# 全局 http 发包配置
+# 更多解释见 https://docs.xray.cool/#/configration/http
+http:
+  proxy: ""                             # 漏洞扫描时使用的代理，如: http://127.0.0.1:8080。 如需设置多个代理，请使用 proxy_rule 或自行创建上层代理
+  proxy_rule: []                        # 漏洞扫描使用多个代理的配置规则, 具体请参照文档
+  dial_timeout: 5                       # 建立 tcp 连接的超时时间
+  read_timeout: 10                      # 读取 http 响应的超时时间，不可太小，否则会影响到 sql 时间盲注的判断
+  max_conns_per_host: 50                # 同一 host 最大允许的连接数，可以根据目标主机性能适当增大
+  enable_http2: false                   # 是否启用 http2, 开启可以提升部分网站的速度，但目前不稳定有崩溃的风险
+  fail_retries: 0                       # 请求失败的重试次数，0 则不重试
+  max_redirect: 5                       # 单个请求最大允许的跳转数
+  max_resp_body_size: 2097152           # 最大允许的响应大小, 默认 2M
+  max_qps: 500                          # 每秒最大请求数
+  allow_methods:                        # 允许的请求方法
+  - HEAD
+  - GET
+  - POST
+  - PUT
+  - PATCH
+  - DELETE
+  - OPTIONS
+  - CONNECT
+  - TRACE
+  - MOVE
+  - PROPFIND
+  headers:
+    User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101 Firefox/78.0
+    # Cookie: key=value
+
+# 漏洞探测的插件配置
+# 更多解释见 https://docs.xray.cool/#/configration/plugins
+plugins:
+  baseline:
+    enabled: true
+    detect_cors_header_config: true     # 检查 cors 相关配置
+    detect_server_error_page: true      # 检查服务器错误信息
+    detect_system_path_leak: false      # 检查响应是否包含系统路径泄露
+    detect_outdated_ssl_version: false  # 检查 ssl 版本问题
+    detect_http_header_config: false    # 检查 http 安全相关 header 是否配置
+    detect_cookie_httponly: false       # 检查 set-cookie 时是否设置 http only
+    detect_china_id_card_number: false  # 检查响应是否存在身份证号
+    detect_china_phone_number: false    # 检查响应是否存在电话号码
+    detect_china_bank_card: false       # 检查响应是否存在银行卡号
+    detect_private_ip: false            # 检查响应是否包含内网 ip
+  brute-force:
+    enabled: true
+    username_dictionary: ""             # 自定义用户名字典, 为空将使用内置 TOP10, 配置后将与内置字典**合并**
+    password_dictionary: ""             # 自定义密码字典，为空将使用内置 TOP100, 配置后将与内置字典**合并**
+  cmd-injection:
+    enabled: true
+  crlf-injection:
+    enabled: true
+  dirscan:
+    enabled: true
+    depth: 1                            # 检测深度，定义 http://t.com/a/ 深度为 1, http://t.com/a 深度为 0
+    dictionary: ""                      # 自定义检测字典, 配置后将与内置字典**合并**
+  fastjson:
+    enabled: true
+  jsonp:
+    enabled: true
+  path-traversal:
+    enabled: true
+  phantasm:                             # poc 插件
+    enabled: true
+    depth: 1
+    auto_load_poc: false                # 除内置 poc 外，额外自动加载当前目录以 "poc-" 为文件名前缀的POC文件，等同于在 include_poc 中增加 "./poc-*"
+    exclude_poc: []                     # 排除哪些 poc, 支持 glob 语法, 如: "/home/poc/*thinkphp*" 或 "poc-yaml-weblogic*"
+    include_poc: []                     # 只使用哪些内置 poc 以及 额外加载哪些本地 poc, 支持 glob 语法, 如："*weblogic*" 或 "/home/poc/*"
+                                        # 也可使用 --poc 仅运行 指定的内置或本地 poc，进行测试。
+                                        # 例如，可使用如下命令，仅运行当前目录下的 poc 且 不运行内置 poc 进行测试：
+                                        # webscan -poc ./poc-* -url http://example.com
+  redirect:
+    enabled: true
+  shiro:
+    enabled: true
+    cookie_name: rememberMe             # 默认使用哪个 shiro cookie name
+    aes_key: []                         # 自定义 shiro key，配置后将与内置 100 key 做合并
+  sqldet:
+    enabled: true
+    boolean_based_detection: true       # 是否检测布尔盲注
+    error_based_detection: true         # 是否检测报错注入
+    time_based_detection: true          # 是否检测时间盲注
+    use_comment_in_payload: false       # 在 payload 中使用 or, 慎用！可能导致删库！
+    detect_sqli_in_cookie: true         # 是否检查在 cookie 中的注入
+  ssrf:
+    enabled: true
+  struts:
+    enabled: true
+  thinkphp:
+    enabled: true
+    detect_thinkphp_sqli: true          # 检查 thinkphp 特定语法的 sqli 注入漏洞
+  upload:
+    enabled: true
+  xss:
+    enabled: true
+    detect_xss_in_cookie: true          # 是否探测入口点在 cookie 中的 xss
+    ie_feature: false                   # 是否扫描仅能在 ie 下利用的 xss
+  xxe:
+    enabled: true
+
+# 反连平台配置，更多解释见 https://docs.xray.cool/#/configration/reverse
+# 注意: 默认配置为禁用反连平台，这是无法扫描出依赖反连平台的漏洞，这些漏洞包括 fastjson，ssrf 以及 poc 中依赖反连的情况等
+reverse:
+  db_file_path: ""                      # 反连平台数据库文件位置, 这是一个 KV 数据库
+  token: ""                             # 反连平台认证的 Token, 独立部署时不能为空
+  http:
+    enabled: false
+    listen_ip: 0.0.0.0 
+    listen_port: ""
+    ip_header: ""                       # 在哪个 http header 中取 ip，为空代表从 REMOTE_ADDR 中取
+  dns:
+    enabled: false
+    listen_ip: 0.0.0.0 
+    domain: ""                          # DNS 域名配置
+    is_domain_name_server: false        # 是否修改了域名的 ns 为反连平台，如果是，那 nslookup 等就不需要指定 dns 了
+    resolve:                            # DNS 静态解析规则
+    - type: A                           # A, AAAA, TXT 三种
+      record: localhost
+      value: 127.0.0.1
+      ttl: 60
+  client:
+    remote_server: false                # 是否是独立的远程 server，如果是要在下面配置好远程的服务端地址
+    http_base_url: ""                   # 默认将根据 ListenIP 和 ListenPort 生成，该地址是存在漏洞的目标反连回来的地址, 当反连平台前面有反代、绑定域名、端口映射时需要自行配置
+    dns_server_ip: ""                   # 和 http_base_url 类似，实际用来访问 dns 服务器的地址
+
+# 被动代理配置
+# 更多解释见 https://docs.xray.cool/#/configration/mitm
+mitm:
+  ca_cert: ./ca.crt                     # CA 根证书路径
+  ca_key: ./ca.key                      # CA 私钥路径
+  basic_auth:                           # 基础认证的用户名密码
+    username: ""
+    password: ""
+  allow_ip_range: []                    # 允许的 ip，可以是 ip 或者 cidr 字符串
+  restriction:                          # 代理能够访问的资源限制, 以下各项为空表示不限制
+    hostname_allowed: []                # 允许访问的 Hostname，支持格式如 t.com、*.t.com、1.1.1.1、1.1.1.1/24、1.1-4.1.1-8
+    hostname_disallowed:                # 不允许访问的 Hostname，支持格式如 t.com、*.t.com、1.1.1.1、1.1.1.1/24、1.1-4.1.1-8
+    - '*google*'
+    - '*github*'
+    - '*.gov.cn'
+    - '*.edu.cn'
+    - '*chaitin*'
+    - '*.xray.cool'
+    port_allowed: []                    # 允许访问的端口, 支持的格式如: 80、80-85
+    port_disallowed: []                 # 不允许访问的端口, 支持的格式如: 80、80-85
+    path_allowed: []                    # 允许访问的路径，支持的格式如: test、*test*
+    path_disallowed: []                 # 不允许访问的路径, 支持的格式如: test、*test*
+    query_key_allowed: []               # 允许访问的 Query Key，支持的格式如: test、*test*
+    query_key_disallowed: []            # 不允许访问的 Query Key, 支持的格式如: test、*test*
+    fragment_allowed: []                # 允许访问的 Fragment, 支持的格式如: test、*test*
+    fragment_disallowed: []             # 不允许访问的 Fragment, 支持的格式如: test、*test*
+    post_key_allowed: []                # 允许访问的 Post Body 中的参数, 支持的格式如: test、*test*
+    post_key_disallowed: []             # 不允许访问的 Post Body 中的参数, 支持的格式如: test、*test*
+  queue:
+    max_length: 3000                    # 队列长度限制, 也可以理解为最大允许多少等待扫描的请求, 请根据内存大小自行调整
+  proxy_header:
+    via: ""                             # 是否为代理自动添加 Via 头
+    x_forwarded: false                  # 是否为代理自动添加 X-Forwarded-{For,Host,Proto,Url} 四个 http 头
+  upstream_proxy: ""                    # 为 mitm 本身配置独立的代理
+
+# 基础爬虫配置
+# 更多解释见 https://docs.xray.cool/#/configration/basic-crawler
+basic-crawler:
+  max_depth: 0                          # 最大爬取深度， 0 为无限制
+  max_count_of_links: 0                 # 本次爬取收集的最大链接数, 0 为无限制
+  allow_visit_parent_path: false        # 是否允许爬取父目录, 如果扫描目标为 t.com/a/且该项为 false, 那么就不会爬取 t.com/ 这级的内容
+  restriction:                          # 爬虫的允许爬取的资源限制, 为空表示不限制。爬虫会自动添加扫描目标到 Hostname_allowed。
+    hostname_allowed: []                # 允许访问的 Hostname，支持格式如 t.com、*.t.com、1.1.1.1、1.1.1.1/24、1.1-4.1.1-8
+    hostname_disallowed:                # 不允许访问的 Hostname，支持格式如 t.com、*.t.com、1.1.1.1、1.1.1.1/24、1.1-4.1.1-8
+    - '*google*'
+    - '*github*'
+    - '*.gov.cn'
+    - '*.edu.cn'
+    - '*chaitin*'
+    - '*.xray.cool'
+    port_allowed: []                    # 允许访问的端口, 支持的格式如: 80、80-85
+    port_disallowed: []                 # 不允许访问的端口, 支持的格式如: 80、80-85
+    path_allowed: []                    # 允许访问的路径，支持的格式如: test、*test*
+    path_disallowed: []                 # 不允许访问的路径, 支持的格式如: test、*test*
+    query_key_allowed: []               # 允许访问的 Query Key，支持的格式如: test、*test*
+    query_key_disallowed: []            # 不允许访问的 Query Key, 支持的格式如: test、*test*
+    fragment_allowed: []                # 允许访问的 Fragment, 支持的格式如: test、*test*
+    fragment_disallowed: []             # 不允许访问的 Fragment, 支持的格式如: test、*test*
+    post_key_allowed: []                # 允许访问的 Post Body 中的参数, 支持的格式如: test、*test*
+    post_key_disallowed: []             # 不允许访问的 Post Body 中的参数, 支持的格式如: test、*test*
+  basic_auth:                           # 基础认证信息
+    username: ""
+    password: ""
+
+# 子域名扫描配置，配置解释见 https://docs.xray.cool/#/configration/subdomain
+# 注意：该功能仅限高级版用户使用
+subdomain:
+  max_parallel: 30                      # 子域名探测的并发度
+  allow_recursion: false                # 是否允许递归探测, 开启后，扫描完一级域名后，会自动将一级的每个域名作为新的目标
+  max_recursion_depth: 3                # 最大允许的递归深度, 3 表示 3 级子域名 仅当 allow_recursion 开启时才有意义
+  web_only: false                       # 结果中仅显示有 web 应用的, 没有 web 应用的将被丢弃
+  ip_only: false                        # 结果中仅展示解析出 IP 的，没有解析成功的将被丢弃
+  servers:                              # 子域名扫描过程中使用的 DNS Server
+  - 8.8.8.8
+  - 8.8.4.4
+  - 223.5.5.5
+  - 223.6.6.6
+  - 114.114.114.114
+  sources:
+    brute:
+      enabled: true
+      main_dict: ""                     # 一级大字典路径，为空将使用内置的 TOP 30000 字典
+      sub_dict: ""                      # 其他级小字典路径，为空将使用内置过的 TOP 100 字典
+    httpfinder:
+      enabled: true                     # 使用 http 的一些方式来抓取子域名，包括 js, 配置文件，http header 等等
+    dnsfinder:
+      enabled: true                     # 使用 dns 的一些错误配置来找寻子域名，如区域传送（zone transfer)
+    certspotter:                        # 下面的通过 api 获取的了
+      enabled: true
+    crt:
+      enabled: true
+    hackertarget:
+      enabled: true
+    qianxun:
+      enabled: true
+    rapiddns:
+      enabled: true
+    sublist3r:
+      enabled: true
+    threatminer:
+      enabled: true
+    virusTotal:
+      enabled: true
