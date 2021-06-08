@@ -1,0 +1,11 @@
+name: pbootcms-database-file-download
+rules:
+  - method: GET
+    path: /data/pbootcms.db
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.body.bcontains(b"SQLite")
+detail:
+  author: abcRosexyz(https://github.com/abcRosexyz)
+  links:
+    - https://www.cnblogs.com/0daybug/p/12786036.html
