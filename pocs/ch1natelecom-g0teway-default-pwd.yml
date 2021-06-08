@@ -12,6 +12,6 @@ rules:
     expression: |
       response.status == 302 && response.headers["location"] == "home.php"
 detail:
-  author: xueba(www.mjx-team.com/) 
+  author: xueba(www.mjx-team.com/)
   links:
     - https://www.mjx-team.com/
