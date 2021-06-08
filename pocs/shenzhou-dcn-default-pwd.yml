@@ -6,7 +6,7 @@ rules:
     body: |
       admin 21232f297a57a5a743894a0e4a801fc3
     expression: |
-      response.status == 200 && response.body.bcontains(b"{\"ExecStatus\":10000,\"ErrorMsg\":\"登陆成功\"}") 
+      response.status == 200 && response.body.bcontains(b"{\"ExecStatus\":10000,\"ErrorMsg\":\"登陆成功\"}")
 detail:
   author: xueba
   links:
