@@ -10,7 +10,7 @@ rules:
     body: |
       username=admin&userpsw=827ccb0eea8a706c4c34a16891f84e7b&language=zh_cn
     expression: |
-      response.status == 200&&response.body.bcontains(b"{\"success\": true, \"msg\": \"OK\"}") 
+      response.status == 200&&response.body.bcontains(b"{\"success\": true, \"msg\": \"OK\"}")
 detail:
   author: xueba(user/pass=admin/12345)
   links:
