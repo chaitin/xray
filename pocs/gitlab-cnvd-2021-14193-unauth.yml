@@ -1,4 +1,4 @@
-name: poc-yaml-gitlib-cnvd-2021-14193-unauth
+name: poc-yaml-gitlab-cnvd-2021-14193-unauth
 rules:
   - method: GET
     path: "/users/sign_in"
@@ -18,4 +18,4 @@ detail:
   author: tangshoupu
   info: GitLab_api.graphql-cnvd-2021-14193-unauth
   links:
-    - https://www.cnvd.org.cn/flaw/show/CNVD-2021-1419
+    - http://cn-sec.com/archives/284853.html
