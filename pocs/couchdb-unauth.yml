@@ -4,7 +4,7 @@ rules:
     path: /_config
     follow_redirects: false
     expression: >
-      response.status == 200 && response.body.bcontains(b"httpd_design_handlers") && response.body.bcontains(b"external_manager") && response.body.bcontains(b"replicator_manager")
+      response.status == 200 && response.content_type.contains("json") && response.body.bcontains(b"httpd_design_handlers") && response.body.bcontains(b"external_manager") && response.body.bcontains(b"replicator_manager")
 detail:
   author: FiveAourThe(https://github.com/FiveAourThe)
   links:
