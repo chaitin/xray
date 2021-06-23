@@ -1,4 +1,4 @@
-name: poc-yaml-qianyan
+name: poc-yaml-qianyan-rce
 rules:
   - method: GET
     path: /drm/login-form.do
