@@ -3,7 +3,7 @@ rules:
   - method: GET
     path: "/authenticationserverservlet"
     expression: |
-      response.status == 200 && "<username>(.*?)</username>".bmatches(response.body) && "<password>(.*?)</password>".bmatches(response.body)
+      response.status == 200 && response.content_type.contains("xml") && "<username>(.*?)</username>".bmatches(response.body) && "<password>(.*?)</password>".bmatches(response.body)
 detail:
   author: Search?=Null
   description: "MessageSolution Enterprise Email Archiving (EEA) Info Leak."
