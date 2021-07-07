@@ -6,7 +6,7 @@ rules:
     headers:
       Content-Type: application/json
     expression: |
-      response.status == 200 && response.body.bcontains(b"resourceManagerVersionBuiltOn") && response.body.bcontains(b"hadoopVersion")
+      response.status == 200 && response.content_type.contains("json") && response.body.bcontains(b"resourceManagerVersionBuiltOn") && response.body.bcontains(b"hadoopVersion")
 detail:
   author: p0wd3r,sharecast
   links:
