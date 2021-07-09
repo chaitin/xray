@@ -26,7 +26,7 @@ rules:
     search: |
       "_id":(?P<group_id>.+?),
     expression: |
-      response.status == 200 && response.body.bcontains(bytes("custom_field1")) 
+      response.status == 200 && response.body.bcontains(bytes("custom_field1"))
 
   - method: POST
     path: /api/project/add
@@ -53,7 +53,7 @@ rules:
     body: |
       {"method":"GET","catid":"{{catid}}","title":"{{redinterface}}","path":"/{{redinterface}}","project_id":{{project_id}}}
     search: |
-      "_id":(?P<interface_id>.+?), 
+      "_id":(?P<interface_id>.+?),
     expression: |
       response.status == 200 && response.body.bcontains(bytes("成功！")) && response.body.bcontains(bytes(redinterface))
 
@@ -79,7 +79,6 @@ rules:
       {"id":{{project_id}}}
     expression: |
       response.status == 200
-      
 detail:
   author: tangshoupu
   info: yapi-rce
