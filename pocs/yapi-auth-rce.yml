@@ -1,0 +1,12 @@
+name: poc-yaml-yapi-auth-rce
+rules:
+  - method: POST
+    path: /api/user/reg
+    headers:
+      Content-Type: 'Content-Type: application/json;charset=UTF-8'
+    body: {}
+    expression: response.status == 200 && response.body.bcontains(b"邮箱不能为空")
+detail:
+  author: c4bbage(https://github.com/c4bbage)
+  links:
+    - https://github.com/YMFE/yapi/issues/2233
