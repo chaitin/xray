@@ -17,7 +17,7 @@ rules:
     body: |
       {"email":"{{redemail}}@qq.com","password":"2{{redpassword}}3","username":"{{redemail}}"}
     expression: |
-      response.status == 200 && response.body.bcontains(bytes(redemail)) && response.headers["Set-Cookie"].contains("_yapi_token")
+      response.status == 200 && response.headers["Set-Cookie"].contains("_yapi_token") && response.body.bcontains(bytes(redemail))
 
   - method: GET
     path: /api/group/list
