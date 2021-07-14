@@ -1,0 +1,10 @@
+name: poc-yaml-mongoshake-restful-unauth
+rules:
+  - method: GET
+    path: "/conf"
+    expression: |
+      response.status == 200 && response.body.bcontains(bytes(string(b"MongoUrls")))
+detail:
+  author: sacredbook(blog.csdn.net/sacredbook)
+  links:
+    - https://github.com/alibaba/MongoShake/wiki/FAQ
