@@ -1,4 +1,4 @@
-name: poc-yaml-ruijie-rce-cnvd-2021-09650
+name: poc-yaml-ruijie-eweb-rce-cnvd-2021-09650
 set:
   r1: randomLowercase(4)
   r2: randomLowercase(4)
@@ -20,3 +20,4 @@ detail:
   author: White(https://github.com/WhiteHSBG)
   links:
     - https://xz.aliyun.com/t/9016?page=1
+    - https://www.ruijie.com.cn/gy/xw-aqtg-gw/86747/
