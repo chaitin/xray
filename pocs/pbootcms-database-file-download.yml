@@ -4,7 +4,7 @@ rules:
     path: /data/pbootcms.db
     follow_redirects: false
     expression: |
-      response.status == 200 && r'^SQLite format 3\x00\x10'.bmatches(response.body) && response.body.bcontains(b"PbootCMS")
+      response.status == 200 && "^SQLite format 3\\x00\\x10".bmatches(response.body) && response.body.bcontains(b"PbootCMS")
 detail:
   author: abcRosexyz(https://github.com/abcRosexyz)
   links:
