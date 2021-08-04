@@ -14,4 +14,4 @@ rules:
 detail:
   author: xueba(user/pass=admin/12345)
   links:
-    - https://www.mjx-team.com/
+    - https://www.cnvd.org.cn/flaw/show/CNVD-2021-34568
