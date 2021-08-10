@@ -3,7 +3,7 @@ rules:
   - method: GET
     path: /api/v1/nodes
     expression: |
-      response.status == 200 && response.body.bcontains(b"/api/v1/nodes") && response.body.bcontains(b"nodeInfo")
+      response.status == 200 && response.content_type.contains("application/json") && response.body.bcontains(b"\"kubeletVersion\": \"v") && response.body.bcontains(b"\"containerRuntimeVersion\"")
 detail:
   author: mumu0215(https://github.com/mumu0215)
   links:
