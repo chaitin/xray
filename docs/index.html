@@ -1,81 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>XRAY Document</title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="description" content="Description">
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <link href="https://cdn.bootcss.com/docsify/4.9.4/themes/vue.css" rel="stylesheet">
-  <style>
-    article img:not(.noresize) {
-      max-height: 400px;
-    }
-
-    article img {
-      display: block;
-      box-shadow: 0 3px 15px 3px rgba(40, 40, 40, 0.5);
-      margin-top: 20px;
-    }
-  </style>
+    <meta charset="utf-8">
+    <title>将重定向到 xray 新文档站点</title>
 </head>
 <body>
-  <div id="app"></div>
-  <script>
-    var basePath = "/xray/"
-    if (window.location.host.indexOf("localhost") >= 0) {
-      basePath = "/"
-    }
-    window.$docsify = {
-      name: 'xray',
-      repo: 'chaitin/xray',
-      loadSidebar: true,
-      loadNavbar: true,
-      autoHeader: true,
-      coverpage: ['/', '/en-us/'],
-      basePath: basePath,
-      fallbackLanguages: ['en-us', 'zh-cn'],
-      onlyCover: true,
-      tabs: {
-        persist    : true,
-        sync       : true,
-        theme      : 'material',
-        tabComments: false,
-        tabHeadings: true
-      },
-      pagination: {
-        previousText: '',
-        nextText: '',
-        crossChapter: true
-      },
-      copyCode: {
-        buttonText : 'Copy',
-        errorText  : 'Error',
-        successText: 'Copied'
-      },
-      scrollToTop: {
-        auto: true,
-        text: 'Top',
-        right: 15,
-        bottom: 25,
-        offset: 500
-      },
-      'page-toc': {
-        tocMaxLevel: 4,
-        target: 'h1, h2, h3, h4'
-      },
-    }
-  </script>
-  <script src="https://cdn.bootcss.com/docsify/4.9.4/docsify.min.js"></script>
-  <script src="https://cdn.bootcss.com/prism/9000.0.1/components/prism-yaml.min.js"></script>
-  <script src="https://cdn.bootcss.com/prism/9000.0.1/components/prism-javascript.min.js"></script>
-  <script src="https://cdn.bootcss.com/prism/9000.0.1/components/prism-go.min.js"></script>
-  <script src="https://cdn.bootcss.com/prism/9000.0.1/components/prism-python.min.js"></script>
-  <script src="./assets/static/docsify-tabs.js"></script>
-  <script src="./assets/static/docsify-pagination.min.js"></script>
-  <script src="./assets/static/docsify-copy-code.js"></script>
-  <script src="./assets/static/docsify-scroll-to-top.min.js"></script>
-  <script src="./assets/static/zoom-image.min.js"></script>
-  <script src="./assets/static/docsify-page-toc.js"></script>
+	<p>xray 的文档已经迁移至 <a href="https://docs.xray.cool">docs.xray.cool</a>，如果您的浏览器没有自动跳转，请点击上述链接。</p>
+	<script type="text/javascript">
+		window.location = "https://docs.xray.cool/" + location.hash
+	</script>
 </body>
+
 </html>

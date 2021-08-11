@@ -1,6 +1,6 @@
 name: poc-yaml-ecology-validate-sqli
 set:
-  r1: randomInt(4000, 9999)
+  r1: randomInt(8000, 9999)
   r2: randomInt(800, 1000)
 rules:
   - method: POST

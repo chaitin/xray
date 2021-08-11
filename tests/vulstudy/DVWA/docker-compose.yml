@@ -1,0 +1,7 @@
+version: '2'
+services:
+ web:
+  #build: .
+  image: c0ny1/dvwa:v1.9
+  ports:
+   - "80:80"
