@@ -1,4 +1,4 @@
-name: poc-yaml-atlassian-jira-anyuserreg
+name: poc-yaml-atlassian-confluence-user-reg
 set:
   redemail: randomLowercase(8)
   redpassword: randomLowercase(11)
@@ -16,6 +16,6 @@ rules:
       response.status == 200 && response.body.bcontains(b"aui-message aui-message-success success")
 detail:
   author: tangshoupu
-  info: atlassian-jira开启了任意用户注册，存在企业内部信息泄露风险
+  info: Atlassian Confluence开启了用户注册，存在企业内部信息泄露风险，低版本还存在登录后的命令执行漏洞
   links:
     - https://mp.weixin.qq.com/s/lVCT6JAA_BU9h4ISLlMNbQ
