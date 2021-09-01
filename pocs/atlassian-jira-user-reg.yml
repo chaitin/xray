@@ -1,4 +1,4 @@
-name: poc-yaml-atlassian-confluence-user-reg
+name: poc-yaml-atlassian-jira-user-reg
 set:
   redemail: randomLowercase(8)
   redpassword: randomLowercase(11)
