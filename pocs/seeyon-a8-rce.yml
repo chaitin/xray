@@ -1,0 +1,11 @@
+name: poc-yaml-seeyon-A8-rce
+rules:
+  - method: GET
+    path: /seeyon/htmlofficeservlet
+    follow_redirects: false
+    expression: |
+      response.status == 200 && response.body.bcontains(b"V3.0") && response.body.bcontains(b"htmoffice") && response.body.bcontains(b"err")
+detail:
+  author: whale3070(https://whale3070.github.io/)
+  links:
+    - https://www.jianshu.com/p/562f45edde2d
