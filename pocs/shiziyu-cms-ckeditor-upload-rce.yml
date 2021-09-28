@@ -17,7 +17,7 @@ rules:
     search:
       image/uploads/(?P<path>.+?).php
     expression:
-    response.status == 200 && response.body.bcontains(b"image/uploads/")
+      response.status == 200 && response.body.bcontains(b"image/uploads/")
   - method: GET
     path: /Common/image/uploads/{{path}}.php
     expression:
