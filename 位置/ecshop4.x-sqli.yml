@@ -1,4 +1,4 @@
-name: poc-yaml-ecshop4.x-sqli
+name: poc-yaml-ecshop4-sqli
 rules:
   - method: GET
     path: /user.php?act=collection_list
