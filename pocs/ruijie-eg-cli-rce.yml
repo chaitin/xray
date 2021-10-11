@@ -1,4 +1,4 @@
-name: poc-yaml-ruijie-eg-rce
+name: poc-yaml-ruijie-eg-cli-rce
 set:
   r1: randomInt(8000, 10000)
   r2: randomInt(8000, 10000)
