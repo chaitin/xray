@@ -1,4 +1,4 @@
-name: poc-yaml-ruijie-anyfile-read
+name: poc-yaml-ruijie-eg-file-read
 rules:
   - method: POST
     path: /login.php
