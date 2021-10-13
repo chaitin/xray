@@ -12,5 +12,5 @@ rules:
       response.body.bcontains(b"ab1fa529d7273da0db6b49cc4f3")
 detail:
   author: 曦s
-  links: 
+  links:
     - https://github.com/vulhub/vulhub/tree/master/ecshop/collection_list-sqli
