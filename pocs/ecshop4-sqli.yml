@@ -10,7 +10,7 @@ rules:
         updatexml(1,md5({{r1}}),1) and '";|
     follow_redirects: false
     expression: |
-      response.body.bcontains(bytes(substr(md5(string(r1)),5,31)))
+      response.body.bcontains(bytes(substr(md5(string(r1)), 5, 31)))
 detail:
   author: 曦s
   links:
