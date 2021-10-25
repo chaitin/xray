@@ -1,0 +1,302 @@
+name: fingerprint-yaml-tcp-openbsd-openssh
+manual: false
+transport: tcp
+set:
+    re1: '"^SSH-([\\d.]+)-OpenSSH_(?P<version0>[\\w._-]+) Debian-(?P<version1>\\S*maemo\\S*)\\r?\\n"'
+    re2: '"^SSH-([\\d.]+)-OpenSSH_(?P<version0>[\\w._-]+)[ -]{1,2}Debian[ -_](?P<version1>.*ubuntu.*)\\r\\n"'
+    re3: '"^SSH-([\\d.]+)-OpenSSH_(?P<version0>[\\w._-]+)[ -]{1,2}Ubuntu[ -_](?P<version1>[^\\r\\n]+)\\r?\\n"'
+
+    re4: '"^SSH-([\\d.]+)-OpenSSH_(?P<version0>[\\w._-]+)[ -]{1,2}Debian[ -_](?P<version1>[^\\r\\n]+)\\r?\\n"'
+    re5: '"^SSH-([\\d.]+)-OpenSSH_[\\w.]+-FC-(?P<version>[\\w.-]+)\\.fc(\\d+)\\r\\n"'
+    re6: '"^SSH-([\\d.]+)-OpenSSH_(?P<version>[\\w._-]+) FreeBSD-([\\d]+)\\r?\\n"'
+    re7: '"^SSH-([\\d.]+)-OpenSSH_(?P<version>[\\w._-]+) FreeBSD localisations (\\d+)\\r?\\n"'
+    re8: '"^SSH-([\\d.]+)-OpenSSH_(?P<version>[\\w._-]+) FreeBSD-openssh-portable-(?:base-|amd64-)?[\\w.,]+\\r?\\n"'
+    re9: '"^SSH-([\\d.]+)-OpenSSH_(?P<version>[\\w._-]+) FreeBSD-openssh-portable-overwrite-base"'
+    re10: '"^SSH-([\\d.]+)-OpenSSH_(?P<version>[\\w._-]+) FreeBSD-openssh-gssapi-"'
+    re11: '"^SSH-([\\d.]+)-OpenSSH_(?P<version>[\\w._-]+) FreeBSD\\n"'
+    re12: '"^SSH-([\\d.]+)-OpenSSH_(?P<version>[\\w._-]+) miniBSD-([\\d]+)\\r?\\n"'
+    re13: '"^SSH-([\\d.]+)-OpenSSH_(?P<version>[\\w._-]+) NetBSD_Secure_Shell-([\\w._+-]+)\\r?\\n"'
+    re14: '"^SSH-([\\d.]+)-OpenSSH_(?P<version0>[\\w._-]+)_Mikrotik_v(?P<version1>[\\d.]+)\\r?\\n"'
+    re15: '"^SSH-([\\d.]+)-OpenSSH_(?P<version>[\\w._-]+) in RemotelyAnywhere ([\\d.]+)\\r?\\n"'
+    re16: '"^SSH-([\\d.]+)-OpenSSH_(?P<version>[\\w._-]+)\\+CAN-2004-0175\\r?\\n"'
+    re17: '"^SSH-([\\d.]+)-OpenSSH_(?P<version>[\\w._-]+) NCSA_GSSAPI_20040818 KRB5\\r?\\n"'
+    re18: '"^SSH-([\\d.]+)-OpenSSH_(?P<version>[\\w._-]+)[-_]hpn(\\w+) *(?:\\\"\\\")?\\r?\\n"'
+    re19: '"^SSH-([\\d.]+)-OpenSSH_(?P<version>[\\w._-]+\\+sftpfilecontrol-v[\\d.]+-hpn\\w+)\\r?\\n"'
+    re20: '"^SSH-([\\d.]+)-OpenSSH_(?P<version>[\\w._-]+-hpn) NCSA_GSSAPI_\\d+ KRB5\\r?\\n"'
+    re21: '"^SSH-([\\d.]+)-OpenSSH_3\\.4\\+p1\\+gssapi\\+OpenSSH_3\\.7\\.1buf_fix\\+2006100301\\r?\\n"'
+    re22: '"^SSH-([\\d.]+)-OpenSSH_(?P<version>[\\w._-]+\\.RL)\\r?\\n"'
+    re23: '"^SSH-([\\d.]+)-OpenSSH_(?P<version>[\\w._-]+-CERN\\d+)\\r?\\n"'
+    re24: '"^SSH-([\\d.]+)-OpenSSH_(?P<version>[\\w._-]+\\.cern-hpn)"'
+    re25: '"^SSH-([\\d.]+)-OpenSSH_(?P<version>[\\w._-]+-hpn)\\r?\\n"'
+    re26: '"^SSH-([\\d.]+)-OpenSSH_(?P<version>[\\w._-]+-pwexp\\d+)\\r?\\n"'
+    re27: '"^SSH-([\\d.]+)-OpenSSH_(?P<version>[\\w._-]+)-chrootssh\\n"'
+    re28: '"^SSH-([\\d.]+)-Nortel\\r?\\n"'
+    re29: '"^SSH-([\\d.]+)-OpenSSH_(?P<version>[\\w.]+)[-_]hpn(\\w+) DragonFly-"'
+    re30: '"^SSH-([\\d.]+)-OpenSSH_(?P<version>[\\w.]+) DragonFly-"'
+    re31: '"^SSH-([\\d.]+)-OpenSSH_(?P<version>[\\w_.-]+) FIPS\\n"'
+    re32: '"^SSH-([\\d.]+)-OpenSSH_(?P<version>[\\w_.-]+) FIPS\\r\\n"'
+    re33: '"^SSH-([\\d.]+)-OpenSSH_(?P<version>[\\w_.-]+) NCSA_GSSAPI_GPT_([-\\w_.]+) GSI\\n"'
+    re34: '"^SSH-([\\d.]+)-OpenSSH_(?P<version>[\\w._-]+) \\.\\n"'
+    re35: '"^SSH-([\\d.]+)-OpenSSH_(?P<version>[\\w._-]+) PKIX\\r\\n"'
+    re36: '"^SSH-([\\d.]+)-OpenSSH_(?P<version>[\\w._-]+)-FIPS\\(capable\\)\\r\\n"'
+    re37: '"^SSH-([\\d.]+)-OpenSSH_(?P<version>[\\w._-]+)-sshjail\\n"'
+    re38: '"^SSH-([\\d.]+)-OpenSSH_(?P<version0>[\\w._-]+) Raspbian-(?P<version1>[^\\r\\n]+)\\r?\\n"'
+    re39: '"^SSH-([\\d.]+)-OpenSSH_(?P<version>[\\w._-]+) OVH-rescue\\r\\n"'
+    re40: '"^SSH-([\\d.]+)-OpenSSH_(?P<version>[\\w._-]+) Trisquel_GNU/linux_([\\d.]+)(?:-\\d+)?\\r\\n"'
+    re41: '"^SSH-([\\d.]+)-OpenSSH_(?P<version>[\\w._-]+) \\+ILOM\\.2015-5600\\r\\n"'
+    re42: '"^SSH-([\\d.]+)-OpenSSH_(?P<version>[\\w._-]+) SolidFire Element \\r\\n"'
+    re43: '"(?i)^SSH-([\\d.]+)-OpenSSH[_-](?P<version>[\\w.]+)\\s*\\r?\\n"'
+    re44: '"^SSH-([\\d.]+)-OpenSSH\\r?\\n$"'
+    re45: '"^Access to service sshd from [-\\w_.]+@[-\\w_.]+ has been denied\\.\\r\\n"'
+rules:
+    r1:
+        expression: re1.bmatches(response.raw)
+        output:
+            re1_result: re1.bsubmatch(response.raw)
+            osname: '"Linux"'
+            version: '"" + re1_result["version0"] + " Debian " + re1_result["version1"] + ""'
+    r2:
+        expression: re2.bmatches(response.raw)
+        output:
+            re2_result: re2.bsubmatch(response.raw)
+            osname: '"Linux"'
+            version: '"" + re2_result["version0"] + " Debian " + re2_result["version1"] + ""'
+    r3:
+        expression: re3.bmatches(response.raw)
+        output:
+            re3_result: re3.bsubmatch(response.raw)
+            osname: '"Linux"'
+            version: '"" + re3_result["version0"] + " Ubuntu " + re3_result["version1"] + ""'
+    r4:
+        expression: re4.bmatches(response.raw)
+        output:
+            re4_result: re4.bsubmatch(response.raw)
+            osname: '"Linux"'
+            version: '"" + re4_result["version0"] + " Debian " + re4_result["version1"] + ""'
+    r5:
+        expression: re5.bmatches(response.raw)
+        output:
+            re5_result: re5.bsubmatch(response.raw)
+            osname: '"Linux"'
+            version: '"" + re5_result["version"] + " Fedora"'
+    r6:
+        expression: re6.bmatches(response.raw)
+        output:
+            re6_result: re6.bsubmatch(response.raw)
+            osname: '"FreeBSD"'
+            version: re6_result["version"]
+    r7:
+        expression: re7.bmatches(response.raw)
+        output:
+            re7_result: re7.bsubmatch(response.raw)
+            osname: '"FreeBSD"'
+            version: re7_result["version"]
+    r8:
+        expression: re8.bmatches(response.raw)
+        output:
+            re8_result: re8.bsubmatch(response.raw)
+            osname: '"FreeBSD"'
+            version: re8_result["version"]
+    r9:
+        expression: re9.bmatches(response.raw)
+        output:
+            re9_result: re9.bsubmatch(response.raw)
+            osname: '"FreeBSD"'
+            version: re9_result["version"]
+    r10:
+        expression: re10.bmatches(response.raw)
+        output:
+            re10_result: re10.bsubmatch(response.raw)
+            osname: '"FreeBSD"'
+            version: re10_result["version"]
+    r11:
+        expression: re11.bmatches(response.raw)
+        output:
+            re11_result: re11.bsubmatch(response.raw)
+            osname: '"FreeBSD"'
+            version: re11_result["version"]
+    r12:
+        expression: re12.bmatches(response.raw)
+        output:
+            re12_result: re12.bsubmatch(response.raw)
+            osname: '"MiniBSD"'
+            version: re12_result["version"]
+    r13:
+        expression: re13.bmatches(response.raw)
+        output:
+            re13_result: re13.bsubmatch(response.raw)
+            osname: '"NetBSD"'
+            version: re13_result["version"]
+    r14:
+        expression: re14.bmatches(response.raw)
+        output:
+            re14_result: re14.bsubmatch(response.raw)
+            device: '"router"'
+            version: '"" + re14_result["version0"] + " mikrotik " + re14_result["version1"] + ""'
+    r15:
+        expression: re15.bmatches(response.raw)
+        output:
+            re15_result: re15.bsubmatch(response.raw)
+            osname: '"Windows"'
+            version: re15_result["version"]
+    r16:
+        expression: re16.bmatches(response.raw)
+        output:
+            re16_result: re16.bsubmatch(response.raw)
+            version: '"" + re16_result["version"] + " CAN-2004-0175"'
+    r17:
+        expression: re17.bmatches(response.raw)
+        output:
+            re17_result: re17.bsubmatch(response.raw)
+            version: '"" + re17_result["version"] + " NCSA_GSSAPI_20040818 KRB5"'
+    r18:
+        expression: re18.bmatches(response.raw)
+        output:
+            re18_result: re18.bsubmatch(response.raw)
+            version: re18_result["version"]
+    r19:
+        expression: re19.bmatches(response.raw)
+        output:
+            re19_result: re19.bsubmatch(response.raw)
+            version: re19_result["version"]
+    r20:
+        expression: re20.bmatches(response.raw)
+        output:
+            re20_result: re20.bsubmatch(response.raw)
+            version: re20_result["version"]
+    r21:
+        expression: re21.bmatches(response.raw)
+        output:
+            version: '"3.4p1 with CMU Andrew patches"'
+    r22:
+        expression: re22.bmatches(response.raw)
+        output:
+            re22_result: re22.bsubmatch(response.raw)
+            device: '"switch"'
+            version: '"" + re22_result["version"] + " Allied Telesis"'
+    r23:
+        expression: re23.bmatches(response.raw)
+        output:
+            re23_result: re23.bsubmatch(response.raw)
+            version: re23_result["version"]
+    r24:
+        expression: re24.bmatches(response.raw)
+        output:
+            re24_result: re24.bsubmatch(response.raw)
+            version: re24_result["version"]
+    r25:
+        expression: re25.bmatches(response.raw)
+        output:
+            re25_result: re25.bsubmatch(response.raw)
+            version: re25_result["version"]
+    r26:
+        expression: re26.bmatches(response.raw)
+        output:
+            re26_result: re26.bsubmatch(response.raw)
+            osname: '"AIX"'
+            version: re26_result["version"]
+    r27:
+        expression: re27.bmatches(response.raw)
+        output:
+            re27_result: re27.bsubmatch(response.raw)
+            version: re27_result["version"]
+    r28:
+        expression: re28.bmatches(response.raw)
+        output:
+            device: '"switch"'
+    r29:
+        expression: re29.bmatches(response.raw)
+        output:
+            re29_result: re29.bsubmatch(response.raw)
+            osname: '"DragonFlyBSD"'
+            version: re29_result["version"]
+    r30:
+        expression: re30.bmatches(response.raw)
+        output:
+            re30_result: re30.bsubmatch(response.raw)
+            osname: '"DragonFlyBSD"'
+            version: re30_result["version"]
+    r31:
+        expression: re31.bmatches(response.raw)
+        output:
+            re31_result: re31.bsubmatch(response.raw)
+            device: '"firewall"'
+            version: re31_result["version"]
+    r32:
+        expression: re32.bmatches(response.raw)
+        output:
+            re32_result: re32.bsubmatch(response.raw)
+            device: '"switch"'
+            version: re32_result["version"]
+    r33:
+        expression: re33.bmatches(response.raw)
+        output:
+            re33_result: re33.bsubmatch(response.raw)
+            version: re33_result["version"]
+    r34:
+        expression: re34.bmatches(response.raw)
+        output:
+            re34_result: re34.bsubmatch(response.raw)
+            version: re34_result["version"]
+    r35:
+        expression: re35.bmatches(response.raw)
+        output:
+            re35_result: re35.bsubmatch(response.raw)
+            version: re35_result["version"]
+    r36:
+        expression: re36.bmatches(response.raw)
+        output:
+            re36_result: re36.bsubmatch(response.raw)
+            version: re36_result["version"]
+    r37:
+        expression: re37.bmatches(response.raw)
+        output:
+            re37_result: re37.bsubmatch(response.raw)
+            version: re37_result["version"]
+    r38:
+        expression: re38.bmatches(response.raw)
+        output:
+            re38_result: re38.bsubmatch(response.raw)
+            osname: '"Linux"'
+            version: '"" + re38_result["version0"] + " Raspbian " + re38_result["version1"] + ""'
+    r39:
+        expression: re39.bmatches(response.raw)
+        output:
+            re39_result: re39.bsubmatch(response.raw)
+            version: re39_result["version"]
+    r40:
+        expression: re40.bmatches(response.raw)
+        output:
+            re40_result: re40.bsubmatch(response.raw)
+            osname: '"Linux"'
+            version: re40_result["version"]
+    r41:
+        expression: re41.bmatches(response.raw)
+        output:
+            re41_result: re41.bsubmatch(response.raw)
+            version: re41_result["version"]
+    r42:
+        expression: re42.bmatches(response.raw)
+        output:
+            re42_result: re42.bsubmatch(response.raw)
+            version: re42_result["version"]
+    r43:
+        expression: re43.bmatches(response.raw)
+        output:
+            re43_result: re43.bsubmatch(response.raw)
+            version: re43_result["version"]
+    r44:
+        expression: re44.bmatches(response.raw)
+        output:
+            device: '"terminal server"'
+    r45:
+        expression: re45.bmatches(response.raw)
+expression: r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11() || r12() || r13() || r14() || r15() || r16() || r17() || r18() || r19() || r20() || r21() || r22() || r23() || r24() || r25() || r26() || r27() || r28() || r29() || r30() || r31() || r32() || r33() || r34() || r35() || r36() || r37() || r38() || r39() || r40() || r41() || r42() || r43() || r44() || r45()
+detail:
+    fingerprint:
+        infos:
+            - type: system_bin
+              name: openssh
+              version: '{{version}}'
+            - type: operating_system
+              name: '{{osname}}'

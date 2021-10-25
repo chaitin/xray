@@ -1,11 +1,16 @@
 name: poc-yaml-jupyter-notebook-unauthorized-access
+manual: true
+transport: http
 rules:
-  - method: GET
-    path: "/terminals/3"
-    follow_redirects: false
-    expression: >
-        response.status == 200 && response.body.bcontains(b"terminals/websocket") && !response.body.bcontains(b"Password:")
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /terminals/3
+            follow_redirects: false
+        expression: response.status == 200 && response.body.bcontains(b"terminals/websocket") && !response.body.bcontains(b"Password:")
+expression: r0()
 detail:
-  author: bufsnake(https://github.com/bufsnake)
-  links:
-    - https://vulhub.org/#/environments/jupyter/notebook-rce/
+    author: bufsnake(https://github.com/bufsnake)
+    links:
+        - https://vulhub.org/#/environments/jupyter/notebook-rce/
