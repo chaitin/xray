@@ -1,11 +1,16 @@
 name: poc-yaml-jboss-unauth
+manual: true
+transport: http
 rules:
-  - method: GET
-    path: /jmx-console/
-    follow_redirects: false
-    expression: |
-      response.status == 200 && response.body.bcontains(b"jboss.management.local") && response.body.bcontains(b"jboss.web")
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /jmx-console/
+            follow_redirects: false
+        expression: response.status == 200 && response.body.bcontains(b"jboss.management.local") && response.body.bcontains(b"jboss.web")
+expression: r0()
 detail:
-  author: FiveAourThe(https://github.com/FiveAourThe)
-  links:
-    - https://xz.aliyun.com/t/6103
+    author: FiveAourThe(https://github.com/FiveAourThe)
+    links:
+        - https://xz.aliyun.com/t/6103
