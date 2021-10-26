@@ -12,6 +12,6 @@ rules:
     expression: |
       response.body.bcontains(bytes(substr(md5(string(r1)), 5, 31)))
 detail:
-  author: 曦s
+  author: 曦shen
   links:
     - https://github.com/vulhub/vulhub/tree/master/ecshop/collection_list-sqli
