@@ -1,4 +1,4 @@
-name: poc-yaml-ecshop4-sqli
+name: poc-yaml-ecshop-collection-list-sqli
 manual: true
 transport: http
 set:
