@@ -2,7 +2,7 @@ name: poc-yaml-finereport-v9-cnvd-2021-34467
 transport: http
 set:
   r: randomLowercase(10)
-rulse:
+rules:
   r1:
     request:
       method: POST
