@@ -27,5 +27,5 @@ expression:
     r1()
 detail:
     author: 曦shen
-    links: 
+    links:
         - https://github.com/vulhub/vulhub/tree/master/xxl-job/unacc
