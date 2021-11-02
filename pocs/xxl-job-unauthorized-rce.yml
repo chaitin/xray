@@ -6,7 +6,7 @@ rules:
             method: POST
             path: "/run"
             headers:
-              Content-Type: application/json
+                Content-Type: application/json
             body: |-
               {
                 "jobId": 1,
