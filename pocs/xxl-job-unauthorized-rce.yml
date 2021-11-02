@@ -23,8 +23,7 @@ rules:
                 "broadcastTotal": 0
               }
         expression: response.status==200 && response.body.bcontains(b'{"code":200}')
-expression:
-    r1()
+expression: r1()
 detail:
     author: 曦shen
     links:
