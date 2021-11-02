@@ -5,7 +5,7 @@ rules:
     expression: |
       response.status == 200 && response.body.bcontains(b"for 16-bit app support")
 detail:
-  author: ThestaRY7 (https://github.com/ThestaRY7/)
+  author: ThestaRY (https://github.com/ThestaRY7/)
   links:
     - https://www.cnvd.org.cn/flaw/show/CNVD-2020-57264
   info: E-ZKEco readfileCNVD-2020-57264
