@@ -1,4 +1,4 @@
-name: poc-yaml-weaver-oa-arbitrary-file-upload
+name: poc-yaml-ecology-arbitrary-file-upload
 manual: true
 transport: http
 set:
