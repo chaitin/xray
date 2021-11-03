@@ -1,4 +1,4 @@
-name: poc-yml-h5s-video-platform-unauth
+name: poc-yaml-h5s-video-unauth
 manual: true
 transport: http
 rules:
