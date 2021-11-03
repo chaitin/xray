@@ -1,57 +1,67 @@
 name: poc-yaml-phpstudy-nginx-wrong-resolve
+manual: true
+transport: http
 set:
-  name: randomInt(10000000, 99999999)
-groups:
-  html:
-    - method: GET
-      path: /{{name}}.php
-      follow_redirects: false
-      expression: |
-        response.status != 200
-
-    - method: GET
-      path: /index.html
-      follow_redirects: false
-      expression: |
-        response.status == 200 && response.headers["Server"].contains("nginx")
-
-    - method: GET
-      path: /index.html/.php
-      follow_redirects: false
-      expression: |
-        response.status == 200 && response.headers["Server"].contains("nginx")
-
-    - method: GET
-      path: /index.html/.xxx
-      follow_redirects: false
-      expression: |
-        response.status != 200
-
-  php:
-    - method: GET
-      path: /{{name}}.php
-      follow_redirects: false
-      expression: |
-        response.status != 200
-
-    - method: GET
-      path: /index.php
-      follow_redirects: false
-      expression: |
-        response.status == 200 && response.headers["Server"].contains("nginx")
-
-    - method: GET
-      path: /index.php/.php
-      follow_redirects: false
-      expression: |
-        response.status == 200 && response.headers["Server"].contains("nginx")
-
-    - method: GET
-      path: /index.php/.xxx
-      follow_redirects: false
-      expression: |
-        response.status != 200
+    name: randomInt(10000000, 99999999)
+rules:
+    html0:
+        request:
+            cache: true
+            method: GET
+            path: /{{name}}.php
+            follow_redirects: false
+        expression: response.status != 200
+    html1:
+        request:
+            cache: true
+            method: GET
+            path: /index.html
+            follow_redirects: false
+        expression: response.status == 200 && response.headers["Server"].contains("nginx")
+    html2:
+        request:
+            cache: true
+            method: GET
+            path: /index.html/.php
+            follow_redirects: false
+        expression: response.status == 200 && response.headers["Server"].contains("nginx")
+    html3:
+        request:
+            cache: true
+            method: GET
+            path: /index.html/.xxx
+            follow_redirects: false
+        expression: response.status != 200
+    php0:
+        request:
+            cache: true
+            method: GET
+            path: /{{name}}.php
+            follow_redirects: false
+        expression: response.status != 200
+    php1:
+        request:
+            cache: true
+            method: GET
+            path: /index.php
+            follow_redirects: false
+        expression: response.status == 200 && response.headers["Server"].contains("nginx")
+    php2:
+        request:
+            cache: true
+            method: GET
+            path: /index.php/.php
+            follow_redirects: false
+        expression: response.status == 200 && response.headers["Server"].contains("nginx")
+    php3:
+        request:
+            cache: true
+            method: GET
+            path: /index.php/.xxx
+            follow_redirects: false
+        expression: response.status != 200
+expression: html0() && html1() && html2() && html3() || php0() && php1() && php2() && php3()
 detail:
-  author: LoRexxar(https://lorexxar.cn),0h1in9e(https://www.ohlinge.cn)
-  links:
-    - https://www.seebug.org/vuldb/ssvid-98364
+    author: LoRexxar(https://lorexxar.cn),0h1in9e(https://www.ohlinge.cn)
+    links:
+        - https://www.seebug.org/vuldb/ssvid-98364
