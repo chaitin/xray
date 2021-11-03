@@ -43,7 +43,7 @@ expression:
 detail:
   finereport_version: 9
   author: Infiltrator
-  links: 
+  links:
     - https://github.com/NHPT
     - https://www.freebuf.com/articles/web/271623.html
     - https://blog.csdn.net/qq_32261191/article/details/116375931
