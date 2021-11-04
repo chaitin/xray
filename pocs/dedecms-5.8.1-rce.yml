@@ -9,7 +9,7 @@ rules:
         Referer: <?php "system"(id);?>
       path: "/plus/flink.php?dopost=save"
     expression: |
-      response.status == 200 && response.body.bcontains(b'uid')
+      response.status == 200 && response.body.bcontains(b"uid")
 expression:
   r1()
 
