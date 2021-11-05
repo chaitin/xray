@@ -1,4 +1,4 @@
-name: poc-yaml-h5s-video-platform-unauth
+name: poc-yaml-h5s-video-platform-cnvd-2020-67113-unauth
 manual: true
 transport: http
 rules:
