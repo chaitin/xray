@@ -1,4 +1,4 @@
-name: poc-yaml-e-zkeco-anquanjingxi-read-file
+name: poc-yaml-e-zkeco-cnvd-2020-57264-read-file
 manual: true
 transport: http
 rules:
