@@ -9,6 +9,7 @@ rules:
       cache: true
       method: GET
       path: /autodiscover/autodiscover.json/v1.0/{{r0}}@interact.sh?Protocol=Autodiscoverv1
+      follow_redirects: false
     expression: response.status == 302 && "autodiscover.interact.sh" in response.headers
 expression: r1()
 detail:
