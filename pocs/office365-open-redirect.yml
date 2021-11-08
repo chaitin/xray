@@ -2,13 +2,15 @@ name: poc-yaml-office365-open-redirect
 manual: true
 transport: http
 set:
-  r1: randomInt(1, 9999)
+  r0: randomInt(1, 9999)
 rules:
-  - method: GET
-    path: "/autodiscover/autodiscover.json/v1.0/{{r1}}@interact.sh?Protocol=Autodiscoverv1"
-    follow_redirects: false
-    expression: |
-      'autodiscover.interact.sh' in response.headers && response.status == 302
+  r1:
+    request:
+      cache: true
+      method: GET
+      path: /autodiscover/autodiscover.json/v1.0/{{r0}}@interact.sh?Protocol=Autodiscoverv1
+    expression: response.status == 302 && "autodiscover.interact.sh" in response.headers
+expression: r1()
 detail:
   author: txf(https://github.com/tangxiaofeng7)
   links:
