@@ -1,4 +1,4 @@
-name: poc-yaml-djanjo-sqli-1
+name: poc-yaml-django-sqli-1
 manual: true
 transport: http
 rules:
