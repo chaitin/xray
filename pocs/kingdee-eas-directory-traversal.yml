@@ -1,4 +1,4 @@
-name: poc-yaml-kingdee-directory-traversal
+name: poc-yaml-kingdee-eas-directory-traversal
 manual: true
 transport: http
 rules:
