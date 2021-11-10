@@ -1,4 +1,4 @@
-name: poc-yaml-sponip-network-system-ping-rce
+name: poc-yaml-spon-ip-intercom-ping-rce
 manual: true
 transport: http
 set:
