@@ -1,4 +1,4 @@
-name: poc-yaml-zhongyuanqilin-fortressaircraft-rce
+name: poc-yaml-qilin-bastion-host-rce
 manual: true
 transport: http
 set:
