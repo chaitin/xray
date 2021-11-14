@@ -1,0 +1,16 @@
+name: poc-yaml-apache-hbase-unauthorized-access
+manual: true
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /conf
+            follow_redirects: false
+        expression: response.status == 200 && response.body.bcontains(b"<name>hbase.defaults.for.version</name>") && response.body.bcontains(b"<source>hbase-default.xml</source>")
+expression: r0()
+detail:
+    author: wulalalaaa(https://github.com/wulalalaaa)
+    links:
+        - https://hbase.apache.org/book.html#quickstart
