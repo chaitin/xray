@@ -1,4 +1,4 @@
-name: poc-yaml-sponip-network-system-file-read
+name: poc-yaml-spon-ip-intercom-file-read
 manual: true
 transport: http
 rules:
