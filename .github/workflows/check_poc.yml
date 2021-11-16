@@ -13,7 +13,7 @@ jobs:
       - name: Prepare
         run: |
           cd $GITHUB_WORKSPACE && \
-          wget -nv https://github.com/chaitin/xray/releases/download/1.8.1/xray_linux_amd64.zip && \
+          wget -nv https://github.com/chaitin/xray/releases/download/1.8.2/xray_linux_amd64.zip && \
           pip3 install yamllint && \
           unzip xray_linux_amd64.zip && \
           echo 'update:
@@ -21,5 +21,5 @@ jobs:
       - name: Check POC
         run: |
           cd $GITHUB_WORKSPACE && \
-          ./xray_linux_amd64 poclint --script "./pocs/*" --rules filename,yamlschema,yamllint,cellint && \
-          ./xray_linux_amd64 poclint --script "./fingerprints/*" --rules filename,yamlschema,yamllint,cellint
+          ./xray_linux_amd64 poclint --script "./pocs/*" --filepath "./pocs/" --rules filename,filepath,yamlschema,yamllint,cellint && \
+          ./xray_linux_amd64 poclint --script "./fingerprints/*" --filepath "./fingerprints/" --rules filename,filepath,yamlschema,yamllint,cellint
