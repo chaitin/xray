@@ -10,7 +10,6 @@ rules:
         expression: response.body.bcontains(b"c4ca4238a0b923820dcc509a6f75849")
 expression: r0()
 detail:
-    author: sodme
-    links:
-        - https://www.yuque.com/peiqiwiki/peiqi-poc-wiki/yyxv0r
-    info: DocCms-sqli
+   author: sodme
+   links:
+     - https://www.yuque.com/peiqiwiki/peiqi-poc-wiki/yyxv0r
