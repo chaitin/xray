@@ -15,7 +15,8 @@ rules:
             path: /data/
         expression: response.status == 200 && response.body.bcontains(b"Index of /data")
 expression: r0() && r1()
+
 detail:
-    author: sodme
-    links:
-        - http://www.cnnvd.org.cn/web/xxk/ldxqById.tag?CNNVD=CNNVD-201903-1287
+   author: sodme
+   links:
+     - http://www.cnnvd.org.cn/web/xxk/ldxqById.tag?CNNVD=CNNVD-201903-1287
