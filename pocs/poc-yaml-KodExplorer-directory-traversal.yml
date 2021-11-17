@@ -1,4 +1,4 @@
-name: poc-yaml-KodExplorer-directory-traversal
+name: poc-yaml-kodexplorer-directory-traversal
 manual: true
 transport: http
 rules:
@@ -10,7 +10,7 @@ rules:
         expression: response.status == 200
 expression: r0()
 detail:
-    author: sodme
-    links:
-        - https://kodcloud.com/
-    info: KodExplorer-directory traversal
+   author: sodme
+   links:
+     - https://kodcloud.com/
+   info: KodExplorer-directory-traversal
