@@ -1,4 +1,4 @@
-name: poc-yaml-DocCms-sqli
+name: poc-yaml-doccms-sqli
 manual: true
 transport: http
 rules:
