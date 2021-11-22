@@ -1,0 +1,16 @@
+name: poc-yaml-h5s-console-unauth
+manual: true
+transport: http
+rules:
+    meta0:
+        request:
+            cache: true
+            method: GET
+            path: /doc/api.html
+        expression: response.status == 200 && response.body.bcontains(b"apiName\":\"GetCodecInfo") && response.body.bcontains(b"<title>H5S视频平台 - API文档")
+expression: meta0()
+detail:
+    author: fengyang(https://github.com/bigDevi1)
+    links:
+        - https://t.zsxq.com/Yfaa6qV
+    description: 零视技术(上海)有限公司H5S CONSOLE存在未授权访问漏洞
