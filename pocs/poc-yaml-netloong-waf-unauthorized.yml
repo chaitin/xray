@@ -7,7 +7,7 @@ rules:
             cache: true
             method: GET
             path: /xml/users.xml
-        expression: response.status == 200 && response.body.bcontains(b'id="0" name="admin" pwd=') && response.body.bcontains(b'<?xml version="1.0')
+        expression: response.status == 200 && response.body.bcontains(b'id=\"0\" name=\"admin\" pwd=') && response.body.bcontains(b'<?xml version=\"1.0')
 expression: net0()
 detail:
     author: fengyang(https://github.com/bigDevi1)
