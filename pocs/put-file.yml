@@ -1,0 +1,27 @@
+name: poc-yaml-put-file
+manual: true
+transport: http
+set:
+    filename: randomLowercase(8)
+    fileContent: randomLowercase(20)
+rules:
+    r0:
+        request:
+            cache: true
+            method: PUT
+            path: /{{filename}}.txt
+            body: |
+                {{fileContent}}
+        expression: response.status != 404
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /{{filename}}.txt
+            follow_redirects: false
+        expression: response.status == 200 && response.body.bcontains(bytes(fileContent))
+expression: r0() && r1()
+detail:
+    author: tangshoupu
+    links:
+        - https://cloud.tencent.com/developer/article/1805800
