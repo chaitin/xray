@@ -14,7 +14,7 @@ rules:
             method: POST
             path: /monitor/cache/getNames?fragment=header({{En}})
             body: 
-        expression: reverse.wait(5)
+        expression: reverse.wait(5) && response.body.bcontains(b"Parameters in a view specification")
 expression: r0()
 detail:
     author: H00H(https://github.com/H00H)
