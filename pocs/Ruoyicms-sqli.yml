@@ -8,7 +8,7 @@ rules:
             method: GET
             path: /system/role
             follow_redirects: false
-        expression: response.status == 200 && response.body.bcontains(b"ruoyi")
+        expression: response.status == 200 && response.body.bcontains(b"/ruoyi/css/ry-ui.css?v=4.6.0")
     r1:
         request:
             cache: true
@@ -24,3 +24,4 @@ detail:
     author: H00H(https://github.com/H00H)
     links:
         - https://blog.csdn.net/Guapichen/article/details/119212781
+    Affected Version:  ruoyi = 4.6.0
