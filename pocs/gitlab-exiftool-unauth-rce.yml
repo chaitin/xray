@@ -1,4 +1,4 @@
-name: poc-yaml-gitlab-cve-2021-22205-rce
+name: gitlab-exiftool-unauth-rce
 manual: true
 transport: http
 rules:
