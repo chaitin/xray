@@ -25,8 +25,9 @@ def webhook():
             return "invalid token", 401
     # 可以使用 instance query 来区分不同的节点的数据
     instance = request.args.get("instance", "default")
-    data = request.json
-    data_type = data.get("type")
+    json_data = request.json
+    data_type = json_data.get("type")
+    data = json_data.get("data")
     if data_type == "web_vuln":
         process_web_vuln(instance, data)
     elif data_type == "web_statistic":

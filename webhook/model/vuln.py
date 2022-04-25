@@ -62,8 +62,6 @@ class WebVuln:
     # 这两个数据内部使用其实是 enum，要不要提供给社区？
     # 插件名
     plugin: str
-    # 漏洞类型，可能为空，代表 default
-    vuln_class: str
 
     url: str
     # 存在漏洞的参数，可能为 None
@@ -84,7 +82,6 @@ class ServiceVuln:
     # 同 web 漏洞
     create_time: datetime
     plugin: str
-    vuln_class: str
 
     # 主机名
     host: str

