@@ -1,0 +1,16 @@
+name: poc-yaml-javamelody-unauth
+manual: true
+transport: http
+rules:
+    javamelody:
+        request:
+            cache: true
+            method: GET
+            path: /monitoring
+        expression: response.status == 200 && response.body.bcontains(b"JavaMelody")
+expression: javamelody()
+detail:
+    author: secbug
+    links:
+        - https://mp.weixin.qq.com/s/ye9qWPm0wcn90zoKQpExGg
+        - https://paper.seebug.org/705/
