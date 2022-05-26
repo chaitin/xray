@@ -2,8 +2,8 @@ name: poc-yaml-ruijie-eweb-rce-cnvd-2021-09650
 manual: true
 transport: http
 set:
-    r1: randomLowercase(4)
-    r2: randomLowercase(4)
+    r1: randomLowercase(8)
+    r2: randomLowercase(8)
     phpcode: >
         "<?php echo '" + r1 + "'; unlink(__FILE__); ?>"
 
