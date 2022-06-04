@@ -1,8 +1,14 @@
-name: poc-yaml-spark-unauth  # nolint[:namematch]
+name: poc-yaml-spark-webui-unauth
+manual: true
+transport: http
 rules:
-  - method: GET
-    path: /
-    expression: response.status == 200 && response.body.bcontains(b"<title>Spark") && response.body.bcontains(b"<strong>URL:</strong> spark:")
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+        expression: response.status == 200 && response.body.bcontains(b"<title>Spark") && response.body.bcontains(b"<strong>URL:</strong> spark:")
+expression: r0()
 detail:
-  links:
-    - https://github.com/vulhub/vulhub/tree/master/spark/unacc
+    links:
+        - https://github.com/vulhub/vulhub/tree/master/spark/unacc

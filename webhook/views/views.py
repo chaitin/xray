@@ -8,7 +8,7 @@ from model.vuln import Statistics, WebVuln, WebParam, WebParamPosition, WebReque
 def process_web_vuln(instance, data):
     """将 web 漏洞 json 转换为相关 model"""
     detail = data["detail"]
-    p = detail["param"]
+    p = detail['extra']["param"]
     if p:
         param = WebParam(key=p["key"], value=p["value"], position=WebParamPosition(p["position"]))
     else:
@@ -18,11 +18,9 @@ def process_web_vuln(instance, data):
     response = []
     extra = {}
 
-    for i in range(0, 10):
-        req_key = f"request{i}" if i else "request"
-        resp_key = f"response{i}" if i else "response"
-        req = detail.get(req_key)
-        resp = detail.get(resp_key)
+    for i, pair in enumerate(detail['snapshot']):
+        req = pair[0]
+        resp = pair[1]
 
         if req == "" or resp == "":
             continue
@@ -32,8 +30,8 @@ def process_web_vuln(instance, data):
         response.append(WebResponse(raw=resp))
 
     # 其他的数据可能是自定义的，就单独拿出来
-    not_extra_key = ["request", "response", "param", "payload", "url"]
-    for k, v in detail.items():
+    not_extra_key = ["param"]
+    for k, v in detail["extra"].items():
         for item in not_extra_key:
             if item in k:
                 break
@@ -41,7 +39,6 @@ def process_web_vuln(instance, data):
             extra[k] = v
 
     vuln = WebVuln(create_time=datetime.fromtimestamp(data["create_time"] / 1000), plugin=data["plugin"],
-                   vuln_class=data["vuln_class"],
                    url=data["target"]["url"], param=param, request=request, response=response, extra=extra,
                    raw_json=data)
     dispatch_web_vuln(instance, vuln)
@@ -64,8 +61,8 @@ def process_host_vuln(instance, data):
     detail = data["detail"]
     extra = {}
 
-    not_extra_key = ["host", "port"]
-    for k, v in detail.items():
+    not_extra_key = []
+    for k, v in detail['extra'].items():
         for item in not_extra_key:
             if item in k:
                 break
@@ -73,6 +70,6 @@ def process_host_vuln(instance, data):
             extra[k] = v
 
     vuln = ServiceVuln(create_time=datetime.fromtimestamp(data["create_time"] / 1000), plugin=data["plugin"],
-                       vuln_class=data["vuln_class"], host=detail["host"], port=detail["port"],
+                       host=detail["host"], port=detail["port"],
                        extra=extra, raw_json=data)
     dispatch_service_vuln(instance, vuln)

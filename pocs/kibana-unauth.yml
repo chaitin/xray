@@ -1,11 +1,16 @@
 name: poc-yaml-kibana-unauth
+manual: true
+transport: http
 rules:
-  - method: GET
-    path: /app/kibana
-    follow_redirects: false
-    expression: |
-      response.status == 200 && response.body.bcontains(b".kibanaWelcomeView")
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /app/kibana
+            follow_redirects: false
+        expression: response.status == 200 && response.body.bcontains(b".kibanaWelcomeView")
+expression: r0()
 detail:
-  author: Isaac(https://github.com/IsaacQiang)
-  links:
-    - https://zhuanlan.zhihu.com/p/61215662
+    author: Isaac(https://github.com/IsaacQiang)
+    links:
+        - https://zhuanlan.zhihu.com/p/61215662

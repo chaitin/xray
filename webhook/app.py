@@ -15,7 +15,7 @@ logging.basicConfig(format="[%(levelname)s] %(asctime)s %(name)s %(message)s",
 # 比如可以给一个界面管理当前的插件，看到插件的数据等？
 @app.route("/", methods=["GET"])
 def index():
-    return redirect("https://xray.cool/xray/#/api/api")
+    return redirect("https://docs.xray.cool/#/webhook/webhook")
 
 @app.route("/webhook", methods=["POST"])
 def webhook():
@@ -25,8 +25,9 @@ def webhook():
             return "invalid token", 401
     # 可以使用 instance query 来区分不同的节点的数据
     instance = request.args.get("instance", "default")
-    data = request.json
-    data_type = data.get("type")
+    json_data = request.json
+    data_type = json_data.get("type")
+    data = json_data.get("data")
     if data_type == "web_vuln":
         process_web_vuln(instance, data)
     elif data_type == "web_statistic":
