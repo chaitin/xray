@@ -1,0 +1,18 @@
+name: poc-yaml-apache-apisix-default-token
+manual: true
+transport: http
+rules:
+  r0:
+    request:
+      cache: true
+      method: POST
+      path: /apisix/admin/routes
+      headers:
+        X-API-KEY: edd1c9f034335f136f87ad84b625c8f1
+      follow_redirects: true
+    expression: response.status == 400 && response.body.bcontains(b"missing configurations")
+expression: r0()
+detail:
+  author: fox09(https://github.com/fox1111101001)
+  links:
+    - https://github.com/vulhub/vulhub/blob/master/apisix/CVE-2020-13945/README.zh-cn.md
