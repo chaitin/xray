@@ -10,6 +10,6 @@ rules:
         expression: response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
 expression: r0()
 detail:
-    author: 黔灵山Xo.(https://github.com/li8u99)
+    author: li8u99(https://github.com/li8u99)
     links:
         - https://github.com/webp-sh/webp_server_go/issues/92
