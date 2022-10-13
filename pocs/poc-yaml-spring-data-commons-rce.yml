@@ -17,6 +17,6 @@ rules:
 expression: |
     r0()
 detail:
-    author: nobody
+    author: echo
     links:
         - https://xz.aliyun.com/t/10039
