@@ -14,7 +14,9 @@
 
 ![](https://docs.xray.cool/assets/term.svg)
 
-🏠[使用文档](https://docs.xray.cool)  ⬇️[下载地址](https://github.com/chaitin/xray/releases)
+[**English Version**](./README_EN.md)
+
+🏠[使用文档](https://docs.xray.cool)  ⬇️[下载地址](https://github.com/chaitin/xray/releases) 
 
 注意：xray 不开源，直接下载构建的二进制文件即可，仓库内主要为社区贡献的 poc，每次 xray 发布将自动打包。
 
