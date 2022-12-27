@@ -18,13 +18,13 @@
 
 🏠[Document](https://docs.xray.cool)  ⬇️[Download](https://github.com/chaitin/xray/releases) 
 
-Note: xray is not open source, you can download the built binaries directly, and the poc in the repository, which is mainly contributed to the community, will be packaged automatically for each xray release.
+Note: xray is not open source, you can download the built binaries directly, and the poc in the repository, which is mainly contributed by the community, will be packaged automatically for each xray release.
 
 ## 🚀 Quick use
 
-**Before using the tool, read and agree to the terms in the [License](https://github.com/chaitin/xray/blob/master/LICENSE.md). Otherwise, do not install or use the tool.**
+**Before using the tool, read and agree to the terms especially the disclaimer in the [License](https://github.com/chaitin/xray/blob/master/LICENSE.md). Otherwise, do not install or use the tool.**
 
-1. Use the base crawler fetch and perform vulnerability scanning on the crawler fetch links
+1. Use the base basic web crawler scan to scrape and perform vulnerability scanning on the scraped links
 
     ```bash
     xray webscan --basic-crawler http://example.com --html-output vuln.html
@@ -35,7 +35,7 @@ Note: xray is not open source, you can download the built binaries directly, and
     ```bash
     xray webscan --listen 127.0.0.1:7777 --html-output proxy.html
     ```
-   Set the browser http proxy to `http://127.0.0.1:7777` to automatically analyze proxy traffic and scan.
+   Set the browser http proxy to `http://127.0.0.1:7777` to analyze proxy traffic and scan automatically.
 
    >To scan https traffic, read the `Crawling https Traffic` section below
 
@@ -45,7 +45,7 @@ Note: xray is not open source, you can download the built binaries directly, and
     xray webscan --url http://example.com/?a=b --html-output single-url.html
     ```
 
-4. Manually specify the plugin to run this time
+4. Manually configure the plugins to run this time
 
    By default, all built-in plugins are enabled. You can specify which plugins are enabled for this scan using the following command.
 
@@ -56,7 +56,7 @@ Note: xray is not open source, you can download the built binaries directly, and
 
 5. Specifying plugin output
 
-   You can specify that the vulnerability information for this scan should be output to a file:
+   You can choose targeted vulnerability and their details of this scan and export a report:
 
     ```bash
     xray webscan --url http://example.com/?a=b \
@@ -161,8 +161,8 @@ See https://docs.xray.cool/ for the following advanced uses.
 
 - Modifying the configuration file
 - Scraping https traffic
-- Example Modify the http packet sending configuration
-- The use of reverse platforms
+- Modifying the http packet sending configuration
+- Employing reverse platforms
 - ...
 
 ## 😘 Contribute POC
@@ -171,12 +171,12 @@ See: https://docs.xray.cool/#/guide/contribute
 
 ## 📝 Discussion area
 
-To submit false positives, missed positives, and more, be sure to read https://docs.xray.cool/#/guide/feedback first
+Feedback of  false positives,false negatives, please don’t hesitate to contact us. Be sure to read https://docs.xray.cool/#/guide/feedback first
 
 If you have a question, you can ask it on GitHub or in the discussion group below
 
 1. GitHub issue: https://github.com/chaitin/xray/issues
-2. Wechat official account: Scan the following QR code on wechat and follow us
+2. Wechat official account: Scan the following QR code on wechat and subscribe us
 
 <img src="https://docs.xray.cool/assets/wechat.jpg?cache=_none" height="200px">
 
