@@ -151,6 +151,30 @@
 
 ## 😘 贡献 POC
 
+xray的进步离不开各位师傅的支持，秉持着互助共建的精神，为了让我们共同进步，xray也开通了“PoC收录”的渠道！在这里你将会得到：
+
+### 丰厚的奖励
+
+- 贡献PoC将获得**丰厚的金币奖励**，成就感满满；
+- **丰富的礼品**兑换专区，50余种周边礼品任你挑选；
+- 定期更有京东卡上线兑换，离**财富自由**又近了一步；
+- 进入核心社群的机会，领取特殊任务，赚取**高额赏金**；
+
+### 完善的教程
+
+- 完善的**PoC编写教程和指导**，让你快速上手，少走弯路；
+
+### 学习与交流
+
+- **与贡献者、开发者面对面**学习交流的机会，各项能力综合提高；
+- 免笔试的**直通面试机会**，好工作不是梦；
+
+如果你已经成功贡献过PoC但是还没有进群，请添加客服微信：
+
+<img src="https://docs.xray.cool/assets/customer_service.png?cache=_none" height="200px">
+
+提供平台注册id进行验证，验证通过后即可进群！
+
 参照: https://docs.xray.cool/#/guide/contribute
 
 ## 📝 讨论区
@@ -160,13 +184,13 @@
 如有问题可以在 GitHub 提 issue, 也可在下方的讨论组里
 
 1. GitHub issue: https://github.com/chaitin/xray/issues
-2. QQ 群: 717365081
-3. 微信公众号：微信扫描以下二维码，关注我们
+
+2. 微信公众号：微信扫描以下二维码，关注我们
 
 <img src="https://docs.xray.cool/assets/wechat.jpg?cache=_none" height="200px">
 
-4. 微信群: 微信扫描以下二维码加群
+3. 微信群: 请添加微信公众号并点击“联系我们" -> "加群“，然后扫描二维码加群
 
-<img src="https://ctstack-oss.oss-cn-beijing.aliyuncs.com/xray/ctstack-group-qr-code.jpg" height="200px">
+4. QQ 群: 717365081
 
 

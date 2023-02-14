@@ -167,6 +167,30 @@ See https://docs.xray.cool/ for the following advanced uses.
 
 ## 😘 Contribute POC
 
+The progress of xray is inseparable from the support of all masters. Upholding the spirit of mutual assistance and joint construction, in order to let us make progress together, xray has also opened the channel of "PoC collection"! Here you will get:
+
+### Great Rewards
+
+- Contributing to PoC earns generous points rewards and provides a fulfilling sense of accomplishment.
+- Choose from over 50 types of peripheral gifts in our abundant gift redemption area.
+- Regularly redeem JD Cards online and get one step closer to financial freedom.
+- Get the opportunity to enter the core community, receive special tasks, and earn high rewards.
+
+### Perfect Tutorial
+
+- Perfect PoC writing tutorials and guidance help you get started quickly and avoid detours.
+
+### Learning and Communication
+
+- Interact face-to-face with contributors and developers to comprehensively improve various abilities.
+- Get a direct interview opportunity without a written test, and turn your desired job into a reality.
+
+If you have successfully contributed PoC but have not entered the contributor group, please add customer service WeChat:
+
+<img src="https://docs.xray.cool/assets/customer_service.png?cache=_none" height="200px">
+
+Provide your CT stack platform registration id for verification, and you can join the group after the verification is passed!
+
 See: https://docs.xray.cool/#/guide/contribute
 
 ## 📝 Discussion area
@@ -180,8 +204,6 @@ If you have a question, you can ask it on GitHub or in the discussion group belo
 
 <img src="https://docs.xray.cool/assets/wechat.jpg?cache=_none" height="200px">
 
-3. Wechat group: wechat scan the following QR code to add the group
-
-<img src="https://ctstack-oss.oss-cn-beijing.aliyuncs.com/xray/ctstack-group-qr-code.jpg" height="200px">
+3. Wechat group: Please add the WeChat official account and click "联系我们" -> "加群", and then scan the QR code to join the group
 
 4. QQ group: 717365081
