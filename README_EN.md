@@ -72,87 +72,27 @@ For other uses, read the documentation： https://docs.xray.cool
 
 New detection modules will be added continuously
 
-- XSS vulnerability detection (key: xss)
-
-  Semantic analysis is used to detect XSS vulnerabilities
-
-
-- SQL Injection Detection (key: sqldet)
-
-  It supports error injection, Boolean injection, time blind injection, etc
-
-
-- Command/Code injection detection (key: cmd-injection)
-
-  It supports shell command injection, PHP code execution, template injection, etc
-
-
-- dirscan (key: dirscan)
-
-  Detects more than 10 sensitive paths and files, including backup files, temporary files, debug pages, and configuration files
-
-
-- Path traversal detection (key: path-traversal)
-
-  Support for common platforms and encodings
-
-
-- XML Entity Injection Detection (key: xxe)
-
-  Support for echo and reverse platform detection
-
-
-- POC management (key: phantasm)
-
-  Some commonly used POCs are built in by default. Users can build and run POCs based on their needs. Document: https://docs.xray.cool/#/guide/poc
-
-
-- File upload detection (key: upload)
-
-  Support for common back-end languages
-
-
-- Weak password detection (key: brute-force)
-
-  The Community Edition supports the detection of HTTP basic authentication and weak passwords for simple forms, with a built-in dictionary of common user names and passwords
-
-
-- jsonp detection (key: jsonp)
-
-  Detects jsonp interfaces that contain sensitive information that can be read across domains
-
-
-- ssrf detection (key: ssrf)
-
-  ssrf detection module supports common bypass technology and reverse platform detection
-
-
-- Baseline detection (key: baseline)
-
-  Detects low SSL versions, missing or incorrectly added http, and so on
-
-
-- Redirection detection (key: redirect)
-
-  Support HTML meta jump, 30x jump, etc
-
-
-- CRLF injection (key: crlf-injection)
-
-  Detects HTTP header injection and supports parameters for query, body, etc
-
-
-- Struts2 series vulnerability detection (Premium edition，key: struts)
-
-  Detect whether the target website has Struts2 series vulnerabilities, including s2-016, s2-032, s2-045 and other common vulnerabilities
-
-
-- Thinkphp series vulnerability detection (Premium edition，key: thinkphp)
-
-  Detect vulnerabilities in ThinkPHP websites
-
-
-- ..
+| 名称                                            | Key              | 版本                | 说明                                                                                                                                                                           |
+|-----------------------------------------------|------------------|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| XSS vulnerability detection                   | `xss`            | Community Edition | Semantic analysis is used to detect XSS vulnerabilities                                                                                                                      |
+| SQL Injection Detection                       | `sqldet`         | Community Edition | It supports error injection, Boolean injection, time blind injection, etc                                                                                                    |
+| Command/Code injection detection              | `cmd-injection`  | Community Edition | It supports shell command injection, PHP code execution, template injection, etc                                                                                             |
+| dirscan                                       | `dirscan`        | Community Edition | Detects more than 10 sensitive paths and files, including backup files, temporary files, debug pages, and configuration files                                                |
+| Path traversal detection                      | `path-traversal` | Community Edition | Support for common platforms and encodings                                                                                                                                   |
+| XML Entity Injection Detection                | `xxe`            | Community Edition | Support for echo and reverse platform detection                                                                                                                              |
+| POC management                                | `phantasm`       | Community Edition | Some commonly used POCs are built in by default. Users can build and run POCs based on their needs. Document: [POC](https://docs.xray.cool/#/guide/poc)                      |
+| File upload detection                         | `upload`         | Community Edition | Support for common back-end languages                                                                                                                                        |
+| Weak password detection                       | `brute-force`    | Community Edition | The Community Edition supports the detection of HTTP basic authentication and weak passwords for simple forms, with a built-in dictionary of common user names and passwords |
+| jsonp detection                               | `jsonp`          | Community Edition | Detects jsonp interfaces that contain sensitive information that can be read across domains                                                                                  |
+| ssrf detection                                | `ssrf`           | Community Edition | ssrf detection module supports common bypass technology and reverse platform detection                                                                                       |
+| Baseline detection                            | `baseline`       | Community Edition | Detects low SSL versions, missing or incorrectly added http, and so on                                                                                                       |
+| Redirection detection                         | `redirect`       | Community Edition | Support HTML meta jump, 30x jump, etc                                                                                                                                        |
+| CRLF injection                                | `crlf-injection` | Community Edition | Detects HTTP header injection and supports parameters for query, body, etc                                                                                                   |
+| XStream vulnerability detection               | `xstream`        | Community Edition | Detect XStream series vulnerabilities                                                                                                                                        |
+| Struts2 series vulnerability detection        | `struts`         | Advanced Edition  | Detect whether the target website has Struts2 series vulnerabilities, including s2-016, s2-032, s2-045 and other common vulnerabilities                                      |
+| Thinkphp series vulnerability detection       | `thinkphp`       | Advanced Edition  | Detect vulnerabilities in ThinkPHP websites                                                                                                                                  |
+| Shiro deserialization vulnerability detection | `shiro`          | Advanced Edition  | Detect Shiro deserialization vulnerability                                                                                                                                   |
+| Fastjson series detection                     | `fastjson`       | Advanced Edition  | Detect fastjson series vulnerabilities                                                                                                                                       |
 
 
 ## ⚡️ Advanced use
@@ -192,6 +132,27 @@ If you have successfully contributed PoC but have not entered the contributor gr
 Provide your CT stack platform registration id for verification, and you can join the group after the verification is passed!
 
 See: https://docs.xray.cool/#/guide/contribute
+
+##  🔧 Surrounding ecology
+
+### POC authoring aids
+
+The tool can assist in generating POC, and the online version supports * * poc duplicate check * *, and the local version supports direct contract verification
+
+#### Online version
+
+- [**Rule Lab**](https://poc.xray.cool)
+- The online version supports duplicate checking of **poc**
+
+#### Local version
+
+- [**gamma-gui**]( https://github.com/zeoxisca/gamma-gui)
+
+### Xray gui aids
+
+This tool is only a simple command line wrapper, not a direct method call. In the planning of xray, there will be a truly complete GUI version of XrayPro tool in the future. Please look forward to it.
+
+- [**super-xray**]( https://github.com/4ra1n/super-xray)
 
 ## 📝 Discussion area
 

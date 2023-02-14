@@ -67,76 +67,31 @@
 
 其他用法请阅读文档： https://docs.xray.cool
 
-
 ## 🛠 检测模块
 
 新的检测模块将不断添加
 
- - XSS漏洞检测 (key: xss)
-
-   利用语义分析的方式检测XSS漏洞
-
- - SQL 注入检测 (key: sqldet)
-
-   支持报错注入、布尔注入和时间盲注等
-
- - 命令/代码注入检测 (key: cmd-injection)
-
-   支持 shell 命令注入、PHP 代码执行、模板注入等
-
- - 目录枚举 (key: dirscan)
-
-   检测备份文件、临时文件、debug 页面、配置文件等10余类敏感路径和文件
-
- - 路径穿越检测 (key: path-traversal)
-
-   支持常见平台和编码
-
- - XML 实体注入检测 (key: xxe)
-
-   支持有回显和反连平台检测
-
- - poc 管理 (key: phantasm)
-
-   默认内置部分常用的 poc，用户可以根据需要自行构建 poc 并运行。文档：https://docs.xray.cool/#/guide/poc
-
- - 文件上传检测 (key: upload)
-
-   支持常见的后端语言
-
- - 弱口令检测 (key: brute-force)
-
-   社区版支持检测 HTTP 基础认证和简易表单弱口令，内置常见用户名和密码字典
-
- - jsonp 检测 (key: jsonp)
-
-   检测包含敏感信息可以被跨域读取的 jsonp 接口
-
- - ssrf 检测 (key: ssrf)
-
-   ssrf 检测模块，支持常见的绕过技术和反连平台检测
-
- - 基线检查 (key: baseline)
-
-   检测低 SSL 版本、缺失的或错误添加的 http 头等
-
- - 任意跳转检测 (key: redirect)
-
-   支持 HTML meta 跳转、30x 跳转等
-
- - CRLF 注入 (key: crlf-injection)
-
-   检测 HTTP 头注入，支持 query、body 等位置的参数
- 
- - Struts2 系列漏洞检测 (高级版，key: struts)
-
-   检测目标网站是否存在Struts2系列漏洞，包括s2-016、s2-032、s2-045等常见漏洞
-
- - Thinkphp系列漏洞检测 (高级版，key: thinkphp)
-
-   检测ThinkPHP开发的网站的相关漏洞
- 
- - ..
+| 名称             | Key              | 版本  | 说明                                                                              |
+|----------------|------------------|-----|---------------------------------------------------------------------------------|
+| XSS漏洞检测        | `xss`            | 社区版 | 利用语义分析的方式检测XSS漏洞                                                                |
+| SQL 注入检测       | `sqldet`         | 社区版 | 支持报错注入、布尔注入和时间盲注等                                                               |
+| 命令/代码注入检测      | `cmd-injection`  | 社区版 | 支持 shell 命令注入、PHP 代码执行、模板注入等                                                    |
+| 目录枚举           | `dirscan`        | 社区版 | 检测备份文件、临时文件、debug 页面、配置文件等10余类敏感路径和文件                                           |
+| 路径穿越检测         | `path-traversal` | 社区版 | 支持常见平台和编码                                                                       |
+| XML 实体注入检测     | `xxe`            | 社区版 | 支持有回显和反连平台检测                                                                    |
+| poc 管理         | `phantasm`       | 社区版 | 默认内置部分常用的 poc，用户可以根据需要自行构建 poc 并运行。文档：[POC](https://docs.xray.cool/#/guide/poc) |
+| 文件上传检测         | `upload`         | 社区版 | 支持常见的后端语言                                                                       |
+| 弱口令检测          | `brute-force`    | 社区版 | 社区版支持检测 HTTP 基础认证和简易表单弱口令，内置常见用户名和密码字典                                          |
+| jsonp 检测       | `jsonp`          | 社区版 | 检测包含敏感信息可以被跨域读取的 jsonp 接口                                                       |
+| ssrf 检测        | `ssrf`           | 社区版 | ssrf 检测模块，支持常见的绕过技术和反连平台检测                                                      |
+| 基线检查           | `baseline`       | 社区版 | 检测低 SSL 版本、缺失的或错误添加的 http 头等                                                    |
+| 任意跳转检测         | `redirect`       | 社区版 | 支持 HTML meta 跳转、30x 跳转等                                                         |
+| CRLF 注入        | `crlf-injection` | 社区版 | 检测 HTTP 头注入，支持 query、body 等位置的参数                                                |
+| XStream漏洞检测    | `xstream`        | 社区版 | 检测XStream系列漏洞                                                                   |
+| Struts2 系列漏洞检测 | `struts`         | 高级版 | 检测目标网站是否存在Struts2系列漏洞，包括s2-016、s2-032、s2-045、s2-059、s2-061等常见漏洞                 |
+| Thinkphp系列漏洞检测 | `thinkphp`       | 高级版 | 检测ThinkPHP开发的网站的相关漏洞                                                            |
+| shiro反序列化漏洞检测  | `shiro`          | 高级版 | 检测Shiro反序列化漏洞                                                                   |
+| fastjson系列检测   | `fastjson`       | 高级版 | 检测fastjson系列漏洞                                                                  |
 
 
 ## ⚡️ 进阶使用
@@ -176,6 +131,24 @@ xray的进步离不开各位师傅的支持，秉持着互助共建的精神，�
 提供平台注册id进行验证，验证通过后即可进群！
 
 参照: https://docs.xray.cool/#/guide/contribute
+
+## 🔧周边生态
+
+### POC编写辅助工具
+
+该工具可以辅助生成POC，且在线版支持**poc查重**，本地版支持直接发包验证
+
+#### 在线版
+- [**规则实验室**](https://poc.xray.cool)
+- 在线版支持对**poc查重**
+#### 本地版
+- [**gamma-gui**](https://github.com/zeoxisca/gamma-gui)
+
+### xray gui辅助工具
+
+本工具仅是简单的命令行包装，并不是直接调用方法。在 xray 的规划中，未来会有一款真正的完善的 GUI 版 XrayPro 工具，敬请期待。
+
+- [**super-xray**](https://github.com/4ra1n/super-xray)
 
 ## 📝 讨论区
 
