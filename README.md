@@ -8,13 +8,13 @@
   </a>
 </p>
 
+[**English Version**](./README_EN.md)
+
 > 一款功能强大的安全评估工具 
 
 ### ✨ Demo
 
 ![](https://docs.xray.cool/assets/term.svg)
-
-[**English Version**](./README_EN.md)
 
 🏠[使用文档](https://docs.xray.cool)  ⬇️[下载地址](https://github.com/chaitin/xray/releases) 
 
@@ -67,7 +67,7 @@
 
 其他用法请阅读文档： https://docs.xray.cool
 
-## 🛠 检测模块
+## 🪟 检测模块
 
 新的检测模块将不断添加
 

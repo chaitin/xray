@@ -8,13 +8,13 @@
   </a>
 </p>
 
+[**中文版本**](./README.md)
+
 > A powerful security assessment tool
 
 ### ✨ Demo
 
 ![](https://docs.xray.cool/assets/term.svg)
-
-[**中文版本**](./README.md)
 
 🏠[Document](https://docs.xray.cool)  ⬇️[Download](https://github.com/chaitin/xray/releases) 
 
@@ -68,7 +68,7 @@ Note: xray is not open source, you can download the built binaries directly, and
 For other uses, read the documentation： https://docs.xray.cool
 
 
-## 🛠 Detection module
+## 🪟 Detection module
 
 New detection modules will be added continuously
 
