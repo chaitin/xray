@@ -12,8 +12,8 @@
   ```
   
 - 阅读规范和要求 
-  - https://chaitin.github.io/xray/#/guide/contribute
-  - https://chaitin.github.io/xray/#/guide/high_quality_poc
+  - https://docs.xray.cool/#/guide/contribute
+  - https://docs.xray.cool/#/guide/high_quality_poc
 
 - 一个 pull request 只提交一个 poc
 
@@ -21,7 +21,7 @@
 
  - 不接受没有测试环境的 poc，测试环境可以使用 [vulhub](https://github.com/vulhub/vulhub/) 或 [vulnapps](https://github.com/Medicean/VulApps)，也可以提供 fofa/zoomeye/shodan 等搜索关键字。 请勿直接填写公网上未修复的站点的地址，如果有特殊情况，请私聊群内管理解决。
  
-- 如果你的 poc 被合并或者没有合并但是评论说需要发送奖励，请查看 https://chaitin.github.io/xray/#/guide/feedback 并添加最下面的微信，说明你的 poc 地址，方便发送奖励。
+- 如果你的 poc 被合并或者没有合并但是评论说需要发送奖励，请查看 https://docs.xray.cool/#/guide/feedback 并添加最下面的微信，说明你的 poc 地址，方便发送奖励。
 
 **我是分割线，在提交 poc 填写说明的时候，请务必阅读上方要求，然后删除本分割线和上方的内容，只保留下面自定义的部分即可，否则不予通过。**
 

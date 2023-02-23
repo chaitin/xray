@@ -2,7 +2,7 @@
 
 ## DEMO
 
-[报告样例](https://chaitin.github.io/xray/assets/report_example.html)
+[报告样例](https://docs.xray.cool/assets/report_example.html)
 
 ## 准备工作
 

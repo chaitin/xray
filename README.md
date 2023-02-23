@@ -3,7 +3,7 @@
   <img src="https://img.shields.io/github/release/chaitin/xray.svg" />
   <img src="https://img.shields.io/github/release-date/chaitin/xray.svg?color=blue&label=update" />
   <img src="https://img.shields.io/badge/go report-A+-brightgreen.svg" />
-  <a href="https://chaitin.github.io/xray/#/">
+  <a href="https://docs.xray.cool/#/">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" target="_blank" />
   </a>
 </p>
