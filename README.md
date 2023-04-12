@@ -110,6 +110,13 @@
 
 xray的进步离不开各位师傅的支持，秉持着互助共建的精神，为了让我们共同进步，xray也开通了“PoC收录”的渠道！在这里你将会得到：
 
+### 提交流程
+
+1. 贡献者以 PR 的方式向 github xray 社区仓库内提交， POC 提交位置: https://github.com/chaitin/xray/tree/master/pocs, 指纹识别脚本提交位置: https://github.com/chaitin/xray/tree/master/fingerprints
+2. PR 中根据 Pull Request 的模板填写 POC 信息
+3. 内部审核 PR，确定是否合并入仓库
+4. 但需要注意，如果想要获得POC的奖励，需要将你的POC提交到CT stack，才能获取到奖励
+
 ### 丰厚的奖励
 
 - 贡献PoC将获得**丰厚的金币奖励**，成就感满满；

@@ -109,6 +109,13 @@ See https://docs.xray.cool/ for the following advanced uses.
 
 The progress of xray is inseparable from the support of all masters. Upholding the spirit of mutual assistance and joint construction, in order to let us make progress together, xray has also opened the channel of "PoC collection"! Here you will get:
 
+### How to Submit
+
+1. Contributors should submit their work using a Pull Request to the xray community repository on GitHub. For POCs, use this link: https://github.com/chaitin/xray/tree/master/pocs, and for fingerprint recognition scripts, use this one: https://github.com/chaitin/xray/tree/master/fingerprints
+2. In the Pull Request, fill out the POC information using the provided template
+3. Our team will review the Pull Request and decide whether to include it in the repository
+4. Keep in mind that to earn rewards for your POC, you'll need to submit it to the CT stack.
+
 ### Great Rewards
 
 - Contributing to PoC earns generous points rewards and provides a fulfilling sense of accomplishment.
