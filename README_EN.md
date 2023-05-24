@@ -26,7 +26,7 @@ To address the complexity and bloat of xray 1.0 as features were added, we are i
 
 This new version is dedicated to improving the fluidity of feature usage, lowering the barrier to use, and helping more security industry practitioners to reap a better experience in a more efficient mode. xray 2.0 will integrate a series of new security tools to form a comprehensive security toolset.
 
-**xray 2.0 series of the first tool xpoc has been launched, welcome to experience! **
+**xray 2.0 series of the first tool xpoc has been launched, welcome to experience!**
 
 - [**xpoc**](https://github.com/chaitin/xpoc)
 
