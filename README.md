@@ -12,15 +12,25 @@
 
 > 一款功能强大的安全评估工具 
 
-### ✨ Demo
+## ✨ Demo
 
 ![](https://docs.xray.cool/assets/term.svg)
 
 🏠[使用文档](https://docs.xray.cool)  
 ⬇️[国内用户下载地址](https://stack.chaitin.com/tool/detail?id=1)  
-⬇️[GitHub下载地址](https://github.com/chaitin/xray/releases) 
+⬇️[GitHub下载地址](https://github.com/chaitin/xray/releases)
 
-注意：xray 不开源，直接下载构建的二进制文件即可，仓库内主要为社区贡献的 poc，每次 xray 发布将自动打包。
+> 注意：xray 不开源，直接下载构建的二进制文件即可，仓库内主要为社区贡献的 poc，每次 xray 发布将自动打包。
+
+## xray2.0
+
+为了解决 xray 1.0在功能增加过程中变得复杂且臃肿的问题，我们推出了 xray 2.0。
+
+这一全新版本致力于提升功能使用的流畅度，降低使用门槛，并帮助更多安全行业从业者以更高效的模式收获更好的体验。xray 2.0 将整合一系列新的安全工具，形成一个全面的安全工具集。
+
+**xray2.0系列的第一款工具xpoc已经上线，欢迎体验！**
+
+- [**xpoc**](https://github.com/chaitin/xpoc)
 
 ## 🚀 快速使用
 
