@@ -5,7 +5,7 @@ rules:
     r0:
         request:
             cache: true
-            method: PUT
+            method: GET
             path: /?query=SELECT%20NOW()
             follow_redirects: false
         expression: response.status == 200 && "X-ClickHouse-Query-Id" in response.headers
