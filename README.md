@@ -9,6 +9,7 @@
 </p>
 
 [**English Version**](./README_EN.md)
+[**Indonesia Version**](./README_ID.md)
 
 > 一款功能强大的安全评估工具 
 
