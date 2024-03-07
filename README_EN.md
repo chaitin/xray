@@ -144,7 +144,7 @@ The progress of xray is inseparable from the support of all masters. Upholding t
 
 If you have successfully contributed PoC but have not entered the contributor group, please add customer service WeChat:
 
-<img src="https://docs.xray.cool/assets/customer_service.png?cache=_none" height="200px">
+<img src="./asset/customer_service.png" height="200px">
 
 Provide your CT stack platform registration id for verification, and you can join the group after the verification is passed!
 
@@ -180,7 +180,7 @@ If you have a question, you can ask it on GitHub or in the discussion group belo
 1. GitHub issue: https://github.com/chaitin/xray/issues
 2. Wechat official account: Scan the following QR code on wechat and subscribe us
 
-<img src="https://docs.xray.cool/assets/wechat.jpg?cache=_none" height="200px">
+    <img src="./asset/wechat.jpg" height="200px">
 
 3. Wechat group: Please add the WeChat official account and click "联系我们" -> "加群", and then scan the QR code to join the group
 

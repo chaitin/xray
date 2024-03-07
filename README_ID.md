@@ -144,7 +144,7 @@ Kemajuan xray tidak terlepas dari dukungan para mastah. Dengan semangat saling m
 
 Jika Anda sudah berhasil menyumbangkan POC tetapi belum bergabung dengan grup, tambahkan akun servis pelanggan kami di WeChat:
 
-<img src="https://docs.xray.cool/assets/customer_service.png?cache=_none" height="200px">
+<img src="./asset/customer_service.png" height="200px">
 
 Sediakan ID pendaftaran platform untuk diverifikasi dan setelah itu Anda dapat bergabung!
 
@@ -178,7 +178,7 @@ Jika ada masalah, silakan buat isu di GitHub, atau bergabung di grup diskusi di 
 1. Isu GitHub: https://github.com/chaitin/xray/issues
 2. Akun WeChat: Pindai kode QR di bawah, dan ikuti kami.
 
-<img src="https://docs.xray.cool/assets/wechat.jpg?cache=_none" height="200px">
+    <img src="./asset/wechat.jpg" height="200px">
 
 3. Grup WeChat: Tambahkan akun WeChat dan klik "Hubungi Kami" -> "Bergabung dengan Grup", lalu pindai kode QR untuk bergabung.
 4. Grup QQ: 717365081
