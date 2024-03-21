@@ -6,7 +6,10 @@
   <a href="https://docs.xray.cool/#/">
     <img alt="Dokumentasi" src="https://img.shields.io/badge/dokumentasi-ya-brightgreen.svg" target="_blank" />
   </a>
-</p>
+</p><br>
+
+[**Terjemahan By**] [BM-TechID](https://github.com/BM-TechID/) <h3> Follow Me !!! Thank You </h3><br><br>
+
 
 [**Versi Bahasa Inggris**](./README_EN.md)
 
