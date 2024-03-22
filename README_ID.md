@@ -8,6 +8,12 @@
   </a>
 </p>
 
+
+## Kredit
+
+**Terjemahan ini dibuat oleh** [BM-TechID](https://github.com/BM-TechID)
+> Jangan lupa ikuti profll kami, Terimakasih.
+
 [**Versi Bahasa Inggris**](./README_EN.md)
 
 > Sebuah alat evaluasi keamanan yang kuat 
