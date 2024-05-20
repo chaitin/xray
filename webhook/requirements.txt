@@ -1,4 +1,4 @@
 Flask==2.1.0
-requests==2.22.0
+requests==2.32.0
 pyyaml==5.1.2
 cached-property==1.5.1
