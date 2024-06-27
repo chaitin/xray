@@ -20,11 +20,9 @@
 
 [**中文版**](./README.md)
 
-## ✨ Demo
-
 > Note: xray is not open source, just download the built binary files directly. The repository mainly contains community-contributed POCs. Each xray release will automatically package them.
 
-## xray 2.0
+## ✨ xray 2.0
 
 To address the issue of xray 1.0 becoming complex and bloated with added features, we have launched xray 2.0.
 
