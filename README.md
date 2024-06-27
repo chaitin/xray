@@ -1,25 +1,26 @@
 <h1 align="center">Welcome to xray 👋</h1>
-<p>
+<p align="center">
   <img src="https://img.shields.io/github/release/chaitin/xray.svg" />
   <img src="https://img.shields.io/github/release-date/chaitin/xray.svg?color=blue&label=update" />
   <img src="https://img.shields.io/badge/go report-A+-brightgreen.svg" />
-  <a href="https://docs.xray.cool/#/">
+  <a href="https://docs.xray.cool/">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" target="_blank" />
   </a>
 </p>
 
-[**English Version**](./README_EN.md)
-[**Indonesia Version**](./README_ID.md)
+<h3 align="center">一款功能强大的安全评估工具 </h3>
 
-> 一款功能强大的安全评估工具 
+<p align="center">
+  <a href="https://docs.xray.cool">🏠使用文档</a> •
+  <a href="https://github.com/chaitin/xray/releases">⬇️xray下载</a> •
+  <a href="https://github.com/chaitin/xpoc">⬇️xpoc下载</a> •
+  <a href="https://github.com/chaitin/xapp">⬇️xapp下载</a> •
+  <a href="https://github.com/chaitin/xray-plugins">📖插件存储库</a>
+</p>
+
+[**English Version**](./README_EN.md)
 
 ## ✨ Demo
-
-![](https://docs.xray.cool/assets/term.svg)
-
-🏠[使用文档](https://docs.xray.cool)  
-⬇️[国内用户下载地址](https://stack.chaitin.com/tool/detail?id=1)  
-⬇️[GitHub下载地址](https://github.com/chaitin/xray/releases)
 
 > 注意：xray 不开源，直接下载构建的二进制文件即可，仓库内主要为社区贡献的 poc，每次 xray 发布将自动打包。
 
@@ -29,9 +30,29 @@
 
 这一全新版本致力于提升功能使用的流畅度，降低使用门槛，并帮助更多安全行业从业者以更高效的模式收获更好的体验。xray 2.0 将整合一系列新的安全工具，形成一个全面的安全工具集。
 
-**xray2.0系列的第一款工具xpoc已经上线，欢迎体验！**
+**xray2.0系列的第二款工具xapp已经上线，欢迎体验！**
 
-- [**xpoc**](https://github.com/chaitin/xpoc)
+### XPOC
+
+xpoc是xray2.0系列的第一款工具，它是一款为供应链漏洞扫描设计的快速应急响应工具
+
+项目地址：https://github.com/chaitin/xpoc
+
+### XAPP
+
+xapp是一款专注于web指纹识别的工具。你可以使用xapp对web目标所使用的技术进行识别，为安全测试做好准备。
+
+项目地址：https://github.com/chaitin/xapp
+
+### 插件存储库
+
+我们为各类插件创建了一个专门的存储库，旨在方便大家共享和使用各种插件。
+
+这里主要收录的是开源的、转化成 xray格式的脚本，以供大家使用。
+
+我们会不定期地往这里推送一些新的插件，同时也希望大家能积极踊跃的优化或者提交插件，共同丰富这个仓库。
+
+项目地址：https://github.com/chaitin/xray-plugins
 
 ## 🚀 快速使用
 
