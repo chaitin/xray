@@ -191,11 +191,15 @@ xray的进步离不开各位师傅的支持，秉持着互助共建的精神，�
 
 ## 📝 讨论区
 
+各位开发者和 xray 粉丝们，欢迎来[讨论区投票](https://github.com/chaitin/xray/discussions/1804)，决定 xray 2.0 工具的开发优先级，让你的声音塑造 xray 的未来！ 🚀
+
 提交误报漏报需求等等请务必先阅读 https://docs.xray.cool/#/guide/feedback
 
 如有问题可以在 GitHub 提 issue, 也可在下方的讨论组里
 
-1. GitHub issue: https://github.com/chaitin/xray/issues
+1. GitHub:
+   - https://github.com/chaitin/xray/issues
+   - https://github.com/chaitin/xray/discussions
 
 2. 微信公众号：微信扫描以下二维码，关注我们
 

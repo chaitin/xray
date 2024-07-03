@@ -193,11 +193,15 @@ This tool is just a simple command line wrapper, not a direct method call. In th
 
 ## 📝 Discussion Area
 
+Fellow developers and xray fans, feel free to come to [Discussion Board Vote](https://github.com/chaitin/xray/discussions/1804) to decide the development priorities for xray 2.0 tools and let your voice shape the future of xray! 🚀
+
 Before submitting false positives, missed reports, or requests, please be sure to read https://docs.xray.cool/#/guide/feedback.
 
 If you have any questions, you can submit an issue on GitHub or join the discussion groups below.
 
-1. GitHub issue: https://github.com/chaitin/xray/issues
+1. GitHub:
+   - https://github.com/chaitin/xray/issues
+   - https://github.com/chaitin/xray/discussions
 
 2. WeChat Official Account: Scan the QR code below to follow us
 
