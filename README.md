@@ -205,4 +205,6 @@ xray的进步离不开各位师傅的支持，秉持着互助共建的精神，�
 
 4. QQ 群: 717365081
 
+## Star History
 
+[![Star History Chart](https://api.star-history.com/svg?repos=chaitin/xray&type=Date)](https://star-history.com/#chaitin/xray&Date)

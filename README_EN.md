@@ -206,3 +206,7 @@ If you have any questions, you can submit an issue on GitHub or join the discuss
 3. WeChat Group: Add the WeChat official account, click "Contact Us" -> "Join Group", and then scan the QR code to join the group.
 
 4. QQ Group: 717365081
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=chaitin/xray&type=Date)](https://star-history.com/#chaitin/xray&Date)
