@@ -23,3 +23,5 @@ Evil Pot
     - 尝试计算请求中的算式
     - 尝试进行`sleep`和`wait for`的执行
 - 8889: echo server 回显所有读到的数据
+
+可在此处下载体验：https://github.com/chaitin/xray/releases?q=EvilPot&expanded=true

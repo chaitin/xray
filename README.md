@@ -177,6 +177,8 @@ xray的进步离不开各位师傅的支持，秉持着互助共建的精神，�
 
 [**Evil Pot**](https://github.com/chaitin/xray/tree/master/tests/evilpot)
 
+[Releases](https://github.com/chaitin/xray/releases?q=EvilPot&expanded=true)
+
 一个专门用于让扫描器产生误报的靶场
 
 编写插件应该尽量避免能在这个靶场扫描出结果

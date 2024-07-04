@@ -180,6 +180,8 @@ Refer to: https://docs.xray.cool/#/guide/contribute
 
 [**Evil Pot**](https://github.com/chaitin/xray/tree/master/tests/evilpot)
 
+[Releases](https://github.com/chaitin/xray/releases?q=EvilPot&expanded=true)
+
 A range specifically designed to allow scanners to generate false positives
 
 Plugins should be written to try to avoid being able to scan results in this range
