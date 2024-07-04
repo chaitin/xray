@@ -11,6 +11,7 @@ Evil Pot
 
 - 8887: evil server 让扫描器产生误报 困难模式
     - 普通模式的基础上对所有请求元素进行拆解计算sha1/md5/base64
+    - /etc/passwd和win.ini的内容
 - 8888: evil server 让扫描器产生误报 普通模式
     - 常见状态码
     - 常见报错信息

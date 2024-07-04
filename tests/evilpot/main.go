@@ -12,8 +12,29 @@ func main() {
 	evilAddr := flag.String("evil", ":8888", "evil server 监听地址")
 	echoAddr := flag.String("echo", ":8889", "echo server 监听地址")
 	flag.Parse()
-	go func() { log.Fatalln(evil.ServeEvilServer(*evilHardAddr, true)) }()
-	go func() { log.Fatalln(evil.ServeEvilServer(*evilAddr, false)) }()
-	go func() { log.Fatalln(evil.ServeEchoServer(*echoAddr)) }()
+
+	log.Println("Starting servers...")
+
+	go func() {
+		log.Printf("Starting evil server in hard mode on %s...\n", *evilHardAddr)
+		if err := evil.ServeEvilServer(*evilHardAddr, true); err != nil {
+			log.Fatalf("Evil server hard mode failed: %v\n", err)
+		}
+	}()
+
+	go func() {
+		log.Printf("Starting evil server on %s...\n", *evilAddr)
+		if err := evil.ServeEvilServer(*evilAddr, false); err != nil {
+			log.Fatalf("Evil server failed: %v\n", err)
+		}
+	}()
+
+	go func() {
+		log.Printf("Starting echo server on %s...\n", *echoAddr)
+		if err := evil.ServeEchoServer(*echoAddr); err != nil {
+			log.Fatalf("Echo server failed: %v\n", err)
+		}
+	}()
+
 	select {}
 }

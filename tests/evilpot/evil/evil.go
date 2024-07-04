@@ -58,6 +58,18 @@ func NewEvilServeMux(hard bool) *http.ServeMux {
 			})
 		}
 
+		if hard {
+			buf.WriteString("\nroot:x:0:0:root:/root:/bin/bash\n")
+			buf.WriteString(`
+			; for 16-bit app support
+		    [fonts]
+			[extensions]
+			[mci extensions]
+			[files]
+			[Mail]
+			MAPI=1`)
+		}
+
 		// 处理 sleep 和 WAITFOR DELAY
 		sleepMatches := sleepRe.FindAllStringSubmatch(unescape, -1)
 		for _, match := range sleepMatches {
@@ -218,6 +230,5 @@ func init() {
 	for i := 0; i < 1000; i++ {
 		GenEvilContent(buf, []byte(strconv.Itoa(i)))
 	}
-	buf.WriteString("\nroot:x:0:0:root:/root:/bin/bash\n")
 	CommonEvilResponse = buf.Bytes()
 }
