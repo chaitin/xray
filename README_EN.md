@@ -62,7 +62,7 @@ Project address: https://github.com/chaitin/xray-plugins
     xray webscan --basic-crawler http://example.com --html-output vuln.html
     ```
 
-1. Use HTTP proxy for passive scanning
+2. Use HTTP proxy for passive scanning
 
     ```bash
     xray webscan --listen 127.0.0.1:7777 --html-output proxy.html
@@ -71,13 +71,13 @@ Project address: https://github.com/chaitin/xray-plugins
 
    > To scan HTTPS traffic, please read the "Capture HTTPS Traffic" section below.
 
-1. Scan a single URL without using a crawler
+3. Scan a single URL without using a crawler
 
     ```bash
     xray webscan --url http://example.com/?a=b --html-output single-url.html
     ```
 
-1. Manually specify plugins for this run
+4. Manually specify plugins for this run
 
    By default, all built-in plugins will be enabled. You can specify the plugins to be enabled for this scan with the following commands.
 
@@ -86,7 +86,7 @@ Project address: https://github.com/chaitin/xray-plugins
    xray webscan --plugins cmd-injection,sqldet --listen 127.0.0.1:7777
    ```
 
-1. Specify Plugin Output
+5. Specify Plugin Output
 
    You can specify to output the vulnerability information of this scan to a file:
 
@@ -174,6 +174,15 @@ Provide the platform registration ID for verification. Once verified, you can jo
 Refer to: https://docs.xray.cool/#/guide/contribute
 
 ## 🔧 Surrounding Ecosystem
+
+
+### POC Quality Confirmation Range
+
+[**Evil Pot**](https://github.com/chaitin/xray/tree/master/tests/evilpot)
+
+A range specifically designed to allow scanners to generate false positives
+
+Plugins should be written to try to avoid being able to scan results in this range
 
 ### POC Writing Assistant Tools
 

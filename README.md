@@ -62,7 +62,7 @@ xapp是一款专注于web指纹识别的工具。你可以使用xapp对web目标
     xray webscan --basic-crawler http://example.com --html-output vuln.html
     ```
 
-1. 使用 HTTP 代理进行被动扫描
+2. 使用 HTTP 代理进行被动扫描
     
     ```bash
     xray webscan --listen 127.0.0.1:7777 --html-output proxy.html
@@ -71,13 +71,13 @@ xapp是一款专注于web指纹识别的工具。你可以使用xapp对web目标
    
    >如需扫描 https 流量，请阅读下方文档 `抓取 https 流量` 部分
 
-1. 只扫描单个 url，不使用爬虫
+3. 只扫描单个 url，不使用爬虫
     
     ```bash
     xray webscan --url http://example.com/?a=b --html-output single-url.html
     ```
 
-1. 手动指定本次运行的插件
+4. 手动指定本次运行的插件
    
    默认情况下，将会启用所有内置插件，可以使用下列命令指定本次扫描启用的插件。
    
@@ -86,7 +86,7 @@ xapp是一款专注于web指纹识别的工具。你可以使用xapp对web目标
    xray webscan --plugins cmd-injection,sqldet --listen 127.0.0.1:7777
    ```
       
-1. 指定插件输出
+5. 指定插件输出
 
     可以指定将本次扫描的漏洞信息输出到某个文件中:
     
@@ -172,6 +172,14 @@ xray的进步离不开各位师傅的支持，秉持着互助共建的精神，�
 参照: https://docs.xray.cool/#/guide/contribute
 
 ## 🔧周边生态
+
+### POC质量确认靶场
+
+[**Evil Pot**](https://github.com/chaitin/xray/tree/master/tests/evilpot)
+
+一个专门用于让扫描器产生误报的靶场
+
+编写插件应该尽量避免能在这个靶场扫描出结果
 
 ### POC编写辅助工具
 
