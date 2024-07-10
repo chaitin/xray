@@ -7,6 +7,7 @@ import (
 	"encoding/base64"
 	"encoding/hex"
 	"log"
+	"math/big"
 	"net/http"
 	"net/http/httputil"
 	"net/url"
@@ -14,8 +15,6 @@ import (
 	"strconv"
 	"sync"
 	"time"
-
-	"github.com/dengsgo/math-engine/engine"
 )
 
 func ServeEvilServer(addr string, hard bool) error {
@@ -94,14 +93,19 @@ func NewEvilServeMux(hard bool) *http.ServeMux {
 				}
 			}
 		}
-
-		for _, expr := range mathRe.FindAllString(unescape, -1) {
-			r, err := engine.ParseAndExec(expr)
-			if err != nil {
-				log.Println(err)
-				continue
+		for _, match := range []string{string(data), unescape} {
+			for _, expr := range mathRe.FindAllString(match, -1) {
+				r, err := calculate(expr)
+				if err != nil {
+					r = big.NewFloat(0)
+				}
+				switch v := r.(type) {
+				case *big.Int:
+					GenEvilContent(buf, []byte(v.String()))
+				case *big.Float:
+					GenEvilContent(buf, []byte(v.Text('f', 10)))
+				}
 			}
-			GenEvilContent(buf, []byte(strconv.Itoa(int(r))))
 		}
 
 		_, _ = writer.Write(buf.Bytes())
